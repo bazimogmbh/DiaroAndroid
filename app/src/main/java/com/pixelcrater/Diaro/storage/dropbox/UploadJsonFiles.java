@@ -21,6 +21,7 @@ import com.dropbox.core.v2.files.UploadSessionFinishBatchResult;
 import com.dropbox.core.v2.files.UploadSessionFinishBatchResultEntry;
 import com.dropbox.core.v2.files.UploadSessionFinishError;
 import com.dropbox.core.v2.files.UploadSessionStartResult;
+import com.dropbox.core.v2.files.UploadSessionStartUploader;
 import com.dropbox.core.v2.files.WriteMode;
 import com.pixelcrater.Diaro.config.AppConfig;
 import com.pixelcrater.Diaro.MyApp;
@@ -97,16 +98,11 @@ class UploadJsonFiles {
         MyApp.getInstance().storageMgr.dbxFsAdapter.notifyOnFsSyncStatusChangeListeners();
 
         // All the jobs are finished, now check  status and try to commit
-        String asyncJobIdValue = dbxClient.files().uploadSessionFinishBatch(mUploadSessionFinishArgList).getAsyncJobIdValue();
-        while (!dbxClient.files().uploadSessionFinishBatchCheck(asyncJobIdValue).isComplete()) {
-            Static.makePause(100);
-        }
-        UploadSessionFinishBatchJobStatus uploadSessionFinishBatchJobStatus = dbxClient.files().uploadSessionFinishBatchCheck(asyncJobIdValue);
-        //   AppLog.e("UploadSessionFinishBatchLaunch " + result.toString());
-        //   AppLog.d("Waiting for batch upload commit to complete");
-        //   AppLog.e("UploadSessionFinishBatchJobStatus " + status.toString());
+        // uploadSessionFinishBatch may be deprecated but still functional in SDK 7.0.0
+        // The replacement would be uploadSessionFinishBatchV2 if available
+        UploadSessionFinishBatchResult uploadSessionFinishBatchResult = dbxClient.files().uploadSessionFinishBatchV2(mUploadSessionFinishArgList);
 
-        UploadSessionFinishBatchResult uploadSessionFinishBatchResult = uploadSessionFinishBatchJobStatus.getCompleteValue();
+        
         List<UploadSessionFinishBatchResultEntry> entries = uploadSessionFinishBatchResult.getEntries();
 
         // Go through all uploaded entries and mark them as synced + update their sync ic in database
@@ -211,7 +207,10 @@ class UploadJsonFiles {
                     data = AES256Cipher.encodeString(DropboxStatic.createJsonString(mUploadData.fullTableName, cursor), DropboxStatic.getEncryptionKey(MyApp.getInstance())).getBytes();
                 }
 
-                UploadSessionStartResult result = dbxClient.files().uploadSessionStart().uploadAndFinish(new ByteArrayInputStream(data));
+                UploadSessionStartUploader uploader =  DropboxAccountManager.getDropboxClient(MyApp.getInstance()).files().uploadSessionStartBuilder().withClose(true).start();
+                UploadSessionStartResult result = uploader.uploadAndFinish(new ByteArrayInputStream(data));
+
+             
                 UploadJsonFiles.this.updateCountInSyncStatus();
 
                 CommitInfo commitInfo;

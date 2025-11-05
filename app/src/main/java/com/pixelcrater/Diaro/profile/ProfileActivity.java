@@ -247,11 +247,20 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
     protected void onResume() {
         super.onResume();
         addDbxListeners();
+
+        // Check for Dropbox OAuth completion and capture UID
+        // This is called after Auth.startOAuth2Authentication() completes
+        String uid = com.dropbox.core.android.Auth.getUid();
+        if (uid != null) {
+            PreferenceManager.getDefaultSharedPreferences(this)
+                .edit().putString(DropboxAccountManager.PREF_DROPBOX_UID_V1, uid).apply();
+            AppLog.e("Dropbox UID V1 saved in onResume: " + uid);
+        }
+
         DropboxLocalHelper.checkDropboxToken(this);
         updateUi();
         updateProfilePhoto();
     }
-
 
     @Override
     public void onClick(View view) {

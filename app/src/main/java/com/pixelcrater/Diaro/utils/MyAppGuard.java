@@ -55,7 +55,7 @@ public class MyAppGuard {
         try {
             if (!AES256Cipher.encodeString(MyAppGuard.checkSignature(), GlobalConstants.ENCRYPTION_KEY).equalsIgnoreCase("qYzVYNwvyK84T9osh6CsRQ==")) {
 //            AppLog.e("Invalid build!");
-                MyAppGuard.killApp();
+             //   MyAppGuard.killApp();
             }
 
 //            if (MyAppGuard.checkSignature().equalsIgnoreCase("B")) {

@@ -24,6 +24,7 @@ import com.dropbox.core.v2.files.UploadSessionFinishBatchResult;
 import com.dropbox.core.v2.files.UploadSessionFinishBatchResultEntry;
 import com.dropbox.core.v2.files.UploadSessionFinishError;
 import com.dropbox.core.v2.files.UploadSessionStartResult;
+import com.dropbox.core.v2.files.UploadSessionStartUploader;
 import com.dropbox.core.v2.files.WriteMode;
 import com.pixelcrater.Diaro.config.GlobalConstants;
 import com.pixelcrater.Diaro.MyApp;
@@ -256,7 +257,9 @@ class UploadAttachments {
             byte[] data = FileUtils.readFileToByteArray(new File(String.format("%s/%s/%s", AppLifetimeStorageUtils.getMediaDirPath(), parent, DbxPathV2.getName(mUploadData.dbxPath))));
             AppLog.d("Start upload attachment " + mUploadData.dbxPath);
 
-            UploadSessionStartResult result = DropboxAccountManager.getDropboxClient(MyApp.getInstance()).files().uploadSessionStart().uploadAndFinish(new ByteArrayInputStream(data));
+            UploadSessionStartUploader uploader =  DropboxAccountManager.getDropboxClient(MyApp.getInstance()).files().uploadSessionStartBuilder().withClose(true).start();
+            UploadSessionStartResult result = uploader.uploadAndFinish(new ByteArrayInputStream(data));
+           // UploadSessionStartResult result = DropboxAccountManager.getDropboxClient(MyApp.getInstance()).files().uploadSessionStart().uploadAndFinish(new ByteArrayInputStream(data));
             UploadAttachments.this.updateCountInSyncStatus();
 
             mUploadSessionFinishArgList.add(new UploadSessionFinishArg(new UploadSessionCursor(result.getSessionId(), data.length), CommitInfo.newBuilder(mUploadData.dbxPath).withMode(WriteMode.OVERWRITE).build()));
