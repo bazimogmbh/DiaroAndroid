@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
+    <style name="AppTheme_Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
+
+        <item name="bgColor">@color/md_grey_50</item>
+        <item name="lightBlackColor">#515151</item>
+
+    </style>
+
+    <!-- Application Dark theme. -->
+    <style name="AppTheme_Dark" parent="Theme.MaterialComponents.NoActionBar">
+
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorPrimary">@color/diaro_default</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
+
+        <item name="bgColor">@color/md_grey_100</item>
+        <item name="lightBlackColor">#aeaeae</item>
+    </style>
+
+    <!-- Application themes with accent colors -->
+
+    <!-- Light -->
+    <style name="AppTheme_Light_red_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/red_500</item>
+    </style>
+
+    <style name="AppTheme_Light_pink_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/pink_500</item>
+    </style>
+
+    <style name="AppTheme_Light_purple_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/purple_500</item>
+    </style>
+
+    <style name="AppTheme_Light_deep_purple_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/deep_purple_500</item>
+    </style>
+
+    <style name="AppTheme_Light_indigo_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/indigo_500</item>
+    </style>
+
+    <style name="AppTheme_Light_blue_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/blue_500</item>
+    </style>
+
+    <style name="AppTheme_Light_light_blue_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/light_blue_500</item>
+    </style>
+
+    <style name="AppTheme_Light_cyan_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/cyan_500</item>
+    </style>
+
+    <style name="AppTheme_Light_teal_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/teal_500</item>
+    </style>
+
+    <style name="AppTheme_Light_light_green_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/light_green_500</item>
+    </style>
+
+    <style name="AppTheme_Light_lime_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/lime_500</item>
+    </style>
+
+    <style name="AppTheme_Light_yellow_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/yellow_500</item>
+    </style>
+
+    <style name="AppTheme_Light_amber_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/amber_500</item>
+    </style>
+
+    <style name="AppTheme_Light_orange_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/orange_500</item>
+    </style>
+
+    <style name="AppTheme_Light_brown_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/brown_500</item>
+    </style>
+
+    <style name="AppTheme_Light_blue_grey_500" parent="AppTheme_Light">
+        <item name="colorAccent">@color/blue_grey_500</item>
+    </style>
+
+    <style name="AppTheme_Light_grey_300" parent="AppTheme_Light">
+        <item name="colorAccent">@color/md_grey_300</item>
+    </style>
+
+    <!-- Dark -->
+    <style name="AppTheme_Dark_red_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/red_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_pink_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/pink_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_purple_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/purple_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_deep_purple_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/deep_purple_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_indigo_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/indigo_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_blue_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/blue_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_light_blue_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/light_blue_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_cyan_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/cyan_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_teal_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/teal_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_light_green_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/light_green_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_lime_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/lime_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_yellow_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/yellow_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_amber_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/amber_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_orange_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/orange_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_brown_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/brown_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_blue_grey_500" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/blue_grey_500</item>
+    </style>
+
+    <style name="AppTheme_Dark_grey_300" parent="AppTheme_Dark">
+        <item name="colorAccent">@color/md_grey_300</item>
+    </style>
+
+    <style name="MyToolbarStyle" parent="AppTheme_Dark">
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+</resources>

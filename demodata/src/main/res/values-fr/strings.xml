@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Commencez avec l\'application Diaro!</string>
+    <string name="demo_entry_1_text">
+        Préservez vos souvenirs spéciaux, stockez des moments et des expériences personnelles, des idées, des sentiments et suivez votre vie avec l\'aide de Diaro.
+        \nPour commencer à utiliser l\'application Diaro, vous devez savoir:
+        \n\n✍ COMMENT UTILISER L\'APPLICATION DIARO
+        \nCréez de nouvelles entrées, dossiers, balises ou emplacements à l\'aide des boutons +.
+        \nUtilisez la recherche pour trouver des entrées par n\'importe quel mot-clé dans un titre ou un texte, filtrez les résultats par date, dossier, balises ou emplacements dans le menu de gauche.
+
+        \n\n🎨 COMMENT PERSONNALISER
+        \nDéfinissez des arrière-plans différents pour chaque dossier.
+        \nToutes les entrées des dossiers personnalisés auront un aspect différent.
+        \nLa langue Diaro, la couleur de l\'interface utilisateur, la taille du texte, etc. peuvent être modifiées dans Paramètres Diaro -> Préférences -> Apparence.
+
+        \n\n🔒 COMMENT PROTÉGER VOS DONNÉES
+        \nPour sécuriser l\'accès à l\'application, définissez le code de sécurité dans Paramètres Diaro -> Préférences -> Code de sécurité.
+        \nPour éviter la perte accidentelle de vos données, n\'oubliez pas de faire régulièrement des sauvegardes en utilisant Paramètres Diaro -> Données -> Sauvegarde et restauration.
+
+        \n\n☁️ COMMENT SYNCHRONISER VOS DONNÉES
+        \nSynchronisez les données sur tous vos appareils. Connectez-vous simplement à votre compte Diaro et associez-le à Dropbox.
+        \nVous pouvez gérer vos entrées à l\'aide de Diaro Online (www.diaroapp.com) sur votre PC ou Mac.
+        \nLa synchronisation n\'est disponible qu\'en version PREMIUM.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Revue hebdomadaire</string>
+    <string name="template_weekly_reflection_title">⌛️ Bilan de la semaine</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Choses faites:
+        \n\n\n✏️ Plans:
+        \n\n\n🏁 Réalisations:
+        \n\n\n🍽 Culinaire:
+        \n\n\n🏃‍️ Sports &amp; santé:
+        \n\n\n💸 Dépenses:
+        \n\n\n🌞 Reconnaissant pour:
+        \n\n\n🎬 Film de la semaine:
+        \n\n\n📖 Livre de la semaine:
+        \n\n\n🎧 Chanson de la semaine:
+        \n\n\n📰 Nouvelles:
+        \n\n\n💭 Réflexions:
+        \n\n\n📅 Semaine à venir:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Journal de régime</string>
+    <string name="template_food_log_title">Mon régime</string>
+    <string name="template_food_log_text">
+        • Déjeuner:
+        \n\n\n• Le déjeuner::
+        \n\n\n• Dîner:
+        \n\n\n• Collations:
+        \n\n\n• Exercice:
+        \n\n\n• L\'eau:
+        \n\n\n• Remarques:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 minutes</string>
+    <string name="template_five_minutes_title">Ma journée aujourd\'hui</string>
+    <string name="template_five_minutes_text">
+        • Qu\'est-ce que j\'ai fait aujourd\'hui?
+        \n\n• Qu\'est-ce que je ressens en ce moment?
+        \n\n• De quoi suis-je reconnaissant?
+        \n\n• Qu\'est-ce que j\'ai lu aujourd\'hui?
+        \n\n• Quels sont mes projets pour demain?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Reconnaissance</string>
+    <string name="template_gratitude_title">Aujourd\'hui, je suis reconnaissant</string>
+    <string name="template_gratitude_text">
+        🌞 Matin
+        \n\n• De quoi suis-je reconnaissant en ce moment?
+        \n\n\n• Qu\'est-ce qui ferait une belle journée?
+        \n\n\n• Quelles sont mes trois principales priorités pour aujourd\'hui?
+
+        \n\n\n🌜 Soirée
+        \n\n• Qu\'est-ce que j\'ai réalisé aujourd\'hui?
+        \n\n\n• 3 choses incroyables qui se sont produites aujourd\'hui?
+        \n\n\n• Quelle chose aurais-je pu faire mieux aujourd\'hui?
+        \n\n\n• Quels sont mes projets pour demain?
+        \n\n
+    </string>
+
+
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_search"
+        android:title="@string/search_hint"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_on_this_day"
+        android:title="@string/on_this_day"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_multiselect"
+        android:title="@string/multi_select"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/item_sort"
+        android:title="@string/sort"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_templates"
+        android:title="@string/templates"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_stats"
+        android:title="@string/stats"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_atlas"
+        android:title="@string/atlas"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_photos"
+        android:title="@string/photos"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_diaro_web"
+        android:title="@string/diaro_web"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_clear_data"
+        android:visible="false"
+        android:title="Clear Data"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_upload_db_dbx"
+        android:visible="false"
+        android:title="Upload Database"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_settings"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+
+
+</menu>

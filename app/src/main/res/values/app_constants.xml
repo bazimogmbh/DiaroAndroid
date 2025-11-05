@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--https://fontawesome.com/cheatsheet?from=io -->
+
+    <string name="fa_icon_heart" translatable="false">&#xf004;</string>
+    <string name="fa_folder" translatable="false">&#xf07b;</string>
+    <string name="fa_tag" translatable="false">&#xf02b;</string>
+    <string name="fa_picture_o" translatable="false">&#xf03e;</string>
+    <string name="fa_map_marker" translatable="false">&#xf041;</string>
+    <string name="fa_heartbeat" translatable="false">&#xf21e;</string>
+    <string name="fa_history" translatable="false">&#xf1da;</string>
+
+
+
+    <string name="mood_1happy" translatable="false">&#xe90d;</string>
+    <string name="mood_2smile" translatable="false">&#xe90f;</string>
+    <string name="mood_3neutral" translatable="false">&#xe90c;</string>
+    <string name="mood_4unhappy" translatable="false">&#xe907;</string>
+    <string name="mood_5teardrop" translatable="false">&#xe912;</string>
+
+
+
+
+    <!--
+
+
+<string name="mood_6shocked"  translatable="false">&#xe9f1;</string>
+<string name="mood_7baffled"  translatable="false">&#xe9f3;</string>
+<string name="mood_8confused"  translatable="false">&#xe9f5;</string>
+<string name="mood_9wondering"  translatable="false">&#xe9fb;</string>
+<string name="mood_10sleepy"  translatable="false">&#xe9fd;</string>
+<string name="mood_11frustrated"  translatable="false">&#xe9ff;</string>
+<string name="mood_12angry"   translatable="false">&#xe9ed;</string> -->
+
+
+</resources>

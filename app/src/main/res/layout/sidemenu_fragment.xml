@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true">
+    <!-- android:clickable="true" disables focusability of entries list -->
+
+    <!-- Disable Fast scroll to allow tapping on 3 dots overflow menu icon -->
+    <ExpandableListView
+        android:id="@+id/sidemenu_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:fastScrollEnabled="false"
+        android:listSelector="@drawable/bg_ripple" />
+
+    <!-- Sync status -->
+
+    <include layout="@layout/sidemenu_user" />
+
+</FrameLayout>

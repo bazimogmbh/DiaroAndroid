@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:clickable="true">
+
+    <LinearLayout
+        android:id="@+id/user_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/home"
+            style="@style/Icon48"
+            android:contentDescription="@string/clear" />
+
+        <TextView style="@style/SidemenuSeparator" />
+
+        <LinearLayout
+            android:id="@+id/user_info_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_ripple"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <ImageView
+                android:id="@+id/profile_photo_small"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="4dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/user_button_first_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_dropbox_grey300_18dp" />
+
+                        <ImageView
+                            android:id="@+id/fs_sync_indicator"
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:layout_gravity="bottom|right"
+                            android:layout_marginBottom="1dp" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/user_button_second_line"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:includeFontPadding="false"
+                        android:singleLine="true"
+                        android:textColor="@color/grey_300"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/second_line_percents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:includeFontPadding="false"
+                        android:singleLine="true"
+                        android:textColor="@color/grey_300"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View style="@style/SidemenuSeparator" />
+
+        <ImageButton
+            android:id="@+id/settings"
+            style="@style/Icon48"
+            android:contentDescription="@string/settings"
+            android:src="@drawable/ic_settings_white_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/debug_indicator"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:background="#00D703"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/amazon_indicator"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:background="#FC7400"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="@color/sidemenu_icon_separator" />
+
+</FrameLayout>

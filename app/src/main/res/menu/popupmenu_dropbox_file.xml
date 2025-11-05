@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <group android:id="@+id/group_popupmenu" >
+        <item
+            android:id="@+id/download_to_sd"
+            android:title="@string/download_to_sd"/>
+        <item
+            android:id="@+id/delete"
+            android:title="@string/delete"/>
+    </group>
+
+</menu>

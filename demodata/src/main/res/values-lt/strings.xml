@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Pradėkite nuo Diaro programos!</string>
+    <string name="demo_entry_1_text">
+        Išsaugokite savo ypatingus prisiminimus, išsaugokite asmenines akimirkas ir išgyvenimus, idėjas, jausmus ir stebėkite savo gyvenimą su Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Savaitės apžvalga</string>
+    <string name="template_weekly_reflection_title">⌛️ Savaitės apžvalga</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Atlikti darbai:
+        \n\n\n✏️ Planai:
+        \n\n\n🏁 Pasiekimai:
+        \n\n\n🍽 Kulinarija:
+        \n\n\n🏃‍️ Sportas ir sveikata:
+        \n\n\n💸 Išlaidos:
+        \n\n\n🌞 Dėkingas už:
+        \n\n\n🎬 Savaitės filmas:
+        \n\n\n📖 Savaitės knyga:
+        \n\n\n🎧 Savaitės daina:
+        \n\n\n📰 Naujienos:
+        \n\n\n💭 Mintys:
+        \n\n\n📅 Artėjanti savaitė:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Dietos žurnalas</string>
+    <string name="template_food_log_title">Mano dieta</string>
+    <string name="template_food_log_text">
+        • Pusryčiai:
+        \n\n\n• Pietūs:
+        \n\n\n• Vakarienė:
+        \n\n\n• Užkandžiai:
+        \n\n\n• Pratimas:
+        \n\n\n• Vanduo:
+        \n\n\n• Pastabos:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 minutės</string>
+    <string name="template_five_minutes_title">Mano diena šiandien</string>
+    <string name="template_five_minutes_text">
+        • Ką aš šiandien padariau?
+        \n\n• Ką aš jaučiu dabar?
+        \n\n• Už ką esu dėkingas?
+        \n\n• Ką aš šiandien perskaičiau?
+        \n\n•  Kokie mano rytojaus planai?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Dėkingumas</string>
+    <string name="template_gratitude_title">Šiandien esu dėkingas už tai</string>
+    <string name="template_gratitude_text">
+        🌞 Rytas
+        \n\n• Už ką dabar esu dėkingas?
+        \n\n\n• Kas šiandien padarytų puikų?
+        \n\n\n• Kokie yra trys pagrindiniai mano prioritetai šiandien?
+
+        \n\n\n🌜 Vakaras
+        \n\n• Ko aš šiandien pasiekiau?
+        \n\n\n• 3 nuostabūs dalykai, kurie nutiko šiandien?
+        \n\n\n• Ką aš galėčiau padaryti geriau šiandien?
+        \n\n\n• Kokie mano rytojaus planai?
+        \n\n
+    </string>
+
+
+</resources>

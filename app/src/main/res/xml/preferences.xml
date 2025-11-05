@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/account">
+
+        <!-- Profile -->
+        <Preference  android:key="PROFILE"  android:title="@string/profile" />
+
+        <!-- PREMIUM version -->
+        <Preference android:key="PRO_VERSION" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings">
+
+        <!-- Preferences Group -->
+        <Preference
+            android:key="GROUP_PREFERENCES"
+            android:summary="@string/settings_preferences_summary"
+            android:title="@string/settings_preferences" />
+
+        <!-- Data Group -->
+        <Preference
+            android:key="GROUP_DATA"
+            android:summary="@string/settings_data_summary"
+            android:title="@string/settings_data" />
+
+        <!-- Reminders -->
+        <CheckBoxPreference
+            android:key="TIME_TO_WRITE_NOTIFICATION"
+            android:persistent="false"
+            android:summary="@string/settings_reminders_summary"
+            android:title="@string/settings_reminders" />
+
+        <!-- Support Group -->
+        <Preference
+            android:key="GROUP_SUPPORT"
+            android:summary="@string/settings_support_summary"
+            android:title="@string/settings_support" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

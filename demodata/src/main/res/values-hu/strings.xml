@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Get started with Diaro app!</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Heti áttekintés</string>
+    <string name="template_weekly_reflection_title">⌛️ Hét áttekintés</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Teendők:
+        \n\n\n✏️ Tervek:
+        \n\n\n🏁 Eredmények:
+        \n\n\n🍽 Kulináris:
+        \n\n\n🏃‍️ Sports️ és egészség:
+        \n\n\n💸 Költségek:
+        \n\n\n🌞 Hálás:
+        \n\n\n🎬 A hét filmje:
+        \n\n\n📖 A hét könyve:
+        \n\n\n🎧 A hét dal:
+        \n\n\n📰 Hírek:
+        \n\n\n💭 Hough Gondolatok:
+        \n\n\n📅 Jövő hét:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Diet Log</string>
+    <string name="template_food_log_title">A diétám</string>
+    <string name="template_food_log_text">
+        • Reggeli:
+        \n\n\n• Ebéd:
+        \n\n\n• Vacsora:
+        \n\n\n• Snack:
+        \n\n\n• Gyakorlat:
+        \n\n\n• Víz:
+        \n\n\n• Megjegyzések:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 perc</string>
+    <string name="template_five_minutes_title">A mai napom</string>
+    <string name="template_five_minutes_text">
+        • Mit csináltam ma?
+        \n\n• Mit érzem most?
+        \n\n• Mire vagyok hálás?
+        \n\n• Mit olvastam ma?
+        \n\n• Milyen terveim vannak a holnapra?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Hála</string>
+    <string name="template_gratitude_title">Ma hálás vagyok érte</string>
+    <string name="template_gratitude_text">
+        🌞 Reggel
+        \n\n• Most miért vagyok hálás?
+        \n\n\n• Mi lenne a mai nagyszerű?
+        \n\n\n• Melyek a mai három legfontosabb prioritásom?
+
+        \n\n\n🌜 Este
+        \n\n• Mit értek el ma?
+        \n\n\n• 3 csodálatos dolog, ami ma történt?
+        \n\n\n• Mi az, amit ma jobban megtettem volna?
+        \n\n\n• Milyen terveim vannak a holnapra?
+        \n\n
+    </string>
+
+
+</resources>

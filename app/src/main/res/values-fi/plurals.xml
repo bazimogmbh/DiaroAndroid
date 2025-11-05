@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="entry_on_this_day">
+        <item quantity="one">Sinulla on %d merkintä tänä päivänä!</item>
+        <item quantity="other">Sinulla on %d merkintää tänä päivänä!</item>
+    </plurals>
+
+    <plurals name="years_ago">
+        <item quantity="one">%d vuosi sitten</item>
+        <item quantity="other">%d vuotta sitten</item>
+    </plurals>
+
+    <plurals name="years_later">
+        <item quantity="one">%d vuosi myöhemmin</item>
+        <item quantity="other">%d vuotta myöhemmin</item>
+    </plurals>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/not_connected_with_dropbox"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="gone" >
+
+    <TextView
+        android:id="@+id/connect_with_dropbox_link"
+        style="@style/FormLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_backup_file_dropbox_grey600_96dp"
+        android:text="@string/settings_dropbox_connect"
+        android:textSize="16sp" />
+
+</LinearLayout>

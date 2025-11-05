@@ -1,0 +1,32 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/header_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:focusable="false">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingStart="@dimen/default_side_padding_small"
+        android:paddingTop="8dp"
+        android:paddingEnd="@dimen/default_side_padding"
+        android:paddingBottom="8dp"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:textSize="16sp"
+        tools:text="JAN 2020" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="#EAEBEC"
+        android:visibility="gone" />
+
+</FrameLayout>

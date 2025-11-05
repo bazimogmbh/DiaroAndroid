@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <TableLayout
+        android:id="@+id/numpad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layoutDirection="ltr">
+
+        <TableRow style="@style/LockscreenNumbersRow">
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="1" />
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="2" />
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="3" />
+
+        </TableRow>
+
+        <TableRow style="@style/LockscreenNumbersRow">
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="4" />
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="5" />
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="6" />
+        </TableRow>
+
+        <TableRow style="@style/LockscreenNumbersRow">
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="7" />
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="8" />
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="9" />
+        </TableRow>
+
+        <TableRow style="@style/LockscreenNumbersRow">
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:background="@android:color/transparent" />
+
+            <TextView
+                style="@style/LockscreenNumber"
+                android:text="0" />
+
+            <ImageView
+                android:id="@+id/fingerprint"
+                style="@style/LockscreenNumber"
+                android:background="@null"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_fingerprint_white_36dp"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/ok"
+                style="@style/LockscreenNumber"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_done_white_36dp"
+                android:visibility="gone" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

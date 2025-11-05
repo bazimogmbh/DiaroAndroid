@@ -1,0 +1,43 @@
+IAP Notes
+
+Iap
+ {"orderId":"GPA.3316-6853-8333-31590","packageName":"com.pixelcrater.Diaro","productId":"diaro_pro_version","purchaseTime":1573123961661,"purchaseState":0,"developerPayload":"inapp:diaro_pro_version:8795e341-2162-4013-ae4b-975a99ce302b",
+ "purchaseToken":"ibpimmijhcmjfahjombngnaf.AO-J1OynU3IYU0p9DjkP7VQGQTdKhGxUYGsB45hRFgRPKuQeGCVb11RtP_oCRzqtd_HaKxWMMHxMu9OnR_sN6rLntu1kMK0NV7pvVbAgThxX6fJY8asvw2sWG5YHwUZTouqvOse75SoC"}
+
+Subscription
+  {"orderId":"GPA.3334-3328-2826-34921","packageName":"com.pixelcrater.Diaro","productId":"subscription_pro_yearly","purchaseTime":1593593381594,"purchaseState":0,"developerPayload":"subs:subscription_pro_yearly",
+  "purchaseToken":"aniidkdhbblpgodhmbnheagc.AO-J1OzF75C8-8fgqq3kE6kyw5Jy20iOYd-fVOzA1EMyytTZjbJ40PJBSJCxquIpW1T6l_bh1aFozWH92mxpo08M1wAsHTMwy-Jp7obyirtW8IrBlkng4AhcOWb2ubcsSTBp0dxEp5yi","autoRenewing":true}
+
+If the subscription is renewed, a new orderId is issued ( with ..0 ..1 appended to the old id)
+
+
+
+For subscriptions, note the following:
+
+Subscription upgrades, downgrades, and other subscription purchase flows generate purchase tokens that must replace a previous purchase token.
+You must invalidate the purchase tokens that appear in the linkedPurchaseToken field of the Google Play Developer API
+
+Order numbers for subscription renewals contain an additional integer that represents a specific renewal instance.
+For example, an initial subscription Order ID might be GPA.1234-5678-9012-34567 with subsequent Order IDs being GPA.1234-5678-9012-34567..0 (first renewal), GPA.1234-5678-9012-34567..1 (second renewal), and so on.
+
+
+
+---- SQL queries
+SELECT e._id, e.uid, e.date, substr(e.title,1,150)  AS title, e.folder_uid, e.location_uid, e.tags, e.primary_photo_uid, datetime(e.date / 1000, 'unixepoch', tz_offset) AS localtime, e.date - e.date/1000*1000 AS only_ms,
+
+ COUNT(DISTINCT(a1.filename )) AS photo_count,
+ a2.filename AS primary_photo_filename,
+  COUNT(DISTINCT(a4.filename )) AS audio_count,
+ a2.file_sync_id AS primary_photo_file_sync_id, a3.filename AS first_photo_filename,
+
+  a3.file_sync_id AS first_photo_file_sync_id FROM diaro_entries e
+LEFT JOIN diaro_attachments a1 ON (e.uid=a1.entry_uid AND a1.type='photo')
+LEFT JOIN diaro_attachments a4 ON (e.uid=a4.entry_uid AND a4.type='audio')
+LEFT JOIN diaro_attachments a2 ON e.primary_photo_uid=a2.uid
+LEFT JOIN diaro_attachments a3 ON e.uid=a3.entry_uid AND a3.position=(SELECT MIN(position)
+
+FROM diaro_attachments WHERE entry_uid=e.uid)
+
+WHERE e.archived=0 AND e.uid="48b6afc3a21d255ef0cbe3ec758be441"
+
+GROUP BY e.uid ORDER BY localtime DESC, only_ms DESC, e.uid

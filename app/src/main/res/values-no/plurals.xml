@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="entry_on_this_day">
+        <item quantity="one">Du har %d bidrag på denne dagen!</item>
+        <item quantity="other">Du har %d påmeldinger på denne dagen!</item>
+    </plurals>
+
+    <plurals name="years_ago">
+        <item quantity="one">%d år siden</item>
+        <item quantity="other">%d år siden</item>
+    </plurals>
+
+    <plurals name="years_later">
+        <item quantity="one">%d år senere</item>
+        <item quantity="other">%d år senere</item>
+    </plurals>
+
+</resources>

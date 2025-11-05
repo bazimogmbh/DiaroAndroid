@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Get started with Diaro app!</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Щотижневий огляд</string>
+    <string name="template_weekly_reflection_title">⌛️ Тиждень в огляді</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Виконані речі:
+        \n\n\n✏️ Плани:
+        \n\n\n🏁 Досягнення:
+        \n\n\n🍽 Кулінарні:
+        \n\n\n🏃‍️ Спорт і здоров\'я:
+        \n\n\n💸 Витрати:
+        \n\n\n🌞 Вдячний за:
+        \n\n\n🎬 Фільм тижня:
+        \n\n\n📖 Книга тижня:
+        \n\n\n🎧 Пісня тижня:
+        \n\n\n📰 Новини:
+        \n\n\n💭 Думки:
+        \n\n\n📅 Прихідний тиждень:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Журнал дієти</string>
+    <string name="template_food_log_title">Моя дієта</string>
+    <string name="template_food_log_text">
+        • Сніданок:
+        \n\n\n• Обід:
+        \n\n\n• Вечеря:
+        \n\n\n• закуски:
+        \n\n\n• Вправа:
+        \n\n\n• Вода:
+        \n\n\n• Примітки:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 хвилин</string>
+    <string name="template_five_minutes_title">Мій день сьогодні</string>
+    <string name="template_five_minutes_text">
+        • Що я сьогодні робив?
+        \n\n• Що я зараз відчуваю?
+        \n\n• За що я вдячний?
+        \n\n• Що я сьогодні прочитав?
+        \n\n• Які мої плани на завтра?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Подяка</string>
+    <string name="template_gratitude_title">Сьогодні я вдячний за</string>
+    <string name="template_gratitude_text">
+        🌞 Ранок
+        \n\n• За що я зараз вдячний?
+        \n\n\n• Що б зробити сьогодні великим?
+        \n\n\n• Які мої основні три пріоритети на сьогодні?
+
+        \n\n\n🌜 Вечір
+        \n\n• Чого я досяг сьогодні?
+        \n\n\n• 3 дивовижні речі, що відбулися сьогодні?
+        \n\n\n• Яку річ я міг би зробити сьогодні краще?
+        \n\n\n• Які мої плани на завтра?
+        \n\n
+    </string>
+
+
+</resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/default_margin">
+
+    <!-- Diaro user account -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/signed_in_user_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="4dp"
+            android:ellipsize="end"
+            android:paddingLeft="4dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/user_sign_out_button"
+            style="@style/Icon40"
+            android:contentDescription="@string/sign_out" />
+    </LinearLayout>
+
+    <!-- Separator -->
+    <FrameLayout
+        android:id="@+id/separator_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <!-- Dropbox account -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dropbox_connect_button"
+            style="@style/FormButton"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button_dropbox"
+            android:drawableLeft="@drawable/ic_dropbox_white_24dp"
+            android:text="@string/settings_dropbox_connect" />
+
+        <TextView
+            android:id="@+id/dropbox_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="4dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingLeft="4dp"
+            android:maxLines="2"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/dropbox_disconnect_button"
+            style="@style/Icon40"
+            android:contentDescription="@string/unlink" />
+    </LinearLayout>
+
+    <!-- Sync status -->
+    <include layout="@layout/profile_sync_status" />
+
+    <!-- Separator -->
+    <FrameLayout
+        android:id="@+id/separator_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <TextView
+        android:id="@+id/would_like_to_sync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:padding="2dp"
+        android:singleLine="true"
+        android:text="@string/would_like_to_sync_question"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/get_pro_version_link"
+        style="@style/FormLink"
+        android:layout_gravity="center_horizontal"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/get_diaro_pro" />
+
+</LinearLayout>

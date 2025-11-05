@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/settings_support">
+        <!-- Problem report -->
+        <Preference
+            android:key="PROBLEM_REPORT"
+            android:summary="@string/settings_problem_report_summary"
+            android:title="@string/settings_problem_report" />
+
+        <!-- Rate app -->
+        <Preference
+            android:key="RATE_APP"
+            android:summary="@string/rate_app_summary"
+            android:title="@string/rate_app" />
+
+        <!-- Recommend to a friend -->
+        <Preference
+            android:key="RECOMMEND_TO_FRIEND"
+            android:summary="@string/settings_recommend_to_friend_summary"
+            android:title="@string/settings_recommend_to_friend" />
+
+        <!-- Licenses -->
+        <Preference
+            android:key="LICENSES"
+            android:summary="@string/licenses_of_third_party_libraries"
+            android:title="@string/licenses" />
+
+        <!-- About Diaro -->
+        <Preference
+            android:key="ABOUT"
+            android:summary=""
+            android:title="@string/about_diaro" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

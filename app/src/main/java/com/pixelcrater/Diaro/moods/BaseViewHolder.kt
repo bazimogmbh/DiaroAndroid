@@ -1,0 +1,9 @@
+package com.pixelcrater.Diaro.moods
+
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+
+abstract class BaseViewHolder<T : Any>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    abstract fun onBind(data: T)
+    open fun onBindEmpty() {}
+}

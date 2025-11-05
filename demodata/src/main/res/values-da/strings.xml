@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Kom i gang med Diaro-appen!</string>
+    <string name="demo_entry_1_text">
+        Bevar dine specielle minder, gem personlige øjeblikke &amp; oplevelser, ideer, følelser og hold styr på dit liv ved hjælp af Diaro.
+        \nFor at begynde at bruge Diaro-appen skal du vide:
+        \n\n✍ SÅDAN BRUGER DU DIO APP
+        \nOpret nye poster, mapper, tags eller placeringer ved hjælp af + knapper.
+        \nBrug søgning til at finde poster efter et hvilket som helst nøgleord i en titel eller tekst, filtrere resultater efter dato, mappe, tags eller placeringer i menuen til venstre.
+
+        \n\n🎨 SÅDAN TILPASSER DU
+        \nIndstil forskellige baggrunde for hver mappe.
+        \nAlle poster i tilpassede mapper får et andet udseende.
+        \nDiaro-sprog, UI-farve, tekststørrelse osv. Kan ændres i Diaro-indstillinger -> Præferencer -> Udseende.
+
+        \n\n🔒 SÅDAN BESKYTTE DINE DATA
+        \nFor at sikre adgang til appen skal du indstille sikkerhedskode i Diaro-indstillinger -> Præferencer -> Sikkerhedskode.
+        \nFor at undgå utilsigtet tab af dine data, skal du ikke glemme at tage sikkerhedskopier regelmæssigt ved hjælp af Diaro-indstillinger -> Data -> Backup &amp; gendannelse.
+
+        \n\n☁️ SÅDAN SYNKRONISERES DINE DATA
+        \nSynkroniser data på alle dine enheder. Bare log ind på din Diaro-konto og link den til Dropbox.
+        \nDu kan administrere dine poster ved hjælp af Diaro Online (www.diaroapp.com) på din pc eller Mac.
+        \nSynkronisering er kun tilgængelig i PREMIUM-version.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Ugentlig gennemgang</string>
+    <string name="template_weekly_reflection_title">⌛️ Uge i gennemgang</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Done Ting gjort:
+        \n\n\n✏️ Planer:
+        \n\n\n🏁 Prestationer:
+        \n\n\n🍽 Kulinarisk:
+        \n\n\n🏃‍️ Sport &amp; sundhed:
+        \n\n\n💸 Udgifter:
+        \n\n\n🌞 Taknemmelig for:
+        \n\n\n🎬 Ugens film:
+        \n\n\n📖 Ugens bog:
+        \n\n\n🎧 Ugens sang:
+        \n\n\n📰 Nyheder:
+        \n\n\n💭 Tanker:
+        \n\n\n📅 Kommende uge:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Diætlog</string>
+    <string name="template_food_log_title">Min diæt</string>
+    <string name="template_food_log_text">
+        • Morgenmad:
+        \n\n\n• Frokost:
+        \n\n\n• Aftensmad:
+        \n\n\n• Snacks:
+        \n\n\n• Dyrke motion:
+        \n\n\n• Vand:
+        \n\n\n• Bemærkninger:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 minutter</string>
+    <string name="template_five_minutes_title">Min dag i dag</string>
+    <string name="template_five_minutes_text">
+        • Hvad gjorde jeg i dag?
+        \n\n• Hvad føler jeg lige nu?
+        \n\n• Hvad er jeg taknemmelig for?
+        \n\n• Hvad læste jeg i dag?
+        \n\n• Hvad er mine planer for i morgen?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Taknemmelighed</string>
+    <string name="template_gratitude_title">I dag er jeg taknemmelig for</string>
+    <string name="template_gratitude_text">
+        🌞 Morgen
+        \n\n• Hvad er jeg taknemmelig for lige nu?
+        \n\n\n• Hvad ville gøre det i dag godt?
+        \n\n\n• Hvad er mine tre prioriteter for i dag?
+
+        \n\n\n🌜 Aften
+        \n\n• Hvad opnåede jeg i dag?
+        \n\n\n• 3 fantastiske ting, der skete i dag?
+        \n\n\n• Hvad er en ting, jeg kunne have gjort bedre i dag?
+        \n\n\n• Hvad er mine planer for i morgen?
+        \n\n
+    </string>
+
+
+</resources>

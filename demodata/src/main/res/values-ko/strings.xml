@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Diaro 앱 시작!</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">주간 검토</string>
+    <string name="template_weekly_reflection_title">⌛️ 검토중인 주</string>
+    <string name="template_weekly_reflection_text">
+        🔨 완료된 사항:
+        \n\n\n✏️ 계획:
+        \n\n\n🏁 업적:
+        \n\n\n🍽 요리:
+        \n\n\n🏃‍️ 스포츠 및 건강:
+        \n\n\n💸 경비:
+        \n\n\n🌞 감사합니다:
+        \n\n\n🎬 금주의 영화:
+        \n\n\n📖 금주의 책:
+        \n\n\n🎧 금주의 노래:
+        \n\n\n📰 뉴스:
+        \n\n\n💭 생각:
+        \n\n\n📅 다가오는 주:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">다이어트 로그</string>
+    <string name="template_food_log_title">내 다이어트</string>
+    <string name="template_food_log_text">
+        • 아침밥:
+        \n\n\n• 점심:
+        \n\n\n• 공식 만찬:
+        \n\n\n• 간식:
+        \n\n\n• 운동:
+        \n\n\n• 물:
+        \n\n\n• 노트:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 분</string>
+    <string name="template_five_minutes_title">오늘 하루</string>
+    <string name="template_five_minutes_text">
+        • 나는 오늘 무엇을 했는가?
+        \n\n• 지금 기분이 어떻습니까?
+        \n\n• 무엇에 감사합니까?
+        \n\n• 오늘 무엇을 읽었습니까?
+        \n\n• 내일을위한 나의 계획은 무엇입니까?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">감사</string>
+    <string name="template_gratitude_title">오늘은 감사합니다</string>
+    <string name="template_gratitude_text">
+        🌞 아침
+        \n\n• 지금 무엇에 감사하고 있습니까?
+        \n\n\n• 오늘은 무엇이 좋을까요?
+        \n\n\n• 오늘의 3 가지 우선 순위는 무엇입니까?
+
+        \n\n\n🌜 저녁
+        \n\n• 오늘 내가 무엇을 달성 했습니까?
+        \n\n\n• 오늘 일어난 놀라운 일 3 가지?
+        \n\n\n• 오늘 내가 더 잘할 수 있었던 것은 무엇입니까?
+        \n\n\n• 내일을위한 나의 계획은 무엇입니까?
+        \n\n
+    </string>
+
+
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_select_all"
+        android:icon="@drawable/ic_todo_list_white_24dp"
+        android:title="@string/select_all"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item_unselect_all"
+        android:icon="@drawable/ic_unselect_all_white_24dp"
+        android:title="@string/unselect_all"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item_delete"
+        android:icon="@drawable/ic_delete_white_24dp"
+        android:title="@string/delete"
+        app:showAsAction="always" />
+
+</menu>

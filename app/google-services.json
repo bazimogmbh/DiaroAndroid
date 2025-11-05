@@ -1,0 +1,80 @@
+{
+  "project_info": {
+    "project_number": "994414072062",
+    "firebase_url": "https://pixelcrater-com-my-diaro.firebaseio.com",
+    "project_id": "pixelcrater.com:my-diaro"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994414072062:android:af41bc22f87816cd",
+        "android_client_info": {
+          "package_name": "com.pixelcrater.Diaro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994414072062-s4ir5e9eiei2hud0te6kld473oenig42.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixelcrater.Diaro",
+            "certificate_hash": "2a6a199500d50d7c49e7f87c879a3740b677b72d"
+          }
+        },
+        {
+          "client_id": "994414072062-kethq4kg6po27qbcp3i1085f6qs7iio2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixelcrater.Diaro",
+            "certificate_hash": "d2ed4bb9df3e5b95722b637bc7a9f2edb4c6518e"
+          }
+        },
+        {
+          "client_id": "994414072062-dui20s6efe0t3lf8b4p6d6c7u70or37h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixelcrater.Diaro",
+            "certificate_hash": "0dd3bd9ba6cc771e63c24a1f5150443c0393d125"
+          }
+        },
+        {
+          "client_id": "994414072062.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixelcrater.Diaro",
+            "certificate_hash": "07a68443f8952cd6839dfeae5e97ff4afc7c2525"
+          }
+        },
+        {
+          "client_id": "994414072062-jn6vpke2nki38o6t1jh48noj933iv7sp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUZDSUUk-tyqsNO3qYjpsRCU0jPQpSfTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994414072062-glai70igcc8eft7f49q2414pd1spn0i5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "994414072062-quvsvil6ge5sqf2rljaavsau99s0g7lv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pixelcrater.diaro",
+                "app_store_id": "882519460"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5690497443789842~8952908416"
+    }
+  ],
+  "configuration_version": "1"
+}

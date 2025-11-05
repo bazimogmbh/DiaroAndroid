@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="internalOnly">
+
+    <uses-sdk tools:overrideLibrary="com.makeramen.dragsortadapter, com.github.ajalt.library, com.github.ajalt.reprint.module.spass , com.divyanshu.draw, com.hold1.keyboardheightprovider, com.stfalcon.imageviewer" />
+    <!-- Read/Write to SD card -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Internet -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Detect device boot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- Needed for Google Play Services and InApp billing, so that we can get the account name -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- Required if we need to invalidate access tokens -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- Android in-app -->
+    <uses-permission android:name="com.android.vending.BILLING" /> <!-- Phone state for getting device IMEI -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- Marshmallow fingerprint permission -->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" /> <!-- Samsung fingerprint permission, only required if you include the spass module -->
+    <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- Maps API needs OpenGL ES 2.0. -->
+    <!-- <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />  -->
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" /> <!-- Unnecessary features -->
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="false" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:allowClearUserData="false"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_title"
+        android:resizeableActivity="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:label, android:icon">
+
+        <!-- Make Google Maps library optional -->
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="false" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" /> <!-- Google Play Services -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" /> <!-- Google Places API key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAUZDSUUk-tyqsNO3qYjpsRCU0jPQpSfTo" /> <!-- Samsung Multi window mode -->
+        <uses-library
+            android:name="com.sec.android.app.multiwindow"
+            android:required="false" />
+
+        <meta-data
+            android:name="com.sec.android.support.multiwindow"
+            android:value="true" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W"
+            android:resource="@dimen/app_defaultsize_w" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H"
+            android:resource="@dimen/app_defaultsize_h" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W"
+            android:resource="@dimen/app_minimumsize_w" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
+            android:resource="@dimen/app_minimumsize_h" /> <!-- Glide configuration -->
+        <meta-data
+            android:name="com.pixelcrater.Diaro.utils.glide.GlideConfiguration"
+            android:value="GlideModule" /> <!-- FileProvider -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.pixelcrater.Diaro.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider> <!-- ACTIVITIES -->
+        <!-- Splash activity -->
+        <activity
+            android:name=".main.SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Samsung Multi window mode -->
+            <intent-filter>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="diaroapp.com"
+                    android:pathPrefix="/create/"
+                    android:scheme="https" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity> <!-- Main activity -->
+        <activity
+            android:name=".main.AppMainActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustNothing|stateHidden" /> <!-- Security Lock -->
+        <activity
+            android:name=".securitycode.SecurityCodeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- Entry View/Edit -->
+        <activity
+            android:name=".entries.viewedit.EntryViewEditActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity> <!-- Photo grid -->
+        <activity android:name=".entries.viewedit.PhotoGridActivity" /> <!-- Photo pager -->
+        <activity android:name=".entries.viewedit.PhotoPagerActivity" /> <!-- Folder Add/Edit -->
+        <activity android:name=".folders.FolderAddEditActivity" /> <!-- Tag Add/Edit -->
+        <activity android:name=".tags.TagAddEditActivity" /> <!-- Location Add/Edit -->
+        <activity android:name=".locations.LocationAddEditActivity" /> <!-- About -->
+        <activity android:name=".settings.AboutActivity" /> <!-- Get PREMIUM -->
+        <activity android:name=".premium.PremiumActivity" /> <!-- Sign in -->
+        <activity android:name=".profile.SignInActivity" /> <!-- Profile -->
+        <activity
+            android:name=".profile.ProfileActivity"
+            android:launchMode="singleTop" /> <!-- Profile photo -->
+        <activity
+            android:name=".profile.ProfilePhotoActivity"
+            android:parentActivityName=".profile.ProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".profile.ProfileActivity" />
+        </activity> <!-- Time to write notification time set -->
+        <activity android:name=".settings.TimeToWriteNotificationActivity" /> <!-- Settings - Bakup & Restore -->
+        <activity
+            android:name=".backuprestore.BackupRestoreActivity"
+            android:configChanges="orientation|keyboardHidden" /> <!-- Multiple image picker -->
+        <activity android:name=".entries.viewedit.MultiplePhotoPickerActivity" /> <!-- Settings / Preferences -->
+        <activity android:name=".settings.SettingsActivity" />
+        <activity android:name=".settings.SettingsPreferencesGroupActivity" />
+        <activity android:name=".settings.SettingsDataGroupActivity" />
+        <activity android:name=".settings.SettingsSupportGroupActivity" />
+        <activity android:name=".onthisday.OnThisDayActivity" />
+        <activity android:name=".stats.StatsActivity" />
+        <activity android:name=".atlas.AtlasActivity" />
+        <activity
+            android:name=".templates.TemplatesActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".templates.AddEditTemplateActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".moods.MoodsAddEditActivity" />
+        <activity
+            android:name=".ocr.TextRecognizerActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- All photos activity -->
+        <activity android:name=".gallery.activities.MediaActivity" /> <!-- Ads -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" /> <!-- ADs -->
+        <!-- Dropbox SDK v2 -->
+        <activity
+            android:name="com.dropbox.core.android.AuthActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <data android:scheme="db-gcta3jjx84z9va0" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- Register notification Stop button Receiver -->
+        <receiver android:name=".notifications.SyncNotification$StopSyncButtonListener" android:exported="true"/> <!-- Register the Alarm Receiver -->
+        <receiver android:name=".autobackup.AutoBackupAlarmBrReceiver" android:exported="true"/> <!-- Register the Alarm Receiver -->
+        <receiver android:name=".brreceivers.TimeToWriteAlarmBrReceiver" android:exported="true"/> <!-- Register device restart Receiver -->
+        <receiver android:name=".brreceivers.DeviceRestartBrReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver> <!-- Widget 1x1 - New -->
+        <receiver
+            android:name=".widgets.WidgetProvider1x1New"
+            android:icon="@drawable/new_widget_preview"
+            android:label="Diaro - Add entry"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_1x1_new" />
+        </receiver> <!-- Widget 1x1 - Photo -->
+        <receiver
+            android:name=".widgets.WidgetProvider1x1Photo"
+            android:icon="@drawable/photo_widget_preview"
+            android:exported="true"
+            android:label="Diaro - Add photo">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_1x1_photo" />
+        </receiver> <!-- Widget 1x1 - Camera -->
+        <receiver
+            android:name=".widgets.WidgetProvider1x1Camera"
+            android:icon="@drawable/camera_widget_preview"
+            android:label="Diaro - Take photo"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_1x1_camera" />
+        </receiver> <!-- Widget 3x1 -->
+        <receiver
+            android:name=".widgets.WidgetProvider3x1"
+            android:icon="@drawable/ic_launcher"
+            android:label="Diaro"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_3x1" />
+        </receiver>
+
+        <!-- Trigger Google Play services to install the backported photo picker module. -->
+        <service android:name="com.google.android.gms.metadata.ModuleDependencies"
+            android:enabled="false"
+            android:exported="false"
+            tools:ignore="MissingClass">
+            <intent-filter>
+                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+            </intent-filter>
+            <meta-data android:name="photopicker_activity:0:required" android:value="" />
+        </service>
+
+        <service
+            android:name=".storage.dropbox.SyncService"
+            android:foregroundServiceType="dataSync"
+            android:enabled="true"
+            android:exported="false"
+            android:label="Diaro Sync" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5690497443789842~8952908416" />
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr,ocr_chinese,ocr_devanagari,ocr_japanese,ocr_korean" /> <!-- Services -->
+
+    </application>
+
+    <queries>
+        <package android:name="com.dropbox.android" />
+    </queries>
+
+</manifest>

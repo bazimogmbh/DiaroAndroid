@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Get started with Diaro app!</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Đánh giá hàng tuần</string>
+    <string name="template_weekly_reflection_title">⌛️ Tuần đánh giá</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Mọi thứ đã xong:
+        \n\n\n✏️ Các kế hoạch:
+        \n\n\n🏁 Thành tựu:
+        \n\n\n🍽 Ẩm thực:
+        \n\n\n🏃‍️ Thể thao &amp; sức khỏe:
+        \n\n\n💸 Chi phí:
+        \n\n\n🌞 Biết ơn vì:
+        \n\n\n🎬 Phim của tuần:
+        \n\n\n📖 Sách trong tuần:
+        \n\n\n🎧 Bài hát trong tuần:
+        \n\n\n📰 Tin tức:
+        \n\n\n💭 Suy nghĩ:
+        \n\n\n📅 Tuần tới:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Nhật ký ăn kiêng</string>
+    <string name="template_food_log_title"> Chế độ ăn uống của tôi</string>
+    <string name="template_food_log_text">
+        • Bữa ăn sáng:
+        \n\n\n• Bữa trưa:
+        \n\n\n• Bữa tối:
+        \n\n\n• Đồ ăn nhẹ:
+        \n\n\n• Tập thể dục:
+        \n\n\n• Nước:
+        \n\n\n• Ghi chú:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 phút</string>
+    <string name="template_five_minutes_title">Ngày hôm nay của tôi</string>
+    <string name="template_five_minutes_text">
+        • Tôi đã làm gì hôm nay?
+        \n\n• Tôi đang cảm thấy gì bây giờ?
+        \n\n• Tôi biết ơn điều gì?
+        \n\n• Tôi đã đọc gì hôm nay?
+        \n\n• Kế hoạch của tôi cho ngày mai là gì?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Lòng biết ơn</string>
+    <string name="template_gratitude_title">Hôm nay tôi biết ơn</string>
+    <string name="template_gratitude_text">
+        🌞 Buổi sáng
+        \n\n• Tôi biết ơn điều gì ngay bây giờ?
+        \n\n\n• Điều gì sẽ làm cho ngày hôm nay tuyệt vời?
+        \n\n\n• Ba ưu tiên hàng đầu của tôi cho ngày hôm nay là gì?
+
+        \n\n\n🌜 Buổi tối
+        \n\n• Tôi đã đạt được gì hôm nay?
+        \n\n\n• 3 điều tuyệt vời đã xảy ra hôm nay?
+        \n\n\n• Một điều tôi có thể làm tốt hơn ngày hôm nay là gì?
+        \n\n\n• Kế hoạch của tôi cho ngày mai là gì?
+        \n\n
+    </string>
+
+
+</resources>

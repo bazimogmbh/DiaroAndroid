@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/layoutPreview"
+        android:layout_width="0.0dip"
+        android:layout_height="0.0dip"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/add_text_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/previewEffectText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="3.0dip"
+            android:textAlignment="gravity" />
+    </LinearLayout>
+
+    <com.sandstorm.diary.piceditor.features.addtext.CustomEditText
+        android:id="@+id/add_text_edit_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffffff"
+        android:fontFamily="@font/roboto_slab_regular"
+        android:gravity="center"
+        android:inputType="textCapSentences|textMultiLine"
+        android:padding="5.0dip"
+        app:layout_constraintBottom_toTopOf="@id/add_text_toolbar"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/add_text_toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tool_bg"
+        android:orientation="horizontal"
+        android:weightSum="5.0"
+        app:layout_constraintBottom_toBottomOf="@+id/add_text_edit_text"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <ImageView
+            android:id="@+id/showKeyboard"
+            android:layout_width="0.0dip"
+            android:layout_height="40.0dip"
+            android:layout_weight="1.0"
+            android:padding="5.0dip"
+            android:src="@drawable/img_keyboard" />
+
+        <ImageView
+            android:id="@+id/changeFont"
+            android:layout_width="0.0dip"
+            android:layout_height="40.0dip"
+            android:layout_weight="1.0"
+            android:padding="5.0dip"
+            android:src="@drawable/img_text" />
+
+        <ImageView
+            android:id="@+id/changeColor"
+            android:layout_width="0.0dip"
+            android:layout_height="40.0dip"
+            android:layout_weight="1.0"
+            android:padding="5.0dip"
+            android:src="@drawable/img_color" />
+
+        <ImageView
+            android:id="@+id/changeAlign"
+            android:layout_width="0.0dip"
+            android:layout_height="40.0dip"
+            android:layout_weight="1.0"
+            android:padding="5.0dip"
+            android:src="@drawable/img_alignment_center" />
+
+        <ImageView
+            android:id="@+id/saveChange"
+            android:layout_width="0.0dip"
+            android:layout_height="40.0dip"
+            android:layout_weight="1.0"
+            android:padding="9.0dip"
+            android:src="@drawable/img_confirm" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <ScrollView
+            android:id="@+id/change_font_layout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/grey1"
+                android:orientation="vertical"
+                android:padding="15.0dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5.0dip"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:text="@string/label_text_shadow"
+                    android:textColor="@color/white"
+                    android:textSize="16.0dip" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/shadows"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.0dip"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:text="@string/label_text_fonts"
+                    android:textColor="@color/white"
+                    android:textSize="16.0sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fonts"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.0dip"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:text="@string/label_text_size"
+                    android:textColor="@color/white"
+                    android:textSize="16.0sp" />
+
+                <SeekBar
+                    android:id="@+id/textSize"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip"
+                    android:background="@null"
+                    android:max="100"
+                    android:progressDrawable="@drawable/seekbar_normal"
+                    android:splitTrack="false"
+                    android:thumb="@drawable/custom_thumb" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ScrollView
+            android:id="@+id/changeColorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/grey1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/grey1"
+                android:orientation="vertical"
+                android:padding="15.0dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5.0dip"
+                    android:fontFamily="@font/roboto_slab_regular"
+                    android:text="@string/label_text"
+                    android:textColor="@color/white"
+                    android:textSize="16.0dip" />
+
+                <RelativeLayout
+                    android:id="@+id/arrow_color"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/black">
+
+                    <ImageView
+                        android:id="@+id/arrow_color_down"
+                        android:layout_width="10.0dip"
+                        android:layout_height="15.0dip"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/arrow_down" />
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:id="@+id/colorSlider"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.sandstorm.diary.piceditor.features.CarouselPicker
+                        android:id="@+id/colorCarousel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="20.0dip"
+                        app:item_width="15" />
+
+                    <View
+                        android:id="@+id/highlightColor"
+                        android:layout_width="15.0dip"
+                        android:layout_height="20.0dip"
+                        android:layout_gravity="center"
+                        android:background="@drawable/black_border" />
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10.0dip"
+                    android:background="@android:color/black">
+
+                    <ImageView
+                        android:id="@+id/arrow_text_texture"
+                        android:layout_width="10.0dip"
+                        android:layout_height="15.0dip"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/arrow_down" />
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:id="@+id/frameTextTextureSlider"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.sandstorm.diary.piceditor.features.CarouselPicker
+                        android:id="@+id/textTextureSlider"
+                        android:layout_width="fill_parent"
+                        android:layout_height="28.0dip"
+                        app:item_width="28" />
+
+                    <View
+                        android:id="@+id/highlightTextTexture"
+                        android:layout_width="28.0dip"
+                        android:layout_height="28.0dip"
+                        android:layout_gravity="center"
+                        android:background="@drawable/black_border" />
+                </FrameLayout>
+
+                <SeekBar
+                    android:id="@+id/textTransparent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip"
+                    android:background="@null"
+                    android:max="255"
+                    android:progressDrawable="@drawable/progress"
+                    android:splitTrack="false"
+                    android:thumb="@drawable/custom_thumb" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_slab_regular"
+                        android:text="@string/label_background"
+                        android:textColor="@color/white"
+                        android:textSize="16.0dip" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchBackgroundTexture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:theme="@style/SCBSwitch" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/arrowBackgroundColor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/black">
+
+                    <ImageView
+                        android:id="@+id/arrowBackgroundColorDown"
+                        android:layout_width="10.0dip"
+                        android:layout_height="15.0dip"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/arrow_down" />
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:id="@+id/carouselBackgroundColor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.sandstorm.diary.piceditor.features.CarouselPicker
+                        android:id="@+id/backgroundColorCarousel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="20.0dip"
+                        app:item_width="15" />
+
+                    <View
+                        android:id="@+id/highlightBackgroundColor"
+                        android:layout_width="15.0dip"
+                        android:layout_height="20.0dip"
+                        android:layout_gravity="center"
+                        android:background="@drawable/black_border" />
+                </FrameLayout>
+
+                <SeekBar
+                    android:id="@+id/backgroundTransparent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip"
+                    android:background="@null"
+                    android:max="255"
+                    android:progressDrawable="@drawable/progress"
+                    android:splitTrack="false"
+                    android:thumb="@drawable/custom_thumb" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip"
+                    android:orientation="horizontal"
+                    android:weightSum="2.0">
+
+                    <LinearLayout
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_slab_regular"
+                            android:text="@string/label_background_full_screen"
+                            android:textColor="@color/white"
+                            android:textSize="16.0dip" />
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/backgroundFullScreen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@drawable/checkbox" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_slab_regular"
+                            android:text="@string/label_background_radius"
+                            android:textColor="@color/white"
+                            android:textSize="16.0dip" />
+
+                        <SeekBar
+                            android:id="@+id/backgroundBorderRadius"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15.0dip"
+                            android:background="@null"
+                            android:max="30"
+                            android:progressDrawable="@drawable/seekbar_normal"
+                            android:splitTrack="false"
+                            android:thumb="@drawable/custom_thumb" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10.0dip"
+                    android:orientation="horizontal"
+                    android:weightSum="4.0">
+
+                    <LinearLayout
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.0"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_slab_regular"
+                            android:text="@string/label_background_width"
+                            android:textColor="@color/white"
+                            android:textSize="16.0dip" />
+
+                        <SeekBar
+                            android:id="@+id/backgroundWidth"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15.0dip"
+                            android:background="@null"
+                            android:max="50"
+                            android:progressDrawable="@drawable/seekbar_normal"
+                            android:splitTrack="false"
+                            android:thumb="@drawable/custom_thumb" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.0"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_slab_regular"
+                            android:text="@string/label_background_height"
+                            android:textColor="@color/white"
+                            android:textSize="16.0dip" />
+
+                        <SeekBar
+                            android:id="@+id/backgroundHeight"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15.0dip"
+                            android:background="@null"
+                            android:max="50"
+                            android:progressDrawable="@drawable/seekbar_normal"
+                            android:splitTrack="false"
+                            android:thumb="@drawable/custom_thumb" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

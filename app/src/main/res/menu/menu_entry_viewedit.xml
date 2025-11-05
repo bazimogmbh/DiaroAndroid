@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_share"
+        android:title="@string/share"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/item_add_photo"
+        android:title="@string/add_photo"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/item_print"
+        android:title="PDF"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/item_edit"
+        android:title="@string/edit"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/item_fullscreen"
+        android:icon="@drawable/ic_expand_white_24dp"
+        android:title="@string/fullscreen"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/item_search"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/search_hint"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
+
+    <item
+        android:id="@+id/item_weather"
+        android:title="@string/settings_weather"
+        android:visible="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_duplicate"
+        android:title="@string/duplicate"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_dictate_txt"
+        android:title="@string/dictate"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_draw"
+        android:title="@string/draw"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_read_txt"
+        android:title="@string/read_aloud"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_timestamp"
+        android:title="@string/timestamp"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_text_recognition"
+        android:title="@string/text_recognition"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_templates"
+        android:title="@string/templates"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/item_diaro_web"
+        android:title="@string/diaro_web"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_delete"
+        android:title="@string/delete"
+        app:showAsAction="never" />
+
+</menu>

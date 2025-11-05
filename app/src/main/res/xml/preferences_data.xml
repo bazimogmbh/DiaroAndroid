@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/settings_sync">
+
+        <!-- Download only on Wi-Fi -->
+        <CheckBoxPreference
+            android:key="SYNC_ON_WIFI_ONLY"
+            android:persistent="false"
+            android:summary="@string/settings_sync_on_wifi_only_summary"
+            android:title="@string/settings_wifi_only" />
+
+        <!-- Roaming -->
+        <CheckBoxPreference
+            android:key="ALLOW_ROAMING_SYNC"
+            android:persistent="false"
+            android:summary="@string/settings_roaming_summary"
+            android:title="@string/settings_roaming" />
+
+        <!-- Show sync notification -->
+        <CheckBoxPreference
+            android:key="SHOW_SYNC_NOTIFICATION"
+            android:persistent="false"
+            android:summary="@string/show_sync_notification_summary"
+            android:title="@string/show_sync_notification" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/export">
+        <!-- Export to PDF -->
+        <Preference
+            android:key="EXPORT_PDF"
+            android:summary="@string/export_pdf"
+            android:title="PDF" />
+
+        <!-- Export to TXT -->
+        <Preference
+            android:key="EXPORT_TXT"
+            android:summary="@string/export_txt"
+            android:title="TXT" />
+
+        <!-- Export to PDF -->
+        <Preference
+            android:key="EXPORT_CSV"
+            android:summary="@string/export_csv"
+            android:title="CSV" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="Import">
+        <!-- Import from Evernote -->
+        <Preference
+            android:key="IMPORT_EVERNOTE"
+            android:title="Evernote" />
+
+        <!-- Import from Dayone -->
+        <Preference
+            android:key="IMPORT_DAYONE"
+            android:title="Dayone" />
+
+        <!-- Import from Journey  -->
+        <Preference
+            android:key="IMPORT_JOURNEY"
+            android:title="Journey" />
+
+        <!-- Import from Diarium  -->
+        <Preference
+            android:key="IMPORT_DIARIUM"
+            android:title="Diarium" />
+
+        <!-- Import from Memorize  -->
+        <Preference
+            android:key="IMPORT_MEMORIZE"
+            android:title="Memorize" />
+
+        <!-- Import from Red Notebook  -->
+        <Preference
+            android:key="IMPORT_REDNOTEBOOK"
+            android:title="Red Notebook" />
+
+        <!-- Import from Universum  -->
+        <Preference
+            android:key="IMPORT_UNIVERSUM"
+            android:title="Universum - Universal Diary" />
+
+        <!-- Import from CSV  -->
+        <Preference
+            android:key="IMPORT_CSV"
+            app:isPreferenceVisible="false"
+            android:title="CSV File" />
+
+        <!-- Import from Simple Journal  -->
+        <Preference
+            android:key="IMPORT_SIMPLE_JOURNAL"
+            app:isPreferenceVisible="false"
+            android:title="Simple Journal" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="@string/settings_backup_restore">
+
+        <Preference
+            android:key="BACKUP_RESTORE"
+            android:summary="@string/settings_backup_restore_summary"
+            android:title="@string/settings_backup_restore" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="@string/storage_directories">
+
+        <!-- Backup storage directory -->
+        <Preference
+            android:key="BACKUP_STORAGE_DIRECTORY"
+            android:title="@string/backup_storage" />
+
+        <!-- Attachments storage directory -->
+        <Preference
+            android:key="ATTACHMENTS_STORAGE_DIRECTORY"
+            android:title="@string/attachments_storage" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

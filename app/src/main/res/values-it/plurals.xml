@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="entry_on_this_day">
+        <item quantity="one">Hai %d  ingresso in questo giorno!</item>
+        <item quantity="other">Hai %d  voci in questo giorno!</item>
+    </plurals>
+
+    <plurals name="years_ago">
+        <item quantity="one">%d anno fa</item>
+        <item quantity="other">%d anni fa</item>
+    </plurals>
+
+    <plurals name="years_later">
+        <item quantity="one">%d anno dopo</item>
+        <item quantity="other">%d anni dopo</item>
+    </plurals>
+
+</resources>

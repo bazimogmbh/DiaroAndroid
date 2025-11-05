@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/entry_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <!-- folder color -->
+        <LinearLayout
+            android:id="@+id/entry_folder_color_line"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+
+        <!-- big day , date , time -->
+        <LinearLayout
+            android:id="@+id/large_entry_date_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="14dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/entry_date_weekday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                tools:text="Thu" />
+
+            <TextView
+                android:id="@+id/entry_date_day"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                tools:text="04" />
+
+            <TextView
+                android:id="@+id/entry_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                tools:text="14:59" />
+        </LinearLayout>
+
+        <!--entry title, text, info line & image -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
+
+            <!--entry title, text, info line -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/entry_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLength="150"
+                    android:maxLines="1"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="Swimming with the sharks" />
+
+                <TextView
+                    android:id="@+id/entry_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:ellipsize="end"
+                    android:lineSpacingMultiplier="1.1"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:textSize="12sp"
+                    tools:text="During the Asuka and Nara periods" />
+
+                <!-- folder, tags, weather, mood info line -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/small_entry_date"
+                        style="@style/EntryListIcons" />
+
+                    <TextView
+                        android:id="@+id/entry_photo_count"
+                        tools:text="2"
+                        style="@style/EntryListIcons" />
+
+                    <TextView
+                        android:id="@+id/entry_folder"
+                        tools:text="My Folder"
+                        style="@style/EntryListIcons" />
+
+                    <TextView
+                        android:id="@+id/entry_tags_count"
+                        style="@style/EntryListIcons" />
+
+                    <TextView
+                        android:id="@+id/entry_location"
+                        style="@style/EntryListIcons" />
+
+                    <TextView
+                        android:id="@+id/entry_weather"
+                        style="@style/EntryListIcons" />
+
+                    <ImageView
+                        android:id="@+id/entry_mood"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_gravity="center"
+                        tools:src="@drawable/mood2_smile"
+                        android:layout_marginEnd="3dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--image -->
+            <ImageView
+                android:id="@+id/entry_photo"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Parent should be RelativeLa yout because in FrameLayout does not stretch height on Android 2.3 -->
+    <FrameLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/entry_container"
+        android:layout_alignBottom="@+id/entry_container"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/ic_done_white_48dp" />
+
+    </FrameLayout>
+
+    <!-- Not synced indicator -->
+    <ImageView
+        android:id="@+id/not_synced_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:src="@drawable/ic_sync_grey600_8dp"
+        app:tint="@color/orange_500" />
+
+</RelativeLayout>

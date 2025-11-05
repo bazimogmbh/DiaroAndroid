@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="select_mood">Select mood</string>
+    <string name="mood_none">No Mood</string>
+
+    <string name="mood_1">Awesome</string>
+    <string name="mood_2">Happy</string>
+    <string name="mood_3">Neutral</string>
+    <string name="mood_4">Bad</string>
+    <string name="mood_5">Awful</string>
+</resources>

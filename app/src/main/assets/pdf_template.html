@@ -1,0 +1,136 @@
+<html>
+
+    <head>
+        <title>Export</title>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+        <meta charset="UTF-8"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/weather-icons.min.css" rel="stylesheet" type="text/css">
+        <link href="css/mood_style.css" rel="stylesheet" type="text/css">
+        <link href="css/pdf.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body style="font-family:'{{fontname}}'">
+
+        <header>
+
+            {{#logo}}
+                 <img alt="Logo" class="logo" src="logo_blue.svg">
+            {{/logo}}
+
+            {{^logo}}
+                 <div class="logo"> </div>
+            {{/logo}}
+
+            {{#summary}}
+            <div class="summary">
+                <span class="info_title">Generated on </span>
+                <span>{{date}}</span>
+                <span class="info_title">Filters used </span>
+
+                {{#search}}
+                    <span><i class="fa fa-search"></i> {{search}}</span>
+                {{/search}}
+
+                <!--  <span><i class="fa fa-calendar"></i> {{date}}</span> -->
+
+                {{#folder}}
+                     <span><i class="fa fa-folder"></i> {{folder}}</span>
+                {{/folder}}
+
+            </div>
+            {{/summary}}
+
+        </header>
+
+        <div class="main">
+            <!-- ENTRIES -->
+            {{#entries}}
+                <div class="entry {{#options}} {{layout}} {{/options}}"  id="entry_{{uid}}" >
+                    <table class="entry_date" style="border-bottom: solid .33mm  {{#options}} {{border_color}} {{/options}} ">
+                        <tr>
+                            <td class="day">{{day}}</td>
+                            <td>{{day_of_week_full}} / {{month_name}} {{year}}</td>
+                            <td class="time">{{time}}</td>
+                        </tr>
+                    </table>
+
+                    {{#title}}
+                        <div class="entry_title" dir="auto"> {{title}}</div>
+                    {{/title}}
+
+                    {{#text}}
+                        <div class="entry_text" dir="auto"> {{{text}}}</div>
+                    {{/text}}
+
+
+                    <div class="entry_info">
+                        {{#folder_title}}
+                            <table class="folder">
+                                <tr>
+                                    <td class="ico"> <i aria-hidden="true" class="fa fa-folder"></i> </td>
+                                    <td>{{folder_title}} &nbsp;<span class="color_circle" style="background-color: {{folder_color}}"></span></td>
+                                </tr>
+                            </table>
+                        {{/folder_title}}
+
+                        {{#weather_temperature_display}}
+                            <table class="weather">
+                                <tr>
+                                    <td class="ico"> <i class="wi wi-{{weather_icon}}"></i></td>
+                                    <td> {{weather_temperature_display}} {{unit_name}}</td>
+                                </tr>
+                            </table>
+                        {{/weather_temperature_display}}
+
+                        {{#tags}}
+                            <table class="tags">
+                                <tr>
+                                    <td class="ico"> <i aria-hidden="true" class="fa fa-tag"></i> </td>
+                                    <td> {{tags}} </td>
+                                </tr>
+                            </table>
+                        {{/tags}}
+
+                        {{#hasMood}}
+                            <table class="mood">
+                                <tr>
+                                    <td class="ico"> <i aria-hidden="true" class="fa fa-heartbeat"></i> </td>
+                                    <!-- <td> <i class="dm dm-{{mood}}"></i> </td> -->
+                                    <td> {{moodTitle}} </td>
+                                </tr>
+                            </table>
+                        {{/hasMood}}
+
+                        {{#location}}
+                            <table class="location">
+                                <tr>
+                                    <td class="ico"> <i aria-hidden="true" class="fa fa-map-marker"></i> </td>
+                                    <td> {{location}} </td>
+                                </tr>
+                            </table>
+                        {{/location}}
+
+                        <br>
+
+                        <div class="images_div">
+                        {{#attachmentsList}}
+                                <div class="pdf_attachment_wrapper">
+                                    <img class="pdf_attachment" src="{{.}}"
+                                         style="height: {{#options}} {{photo_height}} {{/options}}"/>
+                                </div>
+                        {{/attachmentsList}}
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <br>
+
+                </div>
+            {{/entries}}
+        </div>
+
+    </body>
+</html>

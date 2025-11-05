@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group_popupmenu">
+        <item
+            android:id="@+id/sort_alphabetically"
+            android:title="@string/sort_alphabetically" />
+        <item
+            android:id="@+id/sort_by_entries_count"
+            android:title="@string/sort_by_entries_count" />
+        <item
+            android:id="@+id/filter_by_or_logic"
+            android:title="@string/filter_by_any_tag" />
+        <item
+            android:id="@+id/filter_by_and_logic"
+            android:title="@string/filter_by_all_tags" />
+    </group>
+
+</menu>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path name="external_files" path="Android/" />
+    <root-path name="photos" path="data/data/com.pixelcrater.Diaro/files/media/photo/" />
+    <root-path name="profile" path="data/data/com.pixelcrater.Diaro/files/profile/" />
+    <cache-path name="image" path="image/"/>
+</paths>

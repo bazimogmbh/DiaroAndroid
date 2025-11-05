@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="2dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/default_margin"
+    android:paddingRight="@dimen/default_margin"
+    android:paddingBottom="@dimen/default_margin">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Cloud sync -->
+        <LinearLayout style="@style/FeatureContainerNew">
+
+            <ImageView
+                android:id="@+id/cloud_sync_icon"
+                style="@style/FeatureIcon"
+                android:src="@drawable/ic_sync" />
+
+            <LinearLayout style="@style/Feature">
+
+                <TextView
+                    style="@style/FeatureHeaderNew"
+                    android:text="@string/cloud_sync" />
+
+                <TextView
+                    style="@style/FeatureDescriptionNew"
+                    android:text="@string/cloud_sync_description" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Ads free -->
+        <LinearLayout style="@style/FeatureContainerNew">
+
+            <ImageView
+                android:id="@+id/ads_free_icon"
+                style="@style/FeatureIcon"
+                android:src="@drawable/ic_megaphone" />
+
+            <LinearLayout style="@style/Feature">
+
+                <TextView
+                    style="@style/FeatureHeaderNew"
+                    android:text="@string/ads_free" />
+
+                <TextView
+                    style="@style/FeatureDescriptionNew"
+                    android:text="@string/interface_without_ads" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Export to PDF -->
+        <LinearLayout style="@style/FeatureContainerNew">
+
+            <ImageView
+                android:id="@+id/pdf_icon"
+                style="@style/FeatureIcon"
+                app:srcCompat="@drawable/ic_premium_pdf" />
+
+            <LinearLayout style="@style/Feature">
+
+                <TextView
+                    style="@style/FeatureHeaderNew"
+                    android:text="@string/export_to_pdf" />
+
+                <TextView
+                    style="@style/FeatureDescriptionNew"
+                    android:text="@string/export_to_pdf_description" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <!-- Diaro PREMIUM on all your devices -->
+        <LinearLayout style="@style/FeatureContainerNew">
+
+            <ImageView
+                android:id="@+id/diaro_pro_on_all_devices_icon"
+                style="@style/FeatureIcon"
+                android:src="@drawable/ic_category" />
+
+            <LinearLayout style="@style/Feature">
+
+                <TextView
+                    style="@style/FeatureHeaderNew"
+                    android:text="@string/diaro_pro_on_all_your_devices" />
+
+                <TextView
+                    style="@style/FeatureDescriptionNew"
+                    android:text="@string/diaro_pro_on_all_your_devices_description" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/subscription_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/default_side_padding_small"
+        android:layout_marginBottom="@dimen/default_side_padding_small"
+        android:layout_marginStart="@dimen/default_side_padding"
+        android:layout_marginEnd="@dimen/default_side_padding"
+        android:gravity="center_horizontal"
+        android:text="@string/subscription_renewal_info_detailed"
+        android:textSize="9sp" />
+
+</LinearLayout>

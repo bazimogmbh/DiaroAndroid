@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Beginnen Sie mit der Diaro App!</string>
+    <string name="demo_entry_1_text">
+        Bewahren Sie Ihre besonderen Erinnerungen, speichern Sie persönliche Momente und Erfahrungen, Ideen, Gefühle und verfolgen Sie mit Hilfe von Diaro Ihr Leben.
+        \nUm die Diaro-App zu verwenden, sollten Sie Folgendes wissen:
+        \n\n✍ WIE MAN DIARO APP BENUTZT
+        \nErstellen Sie neue Einträge, Ordner, Tags oder Speicherorte mit den Schaltflächen +.
+        \nVerwenden Sie die Suche, um Einträge nach einem beliebigen Schlüsselwort in einem Titel oder Text zu finden und die Ergebnisse im Menü auf der linken Seite nach Datum, Ordner, Tags oder Speicherorten zu filtern.
+
+        \n\n🎨 ANPASSUNG
+        \nLegen Sie für jeden Ordner unterschiedliche Hintergründe fest.
+        \nAlle Einträge in benutzerdefinierten Ordnern sehen anders aus.
+        \nDiaro-Sprache, UI-Farbe, Textgröße usw. können unter Diaro-Einstellungen -> Einstellungen -> Darstellung geändert werden.
+
+        \n\n🔒 SO SCHÜTZEN SIE IHRE DATEN
+        \nUm den Zugriff auf die App zu sichern, legen Sie den Sicherheitscode unter Diaro-Einstellungen -> Einstellungen -> Sicherheitscode fest.
+        \nVergessen Sie nicht, regelmäßig Sicherungen mit den Diaro-Einstellungen -> Daten -> Sichern und Wiederherstellen durchzuführen, um einen versehentlichen Verlust Ihrer Daten zu vermeiden.
+
+        \n\n☁️ SO SYNCHROSIRIEN SIE IHRE DATEN
+        \nSynchronisieren Sie Daten auf allen Ihren Geräten. Melden Sie sich einfach in Ihrem Diaro-Konto an und verknüpfen Sie es mit Dropbox.
+        \nSie können Ihre Einträge mit Diaro Online (www.diaroapp.com) auf Ihrem PC oder Mac verwalten.
+        \nDie Synchronisierung ist nur in der PREMIUM-Version verfügbar.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Wochenüberblick</string>
+    <string name="template_weekly_reflection_title">⌛️ Woche im Rückblick</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Dinge erledigt:
+        \n\n\n✏️ Pläne:
+        \n\n\n🏁 Erfolge:
+        \n\n\n🍽 Kulinarisch:
+        \n\n\n🏃‍️ Sport &amp; Gesundheit:
+        \n\n\n💸 Ausgaben:
+        \n\n\n🌞 Dankbar für:
+        \n\n\n🎬 Film der Woche:
+        \n\n\n📖 Buch der Woche:
+        \n\n\n🎧 Lied der Woche:
+        \n\n\n📰 Nachrichten:
+        \n\n\n💭 Gedanken:
+        \n\n\n📅 Kommende Woche:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Diätprotokoll</string>
+    <string name="template_food_log_title">Meine Diät</string>
+    <string name="template_food_log_text">
+        • Frühstück:
+        \n\n\n• Mittagessen:
+        \n\n\n• Abendessen:
+        \n\n\n• Snacks:
+        \n\n\n• Übung:
+        \n\n\n• Wasser:
+        \n\n\n• Anmerkungen:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 Minuten</string>
+    <string name="template_five_minutes_title">Mein Tag heute</string>
+    <string name="template_five_minutes_text">
+        • Was habe ich heute gemacht?
+        \n\n• Was fühle ich gerade?
+        \n\n• Wofür bin ich dankbar?
+        \n\n• Was habe ich heute gelesen?
+        \n\n• Was sind meine Pläne für morgen?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Dankbarkeit</string>
+    <string name="template_gratitude_title">Heute bin ich dankbar dafür</string>
+    <string name="template_gratitude_text">
+        🌞 Morgen
+        \n\n• Wofür bin ich jetzt dankbar?
+        \n\n\n• Was würde heute großartig machen?
+        \n\n\n• Was sind meine drei wichtigsten Prioritäten für heute?
+
+        \n\n\n🌜 Abend
+        \n\n• Was habe ich heute erreicht?
+        \n\n\n• 3 erstaunliche Dinge, die heute passiert sind?
+        \n\n\n• Was hätte ich heute besser machen können?
+        \n\n\n• Was habe ich für morgen vor?
+        \n\n
+    </string>
+
+
+</resources>

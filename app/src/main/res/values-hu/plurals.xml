@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="entry_on_this_day">
+        <item quantity="one">%d bejegyzésed van ezen a napon!</item>
+        <item quantity="other">%d bejegyzésed van ezen a napon!</item>
+    </plurals>
+
+    <plurals name="years_ago">
+        <item quantity="one">%d évvel ezelőtt</item>
+        <item quantity="other">%d évvel ezelőtt</item>
+    </plurals>
+
+    <plurals name="years_later">
+        <item quantity="one">%d évvel később</item>
+        <item quantity="other">%d évvel később</item>
+    </plurals>
+
+</resources>

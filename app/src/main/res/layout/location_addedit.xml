@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_side_padding"
+        android:layout_marginTop="@dimen/default_side_padding"
+        android:layout_marginRight="@dimen/default_side_padding"
+        android:layout_marginBottom="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/location_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/location_title"
+            android:imeOptions="actionDone|flagNoExtractUi"
+            android:inputType="textCapSentences"
+            android:maxLength="200"
+            android:singleLine="true"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textSize="18sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/search_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_side_padding"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/default_side_padding"
+        android:layout_marginBottom="@dimen/default_side_padding"
+        android:gravity="bottom"
+        android:hint="@string/search_map"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:startIconDrawable="@drawable/ic_search_white_24dp"
+            app:startIconTint="@color/md_grey_500">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_map"
+                android:imeOptions="actionSearch|flagNoExtractUi"
+                android:inputType="textCapSentences"
+                android:singleLine="true"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Find me -->
+        <ImageButton
+            android:id="@+id/find_me"
+            style="@style/Icon48" />
+
+        <!-- Pick place -->
+        <ImageButton
+            android:id="@+id/pick_place"
+            style="@style/Icon48" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_side_padding"
+        android:visibility="gone">
+
+        <!-- NA Address -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/na_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textCapSentences"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- NA coords -->
+    <TextView
+        android:id="@+id/na_coords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_side_padding"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="@dimen/default_side_padding"
+        android:layout_marginBottom="@dimen/default_side_padding"
+        android:singleLine="true"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <!-- Map -->
+    <FrameLayout
+        android:id="@+id/map_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Formatted address and coords -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#DAFFFFFF"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/default_side_padding"
+            android:paddingTop="5dp"
+            android:paddingRight="@dimen/default_side_padding"
+            android:layout_gravity="bottom"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/formatted_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_alignParentStart="true"
+                android:textColor="#343434"
+                android:textIsSelectable="true"
+                android:maxLines="2"
+                tools:text="Konstanzerstr. 96, 78462, Germany"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/coords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textIsSelectable="true"
+                android:textColor="#343434"
+                android:layout_below="@+id/formatted_address"
+                android:layout_alignParentStart="true"
+                tools:text="57.609872 , 11.944169"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/open_maps"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/formatted_address"
+                app:srcCompat="@drawable/ic_map_24"
+                android:layout_alignParentEnd="true"
+                style="@style/Icon48" />
+        </RelativeLayout>
+    </FrameLayout>
+
+</LinearLayout>

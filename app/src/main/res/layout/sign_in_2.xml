@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/default_margin" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/why_to_sign_in"
+            android:textColor="@color/grey_600"
+            android:textSize="18sp" />
+
+        <!-- Cloud export & import -->
+
+        <LinearLayout style="@style/FeatureContainer" >
+
+            <ImageView
+                android:id="@+id/cloud_backup_restore_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout style="@style/Feature" >
+
+                <TextView
+                    style="@style/FeatureHeader"
+                    android:text="@string/cloud_backup_restore" />
+
+                <TextView
+                    style="@style/FeatureDescription"
+                    android:text="@string/cloud_backup_restore_description" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Cloud profile picture -->
+
+        <LinearLayout style="@style/FeatureContainer" >
+
+            <ImageView
+                android:id="@+id/cloud_profile_photo_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout style="@style/Feature" >
+
+                <TextView
+                    style="@style/FeatureHeader"
+                    android:text="@string/cloud_profile_picture" />
+
+                <TextView
+                    style="@style/FeatureDescription"
+                    android:text="@string/cloud_profile_picture_description" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Diaro PREMIUM on all your devices -->
+
+        <LinearLayout style="@style/FeatureContainer" >
+
+            <ImageView
+                android:id="@+id/diaro_pro_on_all_devices_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout style="@style/Feature" >
+
+                <TextView
+                    style="@style/FeatureHeader"
+                    android:text="@string/diaro_pro_on_all_your_devices" />
+
+                <TextView
+                    style="@style/FeatureDescription"
+                    android:text="@string/diaro_pro_on_all_your_devices_description" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

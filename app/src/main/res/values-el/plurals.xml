@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="entry_on_this_day">
+        <item quantity="one">Έχετε %d καταχώρηση αυτήν την ημέρα!</item>
+        <item quantity="other">Έχετε %d καταχωρήσεις αυτήν την ημέρα!</item>
+    </plurals>
+
+    <plurals name="years_ago">
+        <item quantity="one">Πριν %d χρόνο</item>
+        <item quantity="other">Πριν %d χρόνια</item>
+    </plurals>
+
+    <plurals name="years_later">
+        <item quantity="one">%d έτος αργότερα</item>
+        <item quantity="other">%d χρόνια αργότερα</item>
+    </plurals>
+
+</resources>

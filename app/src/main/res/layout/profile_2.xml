@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/default_margin"
+    android:paddingLeft="@dimen/default_margin"
+    android:paddingRight="@dimen/default_margin">
+
+    <!-- Profile photo -->
+
+    <RelativeLayout
+        android:id="@+id/profile_photo_container"
+        android:layout_width="280dp"
+        android:layout_height="158dp"
+        android:background="@drawable/unreg_bg"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/profile_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center" />
+
+        <!-- Click area to display ripple effect -->
+        <View
+            android:id="@+id/profile_photo_click_area"
+            style="@style/ClickArea"
+            android:layout_alignBottom="@+id/profile_photo"
+            android:layout_alignTop="@+id/profile_photo" />
+    </RelativeLayout>
+
+    <!-- Why to link with Dropbox? -->
+
+    <LinearLayout
+        android:id="@+id/why_to_link_with_dropbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/why_to_link_with_dropbox"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textSize="16sp" />
+
+        <!-- Cloud sync -->
+
+        <LinearLayout style="@style/FeatureContainer">
+
+            <ImageView
+                android:id="@+id/cloud_sync_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout style="@style/Feature">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/FeatureHeader"
+                        android:text="@string/cloud_sync" />
+
+                    <TextView
+                        android:id="@+id/pro_version_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="5dp"
+                        android:background="@color/orange_500"
+                        android:padding="2dp"
+                        android:text="@string/diaro_pro_version"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FeatureDescription"
+                    android:text="@string/cloud_sync_description" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Cloud export & import -->
+
+        <LinearLayout style="@style/FeatureContainer">
+
+            <ImageView
+                android:id="@+id/cloud_backup_restore_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout style="@style/Feature">
+
+                <TextView
+                    style="@style/FeatureHeader"
+                    android:text="@string/cloud_backup_restore" />
+
+                <TextView
+                    style="@style/FeatureDescription"
+                    android:text="@string/cloud_backup_restore_description" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Cloud profile picture -->
+
+        <LinearLayout style="@style/FeatureContainer">
+
+            <ImageView
+                android:id="@+id/cloud_profile_photo_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout style="@style/Feature">
+
+                <TextView
+                    style="@style/FeatureHeader"
+                    android:text="@string/cloud_profile_picture" />
+
+                <TextView
+                    style="@style/FeatureDescription"
+                    android:text="@string/cloud_profile_picture_description" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

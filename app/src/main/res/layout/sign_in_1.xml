@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/default_margin">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sign_in_with_diaro_account_button"
+        style="@style/FormButton"
+        android:layout_margin="3dp"
+        android:background="@drawable/button_blue"
+        android:drawableStart="@drawable/ic_diaro_icon_white_24dp"
+        android:text="@string/sign_in_with_diaro_account" />
+
+    <TextView
+        android:id="@+id/sign_up_link"
+        style="@style/FormLink"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:text="@string/dont_have_account" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sign_in_with_google_button"
+        style="@style/FormButton"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_sign_in_with_google"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/sign_in_with_google"
+        android:visibility="gone" />
+
+</LinearLayout>

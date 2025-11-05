@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Get started with Diaro app!</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">每週評論</string>
+    <string name="template_weekly_reflection_title">⌛️ 週回顧</string>
+    <string name="template_weekly_reflection_text">
+        🔨 完成的事情:
+        \n\n\n✏️ 計劃:
+        \n\n\n🏁 成就:
+        \n\n\n🍽 烹飪:
+        \n\n\n🏃‍️ 運動與健康:
+        \n\n\n💸 花費:
+        \n\n\n🌞 感謝:
+        \n\n\n🎬 本週電影:
+        \n\n\n📖 本周書:
+        \n\n\n🎧 本週歌曲:
+        \n\n\n📰 新聞:
+        \n\n\n💭 想法:
+        \n\n\n📅 即將到來的一周:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">飲食記錄</string>
+    <string name="template_food_log_title">我的飲食</string>
+    <string name="template_food_log_text">
+        • 早餐:
+        \n\n\n• 午餐:
+        \n\n\n• 晚餐:
+        \n\n\n• 零食:
+        \n\n\n• 練習:
+        \n\n\n• 水:
+        \n\n\n• 注意:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5分鐘</string>
+    <string name="template_five_minutes_title">我今天</string>
+    <string name="template_five_minutes_text">
+        • 我今天做什麼？
+        \n\n• 我現在感覺如何？
+        \n\n• 我要感謝什麼？
+        \n\n• 我今天讀了什麼？
+        \n\n• 我明天有什麼計劃？
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">感謝</string>
+    <string name="template_gratitude_title">今天我很感激</string>
+    <string name="template_gratitude_text">
+        🌞 早上
+        \n\n• 我現在要感謝什麼？
+        \n\n\n• 今天會怎樣？
+        \n\n\n• 我今天的頭三項工作是什麼？
+
+        \n\n\n🌜 晚上
+        \n\n• 我今天取得了什麼成就？
+        \n\n\n• 今天發生了3件事？
+        \n\n\n• 今天我能做得更好的一件事是什麼？
+        \n\n\n• 我明天的計劃是什麼？
+        \n\n
+    </string>
+
+
+</resources>

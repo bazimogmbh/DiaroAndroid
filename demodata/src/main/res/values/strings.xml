@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Get started with Diaro app!</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Weekly Review</string>
+    <string name="template_weekly_reflection_title">⌛️ Week in review</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Things done:
+        \n\n\n✏️ Plans:
+        \n\n\n🏁 Achievements:
+        \n\n\n🍽 Culinary:
+        \n\n\n🏃‍️ Sports &amp; health:
+        \n\n\n💸 Expenses:
+        \n\n\n🌞 Grateful for:
+        \n\n\n🎬 Movie of the week:
+        \n\n\n📖 Book of the week:
+        \n\n\n🎧 Song of the week:
+        \n\n\n📰 News:
+        \n\n\n💭 Thoughts:
+        \n\n\n📅 Coming week:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Diet Log</string>
+    <string name="template_food_log_title">My diet</string>
+    <string name="template_food_log_text">
+        • Breakfast:
+        \n\n\n• Lunch:
+        \n\n\n• Dinner:
+        \n\n\n• Snacks:
+        \n\n\n• Exercise:
+        \n\n\n• Water:
+        \n\n\n• Notes:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 Minutes</string>
+    <string name="template_five_minutes_title">My day today</string>
+    <string name="template_five_minutes_text">
+        • What did I do today?
+        \n\n• What am I feeling right now?
+        \n\n• What am I thankful for?
+        \n\n• What did I read today?
+        \n\n• What are my plans for tomorrow?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Gratitude</string>
+    <string name="template_gratitude_title">Today I am grateful for</string>
+    <string name="template_gratitude_text">
+        🌞 Morning
+        \n\n• What am I thankful for right now?
+        \n\n\n• What would make today great?
+        \n\n\n• What are my top three priorities for today?
+
+        \n\n\n🌜 Evening
+        \n\n• What did I achieve today?
+        \n\n\n• 3 amazing things that happened today?
+        \n\n\n• What is one thing I could have done better today?
+        \n\n\n• What are my plans for tomorrow?
+        \n\n
+    </string>
+
+
+</resources>

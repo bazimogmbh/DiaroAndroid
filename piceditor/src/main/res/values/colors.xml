@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="__picker_common_primary">#ffe1e1e1</color>
+    <color name="__picker_item_photo_border_n">#33ffffff</color>
+    <color name="__picker_item_photo_border_selected">#ff99cc00</color>
+
+    <color name="ball1">#ffffd91c</color>
+    <color name="ball2">#ffff4b4a</color>
+    <color name="ball3">#ff3d8eff</color>
+    <color name="grey1">#ff17181b</color>
+    <color name="blue_selected">#ff349efe</color>
+
+    <color name="colorAccent">#ff349efe</color>
+    <color name="colorPrimary">#ff3f51b5</color>
+    <color name="colorPrimaryDark">#ff303f9f</color>
+
+    <color name="dark_grey">#ff1c1d21</color>
+    <color name="dark_grey_more">#ff232323</color>
+
+    <color name="progress_bar_bg_light">#EBEEF2</color>
+
+    <color name="tool_bg">#ff303030</color>
+
+    <color name="unselected_color">#ff7d7d7d</color>
+    <color name="white">#ffffffff</color>
+    <color name="textPinkSelected">#83FF5D7C</color>
+
+    <color name="white_blur">#ffc8c8c8</color>
+    <color name="textColorMain">#101E2A</color>
+    <color name="textColorMain_50">#83101E2A</color>
+    <color name="black">#000000</color>
+</resources>

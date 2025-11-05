@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/editor_tools"
+    android:layout_width="match_parent"
+    android:isScrollContainer="false"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="horizontal"
+    android:visibility="gone">
+
+    <ImageButton
+        android:id="@+id/button_undo"
+        style="@style/Icon48" />
+
+    <ImageButton
+        android:id="@+id/button_redo"
+        style="@style/Icon48" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#50e0e0e0" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/chars_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_500"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/words_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_500"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/button_exit_fullscreen"
+        style="@style/Icon48"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/button_save"
+        style="@style/Icon48" />
+
+</LinearLayout>

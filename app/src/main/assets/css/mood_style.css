@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'diaro_moods';
+  src:
+    url('../fonts/diaro_moods.woff?mlr5vs') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.dm {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'diaro_moods' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dm-1:before {
+  content: "\e900";
+}
+.dm-2:before {
+  content: "\e901";
+}
+.dm-3:before {
+  content: "\e902";
+}
+.dm-4:before {
+  content: "\e903";
+}
+.dm-5:before {
+  content: "\e904";
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Ga aan de slag met de Diaro-app!</string>
+    <string name="demo_entry_1_text">
+        Bewaar uw speciale herinneringen, bewaar persoonlijke momenten en ervaringen, ideeën, gevoelens en houd uw leven bij met behulp van Diaro.
+        \nOm de Diaro-app te gaan gebruiken, moet u weten:
+        \n\n✍ HOE DIARO APP TE GEBRUIKEN
+        \nMaak nieuwe items, mappen, tags of locaties met behulp van + knoppen.
+        \nGebruik zoeken om items te zoeken op elk trefwoord in een titel of tekst, filter resultaten op datum, map, tags of locaties in het menu aan de linkerkant.
+
+        \n\n🎨 HOE AANPASSEN
+        \nStel voor elke map verschillende achtergronden in.
+        \nAlle items in aangepaste mappen zien er anders uit.
+        \nDiaro-taal, UI-kleur, tekstgrootte, enz. Kunnen worden gewijzigd in Diaro-instellingen -> Voorkeuren -> Uiterlijk.
+
+        \n\n🔒 HOE UW GEGEVENS TE BESCHERMEN
+        \nOm de toegang tot de app te beveiligen, stelt u Beveiligingscode in Diaro-instellingen -> Voorkeuren -> Beveiligingscode in.
+        \nOm onopzettelijk verlies van uw gegevens te voorkomen, vergeet niet regelmatig back-ups te maken met Diaro-instellingen -> Gegevens -> Back-up en herstel.
+
+        \n\n☁️ HOE UW GEGEVENS TE SYNCHRONISEREN
+        \nSynchroniseer gegevens op al uw apparaten. Log gewoon in op uw Diaro-account en koppel het aan Dropbox.
+        \nU kunt uw invoer beheren met Diaro Online (www.diaroapp.com) op uw pc of Mac.
+        \nSynchronisatie is alleen beschikbaar in PREMIUM-versie.
+    </string>
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Wekelijks overzicht</string>
+    <string name="template_weekly_reflection_title">⌛️ Weekoverzicht</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Dingen gedaan:
+        \n\n\n✏️ Plannen:
+        \n\n\n🏁 Prestaties:
+        \n\n\n🍽 Culinair:
+        \n\n\n🏃‍️ Sport en gezondheid:
+        \n\n\n💸 Uitgaven:
+        \n\n\n🌞 Dankbaar voor:
+        \n\n\n🎬 Film van de week:
+        \n\n\n📖 Boek van de week:
+        \n\n\n🎧 Lied van de week:
+        \n\n\n📰 Nieuws:
+        \n\n\n💭 Gedachten:
+        \n\n\n📅 Komende week:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Dieet Log</string>
+    <string name="template_food_log_title">Mijn dieet</string>
+    <string name="template_food_log_text">
+        • Ontbijt:
+        \n\n\n• Lunch:
+        \n\n\n• Avondeten:
+        \n\n\n• Snacks:
+        \n\n\n• Oefening:
+        \n\n\n• Water:
+        \n\n\n• Opmerkingen:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 minuten</string>
+    <string name="template_five_minutes_title">Mijn dag vandaag</string>
+    <string name="template_five_minutes_text">
+        • Wat heb ik vandaag gedaan?
+        \n\n• Wat voel ik nu?
+        \n\n• Waar ben ik dankbaar voor?
+        \n\n• Wat heb ik vandaag gelezen?
+        \n\n• Wat zijn mijn plannen voor morgen?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Dankbaarheid</string>
+    <string name="template_gratitude_title">Vandaag ben ik dankbaar voor</string>
+    <string name="template_gratitude_text">
+        🌞 Ochtend
+        \n\n• Waar ben ik nu dankbaar voor?
+        \n\n\n• Wat zou vandaag geweldig maken?
+        \n\n\n• Wat zijn mijn drie belangrijkste prioriteiten voor vandaag?
+
+        \n\n\n🌜 Avond
+        \n\n• Wat heb ik vandaag bereikt?
+        \n\n\n• 3 geweldige dingen die vandaag zijn gebeurd?
+        \n\n\n• Wat had ik vandaag beter kunnen doen?
+        \n\n\n• Wat zijn mijn plannen voor morgen?
+        \n\n
+    </string>
+
+
+</resources>

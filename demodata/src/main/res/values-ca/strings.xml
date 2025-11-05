@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Get started with Diaro app!</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Revisió setmanal</string>
+    <string name="template_weekly_reflection_title">⌛️ Setmana en revisió</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Coses fetes:
+        \n\n\n✏️ Plans:
+        \n\n\n🏁 Assoliments:
+        \n\n\n🍽 Culinari:
+        \n\n\n🏃‍️ Esports i salut:
+        \n\n\n💸 Despeses:
+        \n\n\n🌞 Agraït per:
+        \n\n\n🎬 Pel·lícula de la setmana:
+        \n\n\n📖 Llibre de la setmana:
+        \n\n\n🎧 Cançó de la setmana:
+        \n\n\n📰 Notícies:
+        \n\n\n💭 Pensaments:
+        \n\n\n📅 Setmana que ve:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Registre de la dieta</string>
+    <string name="template_food_log_title">La meva dieta</string>
+    <string name="template_food_log_text">
+        • Esmorzar:
+        \n\n\n• Dinar:
+        \n\n\n• Sopar:
+        \n\n\n• Bocats:
+        \n\n\n• Exercici:
+        \n\n\n• Aigua:
+        \n\n\n• Notes:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 minuts</string>
+    <string name="template_five_minutes_title">El meu dia d\'avui</string>
+    <string name="template_five_minutes_text">
+        • Què he fet avui?
+        \n\n• Què sento ara mateix?
+        \n\n• A què estic agraït?
+        \n\n• Què he llegit avui?
+        \n\n• Quins són els meus plans per a demà?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Agraïment</string>
+    <string name="template_gratitude_title">Avui estic agraït</string>
+    <string name="template_gratitude_text">
+        🌞 Matí
+        \n\n• A què estic agraït ara mateix?
+        \n\n\n• Què us faria fantàstic avui?
+        \n\n\n• Quines són les meves tres prioritats actuals?
+
+        \n\n\n🌜 Vespre
+        \n\n• Què he aconseguit avui?
+        \n\n\n• 3 coses sorprenents que han passat avui?
+        \n\n\n• Què hi hauria pogut fer millor avui?
+        \n\n\n• Quins són els meus plans per a demà?
+        \n\n
+    </string>
+
+
+</resources>

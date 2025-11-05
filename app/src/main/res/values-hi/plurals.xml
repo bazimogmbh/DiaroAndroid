@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="entry_on_this_day">
+        <item quantity="one">इस दिन आपके पास %d प्रविष्टि है!</item>
+        <item quantity="other">इस दिन आपके पास %d प्रविष्टियां हैं!</item>
+    </plurals>
+
+    <plurals name="years_ago">
+        <item quantity="one">%d साल पहले</item>
+        <item quantity="other">%d साल पहले</item>
+    </plurals>
+
+    <plurals name="years_later">
+        <item quantity="one">%d साल बाद</item>
+        <item quantity="other">%d साल बाद</item>
+    </plurals>
+
+</resources>

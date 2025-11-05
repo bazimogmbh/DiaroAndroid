@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <com.isseiaoki.simplecropview.CropImageView xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/crop_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:paddingLeft="16.0dip"
+        android:paddingTop="16.0dip"
+        android:paddingRight="16.0dip"
+        android:paddingBottom="16.0dip"
+        custom:layout_constraintBottom_toTopOf="@id/guideline"
+        custom:layout_constraintLeft_toLeftOf="parent"
+        custom:layout_constraintRight_toRightOf="parent"
+        custom:layout_constraintTop_toTopOf="parent"
+        custom:scv_background_color="@color/white"
+        custom:scv_crop_mode="fit_image"
+        custom:scv_frame_color="@color/colorAccent"
+        custom:scv_frame_stroke_weight="1.0dip"
+        custom:scv_guide_color="@color/colorAccent"
+        custom:scv_guide_show_mode="show_always"
+        custom:scv_guide_stroke_weight="1.0dip"
+        custom:scv_handle_color="@color/colorAccent"
+        custom:scv_handle_show_mode="show_always"
+        custom:scv_handle_size="10.0dip"
+        custom:scv_min_frame_size="100.0dip"
+        custom:scv_overlay_color="#aa1c1c1c"
+        custom:scv_touch_padding="8.0dip" />
+
+    <RelativeLayout
+        android:id="@+id/loadingView"
+        android:layout_width="80.0dip"
+        android:layout_height="80.0dip"
+        android:background="@android:color/transparent"
+        android:elevation="200.0dip"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.agrawalsuneet.dotsloader.loaders.AllianceLoader
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:alliance_animDuration="500"
+            app:alliance_distanceMultiplier="3"
+            app:alliance_dotsRadius="10.0dip"
+            app:alliance_drawOnlyStroke="false"
+            app:alliance_firstDotsColor="@color/ball1"
+            app:alliance_secondDotsColor="@color/ball2"
+            app:alliance_thirdDotsColor="@color/ball3" />
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="130.0dip" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fixed_ratio_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/confirmToolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/confirmToolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="45.0dip"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/rotate"
+            android:layout_width="50.0dip"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:paddingLeft="15.0dip"
+            android:paddingTop="3.0dip"
+            android:paddingRight="15.0dip"
+            android:paddingBottom="3.0dip"
+            android:src="@drawable/ic_restore"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageView
+            android:id="@+id/v_flip"
+            android:layout_width="50.0dip"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:paddingLeft="15.0dip"
+            android:paddingTop="3.0dip"
+            android:paddingRight="15.0dip"
+            android:paddingBottom="3.0dip"
+            android:src="@drawable/v_flip"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rotate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/imgClose"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/h_flip"
+            android:layout_width="50.0dip"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:paddingLeft="15.0dip"
+            android:paddingTop="3.0dip"
+            android:paddingRight="15.0dip"
+            android:paddingBottom="3.0dip"
+            android:src="@drawable/h_flip"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgSave"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/rotate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgSave"
+            android:layout_width="45.0dip"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:src="@drawable/ic_check"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

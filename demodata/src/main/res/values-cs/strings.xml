@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Začínáme s aplikací Diaro!</string>
+    <string name="demo_entry_1_text">
+        Zachovejte si své zvláštní vzpomínky, uložte si osobní momenty a zážitky, nápady, pocity a sledujte svůj život pomocí Diaro.
+        \nChcete-li začít používat aplikaci Diaro, měli byste vědět:
+        \n\n✍ JAK POUŽÍVAT DIARO APP
+        \nVytvářejte nové položky, složky, značky nebo umístění pomocí tlačítek +.
+        \nPomocí vyhledávání můžete vyhledávat položky podle libovolného klíčového slova v názvu nebo textu, filtrovat výsledky podle data, složky, značek nebo umístění z nabídky na levé straně.
+
+        \n\n🎨 JAK NA CUSTOMIZOVAT
+        \nNastavit různé pozadí pro každou složku.
+        \nVšechny položky ve přizpůsobených složkách budou mít jiný vzhled.
+        \nJazyk dialogu, barva uživatelského rozhraní, velikost textu atd. Lze změnit v Nastavení dialogu -> Předvolby -> Vzhled.
+
+        \n\n🔒 JAK CHRÁNIT VAŠE ÚDAJE
+        \nChcete-li zabezpečený přístup k aplikaci, nastavte Bezpečnostní kód v Nastavení Diaro -> Předvolby -> Bezpečnostní kód.
+        \nChcete-li se vyhnout nechtěné ztrátě dat, nezapomeňte pravidelně zálohovat pomocí nastavení Diaro -> Data -> Zálohování a obnovení.
+
+        \n\n☁️  JAK SYNCHRONIZOVAT VAŠE ÚDAJE
+        \nSynchronizujte data na všech svých zařízeních. Stačí se přihlásit ke svému účtu Diaro a propojit jej s Dropboxem.
+        \nMůžete spravovat své záznamy pomocí Diaro Online (www.diaroapp.com) na vašem PC nebo Mac.
+        \nSynchronizace je k dispozici pouze ve verzi PREMIUM.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Týdenní přehled</string>
+    <string name="template_weekly_reflection_title">⌛️ Týden v revizi</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Done Hotovo::
+        \n\n\n✏️ Plány:
+        \n\n\n🏁 Úspěchy:
+        \n\n\n🍽 Kulinářské:
+        \n\n\n🏃‍️ Sport a zdraví:
+        \n\n\n💸 Náklady:
+        \n\n\n🌞 Vděčný za:
+        \n\n\n🎬 Film týdne:
+        \n\n\n📖 Kniha týdne:
+        \n\n\n🎧 Píseň týdne:
+        \n\n\n📰 Novinky:
+        \n\n\n💭 Ough Myšlenky:
+        \n\n\n📅 Příští týden:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Dietní deník</string>
+    <string name="template_food_log_title">Moje strava</string>
+    <string name="template_food_log_text">
+        • Snídaně:
+        \n\n\n• Oběd:
+        \n\n\n• Večeře:
+        \n\n\n• Občerstvení:
+        \n\n\n• Cvičení:
+        \n\n\n• Voda:
+        \n\n\n• Poznámky:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 minut</string>
+    <string name="template_five_minutes_title">Můj den dnes</string>
+    <string name="template_five_minutes_text">
+        • Co jsem dnes udělal?
+        \n\n• Co právě teď cítím?
+        \n\n• Za co jsem vděčný?
+        \n\n• Co jsem dnes četl?
+        \n\n• Jaké mám plány na zítřek?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Vděčnost</string>
+    <string name="template_gratitude_title">Dnes jsem za to vděčný</string>
+    <string name="template_gratitude_text">
+        🌞 Ráno
+        \n\n• Za co jsem vděčný právě teď?
+        \n\n\n• Co by dnes dělalo skvělé?
+        \n\n\n• Jaké jsou moje tři nejdůležitější priority pro dnešek?
+
+        \n\n\n🌜 Večer
+        \n\n• Co jsem dnes dosáhl?
+        \n\n\n• 3 úžasné věci, které se dnes staly?
+        \n\n\n• Co je jedno, co jsem dnes mohl udělat lépe?
+        \n\n\n• Jaké mám plány na zítřek?
+        \n\n
+    </string>
+
+
+</resources>

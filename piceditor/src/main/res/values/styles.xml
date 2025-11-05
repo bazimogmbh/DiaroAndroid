@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:navigationBarColor">@color/dark_grey_more</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="@style/AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_left</item>
+        <item name="android:windowExitAnimation">@anim/slide_right</item>
+    </style>
+
+    <style name="rtl_RecyclerTabLayout">
+        <item name="rtl_tabBackground">?selectableItemBackground</item>
+        <item name="rtl_tabIndicatorColor">?colorAccent</item>
+        <item name="rtl_tabIndicatorHeight">2.0dip</item>
+        <item name="rtl_tabMaxWidth">50.0dip</item>
+        <item name="rtl_tabMinWidth">40.0dip</item>
+        <item name="rtl_tabPaddingEnd">6.0dip</item>
+        <item name="rtl_tabPaddingStart">6.0dip</item>
+        <item name="rtl_tabSelectedTextColor">?android:textColorPrimary</item>
+        <item name="rtl_tabTextAppearance">@style/rtl_RecyclerTabLayout.Tab</item>
+    </style>
+
+    <style name="rtl_RecyclerTabLayout.Tab" parent="@style/rtl_RecyclerTabLayout">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+
+    <style name="SCBSwitch" parent="@style/Theme.AppCompat.Light">
+        <item name="android:colorForeground">#c2b1b1b1</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorSwitchThumbNormal">#fff1f1f1</item>
+    </style>
+
+    <style name="SeekBaStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">20.0dip</item>
+        <item name="android:layout_marginLeft">56.0dip</item>
+        <item name="android:layout_marginRight">56.0dip</item>
+        <item name="android:progressDrawable">@drawable/custom_progressbar_drawable</item>
+        <item name="android:thumb">@drawable/custom_thumb</item>
+        <item name="android:splitTrack">false</item>
+    </style>
+
+
+</resources>

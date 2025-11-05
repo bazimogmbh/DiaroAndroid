@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="all_image">All Images</string>
+    <string name="brightness">Brightness</string>
+    <string name="collage">Collage</string>
+    <string name="contrast">Contrast</string>
+    <string name="dialog_discard_title">Changes will not be saved. Do you want to proceed?</string>
+    <string name="discard">Discard</string>
+
+    <string name="label_background">Background</string>
+    <string name="label_background_full_screen">Full Screen</string>
+    <string name="label_background_height">Padding Height</string>
+    <string name="label_background_radius">Border Radius</string>
+    <string name="label_background_width">Padding Width</string>
+    <string name="label_text">Text</string>
+    <string name="label_text_fonts">Text Font</string>
+    <string name="label_text_shadow">Text Shadow</string>
+    <string name="label_text_size">Text Size</string>
+    <string name="appbar_scrolling_view_behavior">
+        com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior
+    </string>
+
+    <string name="saturation">Saturation</string>
+    <string name="save">SAVE</string>
+    <string name="sharpen">Sharpen</string>
+    <string name="tap_to_select">Tap to select</string>
+    <string name="text_images">%1$d Images</string>
+    <string name="text_title_activity_album">Select photos</string>
+    <string name="text_title_dialog_sort_by_album">Sort album by</string>
+    <string name="text_title_dialog_sort_by_photo">Sort photo by</string>
+    <string name="action_sort">sort</string>
+
+</resources>

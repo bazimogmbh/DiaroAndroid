@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <attr name="animation_duration" format="integer"></attr>
+
+    <attr name="bringToFrontCurrentSticker" format="boolean"></attr>
+
+    <attr name="cs_colors" format="reference"></attr>
+    <attr name="cs_from_color" format="color"></attr>
+    <attr name="cs_hex_colors" format="reference"></attr>
+    <attr name="cs_steps" format="integer"></attr>
+    <attr name="cs_to_color" format="color"></attr>
+
+
+    <attr name="frame" format="reference"></attr>
+
+    <attr name="handle_bar_color" format="color"></attr>
+
+    <attr name="image" format="reference"></attr>
+
+    <attr name="itemBackground" format="reference"></attr>
+    <attr name="itemFillColor" format="color"></attr>
+    <attr name="itemHorizontalPadding" format="dimension"></attr>
+    <attr name="itemHorizontalTranslationEnabled" format="boolean"></attr>
+    <attr name="itemIconPadding" format="dimension"></attr>
+    <attr name="itemIconSize" format="dimension"></attr>
+    <attr name="itemIconTint" format="color"></attr>
+
+    <attr name="itemPadding" format="dimension"></attr>
+    <attr name="itemRippleColor" format="color"></attr>
+    <attr name="itemShapeAppearance" format="reference"></attr>
+    <attr name="itemShapeAppearanceOverlay" format="reference"></attr>
+    <attr name="itemShapeFillColor" format="color"></attr>
+    <attr name="itemShapeInsetBottom" format="dimension"></attr>
+    <attr name="itemShapeInsetEnd" format="dimension"></attr>
+    <attr name="itemShapeInsetStart" format="dimension"></attr>
+    <attr name="itemShapeInsetTop" format="dimension"></attr>
+    <attr name="itemSpacing" format="dimension"></attr>
+    <attr name="itemStrokeColor" format="color"></attr>
+    <attr name="itemStrokeWidth" format="dimension"></attr>
+    <attr name="itemTextAppearance" format="reference"></attr>
+    <attr name="itemTextAppearanceActive" format="reference"></attr>
+    <attr name="itemTextAppearanceInactive" format="reference"></attr>
+    <attr name="itemTextColor" format="color"></attr>
+    <attr name="item_width" format="integer"></attr>
+
+    <attr name="line_color" format="color"></attr>
+    <attr name="line_size" format="integer"></attr>
+
+    <attr name="borderAlpha" format="integer"></attr>
+    <attr name="borderColor" format="color"></attr>
+    <attr name="borderWidth" format="dimension"></attr>
+    <attr name="borderlessButtonStyle" format="reference"></attr>
+    <attr name="mask" format="reference"></attr>
+
+    <attr name="need_draw_line" format="boolean"></attr>
+    <attr name="need_draw_outer_line" format="boolean"></attr>
+
+    <attr name="piece_padding" format="dimension"></attr>
+
+    <attr name="radian" format="float"></attr>
+
+    <attr name="rtl_scrollEnabled" format="boolean"></attr>
+    <attr name="rtl_tabBackground" format="reference"></attr>
+    <attr name="rtl_tabIndicatorColor" format="color"></attr>
+    <attr name="rtl_tabIndicatorHeight" format="dimension"></attr>
+    <attr name="rtl_tabMaxWidth" format="dimension"></attr>
+    <attr name="rtl_tabMinWidth" format="dimension"></attr>
+    <attr name="rtl_tabOnScreenLimit" format="integer"></attr>
+    <attr name="rtl_tabPadding" format="dimension"></attr>
+    <attr name="rtl_tabPaddingBottom" format="dimension"></attr>
+    <attr name="rtl_tabPaddingEnd" format="dimension"></attr>
+    <attr name="rtl_tabPaddingStart" format="dimension"></attr>
+    <attr name="rtl_tabPaddingTop" format="dimension"></attr>
+    <attr name="rtl_tabSelectedTextColor" format="color"></attr>
+    <attr name="rtl_tabTextAppearance" format="reference"></attr>
+
+    <attr name="selected_line_color" format="color"></attr>
+
+
+    <attr name="showBorder" format="boolean"></attr>
+
+    <attr name="showIcons" format="boolean"></attr>
+    <attr name="showMotionSpec" format="reference"></attr>
+    <attr name="showSeekBarValue" format="boolean"></attr>
+    <attr name="showText" format="boolean"></attr>
+    <attr name="showTitle" format="boolean"></attr>
+
+</resources>

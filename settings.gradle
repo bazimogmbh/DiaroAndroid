@@ -1,0 +1,6 @@
+include ':feat-moods'
+include ':piceditor'
+include ':demodata'
+include ':app'
+include ':owmweather'
+include ':yanzhenjie-album'

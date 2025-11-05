@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Get started with Diaro app!</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Ulasan Mingguan</string>
+    <string name="template_weekly_reflection_title">⌛️ Minggu ditinjau</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Hal-hal yang dilakukan:
+        \n\n\n✏️ Paket:
+        \n\n\n🏁 Prestasi:
+        \n\n\n🍽 Kuliner:
+        \n\n\n🏃‍️ Olahraga &amp; kesehatan:
+        \n\n\n💸 Biaya:
+        \n\n\n🌞 Bersyukur untuk:
+        \n\n\n🎬 Film terbaik minggu ini:
+        \n\n\n📖 Buku terbaik minggu ini:
+        \n\n\n🎧 Lagu terbaik minggu ini:
+        \n\n\n📰 Berita:
+        \n\n\n💭 Pikiran:
+        \n\n\n📅 Minggu mendatang:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Log Diet</string>
+    <string name="template_food_log_title">Diet saya</string>
+    <string name="template_food_log_text">
+        • Sarapan pagi:
+        \n\n\n• Makan siang:
+        \n\n\n• Makan malam:
+        \n\n\n• Makanan ringan:
+        \n\n\n• Olahraga:
+        \n\n\n• Air:
+        \n\n\n• Catatan:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 menit</string>
+    <string name="template_five_minutes_title">Hari saya hari ini</string>
+    <string name="template_five_minutes_text">
+        • Apa yang saya lakukan hari ini?
+        \n\n• Apa yang saya rasakan saat ini?
+        \n\n• Apa yang saya syukuri?
+        \n\n• Apa yang saya baca hari ini?
+        \n\n• Apa rencanaku untuk besok?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Syukur</string>
+    <string name="template_gratitude_title">Hari ini saya bersyukur</string>
+    <string name="template_gratitude_text">
+        🌞 Pagi
+        \n\n• Apa yang saya syukuri sekarang?
+        \n\n\n• Apa yang akan membuat hari ini hebat?
+        \n\n\n• Apa tiga prioritas utama saya untuk hari ini?
+
+        \n\n\n🌜 Sore
+        \n\n• Apa yang saya capai hari ini?
+        \n\n\n• 3 hal menakjubkan yang terjadi hari ini?
+        \n\n\n• Apa satu hal yang dapat saya lakukan dengan lebih baik hari ini?
+        \n\n\n• Apa rencana saya untuk besok?
+        \n\n
+    </string>
+
+
+</resources>

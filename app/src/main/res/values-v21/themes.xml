@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme_Dark" parent="Theme.MaterialComponents.NoActionBar">
+
+        <item name="android:navigationBarColor">@color/black_10</item>
+
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorPrimary">@color/diaro_default</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
+        <item name="bgColor">@color/md_grey_100</item>
+        <item name="lightBlackColor">#aeaeae</item>
+    </style>
+</resources>

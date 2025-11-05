@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="2dp"
+    android:layout_marginTop="@dimen/default_side_padding"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/photo_thumb1"
+        style="@style/EntryPhotoThumb">
+
+        <include
+            android:id="@+id/photo_thumb1_img"
+            layout="@layout/entry_photo_item" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/photo_thumb2"
+        style="@style/EntryPhotoThumb">
+
+        <include
+            android:id="@+id/photo_thumb2_img"
+            layout="@layout/entry_photo_item" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/photo_thumb3"
+        style="@style/EntryPhotoThumb">
+
+        <include
+            android:id="@+id/photo_thumb3_img"
+            layout="@layout/entry_photo_item" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/all_entry_photos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="2dp"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:id="@+id/small_photo_thumb1"
+            style="@style/EntrySmallPhotoThumb"
+            android:layout_gravity="top|left">
+
+            <include layout="@layout/entry_photo_item" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/small_photo_thumb2"
+            style="@style/EntrySmallPhotoThumb"
+            android:layout_gravity="top|right">
+
+            <include layout="@layout/entry_photo_item" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/small_photo_thumb3"
+            style="@style/EntrySmallPhotoThumb"
+            android:layout_gravity="bottom|left">
+
+            <include layout="@layout/entry_photo_item" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/small_photo_thumb4"
+            style="@style/EntrySmallPhotoThumb"
+            android:layout_gravity="bottom|right">
+
+            <include layout="@layout/entry_photo_item" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/all_photos_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/all_photos_overlay_ripple"
+            android:gravity="center"
+            android:text="@string/all_photos"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </FrameLayout>
+</LinearLayout>

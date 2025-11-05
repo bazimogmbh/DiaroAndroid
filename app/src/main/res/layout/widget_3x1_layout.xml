@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/widget_margin">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/WidgetColumn">
+
+                    <ImageView
+                        android:id="@+id/app_icon"
+                        style="@style/Icon48"
+                        android:src="@drawable/ic_diaro_icon_white_24dp" />
+                </LinearLayout>
+
+                <FrameLayout style="@style/WidgetSeparator" />
+
+                <LinearLayout style="@style/WidgetColumn">
+
+                    <ImageButton
+                        android:id="@+id/new_entry_icon"
+                        style="@style/Icon48"
+                        android:src="@drawable/ic_add_white_24dp" />
+                </LinearLayout>
+
+                <FrameLayout style="@style/WidgetSeparator" />
+
+                <LinearLayout style="@style/WidgetColumn">
+
+                    <ImageButton
+                        android:id="@+id/photo_icon"
+                        style="@style/Icon48"
+                        android:src="@drawable/ic_photo_white_24dp" />
+                </LinearLayout>
+
+                <FrameLayout style="@style/WidgetSeparator" />
+
+                <LinearLayout style="@style/WidgetColumn">
+
+                    <ImageButton
+                        android:id="@+id/camera_icon"
+                        style="@style/Icon48"
+                        android:src="@drawable/ic_camera_white_24dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

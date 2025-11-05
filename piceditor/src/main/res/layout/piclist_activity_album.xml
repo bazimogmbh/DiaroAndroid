@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/dark_grey">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/dark_grey_more"
+        android:minHeight="?actionBarSize"
+        android:theme="?actionBarTheme"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="?actionBarPopupTheme"
+        app:titleTextColor="@android:color/white" />
+
+    <GridView
+        android:id="@+id/gridViewAlbum"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:gravity="center"
+        android:numColumns="1"
+        android:stretchMode="columnWidth"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <GridView
+        android:id="@+id/gridViewListAlbum"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:background="@color/dark_grey"
+        android:gravity="center"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="fill_parent"
+        android:layout_height="146.0dip"
+        android:background="#ff262626"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/adsContainer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gridViewAlbum">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTotalImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="3.0dip"
+                android:gravity="center_vertical"
+                android:padding="4.0dip"
+                android:text="@string/text_images"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#ffffffff" />
+
+            <TextView
+                android:id="@+id/btnDone"
+                android:layout_width="wrap_content"
+                android:layout_height="36.0dip"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginRight="5.0dip"
+                android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:paddingLeft="12.0dip"
+                android:paddingTop="6.0dip"
+                android:paddingRight="12.0dip"
+                android:paddingBottom="6.0dip"
+                android:text="@string/collage"
+                android:textColor="@color/colorAccent"
+                android:textSize="14.0sp" />
+        </FrameLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="88.0dip"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10.0dip"
+            android:background="#ff262626">
+
+            <LinearLayout
+                android:id="@+id/layoutListItemSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/adsContainer"
+        layout="@layout/layout_ad_banner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutBottom" />
+</androidx.constraintlayout.widget.ConstraintLayout>

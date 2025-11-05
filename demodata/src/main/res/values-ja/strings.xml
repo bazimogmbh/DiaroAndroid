@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Diaroアプリを使い始めましょう</string>
+    <string name="demo_entry_1_text">
+        Preserve your special memories, store personal moments &amp; experiences, ideas, feelings and keep track of your life with help of Diaro.
+        \nTo start using Diaro app you should know:
+        \n\n✍ HOW TO USE DIARO APP
+        \nCreate new entries, folders, tags or locations by using + buttons.
+        \nUse search to find entries by any keyword in a title or text, filter results by date, folder, tags or locations from the left side menu.
+
+        \n\n🎨 HOW TO CUSTOMIZE
+        \nSet different backgrounds for each folder.
+        \nAll entries in customized folders will have a different look.
+        \nDiaro language, UI color, text size, etc. can be changed in Diaro Settings -> Preferences -> Appearance.
+
+        \n\n🔒 HOW TO PROTECT YOUR DATA
+        \nTo secure access to the app, set Security Code in Diaro Settings -> Preferences -> Security code.
+        \nTo avoid accidental loss of your data, do not forget to make backups regularly using Diaro Settings -> Data -> Backup &amp; restore.
+
+        \n\n☁️ HOW TO SYNC YOUR DATA
+        \nSync data across all your devices. Just sign in to your Diaro account and link it with Dropbox.
+        \nYou can manage your entries using Diaro Online (www.diaroapp.com) on your PC or Mac.
+        \nSync is available in PREMIUM version only.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">毎週のレビュー</string>
+    <string name="template_weekly_reflection_title">⌛️ 1週間のレビュー</string>
+    <string name="template_weekly_reflection_text">
+        🔨 やったこと:
+        \n\n\n✏️ 予定:
+        \n\n\n🏁 実績:
+        \n\n\n🍽 料理:
+        \n\n\n🏃‍️ スポーツと健康:
+        \n\n\n💸 経費:
+        \n\n\n🌞 に感謝:
+        \n\n\n🎬 今週の動画:
+        \n\n\n📖 今週の本:
+        \n\n\n🎧 今週の歌:
+        \n\n\n📰 ニュース:
+        \n\n\n💭 考え:
+        \n\n\n📅 来週:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">ダイエットログ</string>
+    <string name="template_food_log_title">私の食事</string>
+    <string name="template_food_log_text">
+        • 朝ごはん:
+        \n\n\n• ランチ:
+        \n\n\n• 晩ごはん:
+        \n\n\n• おやつ:
+        \n\n\n• 運動:
+        \n\n\n• 水:
+        \n\n\n• ノート:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5分</string>
+    <string name="template_five_minutes_title">今日の一日</string>
+    <string name="template_five_minutes_text">
+        • 今日は何をしましたか？
+        \n\n• 私は今何を感じていますか？
+        \n\n• 何に感謝していますか？
+        \n\n• 今日は何を読みましたか？
+        \n\n• 明日の予定は？
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">感謝</string>
+    <string name="template_gratitude_title">今日私は感謝しています</string>
+    <string name="template_gratitude_text">
+        🌞 朝
+        \n\n• 今、私は何に感謝していますか？
+        \n\n\n• 今日は何が素晴らしいですか？
+        \n\n\n• 今日の最優先事項は何ですか？
+
+        \n\n\n🌜 イブニング
+        \n\n• 今日は何を達成しましたか？
+        \n\n\n• 今日起こった3つの驚くべきこと？
+        \n\n\n• 今日私がもっと上手くやれたことは何ですか？
+        \n\n\n• 明日の予定は？
+        \n\n
+    </string>
+
+
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Disable Fast scroll to allow tapping on 3 dots overflow menu icon -->
+    <ListView
+        android:id="@+id/tags_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fastScrollEnabled="false"
+        android:listSelector="@drawable/bg_ripple"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/tags_list_progress"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="6dp"
+        android:indeterminate="true" />
+
+</LinearLayout>

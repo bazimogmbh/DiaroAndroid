@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="entry_on_this_day">
+        <item quantity="one">Bu gün %d girişiniz var!</item>
+        <item quantity="other">Bu gün %d kayıt var!</item>
+    </plurals>
+
+    <plurals name="years_ago">
+        <item quantity="one">%d yıl önce</item>
+        <item quantity="other">%d yıl önce</item>
+    </plurals>
+
+    <plurals name="years_later">
+        <item quantity="one">%d yıl sonra</item>
+        <item quantity="other">%d yıl sonra</item>
+    </plurals>
+
+</resources>

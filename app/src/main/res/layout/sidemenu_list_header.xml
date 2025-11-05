@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Profile photo -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/profile_photo_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/profile_photo"
+            android:orientation="horizontal"
+            android:scaleType="matrix"
+            android:src="@drawable/unreg_bg" />
+
+        <ImageView
+            android:id="@+id/profile_photo"
+            android:layout_width="280dp"
+            android:layout_height="158dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/profile_photo"
+            android:scaleType="center"
+            android:visibility="gone" />
+
+        <!-- Stats -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/sidemenu_user_stats"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <!-- Total entries -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/total_text"
+                    style="@style/UserStatisticsItemTextView" />
+
+                <TextView
+                    android:id="@+id/total_entries"
+                    style="@style/UserStatisticsItemTextView"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_vertical"
+                    app:drawableLeftCompat="@drawable/ic_edit_grey300_18dp"
+                    app:drawableStartCompat="@drawable/ic_edit_grey300_18dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/sidemenu_icon_separator" />
+
+            <!-- Today entries -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/today_text"
+                    style="@style/UserStatisticsItemTextView" />
+
+                <TextView
+                    android:id="@+id/today_entries"
+                    style="@style/UserStatisticsItemTextView"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_vertical"
+                    app:drawableLeftCompat="@drawable/ic_edit_grey300_18dp"
+                    app:drawableStartCompat="@drawable/ic_edit_grey300_18dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Click area to display ripple effect -->
+        <View
+            android:id="@+id/profile_photo_click_area"
+            style="@style/ClickArea"
+            android:layout_alignBottom="@+id/profile_photo"
+            android:layout_alignTop="@+id/profile_photo" />
+    </RelativeLayout>
+
+    <!-- Upgrade to Diaro Premium -->
+
+    <TextView
+        android:id="@+id/upgrade_to_pro"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/grey_600_ripple"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingEnd="36dp"
+        android:singleLine="true"
+        android:text="@string/get_diaro_pro"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:drawableLeftCompat="@drawable/ic_upgrade_white_24dp"
+        app:drawableStartCompat="@drawable/ic_upgrade_white_24dp" />
+
+    <!-- Search -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/search_field"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawablePadding="12dp"
+            android:hint="@string/search_hint"
+            android:imeOptions="actionDone|flagNoExtractUi"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/clear_search"
+            style="@style/Icon48"
+            android:contentDescription="@string/clear"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Calendar -->
+
+    <LinearLayout
+        android:id="@+id/calendar_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/calendar_ico"
+            style="@style/Icon48"
+            android:contentDescription="@string/calendar" />
+
+        <TextView style="@style/SidemenuSeparator" />
+
+        <TextView
+            android:id="@+id/calendar_header_title"
+            style="@style/SidemenuHeaderTitle"
+            android:text="@string/date" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calendar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <!--<View-->
+    <!--android:id="@+id/divider"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="?android:attr/listDivider" />-->
+
+</LinearLayout>

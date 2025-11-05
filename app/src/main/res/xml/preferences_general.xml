@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="CATEGORY_SECURITY"
+        android:title="@string/settings_security_code">
+
+        <!-- Security code -->
+        <CheckBoxPreference
+            android:key="SECURITY_CODE"
+            android:persistent="false"
+            android:title="@string/settings_security_code" />
+
+        <!-- Fingerprint -->
+        <CheckBoxPreference
+            android:dependency="SECURITY_CODE"
+            android:key="FINGERPRINT"
+            android:summary="@string/settings_fingerprint_summary"
+            android:title="@string/settings_fingerprint" />
+
+        <!-- Don't ask for security code from widget -->
+        <CheckBoxPreference
+            android:dependency="SECURITY_CODE"
+            android:key="DONT_ASK_SECURITY_CODE_FROM_WIDGET"
+            android:persistent="false"
+            android:summary="@string/settings_dont_ask_for_security_code_from_widget_summary"
+            android:title="@string/settings_dont_ask_for_security_code_from_widget" />
+
+        <!-- Security code request period -->
+        <Preference
+            android:dependency="SECURITY_CODE"
+            android:key="SECURITY_CODE_REQUEST_PERIOD"
+            android:summary="@string/settings_security_code_request_period_summary"
+            android:title="@string/settings_security_code_request_period" />
+
+        <CheckBoxPreference
+            android:key="ALLOW_SCREENSHOT"
+            android:persistent="false"
+            android:summary=""
+            android:title="@string/settings_screenshot" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="CATEGORY_APPEARANCE"
+        android:title="@string/settings_appearance">
+
+        <!-- Language -->
+        <Preference
+            android:key="LOCALE"
+            android:title="@string/language" />
+
+        <!-- UI theme -->
+        <Preference
+            android:key="UI_THEME"
+            android:title="@string/settings_ui_theme" />
+
+        <!-- UI color -->
+        <Preference
+            android:key="UI_COLOR"
+            android:summary="@string/settings_ui_color_summary"
+            android:title="@string/settings_ui_color" />
+
+        <!-- UI accent color -->
+        <Preference
+            android:key="UI_ACCENT_COLOR"
+            android:summary="@string/settings_ui_accent_color_summary"
+            android:title="@string/settings_ui_accent_color" />
+
+        <!--Display Density -->
+        <Preference
+            android:key="DISPLAY_DENSITY"
+            android:title="@string/display" />
+
+        <!--FONT -->
+        <Preference
+            android:key="FONT"
+            android:title="@string/settings_font_style" />
+
+        <!-- Text size -->
+        <Preference
+            android:key="TEXT_SIZE"
+            android:persistent="false"
+            android:title="@string/settings_text_size" />
+
+        <!-- units -->
+        <Preference
+            android:key="UNITS"
+            android:summary="°C , km"
+            android:title="@string/settings_units" />
+
+        <!-- First day of week in calendar -->
+        <Preference
+            android:key="FIRST_DAY_OF_WEEK"
+            android:persistent="false"
+            android:title="@string/settings_first_day_of_week" />
+
+        <!-- Date style -->
+        <Preference
+            android:key="ENTRY_DATE_STYLE"
+            android:persistent="false"
+            android:title="@string/settings_entry_date_style" />
+
+        <!-- Map type -->
+        <Preference
+            android:key="MAP_TYPE"
+            android:persistent="false"
+            android:title="@string/settings_map_type" />
+
+        <!-- Profile photo -->
+        <CheckBoxPreference
+            android:key="SHOW_PROFILE_PHOTO"
+            android:persistent="false"
+            android:summary="@string/settings_show_profile_photo_summary"
+            android:title="@string/settings_show_profile_photo" />
+
+        <!-- Show map in entry -->
+        <CheckBoxPreference
+            android:key="SHOW_MAP_IN_ENTRY"
+            android:persistent="false"
+            android:summary="@string/settings_show_map_in_entry_summary"
+            android:title="@string/settings_show_map_in_entry" />
+
+        <!-- Show entry photos at the top -->
+        <CheckBoxPreference
+            android:key="ENTRY_PHOTOS_POSITION"
+            android:persistent="false"
+            android:summary="@string/if_unchecked_shows_photos_at_the_bottom"
+            android:title="@string/show_entry_photos_at_the_top" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_notification">
+
+        <!-- Permanent notification icon -->
+        <CheckBoxPreference
+            android:key="NOTIFICATION"
+            android:persistent="false"
+            android:summary="@string/settings_notification_summary"
+            android:title="@string/settings_notification" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="CATEGORY_OTHER_PREFERENCES"
+        android:title="@string/other_preferences">
+
+        <!-- Automatic location -->
+        <SwitchPreference
+            android:key="AUTOMATIC_LOCATION"
+            android:persistent="false"
+            android:summary="@string/settings_automatic_location_summary"
+            android:title="@string/settings_automatic_location" />
+
+        <!-- Tap to edit -->
+        <SwitchPreference
+            android:key="TAP_ENTRY_TO_EDIT"
+            android:persistent="false"
+            android:summary="@string/settings_tap_entry_to_edit_summary"
+            android:title="@string/settings_tap_entry_to_edit" />
+
+        <!-- Detect phone numbers -->
+        <SwitchPreference
+            android:key="DETECT_PHONE_NUMBERS"
+            android:persistent="false"
+            android:summary="@string/settings_detect_phone_numbers_summary"
+            android:title="@string/settings_detect_phone_numbers" />
+
+        <SwitchPreference
+            android:key="FAST_SCROLL"
+            android:persistent="false"
+            android:title="@string/fast_scroll" />
+
+        <SwitchPreference
+            android:key="BOTTOM_TAB"
+            android:persistent="false"
+            android:title="@string/bottom_tab" />
+
+        <SwitchPreference
+            android:key="TITLE"
+            android:persistent="false"
+            android:summary=""
+            android:title="@string/entry_title" />
+
+        <SwitchPreference
+            android:key="MOODS"
+            android:persistent="false"
+            android:summary=""
+            android:title="@string/settings_moods" />
+
+        <SwitchPreference
+            android:key="WEATHER"
+            android:persistent="false"
+            android:summary=""
+            android:title="@string/settings_weather" />
+
+        <SwitchPreference
+            android:key="ON_THIS_DAY"
+            android:persistent="false"
+            android:summary=""
+            android:title="@string/on_this_day" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,299 @@
+@font-face {
+    font-family: 'Baskerville';
+    src: url("file:///android_asset/fonts/baskerville.ttf")
+}
+
+@font-face {
+    font-family: 'Dancing Script';
+    src: url("file:///android_asset/fonts/dancing_script.ttf")
+}
+
+@font-face {
+    font-family: 'Indie Flower';
+    src: url("file:///android_asset/fonts/indieflower.ttf")
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url("file:///android_asset/fonts/lato_regular.ttf")
+}
+
+@font-face {
+    font-family: 'Lemonada';
+    src: url("file:///android_asset/fonts/lemonada_light.ttf")
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url("file:///android_asset/fonts/lora_regular.ttf")
+}
+
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url("file:///android_asset/fonts/merriweather_regular.ttf")
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("file:///android_asset/fonts/montserrat_regular.ttf")
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url("file:///android_asset/fonts/notosans.ttf")
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url("file:///android_asset/fonts/opensans_light.ttf")
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url("file:///android_asset/fonts/oswald_light.ttf")
+}
+
+@font-face {
+    font-family: 'Pacifico';
+    src: url("file:///android_asset/fonts/pacifico.ttf")
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url("file:///android_asset/fonts/raleway_light.ttf")
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url("file:///android_asset/fonts/roboto_light.ttf")
+}
+
+@font-face {
+    font-family: 'Slabo';
+    src: url("file:///android_asset/fonts/slabo.ttf")
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("file:///android_asset/fonts/ubuntu_light.ttf")
+}
+
+@page {
+
+}
+
+
+body
+{
+    color: #000;
+    font-size: 12px;
+    /*margin: 0 1cm;*/
+
+
+}
+
+.logo
+{
+    /*margin-left: 1cm;*/
+    height: 2cm;
+    float: left;
+    margin-top: 20px; margin-bottom: 30px;
+}
+
+/*twemoji*/
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+}
+
+.summary {
+    /*border: 1px #000 solid;*/
+    /*margin:*/
+    font-size: 11px;
+    float: right;
+    max-width: 50%;
+    word-break: break-word;
+    padding-bottom: 30px;
+    padding-top: 15px;
+    text-align: right;
+}
+.summary .info_title {
+    font-size: 12px;
+    font-weight: bold;
+    /* min-height: 15px; */
+    padding-bottom: 6px;
+    padding-top: 2px;
+}
+.summary i {
+    color: #999999;
+}
+.summary span {
+    display: block;
+    /* min-height: 5px; */
+    padding-bottom: 4px;
+    line-height: 14px;
+}
+
+table
+{
+    margin-bottom: .4cm;
+}
+td
+{
+    padding: 2px;
+    text-align: left;
+}
+
+.ico
+{
+    text-align: center;
+    width: 16px;
+    vertical-align: central;
+    padding: 0;
+    margin: 0;
+    color: #454545;
+    font-size: 15px;
+}
+
+.color_circle
+{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 4px;
+    margin-bottom: -1px;
+
+    -webkit-border-radius: 50%;
+}
+
+.folder, .location, .tags, .mood, .weather
+{
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+}
+
+.folder td
+{
+    height: 20px;
+    padding: 1px;
+}
+.folder .color_indicator
+{
+    width: 10px;
+    height: .2cm;
+}
+
+.mood .dm {
+    font-size: 20px;
+}
+
+.one_entry_per_page:not(:first-child) {
+    page-break-before: always;
+}
+.entry
+{
+    word-wrap: break-word;
+    /*word-break: break-all;*/
+    /*    page-break-inside: avoid;*/
+    padding: 0;
+}
+.entry:not(:first-child) {
+    padding: 1cm 0 0 0;
+}
+
+.images_div
+{
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+.images_div img
+{
+    margin: 2mm 2mm 0 0;
+}
+
+.pdf_attachment_wrapper {
+    page-break-inside: avoid;
+    display: inline-block;
+}
+.fullsize_img_wrapper
+{
+    width: 100%;
+    text-align: center;
+    margin-right: 1cm;
+}
+.entry_img
+{
+    /*    width: 100%;*/
+    margin-bottom: 4mm;
+    margin-right: 1cm;
+
+}
+
+.pdf_attachment
+{
+    display:inline-block;
+    max-width: 100%;
+   image-orientation: from-image;
+
+}
+
+.entry_title
+{
+    font-size: 14px;
+    margin-bottom: .2cm;
+    font-weight: 600;
+}
+.entry_text
+{
+    margin-bottom:  .4cm;
+    line-height: 17px;
+}
+
+.entry_date
+{
+    page-break-inside: avoid;
+    margin: 0;
+    margin-bottom: .5cm;
+    padding: 0;
+    width: 100%;
+
+    border-collapse: collapse;
+}
+.entry_date td
+{
+    font-weight: bold;
+    font-size: 13px;
+    width: 79%;
+    padding: 0;
+    padding-bottom: 1mm;
+    height: .8cm;
+    line-height: 15px;
+}
+.entry_date .day
+{
+    font-size: 20px;
+    width: 5%;
+    line-height: 17px;
+}
+.entry_date .time
+{
+    text-align: right;
+    padding: 0;
+    font-size: 10px;
+    width: 14%;
+    font-weight: normal;
+}
+.entry_info
+{
+
+}
+
+* {
+  box-sizing: border-box;
+}

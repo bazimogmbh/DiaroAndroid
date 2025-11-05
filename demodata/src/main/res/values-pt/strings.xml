@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Demo entry -->
+    <string name="demo_entry_1_title">📒 Comece com o aplicativo Diaro!</string>
+    <string name="demo_entry_1_text">
+       Preserve suas memórias especiais, armazene momentos e experiências pessoais, idéias, sentimentos e acompanhe sua vida com a ajuda de Diaro.
+        \nPara começar a usar o aplicativo Diaro, você deve saber:
+        \n\n✍ COMO USAR DIARO APP
+        \nCrie novas entradas, pastas, tags ou locais usando os botões +.
+        \nUse a pesquisa para encontrar entradas por qualquer palavra-chave em um título ou texto, filtrar resultados por data, pasta, tags ou locais no menu esquerdo.
+
+        \n\n🎨 COMO PERSONALIZAR
+        \nDefina planos de fundo diferentes para cada pasta.
+        \nTodas as entradas em pastas personalizadas terão uma aparência diferente.
+        \nO idioma do Diaro, a cor da interface do usuário, o tamanho do texto etc. podem ser alterados em Configurações do Diaro -> Preferências -> Aparência.
+
+        \n\n🔒 COMO PROTEGER SEUS DADOS
+        \nPara proteger o acesso ao aplicativo, defina o Código de segurança em Diaro Settings -> Preferences -> Security code.
+        \nPara evitar perda acidental de seus dados, não se esqueça de fazer backups regularmente usando Diaro Preferências -> Data -> Backup &amp; restore.
+
+        \n\n☁️ COMO SINCRONIZAR SEUS DADOS
+        \nSincronize dados em todos os seus dispositivos. Basta fazer login na sua conta Diaro e vinculá-la ao Dropbox.
+        \nVocê pode gerenciar suas entradas usando o Diaro Online (www.diaroapp.com) no seu PC ou Mac.
+        \nA sincronização está disponível apenas na versão PREMIUM.
+    </string>
+
+
+    <!-- Template 1 Weekly Refection -->
+    <string name="template_weekly_reflection_name">Revisão semanal</string>
+    <string name="template_weekly_reflection_title">⌛️ Semana em revisão</string>
+    <string name="template_weekly_reflection_text">
+        🔨 Coisas feitas:
+        \n\n\n✏️ Planos:
+        \n\n\n🏁 Conquistas:
+        \n\n\n🍽 Culinária:
+        \n\n\n🏃‍️ Esportes e saúde:
+        \n\n\n💸 Despesas:
+        \n\n\n🌞 Grato por:
+        \n\n\n🎬 Filme da semana:
+        \n\n\n📖 Livro da semana:
+        \n\n\n🎧 Canção da semana:
+        \n\n\n📰 Notícias:
+        \n\n\n💭 Pensamentos:
+        \n\n\n📅 Semana que vem:
+        \n\n
+    </string>
+
+    <!-- Template 2 Food Log -->
+    <string name="template_food_log_name">Dieta Log</string>
+    <string name="template_food_log_title">Minha dieta</string>
+    <string name="template_food_log_text">
+        • Café da manhã:
+        \n\n\n• Almoço:
+        \n\n\n• Jantar:
+        \n\n\n• Lanches:
+        \n\n\n• Exercício:
+        \n\n\n• Água:
+        \n\n\n• Notas:
+        \n\n
+    </string>
+
+
+    <string name="template_five_minutes_name">5 minutos</string>
+    <string name="template_five_minutes_title">Meu dia hoje</string>
+    <string name="template_five_minutes_text">
+        • O que eu fiz hoje?
+        \n\n• O que estou sentindo agora?
+        \n\n• Pelo que estou agradecido?
+        \n\n• O que eu li hoje?
+        \n\n• Quais são meus planos para amanhã?
+        \n\n
+    </string>
+
+
+    <string name="template_gratitude_name">Gratidão</string>
+    <string name="template_gratitude_title">Hoje sou grato por</string>
+    <string name="template_gratitude_text">
+        🌞 Manhã
+        \n\n• Pelo que sou grato agora?
+        \n\n\n• O que tornaria hoje ótimo?
+        \n\n\n• Quais são minhas três principais prioridades hoje?
+
+        \n\n\n🌜 Noite
+        \n\n• O que eu consegui hoje?
+        \n\n\n• 3 coisas incríveis que aconteceram hoje?
+        \n\n\n• O que eu poderia ter feito melhor hoje?
+        \n\n\n• Quais são meus planos para amanhã?
+        \n\n
+    </string>
+
+
+</resources>

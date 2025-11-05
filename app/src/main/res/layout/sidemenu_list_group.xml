@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/group_container"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/group_ico"
+        style="@style/Icon48" />
+
+    <TextView style="@style/SidemenuSeparator" />
+
+    <TextView
+        android:id="@+id/group_title"
+        style="@style/SidemenuHeaderTitle" />
+
+    <TextView style="@style/SidemenuSeparator" />
+
+    <ImageButton
+        android:id="@+id/add_new"
+        style="@style/Icon48"
+        android:contentDescription="@string/add_new"
+        android:src="@drawable/ic_add_white_24dp" />
+
+    <TextView style="@style/SidemenuSeparator" />
+
+    <ImageButton
+        android:id="@+id/more"
+        style="@style/Icon48"
+        android:src="@drawable/ic_menu2_white_24dp" />
+
+</LinearLayout>
