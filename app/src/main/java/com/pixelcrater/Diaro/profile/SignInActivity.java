@@ -146,28 +146,25 @@ public class SignInActivity extends TypeActivity implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            // Sign in
-            case R.id.sign_in_with_diaro_account_button:
-                if (!MyApp.getInstance().userMgr.isSignedIn()) {
-                    showSignInDialog();
-                }
-                break;
+        int viewId = view.getId();
 
-            case R.id.sign_in_with_google_button:
-                if (!MyApp.getInstance().networkStateMgr.isConnectedToInternet()) {
-                    // Show error toast
-                    Static.showToastError(getString(R.string.error_internet_connection));
-                    return;
-                }
+        // Sign in
+        if (viewId == R.id.sign_in_with_diaro_account_button) {
+            if (!MyApp.getInstance().userMgr.isSignedIn()) {
+                showSignInDialog();
+            }
+        }
 
-                if (!MyApp.getInstance().userMgr.isSignedIn()) {
-                    signInWithGoogle();
-                }
-                break;
+        else if (viewId == R.id.sign_in_with_google_button) {
+            if (!MyApp.getInstance().networkStateMgr.isConnectedToInternet()) {
+                // Show error toast
+                Static.showToastError(getString(R.string.error_internet_connection));
+                return;
+            }
 
-            default:
-                break;
+            if (!MyApp.getInstance().userMgr.isSignedIn()) {
+                signInWithGoogle();
+            }
         }
     }
 
@@ -181,20 +178,18 @@ public class SignInActivity extends TypeActivity implements OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         AppLog.e("requestCode: " + requestCode + ", resultCode: " + resultCode);
 
-        switch (requestCode) {
-            case Static.REQUEST_SIGN_IN_WITH_GOOGLE:
-                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                // Sign in succeeded, proceed with account
-                GoogleSignInAccount result = null;
-                try {
-                    result = task.getResult(ApiException.class);
-                    handleSignInResult(result);
-                } catch (ApiException e) {
-                    Static.showToastError(getString(R.string.signin_with_google_failed));
-                    AppLog.e("signInResult:failed code=" + e.getStatusCode());
-                    // Sign in failed, handle failure and update UI
-                }
-                break;
+        if (requestCode == Static.REQUEST_SIGN_IN_WITH_GOOGLE) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            // Sign in succeeded, proceed with account
+            GoogleSignInAccount result = null;
+            try {
+                result = task.getResult(ApiException.class);
+                handleSignInResult(result);
+            } catch (ApiException e) {
+                Static.showToastError(getString(R.string.signin_with_google_failed));
+                AppLog.e("signInResult:failed code=" + e.getStatusCode());
+                // Sign in failed, handle failure and update UI
+            }
         }
 
     }

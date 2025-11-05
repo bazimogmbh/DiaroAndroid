@@ -256,7 +256,7 @@ class UploadAttachments {
             byte[] data = FileUtils.readFileToByteArray(new File(String.format("%s/%s/%s", AppLifetimeStorageUtils.getMediaDirPath(), parent, DbxPathV2.getName(mUploadData.dbxPath))));
             AppLog.d("Start upload attachment " + mUploadData.dbxPath);
 
-            UploadSessionStartResult result = DropboxAccountManager.getDropboxClient(MyApp.getInstance()).files().uploadSessionStart(true).uploadAndFinish(new ByteArrayInputStream(data));
+            UploadSessionStartResult result = DropboxAccountManager.getDropboxClient(MyApp.getInstance()).files().uploadSessionStart().uploadAndFinish(new ByteArrayInputStream(data));
             UploadAttachments.this.updateCountInSyncStatus();
 
             mUploadSessionFinishArgList.add(new UploadSessionFinishArg(new UploadSessionCursor(result.getSessionId(), data.length), CommitInfo.newBuilder(mUploadData.dbxPath).withMode(WriteMode.OVERWRITE).build()));

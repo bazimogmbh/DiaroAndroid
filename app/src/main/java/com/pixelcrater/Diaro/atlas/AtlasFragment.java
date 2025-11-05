@@ -313,7 +313,7 @@ public class AtlasFragment extends Fragment implements OnMapReadyCallback {
 
         BadgeShape badgeShape = BadgeShape.square(.45f, Gravity.END | Gravity.TOP, 0.3f);
 
-        CountBadge.Factory circleFactory = new CountBadge.Factory(badgeShape, context.getResources().getColor(R.color.pink_500), context.getResources().getColor(R.color.color_white));
+        CountBadge.Factory circleFactory = new CountBadge.Factory(badgeShape, context.getResources().getColor(R.color.pink_500), context.getResources().getColor(android.R.color.white));
         // CountBadge.Factory circleFactory=   new CountBadge.Factory(context, BadgeShape.circle(0.55f, Gravity.END | Gravity.TOP));
         Badger<BadgeDrawable> badger = Badger.sett(vectorDrawable, circleFactory);
 

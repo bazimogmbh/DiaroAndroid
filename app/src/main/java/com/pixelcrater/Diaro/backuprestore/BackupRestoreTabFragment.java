@@ -354,80 +354,84 @@ public class BackupRestoreTabFragment extends Fragment {
         }
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Upload
-                case R.id.upload_to_dropbox:
-                    if (MyApp.getInstance().networkStateMgr.isConnectedToInternet()) {
-                        if (!MyApp.getInstance().networkStateMgr.isConnectedToInternetUsingWiFi()) {
-                            // Show warning if on cellular internet
-                            showMobileInternetWarningConfirmDialog(Static.DIALOG_CONFIRM_MOBILE_INTERNET_UPLOAD, fileUriString);
-                            return true;
-                        }
+            int itemId = item.getItemId();
 
-                        // Upload backup file to Dropbox
-                        uploadBackupFileToDropbox(fileUriString);
-                    } else {
-                        Snackbar.make(getView(), R.string.error_internet_connection, Snackbar.LENGTH_SHORT).show();
+            // Upload
+            if (itemId == R.id.upload_to_dropbox) {
+                if (MyApp.getInstance().networkStateMgr.isConnectedToInternet()) {
+                    if (!MyApp.getInstance().networkStateMgr.isConnectedToInternetUsingWiFi()) {
+                        // Show warning if on cellular internet
+                        showMobileInternetWarningConfirmDialog(Static.DIALOG_CONFIRM_MOBILE_INTERNET_UPLOAD, fileUriString);
+                        return true;
                     }
 
-                    return true;
+                    // Upload backup file to Dropbox
+                    uploadBackupFileToDropbox(fileUriString);
+                } else {
+                    Snackbar.make(getView(), R.string.error_internet_connection, Snackbar.LENGTH_SHORT).show();
+                }
 
-                // Download
-                case R.id.download_to_sd:
-                    if (MyApp.getInstance().networkStateMgr.isConnectedToInternet()) {
-                        if (!MyApp.getInstance().networkStateMgr.isConnectedToInternetUsingWiFi()) {
-                            // Show warning if on cellular internet
-                            showMobileInternetWarningConfirmDialog(Static.DIALOG_CONFIRM_MOBILE_INTERNET_DOWNLOAD, fileUriString);
-                            return true;
-                        }
+                return true;
+            }
 
-                        // Download backup file from Dropbox
-                        MyApp.getInstance().asyncsMgr.executeDownloadBackupFileFromDropboxAsync(getActivity(), fileUriString, false, false);
-
-                    } else {
-                        Snackbar.make(getView(), R.string.error_internet_connection, Snackbar.LENGTH_SHORT).show();
-
+            // Download
+            else if (itemId == R.id.download_to_sd) {
+                if (MyApp.getInstance().networkStateMgr.isConnectedToInternet()) {
+                    if (!MyApp.getInstance().networkStateMgr.isConnectedToInternetUsingWiFi()) {
+                        // Show warning if on cellular internet
+                        showMobileInternetWarningConfirmDialog(Static.DIALOG_CONFIRM_MOBILE_INTERNET_DOWNLOAD, fileUriString);
+                        return true;
                     }
 
-                    return true;
+                    // Download backup file from Dropbox
+                    MyApp.getInstance().asyncsMgr.executeDownloadBackupFileFromDropboxAsync(getActivity(), fileUriString, false, false);
 
-                // Share file
-                case R.id.share:
-                    Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-                    intentShareFile.setType("application/zip");
-                    File fileWithinMyDir = new File(fileUriString);
+                } else {
+                    Snackbar.make(getView(), R.string.error_internet_connection, Snackbar.LENGTH_SHORT).show();
 
-                    Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider", fileWithinMyDir);
-                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        intentShareFile.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    } else {
-                        List<ResolveInfo> resInfoList = getActivity().getPackageManager().queryIntentActivities(intentShareFile, PackageManager.MATCH_DEFAULT_ONLY);
-                        for (ResolveInfo resolveInfo : resInfoList) {
-                            String packageName = resolveInfo.activityInfo.packageName;
-                            getActivity().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        }
+                }
+
+                return true;
+            }
+
+            // Share file
+            else if (itemId == R.id.share) {
+                Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+                intentShareFile.setType("application/zip");
+                File fileWithinMyDir = new File(fileUriString);
+
+                Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider", fileWithinMyDir);
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    intentShareFile.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                } else {
+                    List<ResolveInfo> resInfoList = getActivity().getPackageManager().queryIntentActivities(intentShareFile, PackageManager.MATCH_DEFAULT_ONLY);
+                    for (ResolveInfo resolveInfo : resInfoList) {
+                        String packageName = resolveInfo.activityInfo.packageName;
+                        getActivity().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     }
+                }
 
-                    intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
-                    startActivity(Intent.createChooser(intentShareFile, "Share File"));
+                intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
+                startActivity(Intent.createChooser(intentShareFile, "Share File"));
 
-                    // TODO : export zip to any location
-                    /**
-                    Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-                    intent.setType("application/zip");
-                    intent.putExtra(Intent.EXTRA_TITLE, fileWithinMyDir.getName());
-                    getActivity().startActivityForResult(intent, 657); **/
-                    return true;
+                // TODO : export zip to any location
+                /**
+                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("application/zip");
+                intent.putExtra(Intent.EXTRA_TITLE, fileWithinMyDir.getName());
+                getActivity().startActivityForResult(intent, 657); **/
+                return true;
+            }
 
-                // Delete file
-                case R.id.delete:
-                    showBackupFileDeleteConfirmDialog(fileUriString);
-                    return true;
+            // Delete file
+            else if (itemId == R.id.delete) {
+                showBackupFileDeleteConfirmDialog(fileUriString);
+                return true;
+            }
 
-                default:
-
-                    return false;
+            else {
+                return false;
             }
         });
 

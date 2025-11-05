@@ -21,12 +21,12 @@ public class SQLiteOpenHelperAndroid extends SQLiteOpenHelper {
         AppLog.d("Android SQLite opened, getDbVersion(): " + db.getVersion());
         super.onOpen(db);
 
-        sqliteOpenHelperWrapper.dropAllTempTables(new MySQLiteWrapper(db));
+      //  sqliteOpenHelperWrapper.dropAllTempTables(new MySQLiteWrapper(db));
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        sqliteOpenHelperWrapper.createTables(new MySQLiteWrapper(db));
+      //  sqliteOpenHelperWrapper.createTables(new MySQLiteWrapper(db));
     }
 
     @Override

@@ -103,18 +103,16 @@ public class PdfTxtCsvExportDialog extends DialogFragment implements View.OnClic
 
         radioGroup = customView.findViewById(R.id.radio_group);
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            switch (checkedId) {
-                case R.id.radio_all_entries:
-                    entriesFilterIndex = 0;
-                    break;
+            if (checkedId == R.id.radio_all_entries) {
+                entriesFilterIndex = 0;
+            }
 
-                case R.id.radio_filtered:
-                    entriesFilterIndex = 1;
-                    break;
+            else if (checkedId == R.id.radio_filtered) {
+                entriesFilterIndex = 1;
+            }
 
-                case R.id.radio_date_range:
-                    entriesFilterIndex = 2;
-                    break;
+            else if (checkedId == R.id.radio_date_range) {
+                entriesFilterIndex = 2;
             }
 
         });
@@ -293,25 +291,25 @@ public class PdfTxtCsvExportDialog extends DialogFragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.cbx_includeSummary:
-                PreferencesHelper.setIncludeSummary(cbx_includeSummary.isChecked());
-                break;
+        int viewId = v.getId();
 
-            case R.id.cbx_includeLogo:
-                PreferencesHelper.setIncludeLogo(cbx_includeLogo.isChecked());
-                break;
+        if (viewId == R.id.cbx_includeSummary) {
+            PreferencesHelper.setIncludeSummary(cbx_includeSummary.isChecked());
+        }
 
-            case R.id.radio_date_range:
-                selectDateRange();
-                break;
+        else if (viewId == R.id.cbx_includeLogo) {
+            PreferencesHelper.setIncludeLogo(cbx_includeLogo.isChecked());
+        }
+
+        else if (viewId == R.id.radio_date_range) {
+            selectDateRange();
         }
     }
 
     private void selectDateRange() {
 
         // long today = MaterialDatePicker.todayInUtcMilliseconds();
-        int dialogTheme = MyThemesUtils.resolveOrThrow(getContext(), R.attr.materialCalendarTheme);
+        int dialogTheme = MyThemesUtils.resolveOrThrow(getContext(),  com.google.android.material.R.attr.materialCalendarTheme);
 
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
         //  builder.setSelection(today);

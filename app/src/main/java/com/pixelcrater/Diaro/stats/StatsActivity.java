@@ -257,7 +257,7 @@ public class StatsActivity extends TypeActivity {
 
     private void selectDateRange() {
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
-        int dialogTheme = MyThemesUtils.resolveOrThrow(this, R.attr.materialCalendarTheme);
+        int dialogTheme = MyThemesUtils.resolveOrThrow(this, com.google.android.material.R.attr.materialCalendarTheme);
         builder.setTheme(dialogTheme);
         MaterialDatePicker materialDatePicker = builder.build();
         materialDatePicker.show(getSupportFragmentManager(), materialDatePicker.toString());
@@ -293,27 +293,25 @@ public class StatsActivity extends TypeActivity {
 
     public void onClick(View view) {
         activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_SHARE_STATS);
-        switch (view.getId()) {
-            case R.id.share_entryDaily:
-                GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_entryDaily, "Diaro Stats");
-                break;
-            case R.id.share_entryMonthly:
-                GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_entryMonthly, "Diaro Stats");
-                break;
-            case R.id.share_wordDaily:
-                GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_wordDaily, "Diaro Stats");
-                break;
+        int viewId = view.getId();
 
-            case R.id.share_wordMonthly:
-                GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_wordMonthly, "Diaro Stats");
-                break;
-            case R.id.share_moodCount:
-                GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_moodCount, "Diaro Stats");
-                break;
-            case R.id.share_avgMood:
-                GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_avgMood, "Diaro Stats");
-                break;
-
+        if (viewId == R.id.share_entryDaily) {
+            GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_entryDaily, "Diaro Stats");
+        }
+        else if (viewId == R.id.share_entryMonthly) {
+            GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_entryMonthly, "Diaro Stats");
+        }
+        else if (viewId == R.id.share_wordDaily) {
+            GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_wordDaily, "Diaro Stats");
+        }
+        else if (viewId == R.id.share_wordMonthly) {
+            GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_wordMonthly, "Diaro Stats");
+        }
+        else if (viewId == R.id.share_moodCount) {
+            GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_moodCount, "Diaro Stats");
+        }
+        else if (viewId == R.id.share_avgMood) {
+            GeneralUtils.shareBitmap(StatsActivity.this, R.id.card_avgMood, "Diaro Stats");
         }
     }
 

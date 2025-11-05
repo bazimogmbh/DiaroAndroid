@@ -132,25 +132,28 @@ public class FolderAddEditActivity extends TypeActivity {
             return true;
         }
 
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                Static.hideSoftKeyboard(folderTitleEditText);
-                folderTitleEditText.clearFocus();
+        int itemId = item.getItemId();
 
-                finish();
-                return true;
+        // Back
+        if (itemId == android.R.id.home) {
+            Static.hideSoftKeyboard(folderTitleEditText);
+            folderTitleEditText.clearFocus();
 
-            // Save folder
-            case R.id.item_save:
-                Static.hideSoftKeyboard(folderTitleEditText);
-                folderTitleEditText.clearFocus();
+            finish();
+            return true;
+        }
 
-                saveFolder();
-                return true;
+        // Save folder
+        else if (itemId == R.id.item_save) {
+            Static.hideSoftKeyboard(folderTitleEditText);
+            folderTitleEditText.clearFocus();
 
-            default:
-                return super.onOptionsItemSelected(item);
+            saveFolder();
+            return true;
+        }
+
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

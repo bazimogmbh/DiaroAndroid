@@ -31,7 +31,7 @@ public class StringClusterItem implements ClusterItem {
     }
 
     @Nullable
-    @Override
+
     public Float getZIndex() {
         return null;
     }

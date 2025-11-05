@@ -377,29 +377,33 @@ public class SecurityCodeActivity extends TypeActivity {
         }
 
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                if (mode == SecurityCodeActivity.MODE_LOCK_SCREEN) {
-                    moveTaskToBack(true);
-                } else {
-                    finish();
-                }
+        int itemId = item.getItemId();
 
-                return true;
+        // Back
+        if (itemId == android.R.id.home) {
+            if (mode == SecurityCodeActivity.MODE_LOCK_SCREEN) {
+                moveTaskToBack(true);
+            } else {
+                finish();
+            }
 
-            // Go to next step
-            case R.id.item_next:
-                checkSecurityCode(true);
-                return true;
+            return true;
+        }
 
-            // Finish setting security code
-            case R.id.item_finish:
-                checkSecurityCode(true);
-                return true;
+        // Go to next step
+        else if (itemId == R.id.item_next) {
+            checkSecurityCode(true);
+            return true;
+        }
 
-            default:
-                return super.onOptionsItemSelected(item);
+        // Finish setting security code
+        else if (itemId == R.id.item_finish) {
+            checkSecurityCode(true);
+            return true;
+        }
+
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

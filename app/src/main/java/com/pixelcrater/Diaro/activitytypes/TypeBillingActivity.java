@@ -12,17 +12,21 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.PendingPurchasesParams;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.SkuDetails;
-import com.android.billingclient.api.SkuDetailsParams;
-import com.android.billingclient.api.SkuDetailsResponseListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryProductDetailsResult;
+import com.android.billingclient.api.QueryPurchasesParams;
 import com.pixelcrater.Diaro.premium.billing.BillingUpdateListener;
 import com.pixelcrater.Diaro.utils.AppLog;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TypeBillingActivity extends TypeActivity implements PurchasesUpdatedListener, BillingClientStateListener, SkuDetailsResponseListener {
+public class TypeBillingActivity extends TypeActivity implements PurchasesUpdatedListener, BillingClientStateListener, ProductDetailsResponseListener {
 
     private static final String TAG = "TypeBillingActivity";
     private BillingClient mBillingClient;
@@ -36,7 +40,10 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mBillingClient = BillingClient.newBuilder(this).setListener(this).enablePendingPurchases().build();
+        mBillingClient = BillingClient.newBuilder(this)
+                .setListener(this)
+                .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
+                .build();
         if (!mBillingClient.isReady()) {
             mBillingClient.startConnection(this);
         }
@@ -60,56 +67,36 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
 
     // ---------------------- QUERY AVAILABLE PRODUCTS ----------------------
     /**
-     * In order to make purchases, you need the {@link SkuDetails} for the item or subscription.
-     * This is an asynchronous call that will receive a result in {@link #onSkuDetailsResponse}.
+     * In order to make purchases, you need the {@link ProductDetails} for the item or subscription.
+     * This is an asynchronous call that will receive a result in {@link #onProductDetailsResponse}.
      */
     public void querySkuDetails(List<String> inAppsList, String skuType) {
         if( !inAppsList.isEmpty()){
-            SkuDetailsParams inAppsParams = SkuDetailsParams.newBuilder().setType(skuType).setSkusList(inAppsList).build();
-            mBillingClient.querySkuDetailsAsync(inAppsParams, this);
+            // Convert product type from old SKU type to new product type
+            String productType = skuType.equals(BillingClient.SkuType.INAPP)
+                    ? BillingClient.ProductType.INAPP
+                    : BillingClient.ProductType.SUBS;
+
+            // Build product list
+            List<QueryProductDetailsParams.Product> productList = new ArrayList<>();
+            for (String productId : inAppsList) {
+                productList.add(
+                    QueryProductDetailsParams.Product.newBuilder()
+                        .setProductId(productId)
+                        .setProductType(productType)
+                        .build()
+                );
+            }
+
+            QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder()
+                    .setProductList(productList)
+                    .build();
+
+            mBillingClient.queryProductDetailsAsync(params, this);
         }
 
     }
 
-    @Override
-    public void onSkuDetailsResponse(@NonNull BillingResult billingResult, @Nullable List<SkuDetails> skuDetailsList) {
-        if (billingResult == null) {
-            Log.wtf(TAG, "onSkuDetailsResponse: null BillingResult");
-            return;
-        }
-
-        int responseCode = billingResult.getResponseCode();
-        String debugMessage = billingResult.getDebugMessage();
-
-        switch (responseCode) {
-            case BillingClient.BillingResponseCode.OK:
-                if (skuDetailsList == null) {
-                    AppLog.e( "onSkuDetailsResponse: null SkuDetails list");
-                } else {
-                   if(eventHandler !=null){
-                       eventHandler.onAvailableProductsResponse(skuDetailsList);
-                   }
-                }
-                break;
-            case BillingClient.BillingResponseCode.SERVICE_DISCONNECTED:
-            case BillingClient.BillingResponseCode.SERVICE_UNAVAILABLE:
-            case BillingClient.BillingResponseCode.BILLING_UNAVAILABLE:
-            case BillingClient.BillingResponseCode.ITEM_UNAVAILABLE:
-            case BillingClient.BillingResponseCode.DEVELOPER_ERROR:
-            case BillingClient.BillingResponseCode.ERROR:
-                AppLog.e("onSkuDetailsResponse: " + responseCode + " " + debugMessage);
-                break;
-            case BillingClient.BillingResponseCode.USER_CANCELED:
-                AppLog.e( "onSkuDetailsResponse: " + responseCode + " " + debugMessage);
-                break;
-            // These response codes are not expected.
-            case BillingClient.BillingResponseCode.FEATURE_NOT_SUPPORTED:
-            case BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED:
-            case BillingClient.BillingResponseCode.ITEM_NOT_OWNED:
-            default:
-                Log.wtf(TAG, "onSkuDetailsResponse: " + responseCode + " " + debugMessage);
-        }
-    }
 
     // ----------- QUERY PURCHASES  ---------------
     /**
@@ -124,7 +111,16 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
         }
         AppLog.e( "queryPurchases");
 
-        mBillingClient.queryPurchasesAsync(skuType, (billingResult, list) -> {
+        // Convert product type from old SKU type to new product type
+        String productType = skuType.equals(BillingClient.SkuType.INAPP)
+                ? BillingClient.ProductType.INAPP
+                : BillingClient.ProductType.SUBS;
+
+        QueryPurchasesParams params = QueryPurchasesParams.newBuilder()
+                .setProductType(productType)
+                .build();
+
+        mBillingClient.queryPurchasesAsync(params, (billingResult, list) -> {
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK){
                 if(eventHandler!=null){
                     eventHandler.onOwnedProductsResponse(list);
@@ -156,26 +152,22 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
         int responseCode = billingResult.getResponseCode();
         String debugMessage = billingResult.getDebugMessage();
         AppLog.e("onPurchasesUpdated: " +  responseCode  + ", " + debugMessage);
-        switch (responseCode) {
-            case BillingClient.BillingResponseCode.OK:
-                if (purchases == null) {
-                    AppLog.e( "onPurchasesUpdated: null purchase list");
-                } else {
-                    AppLog.e( "onPurchasesUpdated: successful");
-                    if(eventHandler!=null){
-                        eventHandler.onPurchase(purchases);
-                    }
+
+        if (responseCode == BillingClient.BillingResponseCode.OK) {
+            if (purchases == null) {
+                AppLog.e("onPurchasesUpdated: null purchase list");
+            } else {
+                AppLog.e("onPurchasesUpdated: successful");
+                if (eventHandler != null) {
+                    eventHandler.onPurchase(purchases);
                 }
-                break;
-            case BillingClient.BillingResponseCode.USER_CANCELED:
-                AppLog.e("onPurchasesUpdated: User canceled the purchase");
-                break;
-            case BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED:
-                AppLog.e( "onPurchasesUpdated: The user already owns this item");
-                break;
-            case BillingClient.BillingResponseCode.DEVELOPER_ERROR:
-                AppLog.e( "onPurchasesUpdated: Developer error means that Google Play does not recognize the configuration. ");
-                break;
+            }
+        } else if (responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
+            AppLog.e("onPurchasesUpdated: User canceled the purchase");
+        } else if (responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
+            AppLog.e("onPurchasesUpdated: The user already owns this item");
+        } else if (responseCode == BillingClient.BillingResponseCode.DEVELOPER_ERROR) {
+            AppLog.e("onPurchasesUpdated: Developer error means that Google Play does not recognize the configuration. ");
         }
     }
 
@@ -229,5 +221,40 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
     @Override
     public void onBillingServiceDisconnected() {
         AppLog.e("onBillingServiceDisconnected");
+    }
+
+    @Override
+    public void onProductDetailsResponse(@NonNull BillingResult billingResult, @NonNull QueryProductDetailsResult queryProductDetailsResult) {
+        if (billingResult == null) {
+            Log.wtf(TAG, "onProductDetailsResponse: null BillingResult");
+            return;
+        }
+
+        int responseCode = billingResult.getResponseCode();
+        String debugMessage = billingResult.getDebugMessage();
+
+        if (responseCode == BillingClient.BillingResponseCode.OK) {
+            List<ProductDetails> productDetailsList = queryProductDetailsResult.getProductDetailsList();
+            if (productDetailsList == null || productDetailsList.isEmpty()) {
+                AppLog.e("onProductDetailsResponse: null or empty ProductDetails list");
+            } else {
+                if (eventHandler != null) {
+                    eventHandler.onAvailableProductsResponse(productDetailsList);
+                }
+            }
+        } else if (responseCode == BillingClient.BillingResponseCode.SERVICE_DISCONNECTED
+                || responseCode == BillingClient.BillingResponseCode.SERVICE_UNAVAILABLE
+                || responseCode == BillingClient.BillingResponseCode.BILLING_UNAVAILABLE
+                || responseCode == BillingClient.BillingResponseCode.ITEM_UNAVAILABLE
+                || responseCode == BillingClient.BillingResponseCode.DEVELOPER_ERROR
+                || responseCode == BillingClient.BillingResponseCode.ERROR) {
+            AppLog.e("onProductDetailsResponse: " + responseCode + " " + debugMessage);
+        } else if (responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
+            AppLog.e("onProductDetailsResponse: " + responseCode + " " + debugMessage);
+        } else {
+            // These response codes are not expected.
+            // FEATURE_NOT_SUPPORTED, ITEM_ALREADY_OWNED, ITEM_NOT_OWNED, etc.
+            Log.wtf(TAG, "onProductDetailsResponse: " + responseCode + " " + debugMessage);
+        }
     }
 }

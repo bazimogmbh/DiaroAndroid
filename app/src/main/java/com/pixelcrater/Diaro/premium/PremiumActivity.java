@@ -19,8 +19,8 @@ import com.amazon.device.iap.PurchasingService;
 import com.amazon.device.iap.model.RequestId;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.SkuDetails;
 import com.pixelcrater.Diaro.MyApp;
 import com.pixelcrater.Diaro.R;
 import com.pixelcrater.Diaro.activitytypes.TypeBillingActivity;
@@ -55,7 +55,7 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
 
     private final BroadcastReceiver brReceiver = new BrReceiver();
 
-    private final HashMap<String, SkuDetails> mProductsMap = new HashMap<>();
+    private final HashMap<String, ProductDetails> mProductsMap = new HashMap<>();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,9 +203,24 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
                 return;
 
             // TODO : adapt monthly or yearly
-            SkuDetails skuDetails = mProductsMap.get(sku);
-            if (skuDetails != null) {
-                BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build();
+            ProductDetails productDetails = mProductsMap.get(sku);
+            if (productDetails != null && productDetails.getSubscriptionOfferDetails() != null &&
+                !productDetails.getSubscriptionOfferDetails().isEmpty()) {
+
+                ProductDetails.SubscriptionOfferDetails offerDetails =
+                    productDetails.getSubscriptionOfferDetails().get(0);
+                String offerToken = offerDetails.getOfferToken();
+
+                BillingFlowParams.ProductDetailsParams productDetailsParams =
+                    BillingFlowParams.ProductDetailsParams.newBuilder()
+                        .setProductDetails(productDetails)
+                        .setOfferToken(offerToken)
+                        .build();
+
+                BillingFlowParams flowParams = BillingFlowParams.newBuilder()
+                    .setProductDetailsParamsList(java.util.Collections.singletonList(productDetailsParams))
+                    .build();
+
                 launchBillingFlow(flowParams);
             }
         }
@@ -228,59 +243,71 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
     }
 
     @Override
-    public void onAvailableProductsResponse(@NonNull List<SkuDetails> availableProductsSkuList) {
+    public void onAvailableProductsResponse(@NonNull List<ProductDetails> availableProductsSkuList) {
         AppLog.e("Available products count -> " + availableProductsSkuList.size());
 
-        for (SkuDetails skuDetails : availableProductsSkuList) {
-            String skuProductID = skuDetails.getSku();
-            AppLog.e("Product -> " + skuProductID);
+        for (ProductDetails productDetails : availableProductsSkuList) {
+            String productId = productDetails.getProductId();
+            AppLog.e("Product -> " + productId);
 
-            if (mProductsMap.get(skuProductID) == null) {
-                mProductsMap.put(skuProductID, skuDetails);
+            if (mProductsMap.get(productId) == null) {
+                mProductsMap.put(productId, productDetails);
             }
 
-            Currency currency = Currency.getInstance(skuDetails.getPriceCurrencyCode());
-            String currencySymbol = currency.getSymbol();
+            // Get subscription offer details (for subscriptions)
+            if (productDetails.getSubscriptionOfferDetails() != null &&
+                !productDetails.getSubscriptionOfferDetails().isEmpty()) {
 
-            float totalPrice = (skuDetails.getPriceAmountMicros()) / 1000000.0f;
+                ProductDetails.SubscriptionOfferDetails offerDetails =
+                    productDetails.getSubscriptionOfferDetails().get(0);
 
-            runOnUiThread(() -> {
-                double pricePerMonth;
-            // Monthly
-                if (skuDetails.getSku().equals(GlobalConstants.SUBSCRIPTION_PURCHASE_PREMIUM_MONTHLY)) {
-                    pricePerMonth = totalPrice / 1;
+                ProductDetails.PricingPhase pricingPhase =
+                    offerDetails.getPricingPhases().getPricingPhaseList().get(0);
 
-                    String pricePerMonthString = getPricePerMonthString(pricePerMonth, currencySymbol) + "/" + getString(R.string.month);
-                    tv_buy_pro_button1.setText(pricePerMonthString);
-                    tv_buy_pro_button1_info.setText(getString(R.string.subscription_billed_monthly));
-                }
+                String formattedPrice = pricingPhase.getFormattedPrice();
+                String priceCurrencyCode = pricingPhase.getPriceCurrencyCode();
+                Currency currency = Currency.getInstance(priceCurrencyCode);
+                String currencySymbol = currency.getSymbol();
 
-                // Quarterly
-                if (skuDetails.getSku().equals(GlobalConstants.SUBSCRIPTION_PURCHASE_PREMIUM_3_MONTHLY)) {
-                    pricePerMonth = totalPrice / 3;
+                float totalPrice = pricingPhase.getPriceAmountMicros() / 1000000.0f;
 
-                    String pricePerMonthString = getPricePerMonthString(pricePerMonth, currencySymbol);
-                    tv_buy_pro_button2.setText(pricePerMonthString);
+                runOnUiThread(() -> {
+                    double pricePerMonth;
+                    // Monthly
+                    if (productId.equals(GlobalConstants.SUBSCRIPTION_PURCHASE_PREMIUM_MONTHLY)) {
+                        pricePerMonth = totalPrice / 1;
 
-                    String billedAtInfo = getString(R.string.subscription_billed_quarterly_at, currencySymbol + totalPrice);
-                    tv_buy_pro_button2_info.setText(billedAtInfo);
-                }
+                        String pricePerMonthString = getPricePerMonthString(pricePerMonth, currencySymbol) + "/" + getString(R.string.month);
+                        tv_buy_pro_button1.setText(pricePerMonthString);
+                        tv_buy_pro_button1_info.setText(getString(R.string.subscription_billed_monthly));
+                    }
 
-                // Yearly
-                if (skuDetails.getSku().equals(GlobalConstants.SUBSCRIPTION_PURCHASE_PREMIUM_YEARLY)) {
-                    pricePerMonth = totalPrice / 12;
+                    // Quarterly
+                    if (productId.equals(GlobalConstants.SUBSCRIPTION_PURCHASE_PREMIUM_3_MONTHLY)) {
+                        pricePerMonth = totalPrice / 3;
 
-                    String pricePerYearString = getPricePerMonthString(totalPrice, currencySymbol) + "/" + getString(R.string.year);
-                    tv_buy_pro_button3.setText(pricePerYearString);
+                        String pricePerMonthString = getPricePerMonthString(pricePerMonth, currencySymbol);
+                        tv_buy_pro_button2.setText(pricePerMonthString);
 
-                    String billedAtInfo = getString(R.string.subscription_billed_annualy_at, currencySymbol + totalPrice);
-                    tv_buy_pro_button3_info.setText(billedAtInfo);
-                    //  tv_buy_pro_button3_info2.setText(String.format("(%s%s)", currencySymbol, totalPrice * 1.5));
+                        String billedAtInfo = getString(R.string.subscription_billed_quarterly_at, currencySymbol + totalPrice);
+                        tv_buy_pro_button2_info.setText(billedAtInfo);
+                    }
 
-                    tv_buy_pro_button3_info2.setText(String.format("(%s%s)", "Save", " 70%"));
-                }
-            });
+                    // Yearly
+                    if (productId.equals(GlobalConstants.SUBSCRIPTION_PURCHASE_PREMIUM_YEARLY)) {
+                        pricePerMonth = totalPrice / 12;
 
+                        String pricePerYearString = getPricePerMonthString(totalPrice, currencySymbol) + "/" + getString(R.string.year);
+                        tv_buy_pro_button3.setText(pricePerYearString);
+
+                        String billedAtInfo = getString(R.string.subscription_billed_annualy_at, currencySymbol + totalPrice);
+                        tv_buy_pro_button3_info.setText(billedAtInfo);
+                        //  tv_buy_pro_button3_info2.setText(String.format("(%s%s)", currencySymbol, totalPrice * 1.5));
+
+                        tv_buy_pro_button3_info2.setText(String.format("(%s%s)", "Save", " 70%"));
+                    }
+                });
+            }
         }
 
     }
@@ -322,9 +349,9 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
         if (purchasesList.size() > 0) {
             // PURCHASES FOUND
             for (Purchase purchase : purchasesList) {
-                AppLog.e("processPurchases " + purchase.getSkus().get(0) + " -> " + purchase);
+                AppLog.e("processPurchases " + purchase.getProducts().get(0) + " -> " + purchase);
 
-                SkuDetails skuDetails = mProductsMap.get(purchase.getSkus().get(0));
+                ProductDetails productDetails = mProductsMap.get(purchase.getProducts().get(0));
 
                 if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
                     // Acknowledge the purchase if it hasn't already been acknowledged.
@@ -342,7 +369,7 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
                     showProActive();
                     //  If signed in Send payment transaction information (purchased or canceled/refunded) to API
                     if (MyApp.getInstance().userMgr.isSignedIn()) {
-                        PaymentUtils.sendGoogleInAppPaymentToAPI(purchase, skuDetails);
+                        PaymentUtils.sendGoogleInAppPaymentToAPI(purchase, productDetails);
                     }
                 } else {
                     if (MyApp.getInstance().userMgr.isSignedIn()) {

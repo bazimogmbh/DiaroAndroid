@@ -114,61 +114,68 @@ public class ContentFragment extends Fragment implements LoaderCallbacks<Cursor>
 
         @Override
         public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.item_unselect_all:
-                    unselectAllEntries();
-                    return true;
+            int itemId = item.getItemId();
 
-                case R.id.item_select_all:
-                    int entriesCount = entriesCursorAdapter.getCount();
-                    if (entriesCount > 0) {
-                        selectAllEntries();
-                    }
-                    return true;
+            if (itemId == R.id.item_unselect_all) {
+                unselectAllEntries();
+                return true;
+            }
 
-                case R.id.item_select_folder:
-                    if (multiSelectedEntriesUids.size() == 0) {
-                        Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
-                    } else {
-                        showSelectedEntriesSetFolderDialog();
-                    }
-                    return true;
+            else if (itemId == R.id.item_select_all) {
+                int entriesCount = entriesCursorAdapter.getCount();
+                if (entriesCount > 0) {
+                    selectAllEntries();
+                }
+                return true;
+            }
 
-                case R.id.item_select_tags:
-                    if (multiSelectedEntriesUids.size() == 0) {
-                        Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
-                    } else {
-                        showSelectedEntriesSetTagsDialog();
-                    }
-                    return true;
+            else if (itemId == R.id.item_select_folder) {
+                if (multiSelectedEntriesUids.size() == 0) {
+                    Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
+                } else {
+                    showSelectedEntriesSetFolderDialog();
+                }
+                return true;
+            }
 
-                case R.id.item_select_location:
-                    if (multiSelectedEntriesUids.size() == 0) {
-                        Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
-                    } else {
-                        showSelectedEntriesSetLocationDialog();
-                    }
-                    return true;
+            else if (itemId == R.id.item_select_tags) {
+                if (multiSelectedEntriesUids.size() == 0) {
+                    Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
+                } else {
+                    showSelectedEntriesSetTagsDialog();
+                }
+                return true;
+            }
 
-                case R.id.item_print:
-                    if (multiSelectedEntriesUids.size() == 0) {
-                        Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
-                    } else {
-                        print();
-                    }
-                    return true;
+            else if (itemId == R.id.item_select_location) {
+                if (multiSelectedEntriesUids.size() == 0) {
+                    Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
+                } else {
+                    showSelectedEntriesSetLocationDialog();
+                }
+                return true;
+            }
 
+            else if (itemId == R.id.item_print) {
+                if (multiSelectedEntriesUids.size() == 0) {
+                    Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
+                } else {
+                    print();
+                }
+                return true;
+            }
 
-                case R.id.item_delete:
-                    if (multiSelectedEntriesUids.size() == 0) {
-                        Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
-                    } else {
-                        showSelectedEntriesDeleteConfirmDialog();
-                    }
-                    return true;
+            else if (itemId == R.id.item_delete) {
+                if (multiSelectedEntriesUids.size() == 0) {
+                    Snackbar.make(view, R.string.no_entries_selected, Snackbar.LENGTH_SHORT).show();
+                } else {
+                    showSelectedEntriesDeleteConfirmDialog();
+                }
+                return true;
+            }
 
-                default:
-                    return false;
+            else {
+                return false;
             }
         }
 

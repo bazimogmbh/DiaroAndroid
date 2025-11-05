@@ -198,7 +198,7 @@ public class MyThemesUtils {
                 return android.R.color.black;
             // THEME_LIGHT
             default:
-                return R.color.color_white;
+                return android.R.color.white;
         }
     }
 
@@ -212,7 +212,7 @@ public class MyThemesUtils {
                 return android.R.color.black;
             // THEME_LIGHT
             default:
-                return R.color.white;
+                return android.R.color.white;
         }
     }
 

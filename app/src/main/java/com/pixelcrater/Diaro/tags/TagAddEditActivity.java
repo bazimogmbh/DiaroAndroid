@@ -77,25 +77,28 @@ public class TagAddEditActivity extends TypeActivity {
             return true;
         }
 
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                Static.hideSoftKeyboard(tagTitleEditText);
-                tagTitleEditText.clearFocus();
+        int itemId = item.getItemId();
 
-                finish();
-                return true;
+        // Back
+        if (itemId == android.R.id.home) {
+            Static.hideSoftKeyboard(tagTitleEditText);
+            tagTitleEditText.clearFocus();
 
-            // Save tag
-            case R.id.item_save:
-                Static.hideSoftKeyboard(tagTitleEditText);
-                tagTitleEditText.clearFocus();
+            finish();
+            return true;
+        }
 
-                saveTag();
-                return true;
+        // Save tag
+        else if (itemId == R.id.item_save) {
+            Static.hideSoftKeyboard(tagTitleEditText);
+            tagTitleEditText.clearFocus();
 
-            default:
-                return super.onOptionsItemSelected(item);
+            saveTag();
+            return true;
+        }
+
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

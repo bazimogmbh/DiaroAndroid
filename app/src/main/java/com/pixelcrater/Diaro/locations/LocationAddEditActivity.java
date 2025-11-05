@@ -146,21 +146,24 @@ public class LocationAddEditActivity extends TypeActivity implements OnMapReadyC
         }
 
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                locationWrapper.clearFocus();
-                finish();
-                return true;
+        int itemId = item.getItemId();
 
-            // Save location
-            case R.id.item_save:
-                locationWrapper.clearFocus();
-                locationWrapper.saveLocation();
-                return true;
+        // Back
+        if (itemId == android.R.id.home) {
+            locationWrapper.clearFocus();
+            finish();
+            return true;
+        }
 
-            default:
-                return super.onOptionsItemSelected(item);
+        // Save location
+        else if (itemId == R.id.item_save) {
+            locationWrapper.clearFocus();
+            locationWrapper.saveLocation();
+            return true;
+        }
+
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

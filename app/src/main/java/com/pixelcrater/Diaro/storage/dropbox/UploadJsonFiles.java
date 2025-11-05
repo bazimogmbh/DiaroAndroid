@@ -211,7 +211,7 @@ class UploadJsonFiles {
                     data = AES256Cipher.encodeString(DropboxStatic.createJsonString(mUploadData.fullTableName, cursor), DropboxStatic.getEncryptionKey(MyApp.getInstance())).getBytes();
                 }
 
-                UploadSessionStartResult result = dbxClient.files().uploadSessionStart(true).uploadAndFinish(new ByteArrayInputStream(data));
+                UploadSessionStartResult result = dbxClient.files().uploadSessionStart().uploadAndFinish(new ByteArrayInputStream(data));
                 UploadJsonFiles.this.updateCountInSyncStatus();
 
                 CommitInfo commitInfo;

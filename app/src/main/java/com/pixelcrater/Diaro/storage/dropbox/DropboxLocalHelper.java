@@ -199,10 +199,10 @@ public class DropboxLocalHelper {
             }.execute();
         }
         // callback from dbox oauth
-        if (AuthActivity.result != null && AuthActivity.result.hasExtra(AuthActivity.EXTRA_UID)) {
-            String uidV1 = AuthActivity.result.getStringExtra(AuthActivity.EXTRA_UID);
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(DropboxAccountManager.PREF_DROPBOX_UID_V1, uidV1).apply();
-        }
+      //  if (AuthActivity.result != null && AuthActivity.result.hasExtra(AuthActivity.EXTRA_UID)) {
+     //      String uidV1 = AuthActivity.result.getStringExtra(AuthActivity.EXTRA_UID);
+      //      PreferenceManager.getDefaultSharedPreferences(context).edit().putString(DropboxAccountManager.PREF_DROPBOX_UID_V1, uidV1).apply();
+      //  }
     }
 
 }

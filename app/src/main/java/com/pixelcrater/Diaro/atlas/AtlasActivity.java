@@ -151,7 +151,7 @@ public class AtlasActivity extends TypeActivity implements OnMapReadyCallback {
 
         BadgeShape badgeShape = BadgeShape.square(.45f, Gravity.END | Gravity.TOP, 0.5f);
 
-        CountBadge.Factory circleFactory = new CountBadge.Factory(badgeShape, MyThemesUtils.getAccentColor(), context.getResources().getColor(R.color.color_white));
+        CountBadge.Factory circleFactory = new CountBadge.Factory(badgeShape, MyThemesUtils.getAccentColor(), context.getResources().getColor(android.R.color.white));
 
         Badger<BadgeDrawable> badger = Badger.sett(vectorDrawable, circleFactory);
 

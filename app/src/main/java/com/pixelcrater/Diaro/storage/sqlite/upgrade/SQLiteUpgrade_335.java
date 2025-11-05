@@ -26,10 +26,10 @@ public class SQLiteUpgrade_335 {
         if (!mySQLiteWrapper.isTableExists(Tables.TABLE_TEMPLATES)) {
             mySQLiteWrapper.execSQL(SQL_TABLE_TEMPLATES_TEMP);
 
-            String[] demo_template1 = {"9f5ae4433ea9c6c78192aa16b62f1eey", MyApp.getInstance().getString(R.string.template_weekly_reflection_name), MyApp.getInstance().getString(R.string.template_weekly_reflection_title), MyApp.getInstance().getString(R.string.template_weekly_reflection_text)};
-            String[] demo_template2 = {"9f5ae4433ea9c6c78192aa16b62f1eei", MyApp.getInstance().getString(R.string.template_food_log_name), MyApp.getInstance().getString(R.string.template_food_log_title), MyApp.getInstance().getString(R.string.template_food_log_text)};
-            String[] demo_template3 = {"9f5ae4433ea9c6c78192aa16b62f1eef", MyApp.getInstance().getString(R.string.template_five_minutes_name), MyApp.getInstance().getString(R.string.template_five_minutes_title), MyApp.getInstance().getString(R.string.template_five_minutes_text)};
-            String[] demo_template4 = {"9f5ae4433ea9c6c78192aa16b62f1eeg", MyApp.getInstance().getString(R.string.template_gratitude_name), MyApp.getInstance().getString(R.string.template_gratitude_title), MyApp.getInstance().getString(R.string.template_gratitude_text)};
+            String[] demo_template1 = {"9f5ae4433ea9c6c78192aa16b62f1eey", MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_weekly_reflection_name), MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_weekly_reflection_title), MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_weekly_reflection_text)};
+            String[] demo_template2 = {"9f5ae4433ea9c6c78192aa16b62f1eei", MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_food_log_name), MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_food_log_title), MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_food_log_text)};
+            String[] demo_template3 = {"9f5ae4433ea9c6c78192aa16b62f1eef", MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_five_minutes_name), MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_five_minutes_title), MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_five_minutes_text)};
+            String[] demo_template4 = {"9f5ae4433ea9c6c78192aa16b62f1eeg", MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_gratitude_name), MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_gratitude_title), MyApp.getInstance().getString(com.pixelcrater.demodata.R.string.template_gratitude_text)};
 
             String[][] demo_templates = {demo_template1, demo_template2, demo_template3, demo_template4};
 

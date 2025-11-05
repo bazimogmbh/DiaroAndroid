@@ -296,7 +296,7 @@ public class StatsFragment extends Fragment {
 
     private void selectDateRange() {
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
-        int dialogTheme = MyThemesUtils.resolveOrThrow(getActivity(), R.attr.materialCalendarTheme);
+        int dialogTheme = MyThemesUtils.resolveOrThrow(getActivity(), com.google.android.material.R.attr.materialCalendarTheme);
         builder.setTheme(dialogTheme);
         MaterialDatePicker materialDatePicker = builder.build();
         materialDatePicker.show(getParentFragmentManager(), materialDatePicker.toString());

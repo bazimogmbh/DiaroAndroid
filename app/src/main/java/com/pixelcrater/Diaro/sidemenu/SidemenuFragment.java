@@ -865,21 +865,24 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
         popupMenu.getMenu().findItem(R.id.sort_by_entries_count).setVisible(currentSort != Prefs.SORT_BY_ENTRIES_COUNT);
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Sort alphabetically
-                case R.id.sort_alphabetically:
-                    saveToPrefs(Prefs.PREF_MOODS_SORT, Prefs.SORT_ALPHABETICALLY);
-                    refreshMoods();
-                    return true;
+            int itemId = item.getItemId();
 
-                // Sort by entries count
-                case R.id.sort_by_entries_count:
-                    saveToPrefs(Prefs.PREF_MOODS_SORT, Prefs.SORT_BY_ENTRIES_COUNT);
-                    refreshMoods();
-                    return true;
+            // Sort alphabetically
+            if (itemId == R.id.sort_alphabetically) {
+                saveToPrefs(Prefs.PREF_MOODS_SORT, Prefs.SORT_ALPHABETICALLY);
+                refreshMoods();
+                return true;
+            }
 
-                default:
-                    return false;
+            // Sort by entries count
+            else if (itemId == R.id.sort_by_entries_count) {
+                saveToPrefs(Prefs.PREF_MOODS_SORT, Prefs.SORT_BY_ENTRIES_COUNT);
+                refreshMoods();
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 
@@ -902,21 +905,24 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
         popupMenu.getMenu().findItem(R.id.sort_by_entries_count).setVisible(currentSort != Prefs.SORT_BY_ENTRIES_COUNT);
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Sort alphabetically
-                case R.id.sort_alphabetically:
-                    saveToPrefs(Prefs.PREF_FOLDERS_SORT, Prefs.SORT_ALPHABETICALLY);
-                    refreshFolders();
-                    return true;
+            int itemId = item.getItemId();
 
-                // Sort by entries count
-                case R.id.sort_by_entries_count:
-                    saveToPrefs(Prefs.PREF_FOLDERS_SORT, Prefs.SORT_BY_ENTRIES_COUNT);
-                    refreshFolders();
-                    return true;
+            // Sort alphabetically
+            if (itemId == R.id.sort_alphabetically) {
+                saveToPrefs(Prefs.PREF_FOLDERS_SORT, Prefs.SORT_ALPHABETICALLY);
+                refreshFolders();
+                return true;
+            }
 
-                default:
-                    return false;
+            // Sort by entries count
+            else if (itemId == R.id.sort_by_entries_count) {
+                saveToPrefs(Prefs.PREF_FOLDERS_SORT, Prefs.SORT_BY_ENTRIES_COUNT);
+                refreshFolders();
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 
@@ -939,21 +945,24 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
         popupMenu.getMenuInflater().inflate(R.menu.popupmenu_folder, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Edit folder
-                case R.id.edit:
-                    if (mListener != null) {
-                        mListener.onShouldStartFolderAddEditActivity(folderUid);
-                    }
-                    return true;
+            int itemId = item.getItemId();
 
-                // Delete folder
-                case R.id.delete:
-                    showFolderDeleteConfirmDialog(folderUid);
-                    return true;
+            // Edit folder
+            if (itemId == R.id.edit) {
+                if (mListener != null) {
+                    mListener.onShouldStartFolderAddEditActivity(folderUid);
+                }
+                return true;
+            }
 
-                default:
-                    return false;
+            // Delete folder
+            else if (itemId == R.id.delete) {
+                showFolderDeleteConfirmDialog(folderUid);
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 
@@ -1001,51 +1010,56 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
 
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Sort alphabetically
-                case R.id.sort_alphabetically:
-                    saveToPrefs(Prefs.PREF_TAGS_SORT, Prefs.SORT_ALPHABETICALLY);
-                    refreshTags();
-                    return true;
+            int itemId = item.getItemId();
 
-                // Sort by entries count
-                case R.id.sort_by_entries_count:
-                    saveToPrefs(Prefs.PREF_TAGS_SORT, Prefs.SORT_BY_ENTRIES_COUNT);
-                    refreshTags();
-                    return true;
+            // Sort alphabetically
+            if (itemId == R.id.sort_alphabetically) {
+                saveToPrefs(Prefs.PREF_TAGS_SORT, Prefs.SORT_ALPHABETICALLY);
+                refreshTags();
+                return true;
+            }
 
-                // Filter by OR logic
-                case R.id.filter_by_or_logic:
-                    saveToPrefs(Prefs.PREF_TAGS_LOGIC, Prefs.FILTER_LOGIC_OR);
+            // Sort by entries count
+            else if (itemId == R.id.sort_by_entries_count) {
+                saveToPrefs(Prefs.PREF_TAGS_SORT, Prefs.SORT_BY_ENTRIES_COUNT);
+                refreshTags();
+                return true;
+            }
 
-                    if (!MyApp.getInstance().prefs.getString(Prefs.PREF_ACTIVE_TAGS, "")
-                            .equals("")) {
-                        if (mListener != null) {
-                            mListener.onActiveFiltersChanged();
-                        }
+            // Filter by OR logic
+            else if (itemId == R.id.filter_by_or_logic) {
+                saveToPrefs(Prefs.PREF_TAGS_LOGIC, Prefs.FILTER_LOGIC_OR);
+
+                if (!MyApp.getInstance().prefs.getString(Prefs.PREF_ACTIVE_TAGS, "")
+                        .equals("")) {
+                    if (mListener != null) {
+                        mListener.onActiveFiltersChanged();
                     }
+                }
 
-                    Snackbar.make(view, R.string.showing_entries_with_any_selected_tag, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.showing_entries_with_any_selected_tag, Snackbar.LENGTH_LONG).show();
 
-                    return true;
+                return true;
+            }
 
-                // Filter by AND logic
-                case R.id.filter_by_and_logic:
-                    saveToPrefs(Prefs.PREF_TAGS_LOGIC, Prefs.FILTER_LOGIC_AND);
+            // Filter by AND logic
+            else if (itemId == R.id.filter_by_and_logic) {
+                saveToPrefs(Prefs.PREF_TAGS_LOGIC, Prefs.FILTER_LOGIC_AND);
 
-                    if (!MyApp.getInstance().prefs.getString(Prefs.PREF_ACTIVE_TAGS, "").equals("")) {
+                if (!MyApp.getInstance().prefs.getString(Prefs.PREF_ACTIVE_TAGS, "").equals("")) {
 
-                        if (mListener != null) {
-                            mListener.onActiveFiltersChanged();
-                        }
+                    if (mListener != null) {
+                        mListener.onActiveFiltersChanged();
                     }
+                }
 
-                    Snackbar.make(view, R.string.showing_entries_with_all_selected_tags, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.showing_entries_with_all_selected_tags, Snackbar.LENGTH_LONG).show();
 
-                    return true;
+                return true;
+            }
 
-                default:
-                    return false;
+            else {
+                return false;
             }
         });
 
@@ -1064,21 +1078,24 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
         popupMenu.getMenuInflater().inflate(R.menu.popupmenu_tag, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Edit tag
-                case R.id.edit:
-                    if (mListener != null) {
-                        mListener.onShouldStartTagAddEditActivity(tagUid);
-                    }
-                    return true;
+            int itemId = item.getItemId();
 
-                // Delete tag
-                case R.id.delete:
-                    showTagDeleteConfirmDialog(tagUid);
-                    return true;
+            // Edit tag
+            if (itemId == R.id.edit) {
+                if (mListener != null) {
+                    mListener.onShouldStartTagAddEditActivity(tagUid);
+                }
+                return true;
+            }
 
-                default:
-                    return false;
+            // Delete tag
+            else if (itemId == R.id.delete) {
+                showTagDeleteConfirmDialog(tagUid);
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 
@@ -1126,26 +1143,30 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
         }
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Sort alphabetically
-                case R.id.sort_alphabetically:
-                    saveToPrefs(Prefs.PREF_LOCATIONS_SORT, Prefs.SORT_ALPHABETICALLY);
-                    refreshLocations();
-                    return true;
+            int itemId = item.getItemId();
 
-                // Sort by entries count
-                case R.id.sort_by_entries_count:
-                    saveToPrefs(Prefs.PREF_LOCATIONS_SORT, Prefs.SORT_BY_ENTRIES_COUNT);
-                    refreshLocations();
-                    return true;
+            // Sort alphabetically
+            if (itemId == R.id.sort_alphabetically) {
+                saveToPrefs(Prefs.PREF_LOCATIONS_SORT, Prefs.SORT_ALPHABETICALLY);
+                refreshLocations();
+                return true;
+            }
 
-                // Delete selected locations in background
-                case R.id.delete_selected:
-                    showSelectedLocationsDeleteConfirmDialog();
-                    return true;
+            // Sort by entries count
+            else if (itemId == R.id.sort_by_entries_count) {
+                saveToPrefs(Prefs.PREF_LOCATIONS_SORT, Prefs.SORT_BY_ENTRIES_COUNT);
+                refreshLocations();
+                return true;
+            }
 
-                default:
-                    return false;
+            // Delete selected locations in background
+            else if (itemId == R.id.delete_selected) {
+                showSelectedLocationsDeleteConfirmDialog();
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 
@@ -1164,21 +1185,24 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
         popupMenu.getMenuInflater().inflate(R.menu.popupmenu_location, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Edit location
-                case R.id.edit:
-                    if (mListener != null) {
-                        mListener.onShouldStartLocationAddEditActivity(locationUid);
-                    }
-                    return true;
+            int itemId = item.getItemId();
 
-                // Delete location
-                case R.id.delete:
-                    showLocationDeleteConfirmDialog(locationUid);
-                    return true;
+            // Edit location
+            if (itemId == R.id.edit) {
+                if (mListener != null) {
+                    mListener.onShouldStartLocationAddEditActivity(locationUid);
+                }
+                return true;
+            }
 
-                default:
-                    return false;
+            // Delete location
+            else if (itemId == R.id.delete) {
+                showLocationDeleteConfirmDialog(locationUid);
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 
@@ -1245,21 +1269,24 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
         popupMenu.getMenuInflater().inflate(R.menu.popupmenu_mood, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Edit folder
-                case R.id.edit:
-                    if (mListener != null) {
-                        mListener.onShouldStartMoodAddEditActivity(moodUid);
-                    }
-                    return true;
+            int itemId = item.getItemId();
 
-                // Delete folder
-                case R.id.delete:
-                    showMoodDeleteConfirmDialog(moodUid);
-                    return true;
+            // Edit folder
+            if (itemId == R.id.edit) {
+                if (mListener != null) {
+                    mListener.onShouldStartMoodAddEditActivity(moodUid);
+                }
+                return true;
+            }
 
-                default:
-                    return false;
+            // Delete folder
+            else if (itemId == R.id.delete) {
+                showMoodDeleteConfirmDialog(moodUid);
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 

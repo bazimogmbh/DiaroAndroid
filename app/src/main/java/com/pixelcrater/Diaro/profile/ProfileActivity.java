@@ -31,8 +31,8 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.SkuDetails;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -90,7 +90,7 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
     private TextView debugFsInfoTextView;
     private ViewGroup whyToLinkWithDropboxViewGroup;
     private Animation rotateAnim;
-    private HashMap<String, SkuDetails> mProductsMap = new HashMap<>();
+    private HashMap<String, ProductDetails> mProductsMap = new HashMap<>();
     // *** Broadcast Receiver ***
     private BroadcastReceiver brReceiver = new BrReceiver();
 
@@ -255,45 +255,41 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            // Profile photo click area
-            case R.id.profile_photo_click_area:
-                if (DropboxAccountManager.isLoggedIn(this)) {
-                    if (profilePhotoFile.exists()) {
-                        startProfilePhotoActivity();
-                    } else {
-                        showPhotoChooser();
-                    }
+        int viewId = view.getId();
+
+        // Profile photo click area
+        if (viewId == R.id.profile_photo_click_area) {
+            if (DropboxAccountManager.isLoggedIn(this)) {
+                if (profilePhotoFile.exists()) {
+                    startProfilePhotoActivity();
+                } else {
+                    showPhotoChooser();
                 }
-                break;
+            }
+        }
 
-            // Sign out
-            case R.id.user_sign_out_button:
-                showSignOutConfirmDialog();
-                break;
+        // Sign out
+        else if (viewId == R.id.user_sign_out_button) {
+            showSignOutConfirmDialog();
+        }
 
-            // Dropbox connect
-            case R.id.dropbox_connect_button:
-                if (!DropboxAccountManager.isLoggedIn(this)) {
-                    // Start Dropbox authentication
-                    DropboxAccountManager.link(this);
-                }
-                break;
+        // Dropbox connect
+        else if (viewId == R.id.dropbox_connect_button) {
+            if (!DropboxAccountManager.isLoggedIn(this)) {
+                // Start Dropbox authentication
+                DropboxAccountManager.link(this);
+            }
+        }
 
-            // Dropbox unlink
-            case R.id.dropbox_disconnect_button:
-                showDropboxUnlinkConfirmDialog();
-                break;
+        // Dropbox unlink
+        else if (viewId == R.id.dropbox_disconnect_button) {
+            showDropboxUnlinkConfirmDialog();
+        }
 
-            // Sync container
-            case R.id.sync_status_container:
-                DropboxLocalHelper.clearAllFolderCursors();
-                restartSync();
-
-                break;
-
-            default:
-                break;
+        // Sync container
+        else if (viewId == R.id.sync_status_container) {
+            DropboxLocalHelper.clearAllFolderCursors();
+            restartSync();
         }
     }
 
@@ -670,14 +666,14 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
     }
 
     @Override
-    public void onAvailableProductsResponse(List<SkuDetails> availableProductsSkuList) {
+    public void onAvailableProductsResponse(List<ProductDetails> availableProductsSkuList) {
         AppLog.e("Available products count -> " + availableProductsSkuList.size());
 
-        for (SkuDetails skuDetails : availableProductsSkuList) {
-            AppLog.e("Product -> " + skuDetails);
-            String skuProductID = skuDetails.getSku();
-            if (mProductsMap.get(skuProductID) == null) {
-                mProductsMap.put(skuProductID, skuDetails);
+        for (ProductDetails productDetails : availableProductsSkuList) {
+            AppLog.e("Product -> " + productDetails);
+            String productId = productDetails.getProductId();
+            if (mProductsMap.get(productId) == null) {
+                mProductsMap.put(productId, productDetails);
             }
 
         }
@@ -697,9 +693,9 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
         if (purchasesList.size() > 0) {
             // PURCHASES FOUND
             for (Purchase purchase : purchasesList) {
-                AppLog.e(purchase.getSkus().get(0) + " -> " + purchase);
+                AppLog.e(purchase.getProducts().get(0) + " -> " + purchase);
 
-                SkuDetails skuDetails = mProductsMap.get(purchase.getSkus().get(0));
+                ProductDetails productDetails = mProductsMap.get(purchase.getProducts().get(0));
 
                 if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
                     // Acknowledge the purchase if it hasn't already been acknowledged.
@@ -714,7 +710,7 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
 
                     //  If signed in Send payment transaction information (purchased or canceled/refunded) to API
                     if (MyApp.getInstance().userMgr.isSignedIn()) {
-                        PaymentUtils.sendGoogleInAppPaymentToAPI(purchase, skuDetails);
+                        PaymentUtils.sendGoogleInAppPaymentToAPI(purchase, productDetails);
                     }
                 } else {
                     if (MyApp.getInstance().userMgr.isSignedIn()) {

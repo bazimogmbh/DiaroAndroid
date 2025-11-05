@@ -134,19 +134,22 @@ public class BackupRestoreActivity extends TypeActivity {
             return true;
         }
 
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                finish();
-                return true;
+        int itemId = item.getItemId();
 
-            // Backup
-            case R.id.item_backup:
-                showCreateBackupDialog();
-                return true;
+        // Back
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
 
-            default:
-                return super.onOptionsItemSelected(item);
+        // Backup
+        else if (itemId == R.id.item_backup) {
+            showCreateBackupDialog();
+            return true;
+        }
+
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -155,28 +158,26 @@ public class BackupRestoreActivity extends TypeActivity {
         super.onActivityResult(requestCode, resultCode, data);
         AppLog.e("requestCode: " + requestCode + ", resultCode: " + resultCode);
 
-        switch (requestCode) {
-            // Result from Sign in activity
-            case Static.REQUEST_SIGN_IN:
-                if (resultCode == RESULT_OK) {
-                    if (tabsViewPager.getCurrentItem() == TAB_DROPBOX) {
-                        if (DropboxAccountManager.isLoggedIn(this)) {
-                            // Get backup files list
-                            getCurrentFragmentTab().getBackupFilesList();
-                        }
-                    }
-                }
-                break;
-
-            // Result from Profile activity
-            case Static.REQUEST_PROFILE:
+        // Result from Sign in activity
+        if (requestCode == Static.REQUEST_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
                 if (tabsViewPager.getCurrentItem() == TAB_DROPBOX) {
                     if (DropboxAccountManager.isLoggedIn(this)) {
                         // Get backup files list
                         getCurrentFragmentTab().getBackupFilesList();
                     }
                 }
-                break;
+            }
+        }
+
+        // Result from Profile activity
+        else if (requestCode == Static.REQUEST_PROFILE) {
+            if (tabsViewPager.getCurrentItem() == TAB_DROPBOX) {
+                if (DropboxAccountManager.isLoggedIn(this)) {
+                    // Get backup files list
+                    getCurrentFragmentTab().getBackupFilesList();
+                }
+            }
         }
     }
 
