@@ -1,7 +1,5 @@
 package com.sandstorm.weather;
 
-import com.sanstorm.R;
-
 public class WeatherHelper {
 
     public static String STRING_CELSIUS = "°C";

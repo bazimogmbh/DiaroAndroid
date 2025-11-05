@@ -8,14 +8,15 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.pixelcrater.Diaro.R
 
-class MoodIconsAdapter(data: MutableList<MoodIconItem>) : BaseQuickAdapter<MoodIconItem, BaseViewHolder>(R.layout.item_mood_icons, data) {
+class MoodIconsAdapter(data: MutableList<MoodIconItem>) : BaseQuickAdapter<MoodIconItem, BaseViewHolder>(
+    com.sandstorm.diary.moods.R.layout.item_mood_icons, data) {
 
     override fun convert(holder: BaseViewHolder, item: MoodIconItem) {
         holder.setImageResource(R.id.iv_icon, item.iconResID)
 
         if (item.isSelected) {
             ImageViewCompat.setImageTintList((holder.getView(R.id.iv_icon) as ImageView), ColorStateList.valueOf(item.color))
-            holder.setBackgroundResource(R.id.iv_icon, R.drawable.shape_border)
+            holder.setBackgroundResource(R.id.iv_icon, com.sandstorm.diary.moods.R.drawable.shape_border)
 
             // (holder.getView(R.id.iv_icon) as ImageView).background.setColorFilter(item.selectedColor, android.graphics.PorterDuff.Mode.SRC_OVER);
             //  (holder.getView(R.id.iv_icon) as ImageView).setColorFilter(item.selectedColor, android.graphics.PorterDuff.Mode.SRC_ATOP);

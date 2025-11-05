@@ -165,18 +165,22 @@ public class FolderSelectDialog extends DialogFragment implements LoaderManager.
         PopupMenu popupMenu = new PopupMenu(getActivity(), v);
         popupMenu.getMenuInflater().inflate(R.menu.popupmenu_folder, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Edit folder
-                case R.id.edit:
-                    startFolderAddEditActivity(folderUid);
-                    return true;
+            int itemId = item.getItemId();
 
-                // Delete folder
-                case R.id.delete:
-                    showFolderDeleteConfirmDialog(folderUid);
-                    return true;
-                default:
-                    return false;
+            // Edit folder
+            if (itemId == R.id.edit) {
+                startFolderAddEditActivity(folderUid);
+                return true;
+            }
+
+            // Delete folder
+            else if (itemId == R.id.delete) {
+                showFolderDeleteConfirmDialog(folderUid);
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 

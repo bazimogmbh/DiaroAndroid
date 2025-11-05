@@ -1,10 +1,7 @@
 package com.pixelcrater.Diaro.main;
 
-import static com.pixelcrater.Diaro.BuildConfig.DEBUG;
-import static com.pixelcrater.Diaro.utils.Static.EXTRA_SKIP_SC;
-import static com.pixelcrater.Diaro.utils.Static.REQUEST_GET_PRO;
+import static androidx.databinding.adapters.ViewGroupBindingAdapter.setListener;
 
-import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,12 +17,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
@@ -35,18 +30,19 @@ import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.PendingPurchasesParams;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.permissionx.guolindev.PermissionX;
-import com.permissionx.guolindev.callback.RequestCallback;
 import com.pixelcrater.Diaro.MyApp;
 import com.pixelcrater.Diaro.R;
 import com.pixelcrater.Diaro.activitytypes.TypeSlidingActivity;
@@ -56,7 +52,6 @@ import com.pixelcrater.Diaro.asynctasks.SelectAllEntriesAsync;
 import com.pixelcrater.Diaro.atlas.AtlasFragment;
 import com.pixelcrater.Diaro.config.GlobalConstants;
 import com.pixelcrater.Diaro.config.Prefs;
-import com.pixelcrater.Diaro.config.RemoteConfig;
 import com.pixelcrater.Diaro.entries.async.DeleteEntriesAsync;
 import com.pixelcrater.Diaro.entries.async.UndoArchiveEntriesAsync;
 import com.pixelcrater.Diaro.entries.viewedit.EntryViewEditActivity;
@@ -68,6 +63,7 @@ import com.pixelcrater.Diaro.moods.MoodsAddEditActivity;
 import com.pixelcrater.Diaro.premium.PremiumActivity;
 import com.pixelcrater.Diaro.premium.billing.PaymentUtils;
 import com.pixelcrater.Diaro.profile.ProfileActivity;
+import com.pixelcrater.Diaro.profile.UserMgr;
 import com.pixelcrater.Diaro.settings.PreferencesHelper;
 import com.pixelcrater.Diaro.settings.SettingsActivity;
 import com.pixelcrater.Diaro.sidemenu.SidemenuFragment;
@@ -81,8 +77,6 @@ import com.pixelcrater.Diaro.utils.AppLaunchHelper;
 import com.pixelcrater.Diaro.utils.AppLog;
 import com.pixelcrater.Diaro.utils.GeneralUtils;
 import com.pixelcrater.Diaro.utils.Static;
-import com.stepstone.apprating.AppRatingDialog;
-import com.stepstone.apprating.listener.RatingDialogListener;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -96,8 +90,12 @@ import berlin.volders.badger.BadgeShape;
 import berlin.volders.badger.Badger;
 import berlin.volders.badger.CountBadge;
 
+import static com.pixelcrater.Diaro.BuildConfig.DEBUG;
+import static com.pixelcrater.Diaro.utils.Static.EXTRA_SKIP_SC;
+import static com.pixelcrater.Diaro.utils.Static.REQUEST_GET_PRO;
+
 public class AppMainActivity extends TypeSlidingActivity implements SidemenuFragment.OnFragmentInteractionListener, ContentFragment.OnFragmentInteractionListener,
-        SelectAllEntriesAsync.OnAsyncInteractionListener, CheckIfAllEntriesExistAsync.OnAsyncInteractionListener, RatingDialogListener, SharedPreferences.OnSharedPreferenceChangeListener {
+        SelectAllEntriesAsync.OnAsyncInteractionListener, CheckIfAllEntriesExistAsync.OnAsyncInteractionListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final IntentFilter actionTimeIntentFilter;
 
@@ -135,90 +133,92 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
     private int menuToChoose = R.menu.menu_main;
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
-        switch (item.getItemId()) {
+        int itemId = item.getItemId();
 
-            case R.id.item_entires:
-                activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), R.string.entries);
-                menuToChoose = R.menu.menu_main;
-                invalidateOptionsMenu();
+        if (itemId == R.id.item_entires) {
+            activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), R.string.entries);
+            menuToChoose = R.menu.menu_main;
+            invalidateOptionsMenu();
 
-                currentFragment = getSupportFragmentManager().findFragmentByTag("item_entires");
-                if (currentFragment == null) {
-                    AppLog.e("currentFragment was null");
-                    currentFragment = new ContentFragment();
-                } else
-                    AppLog.e("currentFragment was found");
+            currentFragment = getSupportFragmentManager().findFragmentByTag("item_entires");
+            if (currentFragment == null) {
+                AppLog.e("currentFragment was null");
+                currentFragment = new ContentFragment();
+            } else
+                AppLog.e("currentFragment was found");
 
-                contentFragment = (ContentFragment) currentFragment;
+            contentFragment = (ContentFragment) currentFragment;
 
-                fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, currentFragment, "item_entires");
-                fragmentTransaction.addToBackStack("item_entires");
-                fragmentTransaction.commit();
-                return true;
-
-            case R.id.item_stats:
-                if (actionMode != null) {
-                    finishActionMode();
-                }
-
-                activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), R.string.stats);
-                menuToChoose = R.menu.menu_share;
-                invalidateOptionsMenu();
-
-                currentFragment = getSupportFragmentManager().findFragmentByTag("item_stats");
-                if (currentFragment == null)
-                    currentFragment = new StatsFragment();
-                fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, currentFragment, "item_stats");
-                fragmentTransaction.addToBackStack("item_stats");
-                fragmentTransaction.commit();
-
-                logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_FRAGMENT_STATS);
-                return true;
-
-            case R.id.item_atlas:
-                if (actionMode != null) {
-                    finishActionMode();
-                }
-
-                mToolbar.getMenu().clear();
-
-                activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), R.string.atlas);
-                currentFragment = getSupportFragmentManager().findFragmentByTag("item_atlas");
-                if (currentFragment == null)
-                    currentFragment = new AtlasFragment();
-                fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, currentFragment, "item_atlas");
-                fragmentTransaction.addToBackStack("item_atlas");
-                fragmentTransaction.commit();
-
-                logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_FRAGMENT_ATLAS);
-                return true;
-
-            case R.id.item_photos:
-                if (actionMode != null) {
-                    finishActionMode();
-                }
-
-                mToolbar.getMenu().clear();
-                activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), R.string.photos);
-
-                currentFragment = getSupportFragmentManager().findFragmentByTag("item_photos");
-                if (currentFragment == null) {
-                    AppLog.e("currentFragment was null");
-                    currentFragment = new MediaFragment();
-                } else
-                    AppLog.e("currentFragment was found");
-
-                fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, currentFragment, "item_photos");
-                fragmentTransaction.addToBackStack("item_photos");
-                fragmentTransaction.commit();
-
-                logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_FRAGMENT_MEDIA);
-                return true;
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, currentFragment, "item_entires");
+            fragmentTransaction.addToBackStack("item_entires");
+            fragmentTransaction.commit();
+            return true;
         }
+        else if (itemId == R.id.item_stats) {
+            if (actionMode != null) {
+                finishActionMode();
+            }
+
+            activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), R.string.stats);
+            menuToChoose = R.menu.menu_share;
+            invalidateOptionsMenu();
+
+            currentFragment = getSupportFragmentManager().findFragmentByTag("item_stats");
+            if (currentFragment == null)
+                currentFragment = new StatsFragment();
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, currentFragment, "item_stats");
+            fragmentTransaction.addToBackStack("item_stats");
+            fragmentTransaction.commit();
+
+            logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_FRAGMENT_STATS);
+            return true;
+        }
+        else if (itemId == R.id.item_atlas) {
+            if (actionMode != null) {
+                finishActionMode();
+            }
+
+            mToolbar.getMenu().clear();
+
+            activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), R.string.atlas);
+            currentFragment = getSupportFragmentManager().findFragmentByTag("item_atlas");
+            if (currentFragment == null)
+                currentFragment = new AtlasFragment();
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, currentFragment, "item_atlas");
+            fragmentTransaction.addToBackStack("item_atlas");
+            fragmentTransaction.commit();
+
+            logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_FRAGMENT_ATLAS);
+            return true;
+        }
+        else if (itemId == R.id.item_photos) {
+
+            if (actionMode != null) {
+                finishActionMode();
+            }
+
+            mToolbar.getMenu().clear();
+            activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), R.string.photos);
+
+            currentFragment = getSupportFragmentManager().findFragmentByTag("item_photos");
+            if (currentFragment == null) {
+                AppLog.e("currentFragment was null");
+                currentFragment = new MediaFragment();
+            } else
+                AppLog.e("currentFragment was found");
+
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, currentFragment, "item_photos");
+            fragmentTransaction.addToBackStack("item_photos");
+            fragmentTransaction.commit();
+
+            logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_FRAGMENT_MEDIA);
+            return true;
+        }
+
 
         return false;
     };
@@ -236,18 +236,23 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
         // Show ask to rate and follow us on Facebook dialogs
         showPromotionalDialogs();
 
-        ContextCompat.registerReceiver(this, brReceiver, new IntentFilter(Static.BR_IN_MAIN), ContextCompat.RECEIVER_EXPORTED);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(brReceiver, new IntentFilter(Static.BR_IN_MAIN), Context.RECEIVER_EXPORTED);
+        } else {
+            registerReceiver(brReceiver, new IntentFilter(Static.BR_IN_MAIN));
+        }
+
         restoreDialogListeners(savedInstanceState);
-        ContextCompat.registerReceiver(this, timeChangedReceiver, actionTimeIntentFilter, ContextCompat.RECEIVER_EXPORTED);
+        registerReceiver(timeChangedReceiver, actionTimeIntentFilter);
 
         // check after usage
-        int resetAfterUsageCount = 5;
+        int resetAfterUsageCount = 8;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor prefsEditor = prefs.edit();
 
         String prefString = "__appusagecount__";
         int appUsageCount = prefs.getInt(prefString, 0);
-
+        AppLog.e(appUsageCount + " :D ");
         // appUsageCount = 0 ; // test
         if (appUsageCount == 0) {
             prefsEditor.putInt(prefString, ++appUsageCount).apply();
@@ -261,20 +266,18 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
                 prefsEditor.putInt(prefString, ++appUsageCount).apply();
         }
 
+        fixAccount();
         checkIAP();
         fetchRemoteConfig();
 
         if (appUsageCount == 2) {
+            // if (!Static.isProUser())
+            //   downloadMoney();
 
             if (!Static.isProUser()) {
-                FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-                boolean showPremiumStart = mFirebaseRemoteConfig.getBoolean(RemoteConfig.SHOW_PREMIUM_START);
-                if (showPremiumStart) {
-                    Intent intent = new Intent(this, PremiumActivity.class);
-                    intent.putExtra(EXTRA_SKIP_SC, true);
-                    startActivityForResult(intent, REQUEST_GET_PRO);
-                }
-
+                Intent intent = new Intent(this, PremiumActivity.class);
+                intent.putExtra(EXTRA_SKIP_SC, true);
+                startActivityForResult(intent, REQUEST_GET_PRO);
             }
 
         }
@@ -284,8 +287,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
             AppLaunchHelper.changeBackupFilesDirOnce(AppMainActivity.this);
         }
-
-        askNotificationPermission();
     }
 
     private void fetchRemoteConfig() {
@@ -294,8 +295,54 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         boolean updated = task.getResult();
+                        AppLog.e("Config params updated: " + updated);
                     }
                 });
+    }
+
+    private void fixAccount() {
+        // only once
+        String prefString = "fixAccount";
+        SharedPreferences preferences = MyApp.getInstance().prefs;
+        if (!preferences.getBoolean(prefString, false)) {
+            if (MyApp.getInstance().userMgr.isSignedIn()) {
+                AppLog.e(MyApp.getInstance().userMgr.getSignedInEmail() + ", " + MyApp.getInstance().userMgr.getSignedInAccountType());
+
+                if (StringUtils.equals(MyApp.getInstance().userMgr.getSignedInAccountType(), UserMgr.SIGNED_IN_WITH_GOOGLE)) {
+                    GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+                    handleSignInResult(account);
+                } else {
+                    // MyApp.getInstance().asyncsMgr.executeSignInAsync(AppMainActivity.this, email, password, "", "", "", "", "");
+                }
+            }
+
+            preferences.edit().putBoolean(prefString, true).apply();
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInAccount acct) {
+        if (acct == null) return;
+        // Signed in successfully, show authenticated UI.
+        String email = acct.getEmail();
+        String googleId = acct.getId();
+        String fullName = acct.getDisplayName();
+        String name = acct.getGivenName();
+        String surname = acct.getFamilyName();
+        String gender = "";
+        String birthday = "";
+        String imageUrl = acct.getPhotoUrl() == null ? "" : acct.getPhotoUrl().getPath();
+
+        if (name == null && fullName != null) {
+            name = fullName;
+        }
+
+        googleId = (googleId == null) ? "" : googleId;
+        name = (name == null) ? "" : name;
+        imageUrl = (imageUrl == null) ? "" : imageUrl;
+
+        AppLog.e("email: " + email + ", googleId: " + googleId + ", name: " + name + ", imageUrl: " + imageUrl);
+
+        MyApp.getInstance().asyncsMgr.executeSignInAsync(AppMainActivity.this, email, "", googleId, name, surname, gender, birthday);
     }
 
     private void notifyBuyPro() {
@@ -320,6 +367,36 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
                     }).show();
         }
 
+    }
+
+    private void downloadMoney() {
+        // only once
+        String prefString = "downloadMoney";
+        SharedPreferences preferences = MyApp.getInstance().prefs;
+        if (!preferences.getBoolean(prefString, false)) {
+
+            String title = "Money Manager";
+            String msg = "Try our finances app for Free!";
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(msg).setTitle(title);
+            builder.setIcon(R.drawable.wim_money);
+
+            builder.setPositiveButton("Play Store", (dialog1, id) -> {
+                final String appPackageName = "com.mountform.wimm";
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+            });
+            builder.setNegativeButton(android.R.string.no, (dialog12, id) -> {
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            preferences.edit().putBoolean(prefString, true).apply();
+        }
     }
 
     // notify user about dropbox quota full
@@ -447,72 +524,72 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
             return true;
         }
 
-        switch (item.getItemId()) {
-            // Search
-            case R.id.item_search:
-                startSearch();
-                return true;
+        int itemId = item.getItemId();
 
-            // Multi select
-            case R.id.item_multiselect:
-                if (contentFragment != null)
-                    contentFragment.turnOnMultiSelectMode();
-                return true;
-
-            // Sort
-            case R.id.item_sort:
-                if (contentFragment != null)
-                    contentFragment.showSortDialog();
-                return true;
-
-            // All photos
-            case R.id.item_photos:
-                Static.startAllPhotosActivity(AppMainActivity.this, activityState);
-                return true;
-
-            case R.id.item_on_this_day:
-                sidemenuFragment.clearAllActiveFilters();
-                Static.startOnThisDayActivity(AppMainActivity.this, activityState);
-                return true;
-
-            case R.id.item_stats:
-                Static.startStatsActivity(AppMainActivity.this, activityState);
-                return true;
-
-            case R.id.item_atlas:
-                Static.startMapsActivity(AppMainActivity.this, activityState);
-                return true;
-
-            case R.id.item_templates:
-                Static.startTemplatesActivity(AppMainActivity.this, activityState);
-                return true;
-
-            case R.id.item_diaro_web:
-                logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_DIARO_WEB);
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(GlobalConstants.DIARO_HOME_URL));
-                startActivity(browserIntent);
-                return true;
-
-            case R.id.item_settings:
-                Static.startSettingsActivity(AppMainActivity.this, activityState);
-                return true;
-
-            case R.id.item_clear_data:
-                MyApp.getInstance().storageMgr.clearAllData();
-                return true;
-
-            case R.id.item_upload_db_dbx:
-                Static.uploadDatabaseToDropbox();
-                return true;
-
-            // Share
-            case R.id.item_share:
-                GeneralUtils.shareBitmap(this, R.id.layout_container, "Diaro Stats");
-                return true;
-
-
-            default:
-                return super.onOptionsItemSelected(item);
+        // Search
+        if (itemId == R.id.item_search) {
+            startSearch();
+            return true;
+        }
+        // Multi select
+        else if (itemId == R.id.item_multiselect) {
+            if (contentFragment != null)
+                contentFragment.turnOnMultiSelectMode();
+            return true;
+        }
+        // Sort
+        else if (itemId == R.id.item_sort) {
+            if (contentFragment != null)
+                contentFragment.showSortDialog();
+            return true;
+        }
+        // All photos
+        else if (itemId == R.id.item_photos) {
+            Static.startAllPhotosActivity(AppMainActivity.this, activityState);
+            return true;
+        }
+        else if (itemId == R.id.item_on_this_day) {
+            sidemenuFragment.clearAllActiveFilters();
+            Static.startOnThisDayActivity(AppMainActivity.this, activityState);
+            return true;
+        }
+        else if (itemId == R.id.item_stats) {
+            Static.startStatsActivity(AppMainActivity.this, activityState);
+            return true;
+        }
+        else if (itemId == R.id.item_atlas) {
+            Static.startMapsActivity(AppMainActivity.this, activityState);
+            return true;
+        }
+        else if (itemId == R.id.item_templates) {
+            Static.startTemplatesActivity(AppMainActivity.this, activityState);
+            return true;
+        }
+        else if (itemId == R.id.item_diaro_web) {
+            logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_DIARO_WEB);
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(GlobalConstants.DIARO_HOME_URL));
+            startActivity(browserIntent);
+            return true;
+        }
+        else if (itemId == R.id.item_settings) {
+            Static.startSettingsActivity(AppMainActivity.this, activityState);
+            return true;
+        }
+        else if (itemId == R.id.item_clear_data) {
+            MyApp.getInstance().storageMgr.clearAllData();
+            return true;
+        }
+        else if (itemId == R.id.item_upload_db_dbx) {
+            Static.uploadDatabaseToDropbox();
+            return true;
+        }
+        // Share
+        else if (itemId == R.id.item_share) {
+            GeneralUtils.shareBitmap(this, R.id.layout_container, "Diaro Stats");
+            return true;
+        }
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -598,7 +675,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         if (actionMode != null) {
             finishActionMode();
         } else if (drawerLayout != null && drawerLayout.isDrawerVisible(menuFrame)) {
@@ -670,6 +746,7 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
     }
 
     private void showUndoDeleteEntries(String serializedUids) {
+        AppLog.d("serializedUids: " + serializedUids);
         final ArrayList<String> entriesUids = serializedUids.equals("") ? new ArrayList<>() : new ArrayList<>(Arrays.asList(serializedUids.split(",")));
         Snackbar mySnackbar = Snackbar.make(findViewById(R.id.content_frame), R.string.deleted, Snackbar.LENGTH_LONG);
         mySnackbar.setAction(R.string.undo_delete, new MyUndoListener(entriesUids));
@@ -699,7 +776,7 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
         int appOpenedTimesFromPrefs = MyApp.getInstance().prefs.getInt(Prefs.PREF_APP_OPENED_COUNTER, 0);
         if (appOpenedTimesFromPrefs == 3) {
-            showAskToRateDialog();
+
         }
 
         String prefString = "isGooglePlayRated";
@@ -736,14 +813,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
             }
 
         });
-    }
-
-    private void showAskToRateDialog() {
-        String title = getString(R.string.rate_app_summary) + "!";
-        new AppRatingDialog.Builder().setPositiveButtonText(R.string.rate_app).setNegativeButtonText(R.string.later).setNeutralButtonText(R.string.never).setDefaultRating(5).setNumberOfStars(5)
-                .setTitle(title).setDescription(R.string.rate_description).setCommentInputEnabled(false).setStarColor(R.color.starColor).setNoteDescriptionTextColor(R.color.primary_text).setTitleTextColor(R.color.primary_text)
-                .setDescriptionTextColor(R.color.md_grey_700).setCommentTextColor(R.color.commentTextColor).setCommentBackgroundColor(R.color.ratebackgroundColor).setWindowAnimation(R.style.MyDialogFadeAnimation)
-                .setCancelable(false).setCanceledOnTouchOutside(false).create(this).show();
     }
 
     private void showFollowUsOnFacebookDialog() {
@@ -1023,7 +1092,14 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
     private void checkIAP() {
 
-        mBillingClient = BillingClient.newBuilder(this).enablePendingPurchases().
+        mBillingClient = BillingClient.newBuilder(this)
+
+                .enablePendingPurchases(
+                        PendingPurchasesParams.newBuilder()
+                                .enableOneTimeProducts()
+                                .build()
+                ).
+
                 setListener((billingResult, purchases) -> {
                     AppLog.e("onPurchasesUpdated" + billingResult);
                     if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
@@ -1040,136 +1116,11 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
         mBillingClient.startConnection(new BillingClientStateListener() {
             @Override
-            public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
-                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-
-                    // ONE TIME PURCHASE
-
-                    mBillingClient.queryPurchasesAsync(BillingClient.SkuType.INAPP, (billingResult1, purchasesList) -> {
-                        if (billingResult1.getResponseCode() == BillingClient.BillingResponseCode.OK){
-                            for (Purchase purchase : purchasesList) {
-                                AppLog.e("The IAP purchases" + purchase.toString());
-
-                                DateTime date = new DateTime(purchase.getPurchaseTime());
-                                 AppLog.e("The IAP purchases" + purchase.toString());
-                                  AppLog.e("Purchase year" + date.getYear());
-                                proPurchaseYear = date.getYear();
-
-                                String orderID = purchase.getOrderId();
-                                if (StringUtils.isEmpty(orderID)) {
-                                    // Its a google play nbo
-                                    Static.turnOnPlayNboSubscription();
-                                } else {
-                                    Static.turnOffPlayNboSubscription();
-                                }
-
-                                if (!purchase.isAcknowledged()) {
-                                    acknowledgePurchase(purchase.getPurchaseToken());
-                                } else {
-                                    AppLog.e("Purchase is acknowledged!");
-                                }
-
-                                if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                                    Static.turnOnPro();
-                                } else {
-                                    if (MyApp.getInstance().userMgr.isSignedIn()) {
-                                        MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
-                                    } else {
-                                        Static.turnOffPro();
-                                    }
-                                }
+            public void onBillingSetupFinished(BillingResult billingResult) {
 
 
-                            }
-                        } });
-
-                    // SUBSCRIPTIONS
-                    mBillingClient.queryPurchasesAsync(BillingClient.SkuType.SUBS, (billingResult2, purchasesSubList) -> {
-                        if (billingResult2.getResponseCode() == BillingClient.BillingResponseCode.OK){
-                            if (purchasesSubList != null) {
-                                for (Purchase purchase : purchasesSubList) {
-                                    AppLog.e("The Subscription purchases" + purchase.toString());
-
-                                    if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                                        if (!purchase.isAcknowledged()) {
-                                            acknowledgePurchase(purchase.getPurchaseToken());
-                                        }
-
-                                        String orderID = purchase.getOrderId();
-                                        if (StringUtils.isEmpty(orderID)) {
-                                            // Its a google play nbo
-                                            Static.turnOnPlayNboSubscription();
-                                        } else {
-                                            Static.turnOffPlayNboSubscription();
-                                        }
-                                    }
-
-                                    if (GlobalConstants.activeSubscriptionsList.contains(purchase.getSkus().get(0))) {
-                                        if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                                            if (!Static.isSubscribedCurrently()) {
-                                                Static.turnOnSubscribedCurrently();
-                                            }
-
-                                            // Just send payment info once for each order id!
-                                            String prefString = "send_subsinfo_to_server" + purchase.getOrderId();
-                                            SharedPreferences preferences = MyApp.getInstance().prefs;
-                                            if (!preferences.getBoolean(prefString, false)) {
-                                                if (MyApp.getInstance().userMgr.isSignedIn()) {
-                                                    ArrayList<String> queryList = new ArrayList<String>();
-
-                                                    queryList.add(purchase.getSkus().get(0));
-
-                                                    SkuDetailsParams inAppsParams = SkuDetailsParams.newBuilder().setType(BillingClient.SkuType.SUBS).setSkusList(queryList).build();
-                                                    mBillingClient.querySkuDetailsAsync(inAppsParams, (billingResult1, list) -> {
-                                                        try {
-                                                            if (list != null) {
-                                                                SkuDetails skuDetails = list.get(0);
-                                                                PaymentUtils.sendGoogleInAppPaymentToAPI(purchase, skuDetails);
-                                                            }
-
-                                                        } catch (Exception ignored) {
-
-                                                        }
-                                                    });
-                                                }
-
-                                                preferences.edit().putBoolean(prefString, true).apply();
-                                            }
-
-                                        } else {
-                                            if (MyApp.getInstance().userMgr.isSignedIn()) {
-                                                MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
-                                            } else {
-                                                Static.turnOffSubscribedCurrently();
-                                            }
-                                        }
-                                    }
-
-                                }
-
-                            }
-                        }
-                    });
-
-                    // NO PURCHASES FOUND
-                    if (!Static.isProUser()) {
-                        AppLog.i(" No purchases found");
-                        // Get purchase info from server
-                        if (MyApp.getInstance().userMgr.isSignedIn()) {
-                            MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
-                        } else {
-                            Static.turnOffPro();
-                            Static.turnOffSubscribedCurrently();
-                            Static.turnOffPlayNboSubscription();
-                        }
-                    } else {
-                        AppLog.i("Purchases found-> Pro: " + Static.isPro() + ", SubscribedYearly: " + Static.isSubscribedCurrently());
-                        // User is Pro but does not have a subscription yet, ask him to upgrade to subscription
-                        askBuyProYearly();
-                    }
-
-                }
             }
+
             @Override
             public void onBillingServiceDisconnected() {
                 // Try to restart the connection on the next request to Google Play by calling the startConnection() method.
@@ -1178,6 +1129,7 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
     }
 
     public void acknowledgePurchase(String purchaseToken) {
+
         AcknowledgePurchaseParams params = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchaseToken).build();
         mBillingClient.acknowledgePurchase(params, billingResult -> {
             int responseCode = billingResult.getResponseCode();
@@ -1189,14 +1141,15 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
     // show this dialog only once, if user has pro but is not subscribed to yearly subscription
     private void askBuyProYearly() {
-        String prefString = "askBuyProYearly_30Dec23";
+        String prefString = "askBuyProYearly_____";
         SharedPreferences preferences = MyApp.getInstance().prefs;
         if (!preferences.getBoolean(prefString, false)) {
-            int askYearBefore = 2022;
+            int askYearBefore = 2019;
             // show buy pro & sync for non pro, signed in users
             if (Static.isPro() && !Static.isSubscribedCurrently() && proPurchaseYear < askYearBefore) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(getString(R.string.diaro_needs_help_text, proPurchaseYear)).setTitle(getString(R.string.diaro_needs_help));
+
                 builder.setPositiveButton(android.R.string.ok, (dialog1, id) -> {
                     Intent intent = new Intent(AppMainActivity.this, PremiumActivity.class);
                     startActivity(intent);
@@ -1213,23 +1166,7 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
     }
 
-    @Override
-    public void onPositiveButtonClicked(int rate, String comment) {
-        if (rate > 3) {
-            GeneralUtils.openMarket(AppMainActivity.this);
-        } else {
-            GeneralUtils.sendSupportEmail(this);
-        }
-    }
 
-    @Override
-    public void onNegativeButtonClicked() {
-        MyApp.getInstance().prefs.edit().putInt(Prefs.PREF_APP_OPENED_COUNTER, 0).apply();
-    }
-
-    @Override
-    public void onNeutralButtonClicked() {
-    }
 
     private class BrReceiver extends BroadcastReceiver {
         @Override
@@ -1301,14 +1238,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
         if (currentFragment != null && currentFragment.getTag() != null) {
             getSupportFragmentManager().putFragment(outState, currentFragment.getTag(), currentFragment);
-        }
-    }
-
-    private void askNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        PermissionX.init(this)
-                .permissions(Manifest.permission.POST_NOTIFICATIONS)
-                .request((allGranted, grantedList, deniedList) -> AppLog.e("NotificationPermission granted"));
         }
     }
 

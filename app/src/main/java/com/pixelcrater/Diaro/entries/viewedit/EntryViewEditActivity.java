@@ -421,102 +421,118 @@ public class EntryViewEditActivity extends TypeActivity implements LoaderCallbac
 //		viewPager.setCurrentItem(viewPager.getCurrentItem(), false);
 
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                exitActivity(false);
-                return true;
+        int itemId = item.getItemId();
 
-            // Add photo
-            case R.id.item_add_photo:
-                showFullscreenAd();
-                currentEntryFragment.showAddPhotoOptionsDialog();
-                return true;
+        // Back
+        if (itemId == android.R.id.home) {
+            exitActivity(false);
+            return true;
+        }
 
-            // Edit
-            case R.id.item_edit:
-                currentEntryFragment.turnOnEditMode(currentEntryFragment.entryTitleEditText, 0);
-                return true;
+        // Add photo
+        else if (itemId == R.id.item_add_photo) {
+            showFullscreenAd();
+            currentEntryFragment.showAddPhotoOptionsDialog();
+            return true;
+        }
 
-            // Fullscreen
-            case R.id.item_fullscreen:
-                currentEntryFragment.turnOnFullscreen();
-                return true;
+        // Edit
+        else if (itemId == R.id.item_edit) {
+            currentEntryFragment.turnOnEditMode(currentEntryFragment.entryTitleEditText, 0);
+            return true;
+        }
 
-            // Select Weather
-            case R.id.item_weather:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_WEATHER);
-                currentEntryFragment.showWeatherAlertOptions();
-                return true;
+        // Fullscreen
+        else if (itemId == R.id.item_fullscreen) {
+            currentEntryFragment.turnOnFullscreen();
+            return true;
+        }
 
-            // Duplicate
-            case R.id.item_duplicate:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_DUPLICATE);
-                currentEntryFragment.showEntryDuplicateConfirmDialog();
-                return true;
+        // Select Weather
+        else if (itemId == R.id.item_weather) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_WEATHER);
+            currentEntryFragment.showWeatherAlertOptions();
+            return true;
+        }
 
-            // Share
-            case R.id.item_share:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_SHARE);
-                currentEntryFragment.shareEntry();
-                return true;
+        // Duplicate
+        else if (itemId == R.id.item_duplicate) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_DUPLICATE);
+            currentEntryFragment.showEntryDuplicateConfirmDialog();
+            return true;
+        }
 
-            // Delete
-            case R.id.item_delete:
-                currentEntryFragment.showEntryDeleteConfirmDialog();
-                return true;
+        // Share
+        else if (itemId == R.id.item_share) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_SHARE);
+            currentEntryFragment.shareEntry();
+            return true;
+        }
 
-            // Speech to txt
-            case R.id.item_dictate_txt:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_TEXT_TO_SPEECH);
-                currentEntryFragment.startTextToSpeech();
-                return true;
+        // Delete
+        else if (itemId == R.id.item_delete) {
+            currentEntryFragment.showEntryDeleteConfirmDialog();
+            return true;
+        }
 
-            // Draw
-            case R.id.item_draw:
-                currentEntryFragment.startDrawing();
-                return true;
+        // Speech to txt
+        else if (itemId == R.id.item_dictate_txt) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_TEXT_TO_SPEECH);
+            currentEntryFragment.startTextToSpeech();
+            return true;
+        }
 
-            // Read txt
-            case R.id.item_read_txt:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_SPEECH_TO_TEXT);
-                currentEntryFragment.readText();
-                return true;
+        // Draw
+        else if (itemId == R.id.item_draw) {
+            currentEntryFragment.startDrawing();
+            return true;
+        }
 
-            // Timestamp
-            case R.id.item_timestamp:
-                currentEntryFragment.appendTimestamp();
-                return true;
+        // Read txt
+        else if (itemId == R.id.item_read_txt) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_SPEECH_TO_TEXT);
+            currentEntryFragment.readText();
+            return true;
+        }
 
-            // Templates
-            case R.id.item_templates:
-                currentEntryFragment.showTemplatesDialog();
-                return true;
+        // Timestamp
+        else if (itemId == R.id.item_timestamp) {
+            currentEntryFragment.appendTimestamp();
+            return true;
+        }
 
-            // Text Recognition
-            case R.id.item_text_recognition:
-                currentEntryFragment.startTextRecognition();
-                return true;
+        // Templates
+        else if (itemId == R.id.item_templates) {
+            currentEntryFragment.showTemplatesDialog();
+            return true;
+        }
 
-            // Diaro Web
-            case R.id.item_diaro_web:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_DIARO_WEB);
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(GlobalConstants.DIARO_ENTRY_URL + currentEntryFragment.rowUid));
-                startActivity(browserIntent);
-                return true;
+        // Text Recognition
+        else if (itemId == R.id.item_text_recognition) {
+            currentEntryFragment.startTextRecognition();
+            return true;
+        }
 
-            // Print
-            case R.id.item_print:
-                if (Static.isProUser()) {
-                    currentEntryFragment.printPdf();
-                } else {
-                    Static.startProActivity(EntryViewEditActivity.this, activityState);
-                }
+        // Diaro Web
+        else if (itemId == R.id.item_diaro_web) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_DIARO_WEB);
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(GlobalConstants.DIARO_ENTRY_URL + currentEntryFragment.rowUid));
+            startActivity(browserIntent);
+            return true;
+        }
 
-                return true;
+        // Print
+        else if (itemId == R.id.item_print) {
+            if (Static.isProUser()) {
+                currentEntryFragment.printPdf();
+            } else {
+                Static.startProActivity(EntryViewEditActivity.this, activityState);
+            }
+            return true;
+        }
 
-            default:
-                return super.onOptionsItemSelected(item);
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

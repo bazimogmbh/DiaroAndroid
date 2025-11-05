@@ -139,19 +139,22 @@ public class MultiplePhotoPickerActivity extends TypeActivity {
         }
 
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                finish();
-                return true;
+        int itemId = item.getItemId();
 
-            // Save folder
-            case R.id.item_select:
-                finishSelection();
-                return true;
+        // Back
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
 
-            default:
-                return super.onOptionsItemSelected(item);
+        // Save folder
+        else if (itemId == R.id.item_select) {
+            finishSelection();
+            return true;
+        }
+
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

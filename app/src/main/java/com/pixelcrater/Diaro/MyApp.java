@@ -1,12 +1,10 @@
 package com.pixelcrater.Diaro;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
-
-import androidx.multidex.MultiDexApplication;
-
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -41,7 +39,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class MyApp extends MultiDexApplication {
+public class MyApp extends Application {
 
     private static ThreadPoolExecutor executor;
     private static MyApp instance;

@@ -7,7 +7,8 @@ import android.text.TextUtils;
 
 import androidx.core.util.Pair;
 
-import com.getkeepsafe.relinker.ReLinker;
+
+import com.pixelcrater.Diaro.BuildConfig;
 import com.pixelcrater.Diaro.MyApp;
 import com.pixelcrater.Diaro.R;
 import com.pixelcrater.Diaro.config.Prefs;
@@ -26,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import static com.pixelcrater.Diaro.config.AppConfig.USE_PLAIN_SQLITE;
 import static com.pixelcrater.Diaro.storage.Tables.KEY_ATTACHMENT_ENTRY_UID;
 import static com.pixelcrater.Diaro.storage.Tables.KEY_ENTRY_TAGS;
 import static com.pixelcrater.Diaro.storage.Tables.TABLE_ENTRIES;
@@ -43,26 +45,24 @@ public class SQLiteAdapter {
         // SQLite Cipher
         try {
             // First init the db libraries with the context
-            net.sqlcipher.database.SQLiteDatabase.loadLibs(MyApp.getInstance());
+            System.loadLibrary("sqlcipher");
 
             // Use encrypted database
             mySQLiteWrapper = new MySQLiteWrapper(sqliteMgr.getCipherEncryptedDb());
-        } catch (Error | Exception e) {
-            try {
-                ReLinker.loadLibrary(MyApp.getInstance(), "sqlcipher");
-                mySQLiteWrapper = new MySQLiteWrapper(sqliteMgr.getCipherEncryptedDb());
-            } catch (Error | Exception error) {
+
+            if (mySQLiteWrapper.isOpen()) {
+                AppLog.d("DATABASE OPENED");
+            } else {
+                AppLog.e("Database failed to open - database is closed");
+                throw new RuntimeException("Failed to open SQLCipher database - database is not open");
             }
+        } catch (Error | Exception e) {
+            AppLog.e("Error initializing database: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize SQLCipher database", e);
         }
 
-        // SQLite Android
-        if (mySQLiteWrapper == null) {
-            mySQLiteWrapper = new MySQLiteWrapper(sqliteMgr.getAndroidPlainDb());
-        }
 
-        if (mySQLiteWrapper.isOpen()) {
-            AppLog.d("DATABASE OPENED");
-        }
     }
 
     public void closeDatabase() {
@@ -76,7 +76,7 @@ public class SQLiteAdapter {
     }
 
     public String insertRow(String fullTableName, ContentValues cv) {
-
+//        AppLog.e("fullTableName: " + fullTableName + ", cv: " + cv);
         // If row with the same uid does not exist in this database table
         if (!rowExists(fullTableName, cv.getAsString(Tables.KEY_UID))) {
             try {
@@ -85,7 +85,6 @@ public class SQLiteAdapter {
                     return cv.getAsString(Tables.KEY_UID);
                 }
             } catch (Exception e) {
-                AppLog.e("fullTableName: " + fullTableName + ", cv: " + cv);
                 AppLog.e("insertRow Exception: " + e);
             }
         }
@@ -94,7 +93,7 @@ public class SQLiteAdapter {
     }
 
     public String updateRowByUid(String fullTableName, String rowUid, ContentValues cv) {
-       // AppLog.i("fullTableName: " + fullTableName + ", rowUid: " + rowUid + ", cv: " + cv);
+        AppLog.i("fullTableName: " + fullTableName + ", rowUid: " + rowUid + ", cv: " + cv);
         if (rowUid == null) {
             rowUid = "";
         }
@@ -216,7 +215,7 @@ public class SQLiteAdapter {
         truncateTable(Tables.TABLE_FOLDERS);
         truncateTable(Tables.TABLE_TAGS);
         truncateTable(Tables.TABLE_LOCATIONS);
-        // truncateTable(Tables.TABLE_MOODS);
+        truncateTable(Tables.TABLE_MOODS);
         truncateTable(Tables.TABLE_TEMPLATES);
     }
 
@@ -400,7 +399,9 @@ public class SQLiteAdapter {
         String[] whereArgs = new String[1];
         whereArgs[0] = rowUid;
 
-        Cursor cursor = mySQLiteWrapper.rawQuery("SELECT " +
+        //  AppLog.e("test" + "getSingleEntryCursorByUid");
+
+        String sqlStatement = "SELECT " +
                 "e." + BaseColumns._ID +
                 ", e." + Tables.KEY_UID +
 
@@ -425,7 +426,11 @@ public class SQLiteAdapter {
                 ", e." + Tables.KEY_ENTRY_PRIMARY_PHOTO_UID +
                 ", " + Tables.getLocalTime("e." + Tables.KEY_ENTRY_DATE) + " AS localtime" +
                 ", " + Tables.getOnlyMs("e." + Tables.KEY_ENTRY_DATE) + " AS only_ms" +
-                ", COUNT(DISTINCT(a1." + Tables.KEY_ATTACHMENT_FILENAME + ")) AS photo_count" +
+
+                ", COUNT(DISTINCT(a1." + Tables.KEY_ATTACHMENT_FILENAME + " )) AS photo_count" +
+                ", COUNT(DISTINCT(a4." + Tables.KEY_ATTACHMENT_FILENAME + " )) AS audio_count" +
+                ", COUNT(DISTINCT(a5." + Tables.KEY_ATTACHMENT_FILENAME + " )) AS docs_count" +
+
                 ", a2." + Tables.KEY_ATTACHMENT_FILENAME + " AS primary_photo_filename" +
                 ", a2." + Tables.KEY_ATTACHMENT_FILE_SYNC_ID + " AS primary_photo_file_sync_id" +
                 ", a3." + Tables.KEY_ATTACHMENT_FILENAME + " AS first_photo_filename" +
@@ -448,8 +453,14 @@ public class SQLiteAdapter {
                 " ON e." + Tables.KEY_ENTRY_LOCATION_UID + "=l." + Tables.KEY_UID +
                 " LEFT JOIN " + Tables.TABLE_MOODS + " m" +
                 " ON e." + Tables.KEY_ENTRY_MOOD_UID + "=m." + Tables.KEY_UID +
+
                 " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a1" +
                 " ON (e." + Tables.KEY_UID + "=a1." + KEY_ATTACHMENT_ENTRY_UID + " AND a1." + Tables.KEY_ATTACHMENT_TYPE + "='photo')" +
+                " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a4" +
+                " ON (e." + Tables.KEY_UID + "=a4." + KEY_ATTACHMENT_ENTRY_UID + " AND a4." + Tables.KEY_ATTACHMENT_TYPE + "='audio')" +
+                " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a5" +
+                " ON (e." + Tables.KEY_UID + "=a5." + KEY_ATTACHMENT_ENTRY_UID + " AND a5." + Tables.KEY_ATTACHMENT_TYPE + "='docs')" +
+
                 " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a2" +
                 " ON e." + Tables.KEY_ENTRY_PRIMARY_PHOTO_UID + "=a2." + Tables.KEY_UID +
                 " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a3" +
@@ -463,7 +474,11 @@ public class SQLiteAdapter {
                 " GROUP BY e." + Tables.KEY_UID +
                 " ORDER BY localtime " + getOrderBy() +
                 ", only_ms " + getOrderBy() +
-                ", e." + Tables.KEY_UID, whereArgs);
+                ", e." + Tables.KEY_UID ;
+
+        AppLog.e(sqlStatement);
+
+        Cursor cursor = mySQLiteWrapper.rawQuery(sqlStatement, whereArgs);
         cursor.moveToFirst();
         return cursor;
     }
@@ -497,7 +512,11 @@ public class SQLiteAdapter {
                 ", e." + Tables.KEY_ENTRY_PRIMARY_PHOTO_UID +
                 ", " + Tables.getLocalTime("e." + Tables.KEY_ENTRY_DATE) + " AS localtime" +
                 ", " + Tables.getOnlyMs("e." + Tables.KEY_ENTRY_DATE) + " AS only_ms" +
-                ", COUNT(DISTINCT(a1." + Tables.KEY_ATTACHMENT_FILENAME + ")) AS photo_count" +
+
+                ", COUNT(DISTINCT(a1." + Tables.KEY_ATTACHMENT_FILENAME + " )) AS photo_count" +
+                ", COUNT(DISTINCT(a4." + Tables.KEY_ATTACHMENT_FILENAME + " )) AS audio_count" +
+                ", COUNT(DISTINCT(a5." + Tables.KEY_ATTACHMENT_FILENAME + " )) AS docs_count" +
+
                 ", a2." + Tables.KEY_ATTACHMENT_FILENAME + " AS primary_photo_filename" +
                 ", a2." + Tables.KEY_ATTACHMENT_FILE_SYNC_ID + " AS primary_photo_file_sync_id" +
                 ", a3." + Tables.KEY_ATTACHMENT_FILENAME + " AS first_photo_filename" +
@@ -520,8 +539,14 @@ public class SQLiteAdapter {
                 " ON e." + Tables.KEY_ENTRY_LOCATION_UID + "=l." + Tables.KEY_UID +
                 " LEFT JOIN " + Tables.TABLE_MOODS + " m" +
                 " ON e." + Tables.KEY_ENTRY_MOOD_UID + "=m." + Tables.KEY_UID +
+
                 " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a1" +
                 " ON (e." + Tables.KEY_UID + "=a1." + KEY_ATTACHMENT_ENTRY_UID + " AND a1." + Tables.KEY_ATTACHMENT_TYPE + "='photo')" +
+                " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a4" +
+                " ON (e." + Tables.KEY_UID + "=a4." + KEY_ATTACHMENT_ENTRY_UID + " AND a4." + Tables.KEY_ATTACHMENT_TYPE + "='audio')" +
+                " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a5" +
+                " ON (e." + Tables.KEY_UID + "=a5." + KEY_ATTACHMENT_ENTRY_UID + " AND a5." + Tables.KEY_ATTACHMENT_TYPE + "='docs')" +
+
                 " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a2" +
                 " ON e." + Tables.KEY_ENTRY_PRIMARY_PHOTO_UID + "=a2." + Tables.KEY_UID +
                 " LEFT JOIN " + Tables.TABLE_ATTACHMENTS + " a3" +
@@ -538,7 +563,7 @@ public class SQLiteAdapter {
                 ", e." + Tables.KEY_UID;
 
         //        AppLog.e("cursor count-> " + cursor.getCount());
-        // AppLog.e(sqlStatement);
+        AppLog.e("test" + sqlStatement);
         return mySQLiteWrapper.rawQuery(sqlStatement, null);
     }
 
@@ -926,16 +951,16 @@ public class SQLiteAdapter {
                 null);
 
 
-      /**  if (PreferencesHelper.isMoodsEnabled()) {
+        /**  if (PreferencesHelper.isMoodsEnabled()) {
 
 
-        } else {
-            return mySQLiteWrapper.rawQuery(
-                    "SELECT 0 as " + BaseColumns._ID + ", '" + MyApp.getInstance().getString(R.string.folders) + "' as title" +
-                            " UNION SELECT 1 as " + BaseColumns._ID + ", '" + MyApp.getInstance().getString(R.string.tags) + "' as title" +
-                            " UNION SELECT 2 as " + BaseColumns._ID + ", '" + MyApp.getInstance().getString(R.string.locations) + "' as title",
-                    null);
-        } **/
+         } else {
+         return mySQLiteWrapper.rawQuery(
+         "SELECT 0 as " + BaseColumns._ID + ", '" + MyApp.getInstance().getString(R.string.folders) + "' as title" +
+         " UNION SELECT 1 as " + BaseColumns._ID + ", '" + MyApp.getInstance().getString(R.string.tags) + "' as title" +
+         " UNION SELECT 2 as " + BaseColumns._ID + ", '" + MyApp.getInstance().getString(R.string.locations) + "' as title",
+         null);
+         } **/
 
     }
 

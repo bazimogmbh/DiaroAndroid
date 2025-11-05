@@ -319,7 +319,7 @@ public class PickImageActivity extends AppCompatActivity implements View.OnClick
             }
         });
         this.layoutListItemSelect.addView(inflate);
-        inflate.startAnimation(AnimationUtils.loadAnimation(this, R.anim.abc_fade_in));
+        inflate.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
         sendScroll();
     }
 

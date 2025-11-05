@@ -82,26 +82,30 @@ public class PhotoGridActivity extends TypeActivity implements OnStorageDataChan
         // Called when the user selects a contextual menu item
         @Override
         public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.item_unselect_all:
-                    unselectAllEntries();
-                    return true;
+            int itemId = item.getItemId();
 
-                case R.id.item_select_all:
-                    selectAllEntries();
-                    return true;
+            if (itemId == R.id.item_unselect_all) {
+                unselectAllEntries();
+                return true;
+            }
 
-                case R.id.item_delete:
-                    if (getSelectedPhotosCount() == 0) {
-                        // Show error
-                        Static.showToast(getString(R.string.no_entries_selected), Toast.LENGTH_SHORT);
-                    } else {
-                        showSelectedPhotosDeleteConfirmDialog();
-                    }
-                    return true;
+            else if (itemId == R.id.item_select_all) {
+                selectAllEntries();
+                return true;
+            }
 
-                default:
-                    return false;
+            else if (itemId == R.id.item_delete) {
+                if (getSelectedPhotosCount() == 0) {
+                    // Show error
+                    Static.showToast(getString(R.string.no_entries_selected), Toast.LENGTH_SHORT);
+                } else {
+                    showSelectedPhotosDeleteConfirmDialog();
+                }
+                return true;
+            }
+
+            else {
+                return false;
             }
         }
 
@@ -248,19 +252,22 @@ public class PhotoGridActivity extends TypeActivity implements OnStorageDataChan
         }
 
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                finish();
-                return true;
+        int itemId = item.getItemId();
 
-            // Multi select
-            case R.id.item_multiselect:
-                turnOnMultiSelectMode();
-                return true;
+        // Back
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
 
-            default:
-                return super.onOptionsItemSelected(item);
+        // Multi select
+        else if (itemId == R.id.item_multiselect) {
+            turnOnMultiSelectMode();
+            return true;
+        }
+
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

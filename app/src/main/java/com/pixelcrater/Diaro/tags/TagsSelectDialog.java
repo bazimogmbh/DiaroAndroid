@@ -168,18 +168,22 @@ public class TagsSelectDialog extends DialogFragment implements LoaderManager.Lo
         popupMenu.getMenuInflater().inflate(R.menu.popupmenu_tag, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Edit tag
-                case R.id.edit:
-                    startTagAddEditActivity(tagUid);
-                    return true;
+            int itemId = item.getItemId();
 
-                // Delete tag
-                case R.id.delete:
-                    showTagDeleteConfirmDialog(tagUid);
-                    return true;
-                default:
-                    return false;
+            // Edit tag
+            if (itemId == R.id.edit) {
+                startTagAddEditActivity(tagUid);
+                return true;
+            }
+
+            // Delete tag
+            else if (itemId == R.id.delete) {
+                showTagDeleteConfirmDialog(tagUid);
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 

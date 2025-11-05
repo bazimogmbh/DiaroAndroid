@@ -1,12 +1,16 @@
 package com.pixelcrater.Diaro.storage.sqlite.helpers;
 
+import android.database.Cursor;
+
 import com.pixelcrater.Diaro.MyApp;
 import com.pixelcrater.Diaro.settings.PreferencesHelper;
 import com.pixelcrater.Diaro.config.Prefs;
 import com.pixelcrater.Diaro.utils.MyDevice;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabaseHook;
+
+import net.zetetic.database.sqlcipher.SQLiteConnection;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabaseHook;
 
 import org.apache.commons.io.FileUtils;
 
@@ -24,13 +28,17 @@ public class SQLiteMgr {
     public final static File encryptedDbFileV2 = MyApp.getInstance().getDatabasePath(DB_NAME_ENC2);
 
     SQLiteDatabaseHook hook = new SQLiteDatabaseHook() {
-        public void preKey(SQLiteDatabase database) {
+        @Override
+        public void preKey(SQLiteConnection connection) {
+
         }
 
-        public void postKey(SQLiteDatabase database) {
-           // AppLog.e("Migrating.....");
-            singleValueFromQuery(database, "PRAGMA cipher_migrate");
+        @Override
+        public void postKey(SQLiteConnection connection) {
+            //  singleValueFromQuery(database, "PRAGMA cipher_migrate");
         }
+
+
     };
 
     public SQLiteMgr() {
@@ -53,7 +61,7 @@ public class SQLiteMgr {
         return db;
     }
 
-    public net.sqlcipher.database.SQLiteDatabase getCipherEncryptedDb() {
+    public SQLiteDatabase getCipherEncryptedDb() {
 
         // upgrade the old db first , if it exists
         if (encryptedDbFileV1.exists()) {
@@ -67,20 +75,21 @@ public class SQLiteMgr {
         }
 
 
-        net.sqlcipher.database.SQLiteDatabase encryptedDbFile;
+        SQLiteDatabase encryptedDbFile;
 
-     //   AppLog.e("db path ->" + encryptedDbFileV2.getAbsolutePath());
+        //   AppLog.e("db path ->" + encryptedDbFileV2.getAbsolutePath());
 
         if (!PreferencesHelper.isMigratedToSql4()) {
             try {
-                encryptedDbFile = net.sqlcipher.database.SQLiteDatabase.openOrCreateDatabase(encryptedDbFileV2, Prefs.getFullDbEncryptionKey(), null, hook);
+
+                encryptedDbFile = SQLiteDatabase.openOrCreateDatabase(encryptedDbFileV2, Prefs.getFullDbEncryptionKey(), null, null, hook);
                 PreferencesHelper.setIsMigratedToSql4Key(true);
             } catch (Exception e) {
-                encryptedDbFile = net.sqlcipher.database.SQLiteDatabase.openOrCreateDatabase(encryptedDbFileV2, Prefs.getFullDbEncryptionKey(), null);
+                encryptedDbFile = SQLiteDatabase.openOrCreateDatabase(encryptedDbFileV2, Prefs.getFullDbEncryptionKey(), null,null);
             }
 
         } else {
-            encryptedDbFile = net.sqlcipher.database.SQLiteDatabase.openOrCreateDatabase(encryptedDbFileV2, Prefs.getFullDbEncryptionKey(), null);
+            encryptedDbFile = SQLiteDatabase.openOrCreateDatabase(encryptedDbFileV2, Prefs.getFullDbEncryptionKey(),null, null);
 
         }
 
@@ -92,20 +101,19 @@ public class SQLiteMgr {
             encryptedDbVersion = 1;
         }
 
-        SQLiteOpenHelperCipher sqliteOpenHelperCipher = new SQLiteOpenHelperCipher(encryptedDbVersion, DB_NAME_ENC2);
-        net.sqlcipher.database.SQLiteDatabase encryptedDb = sqliteOpenHelperCipher.getWritableDatabase(Prefs.getFullDbEncryptionKey());
+        SQLiteOpenHelperCipher sqliteOpenHelperCipher = new SQLiteOpenHelperCipher(encryptedDbVersion, DB_NAME_ENC2, Prefs.getFullDbEncryptionKey());
+        SQLiteDatabase encryptedDb = sqliteOpenHelperCipher.getWritableDatabase();
 
         // turn of the cipher_memory_security, very slow otherwise
         encryptedDb.execSQL("PRAGMA cipher_memory_security = OFF");
-        // encryptedDb.execSQL("VACUUM");
-        //  AppLog.e("oath ->" + encryptedDbFileV2.getAbsolutePath());
+
         return encryptedDb;
     }
 
 
     private void upgradeEncryptedDbFileFromV1ToV2() {
 
-        SQLiteDatabase cipherEncryptedDbV1 = net.sqlcipher.database.SQLiteDatabase.openOrCreateDatabase(encryptedDbFileV1, MyDevice.getInstance().deviceUid, null, hook);
+        SQLiteDatabase cipherEncryptedDbV1 = SQLiteDatabase.openOrCreateDatabase(encryptedDbFileV1, MyDevice.getInstance().deviceUid, null, null, hook);
 
         // If Cipher database is encrypted, its password can be changed
         cipherEncryptedDbV1.changePassword(Prefs.getFullDbEncryptionKey());
@@ -120,7 +128,7 @@ public class SQLiteMgr {
     }
 
     public static String singleValueFromQuery(SQLiteDatabase database, String query) {
-        net.sqlcipher.Cursor cursor = database.rawQuery(query, new String[]{});
+        Cursor cursor = database.rawQuery(query, new String[]{});
         String value = "";
         if (cursor != null) {
             cursor.moveToFirst();

@@ -196,79 +196,84 @@ public class PhotoPagerActivity extends TypeActivity implements OnStorageDataCha
         }
 
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            // Back
-            case android.R.id.home:
-                finish();
-                return true;
+        int itemId = item.getItemId();
 
-            // Show grid
-            case R.id.item_show_grid:
-                if (!openedFromPhotoGrid) {
-                    // Show all photos grid in PhotoGridActivity
-                    Intent intent = new Intent(PhotoPagerActivity.this, PhotoGridActivity.class);
-                    intent.putExtra(Static.EXTRA_SKIP_SC, true);
-                    intent.putExtra("entryUid", entryUid);
-                    startActivityForResult(intent, Static.REQUEST_PHOTO_GRID);
-                }
-                finish();
+        // Back
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
 
-                return true;
+        // Show grid
+        else if (itemId == R.id.item_show_grid) {
+            if (!openedFromPhotoGrid) {
+                // Show all photos grid in PhotoGridActivity
+                Intent intent = new Intent(PhotoPagerActivity.this, PhotoGridActivity.class);
+                intent.putExtra(Static.EXTRA_SKIP_SC, true);
+                intent.putExtra("entryUid", entryUid);
+                startActivityForResult(intent, Static.REQUEST_PHOTO_GRID);
+            }
+            finish();
+            return true;
+        }
 
-            // Set as primary
-            case R.id.item_set_as_primary:
-                String photoUid = entryPhotosArrayList.get(pager.getCurrentItem()).uid;
-                AttachmentsStatic.setPhotoAsPrimary(findViewById(R.id.layout_container), photoUid, entryUid);
-                primaryPhotoUid = photoUid;
-                supportInvalidateOptionsMenu();
-                return true;
+        // Set as primary
+        else if (itemId == R.id.item_set_as_primary) {
+            String photoUid = entryPhotosArrayList.get(pager.getCurrentItem()).uid;
+            AttachmentsStatic.setPhotoAsPrimary(findViewById(R.id.layout_container), photoUid, entryUid);
+            primaryPhotoUid = photoUid;
+            supportInvalidateOptionsMenu();
+            return true;
+        }
 
-            //Edit
-            case R.id.item_edit:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_PHOTO_EDIT);
+        //Edit
+        else if (itemId == R.id.item_edit) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_PHOTO_EDIT);
 
-                AttachmentInfo attachmentInfo = entryPhotosArrayList.get(pager.getCurrentItem());
-                Uri uri = Uri.fromFile(new File(attachmentInfo.getFilePath()));
+            AttachmentInfo attachmentInfo = entryPhotosArrayList.get(pager.getCurrentItem());
+            Uri uri = Uri.fromFile(new File(attachmentInfo.getFilePath()));
 
-                Intent intent = new Intent(this, ImageEditorActivity.class);
-                intent.putExtra(PhotoPicker.KEY_SELECTED_PHOTOS, uri.getPath());
-                startActivityForResult(intent, ImageEditorActivity.REQUEST_IMG_EDIT);
+            Intent intent = new Intent(this, ImageEditorActivity.class);
+            intent.putExtra(PhotoPicker.KEY_SELECTED_PHOTOS, uri.getPath());
+            startActivityForResult(intent, ImageEditorActivity.REQUEST_IMG_EDIT);
+            return true;
+        }
 
-                return true;
+        // Photo details
+        else if (itemId == R.id.item_rotate_left) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_PHOTO_ROTATE);
+            rotatePhotoInBackground(-90);
+            return true;
+        }
 
-            // Photo details
-            case R.id.item_rotate_left:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_PHOTO_ROTATE);
+        // Photo details
+        else if (itemId == R.id.item_rotate_right) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_PHOTO_ROTATE);
+            rotatePhotoInBackground(90);
+            return true;
+        }
 
-                rotatePhotoInBackground(-90);
-                return true;
+        // Photo details
+        else if (itemId == R.id.item_details) {
+            activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_PHOTO_DETAILS_VIEW);
+            showPhotoDetailsDialog();
+            return true;
+        }
 
-            // Photo details
-            case R.id.item_rotate_right:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_PHOTO_ROTATE);
+        // Share photo
+        else if (itemId == R.id.item_share) {
+            sharePhoto();
+            return true;
+        }
 
-                rotatePhotoInBackground(90);
-                return true;
+        // Delete
+        else if (itemId == R.id.item_delete) {
+            showDeletePhotoConfirmation();
+            return true;
+        }
 
-            // Photo details
-            case R.id.item_details:
-                activityState.logAnalyticsEvent(AnalyticsConstants.EVENT_LOG_PHOTO_DETAILS_VIEW);
-
-                showPhotoDetailsDialog();
-                return true;
-
-            // Share photo
-            case R.id.item_share:
-                sharePhoto();
-                return true;
-
-            // Delete
-            case R.id.item_delete:
-                showDeletePhotoConfirmation();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

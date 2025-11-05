@@ -409,29 +409,26 @@ public class CalendarView extends LinearLayout implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.previous_month:
-                setVisibleDt(visibleDt.minusMonths(1));
-                break;
+        int viewId = v.getId();
 
-            case R.id.next_month:
-                setVisibleDt(visibleDt.plusMonths(1));
-                break;
+        if (viewId == R.id.previous_month) {
+            setVisibleDt(visibleDt.minusMonths(1));
+        }
 
-            case R.id.previous_year:
-                setVisibleDt(visibleDt.minusYears(1));
-                break;
+        else if (viewId == R.id.next_month) {
+            setVisibleDt(visibleDt.plusMonths(1));
+        }
 
-            case R.id.next_year:
-                setVisibleDt(visibleDt.plusYears(1));
-                break;
+        else if (viewId == R.id.previous_year) {
+            setVisibleDt(visibleDt.minusYears(1));
+        }
 
-            case R.id.today:
-                setVisibleDt(null);
-                break;
+        else if (viewId == R.id.next_year) {
+            setVisibleDt(visibleDt.plusYears(1));
+        }
 
-            default:
-                break;
+        else if (viewId == R.id.today) {
+            setVisibleDt(null);
         }
     }
 

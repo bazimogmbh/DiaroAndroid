@@ -171,18 +171,22 @@ public class LocationSelectDialog extends DialogFragment implements LoaderManage
         popupMenu.getMenuInflater().inflate(R.menu.popupmenu_location, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                // Edit location
-                case R.id.edit:
-                    startLocationAddEditActivity(locationUid);
-                    return true;
+            int itemId = item.getItemId();
 
-                // Delete location
-                case R.id.delete:
-                    showLocationDeleteConfirmDialog(locationUid);
-                    return true;
-                default:
-                    return false;
+            // Edit location
+            if (itemId == R.id.edit) {
+                startLocationAddEditActivity(locationUid);
+                return true;
+            }
+
+            // Delete location
+            else if (itemId == R.id.delete) {
+                showLocationDeleteConfirmDialog(locationUid);
+                return true;
+            }
+
+            else {
+                return false;
             }
         });
 

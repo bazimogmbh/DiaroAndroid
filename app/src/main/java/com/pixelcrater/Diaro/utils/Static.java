@@ -672,8 +672,8 @@ public class Static {
         Intent intent = new Intent(activity, MediaActivity.class);
         intent.putExtra(Constants.IntentPassingParams.COUNT, 3);
         intent.putExtra(Constants.IntentPassingParams.TITLE, "Gallery");
-        intent.putExtra(Constants.IntentPassingParams.TOOLBAR_COLOR_ID, R.color.colorPrimary);
-        intent.putExtra(Constants.IntentPassingParams.IMG_PLACEHOLDER, R.color.colorPrimary);
+      //  intent.putExtra(Constants.IntentPassingParams.TOOLBAR_COLOR_ID, R.color.colorPrimary);
+      //  intent.putExtra(Constants.IntentPassingParams.IMG_PLACEHOLDER, R.color.colorPrimary);
         intent.putExtra(Static.EXTRA_SKIP_SC, true);
         activity.startActivityForResult(intent, REQUEST_ALL_PHOTOS);
     }

@@ -4,119 +4,66 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+
 public class MySQLiteWrapper {
-    private boolean isCipherDb;
-    private android.database.sqlite.SQLiteDatabase androidDb;
-    private net.sqlcipher.database.SQLiteDatabase cipherDb;
 
-    public MySQLiteWrapper(android.database.sqlite.SQLiteDatabase db) {
-        androidDb = db;
-        isCipherDb = false;
-    }
+    private SQLiteDatabase cipherDb;
 
-    public MySQLiteWrapper(net.sqlcipher.database.SQLiteDatabase db) {
+    public MySQLiteWrapper(SQLiteDatabase db) {
         cipherDb = db;
-        isCipherDb = true;
     }
 
     public boolean isOpen() {
-        if (isCipherDb) {
-            return cipherDb.isOpen();
-        } else {
-            return androidDb.isOpen();
-        }
+        return cipherDb.isOpen();
     }
 
     public void close() {
-        if (isCipherDb) {
-            cipherDb.close();
-        } else {
-            androidDb.close();
-        }
+        cipherDb.close();
     }
 
     public int getDbVersion() {
-        if (isCipherDb) {
-            return cipherDb.getVersion();
-        } else {
-            return androidDb.getVersion();
-        }
+        return cipherDb.getVersion();
     }
 
     public void setDbVersion(int version) {
-        if (isCipherDb) {
-            cipherDb.setVersion(version);
-        } else {
-            androidDb.setVersion(version);
-        }
+        cipherDb.setVersion(version);
     }
 
     public Cursor rawQuery(String sql, String[] selectionArgs) {
-        if (isCipherDb) {
-            return cipherDb.rawQuery(sql, selectionArgs);
-        } else {
-            return androidDb.rawQuery(sql, selectionArgs);
-        }
+        return cipherDb.rawQuery(sql, selectionArgs);
     }
 
     public void execSQL(String sql) throws SQLException {
-     //   AppLog.e("sql: " + sql);
+        //   AppLog.e("sql: " + sql);
 
-        if (isCipherDb) {
-            cipherDb.execSQL(sql);
-        } else {
-            androidDb.execSQL(sql);
-        }
+        cipherDb.execSQL(sql);
     }
 
     public void beginTransaction() {
-        if (isCipherDb) {
-            cipherDb.beginTransaction();
-        } else {
-            androidDb.beginTransaction();
-        }
+        cipherDb.beginTransaction();
     }
 
     public void endTransaction() {
-        if (isCipherDb) {
-            cipherDb.endTransaction();
-        } else {
-            androidDb.endTransaction();
-        }
+        cipherDb.endTransaction();
     }
 
     public void setTransactionSuccessful() {
-        if (isCipherDb) {
-            cipherDb.setTransactionSuccessful();
-        } else {
-            androidDb.setTransactionSuccessful();
-        }
+        cipherDb.setTransactionSuccessful();
     }
 
     public long insertOrThrow(String table, String nullColumnHack, ContentValues values)
-            throws android.database.SQLException {
+            throws SQLException {
 
-        if (isCipherDb) {
-            return cipherDb.insertOrThrow(table, nullColumnHack, values);
-        } else {
-            return androidDb.insertOrThrow(table, nullColumnHack, values);
-        }
+        return cipherDb.insertOrThrow(table, nullColumnHack, values);
     }
 
     public int update(String table, ContentValues values, String whereClause, String[] whereArgs) {
-        if (isCipherDb) {
-            return cipherDb.update(table, values, whereClause, whereArgs);
-        } else {
-            return androidDb.update(table, values, whereClause, whereArgs);
-        }
+        return cipherDb.update(table, values, whereClause, whereArgs);
     }
 
     public int delete(String table, String whereClause, String[] whereArgs) {
-        if (isCipherDb) {
-            return cipherDb.delete(table, whereClause, whereArgs);
-        } else {
-            return androidDb.delete(table, whereClause, whereArgs);
-        }
+        return cipherDb.delete(table, whereClause, whereArgs);
     }
 
     public boolean isTableExists(String table) {

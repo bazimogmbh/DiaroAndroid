@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    package="com.pixelcrater.Diaro"
     android:installLocation="internalOnly">
 
-    <uses-sdk tools:overrideLibrary="com.makeramen.dragsortadapter, com.github.ajalt.library, com.github.ajalt.reprint.module.spass , com.divyanshu.draw, com.hold1.keyboardheightprovider, com.stfalcon.imageviewer" />
+    <uses-sdk tools:overrideLibrary="com.makeramen.dragsortadapter, com.github.ajalt.library, com.divyanshu.draw, com.hold1.keyboardheightprovider, com.stfalcon.imageviewer" />
     <!-- Read/Write to SD card -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- Internet -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Detect device boot -->
@@ -17,13 +18,12 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- Marshmallow fingerprint permission -->
     <uses-permission android:name="android.permission.USE_FINGERPRINT" /> <!-- Samsung fingerprint permission, only required if you include the spass module -->
     <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" /> <!-- Maps API needs OpenGL ES 2.0. -->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- Maps API needs OpenGL ES 2.0. -->
-    <!-- <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />  -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" /> <!-- Unnecessary features -->
@@ -117,9 +117,8 @@
         </provider> <!-- ACTIVITIES -->
         <!-- Splash activity -->
         <activity
-            android:name=".main.SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:exported="true">
+            android:name=".main.SplashActivity" android:exported="true"
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -130,8 +129,9 @@
             <intent-filter>
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
-            <intent-filter android:autoVerify="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -148,14 +148,14 @@
         <activity
             android:name=".main.AppMainActivity"
             android:launchMode="singleTask"
+            android:exported="true"
             android:windowSoftInputMode="adjustNothing|stateHidden" /> <!-- Security Lock -->
         <activity
             android:name=".securitycode.SecurityCodeActivity"
             android:windowSoftInputMode="stateAlwaysHidden" /> <!-- Entry View/Edit -->
         <activity
             android:name=".entries.viewedit.EntryViewEditActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <action android:name="android.intent.action.SENDTO" />
@@ -220,8 +220,7 @@
         <!-- Dropbox SDK v2 -->
         <activity
             android:name="com.dropbox.core.android.AuthActivity"
-            android:exported="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask" android:exported="true">
             <intent-filter>
                 <data android:scheme="db-gcta3jjx84z9va0" />
 
@@ -231,11 +230,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity> <!-- Register notification Stop button Receiver -->
-        <receiver android:name=".notifications.SyncNotification$StopSyncButtonListener" android:exported="true"/> <!-- Register the Alarm Receiver -->
-        <receiver android:name=".autobackup.AutoBackupAlarmBrReceiver" android:exported="true"/> <!-- Register the Alarm Receiver -->
-        <receiver android:name=".brreceivers.TimeToWriteAlarmBrReceiver" android:exported="true"/> <!-- Register device restart Receiver -->
-        <receiver android:name=".brreceivers.DeviceRestartBrReceiver"
-            android:exported="true">
+        <receiver android:name=".notifications.SyncNotification$StopSyncButtonListener" /> <!-- Register the Alarm Receiver -->
+        <receiver android:name=".autobackup.AutoBackupAlarmBrReceiver" /> <!-- Register the Alarm Receiver -->
+        <receiver android:name=".brreceivers.TimeToWriteAlarmBrReceiver" /> <!-- Register device restart Receiver -->
+        <receiver android:name=".brreceivers.DeviceRestartBrReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -243,20 +241,18 @@
         <receiver
             android:name=".widgets.WidgetProvider1x1New"
             android:icon="@drawable/new_widget_preview"
-            android:label="Diaro - Add entry"
-            android:exported="true">
+            android:label="Diaro - Add entry" android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider_1x1_new" />
+                android:resource="@xml/widget_provider_1x1_new"  />
         </receiver> <!-- Widget 1x1 - Photo -->
         <receiver
-            android:name=".widgets.WidgetProvider1x1Photo"
+            android:name=".widgets.WidgetProvider1x1Photo" android:exported="true"
             android:icon="@drawable/photo_widget_preview"
-            android:exported="true"
             android:label="Diaro - Add photo">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -267,10 +263,9 @@
                 android:resource="@xml/widget_provider_1x1_photo" />
         </receiver> <!-- Widget 1x1 - Camera -->
         <receiver
-            android:name=".widgets.WidgetProvider1x1Camera"
+            android:name=".widgets.WidgetProvider1x1Camera" android:exported="true"
             android:icon="@drawable/camera_widget_preview"
-            android:label="Diaro - Take photo"
-            android:exported="true">
+            android:label="Diaro - Take photo">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -280,10 +275,9 @@
                 android:resource="@xml/widget_provider_1x1_camera" />
         </receiver> <!-- Widget 3x1 -->
         <receiver
-            android:name=".widgets.WidgetProvider3x1"
+            android:name=".widgets.WidgetProvider3x1" android:exported="true"
             android:icon="@drawable/ic_launcher"
-            android:label="Diaro"
-            android:exported="true">
+            android:label="Diaro">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -291,25 +285,8 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_3x1" />
-        </receiver>
+        </receiver> <!-- Amazon in-app billing -->
 
-        <!-- Trigger Google Play services to install the backported photo picker module. -->
-        <service android:name="com.google.android.gms.metadata.ModuleDependencies"
-            android:enabled="false"
-            android:exported="false"
-            tools:ignore="MissingClass">
-            <intent-filter>
-                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
-            </intent-filter>
-            <meta-data android:name="photopicker_activity:0:required" android:value="" />
-        </service>
-
-        <service
-            android:name=".storage.dropbox.SyncService"
-            android:foregroundServiceType="dataSync"
-            android:enabled="true"
-            android:exported="false"
-            android:label="Diaro Sync" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -319,12 +296,13 @@
             android:value="ca-app-pub-5690497443789842~8952908416" />
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
-            android:value="ocr,ocr_chinese,ocr_devanagari,ocr_japanese,ocr_korean" /> <!-- Services -->
-
+            android:value="ocr" /> <!-- Services -->
+        <service
+            android:name=".storage.dropbox.SyncService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync"
+            android:label="Diaro Sync" />
     </application>
-
-    <queries>
-        <package android:name="com.dropbox.android" />
-    </queries>
 
 </manifest>
