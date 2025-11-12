@@ -269,7 +269,9 @@ public class DropboxAccountManager {
 
                 // (1) Start
                 if (sessionId == null) {
-                    sessionId = dbxClient.files().uploadSessionStart().uploadAndFinish(in, CHUNKED_UPLOAD_CHUNK_SIZE).getSessionId();
+                    // Use builder pattern instead of deprecated uploadSessionStart()
+                    sessionId = dbxClient.files().uploadSessionStartBuilder()
+                        .uploadAndFinish(in, CHUNKED_UPLOAD_CHUNK_SIZE).getSessionId();
                     uploaded += CHUNKED_UPLOAD_CHUNK_SIZE;
 
                     if (progressCallback != null) {
