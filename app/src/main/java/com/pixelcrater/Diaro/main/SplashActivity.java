@@ -27,12 +27,8 @@ public class SplashActivity extends AppCompatActivity {
             Intent newIntent = new Intent(this, EntryViewEditActivity.class);
             int flags = Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
             flags |= Intent.FLAG_ACTIVITY_TASK_ON_HOME;
+            flags |= Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                flags |= Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
-            } else {
-                flags |= Intent.FLAG_ACTIVITY_NEW_TASK;
-            }
             newIntent.setFlags(flags);
             newIntent.setAction(intent.getAction());
             newIntent.putExtra("widget", true);

@@ -1,6 +1,5 @@
 package com.pixelcrater.Diaro.main;
 
-import static androidx.databinding.adapters.ViewGroupBindingAdapter.setListener;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

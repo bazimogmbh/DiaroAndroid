@@ -88,8 +88,12 @@ public class MyApp extends Application {
         final int NON_CORE_THREADS_KEEP_ALIVE_TIME_SECONDS = 1;
         executor = new ThreadPoolExecutor(processors, processors, NON_CORE_THREADS_KEEP_ALIVE_TIME_SECONDS, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
 
+        // Copy demo entry images BEFORE database initialization
+        // This ensures images are available when demo entry is created
+        AppLaunchHelper.copyAssets();
+
         asyncsMgr = new AsyncsMgr();
-        storageMgr = new StorageMgr();
+        storageMgr = new StorageMgr(); // Database initialization happens here
         appUpgradeMgr = new AppUpgradeMgr();
         userMgr = new UserMgr();
         networkStateMgr = new NetworkStateMgr();
@@ -158,9 +162,6 @@ public class MyApp extends Application {
         mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
 
         AppLaunchHelper.deleteAttachmentsOfNotExistingEntriesOnce(this.getApplicationContext());
-
-        // copy the demo entry images to media path
-        AsyncTask.execute(AppLaunchHelper::copyAssets);
     }
 
     public void test() {
