@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -14,12 +15,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.app.LoaderManager.LoaderCallbacks;
 import androidx.loader.content.Loader;
@@ -76,6 +80,9 @@ public class EntryViewEditActivity extends TypeActivity implements LoaderCallbac
         setContentView(addViewToContentContainer(R.layout.entry_view_edit));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         activityState.setLayoutBackground();
+
+        // Handle IME (keyboard) insets for editor tools on Android 15+
+        setupEditorToolsInsets();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -153,7 +160,31 @@ public class EntryViewEditActivity extends TypeActivity implements LoaderCallbac
         // Init entries cursor loader
         LoaderManager.getInstance(this).initLoader(ENTRIES_CURSOR_LOADER, null, this);
         activityState.showHideBanner();
-        
+
+    }
+
+    private void setupEditorToolsInsets() {
+        // Only needed for Android 15+ where edge-to-edge is enforced
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            View rootView = findViewById(android.R.id.content);
+            if (rootView != null) {
+                ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, windowInsets) -> {
+                    // Get IME (keyboard) insets
+                    androidx.core.graphics.Insets imeInsets = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
+
+                    // Find the editor tools view (it's in the fragment, but we can find it from the activity)
+                    View editorTools = findViewById(R.id.editor_tools);
+                    if (editorTools != null) {
+                        // Adjust bottom margin to push editor tools above keyboard
+                        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) editorTools.getLayoutParams();
+                        params.bottomMargin = imeInsets.bottom;
+                        editorTools.setLayoutParams(params);
+                    }
+
+                    return windowInsets;
+                });
+            }
+        }
     }
 
     private void hidePagerPreloader() {
