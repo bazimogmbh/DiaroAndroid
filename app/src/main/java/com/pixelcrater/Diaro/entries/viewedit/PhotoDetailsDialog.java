@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -69,7 +69,7 @@ public class PhotoDetailsDialog extends DialogFragment implements OnMapReadyCall
     private String formattedDate;
     private String formattedLocation;
     private ExifInterface exif;
-    private float[] latLong;
+    private double[] latLong;
 
     private int MAP_ZOOM = 15;
 
@@ -228,13 +228,17 @@ public class PhotoDetailsDialog extends DialogFragment implements OnMapReadyCall
     }
 
     private String getFormattedLocation() {
-        latLong = new float[2];
-        exif.getLatLong(latLong);
-//        AppLog.d("latLong: " + latLong);
+        latLong = exif.getLatLong();
 
-        float latitude = latLong[0];
-        float longitude = latLong[1];
-//        AppLog.d("latitude: " + latitude + ", longitude: " + longitude);
+        if (latLong == null) {
+            return getString(R.string.unknown);
+        }
+
+        AppLog.d("latLong: " + latLong[0] + ", " + latLong[1]);
+
+        double latitude = latLong[0];
+        double longitude = latLong[1];
+        AppLog.d("latitude: " + latitude + ", longitude: " + longitude);
 
         if (latitude == 0 || longitude == 0) {
             return getString(R.string.unknown);

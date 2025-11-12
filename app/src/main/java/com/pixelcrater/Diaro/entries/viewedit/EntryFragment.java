@@ -2740,6 +2740,12 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
 
                     double[] exifLatLng = exifInterface.getLatLong();
 
+                    if (exifLatLng != null) {
+                        AppLog.d("EXIF GPS location found: " + exifLatLng[0] + ", " + exifLatLng[1]);
+                    } else {
+                        AppLog.d("EXIF GPS location not found in photo");
+                    }
+
                     if (photoDate != null) {
                         PhotoMetadataSuggestionDialog photoMetadataSuggestionDialog = new PhotoMetadataSuggestionDialog(photoDate, exifLatLng);
                         photoMetadataSuggestionDialog.setDialogPositiveClickListener((dateTime, locationInfo) -> {
@@ -2784,7 +2790,12 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_MEDIA_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
+                // Get original URI with full EXIF data including GPS location
+                try {
+                    uri = MediaStore.setRequireOriginal(uri);
+                } catch (Exception e) {
+                    AppLog.e("Failed to get original URI: " + e.getMessage());
+                }
             } else {
                 // Ask for ACCESS_MEDIA_LOCATION permission
                 if (!getActivity().isFinishing()) {
@@ -2792,12 +2803,6 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                             R.string.location_permission_rationale_text);
                 }
             }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-
-            // TODO: fix this
-            //   uri = MediaStore.setRequireOriginal(uri);
         }
         ExifInterface exifInterface;
         try (InputStream inputStream = MyApp.getInstance().getContentResolver().openInputStream(uri)) {
@@ -2812,6 +2817,12 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                 }
 
                 double[] exifLatLng = exifInterface.getLatLong();
+
+                if (exifLatLng != null) {
+                    AppLog.d("EXIF GPS location found: " + exifLatLng[0] + ", " + exifLatLng[1]);
+                } else {
+                    AppLog.d("EXIF GPS location not found in photo");
+                }
 
                 if (photoDate != null) {
                     PhotoMetadataSuggestionDialog photoMetadataSuggestionDialog = new PhotoMetadataSuggestionDialog(photoDate, exifLatLng);
