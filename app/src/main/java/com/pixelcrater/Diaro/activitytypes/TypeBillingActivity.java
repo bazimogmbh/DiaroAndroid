@@ -20,7 +20,9 @@ import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import com.android.billingclient.api.QueryProductDetailsResult;
 import com.android.billingclient.api.QueryPurchasesParams;
+import com.pixelcrater.Diaro.config.GlobalConstants;
 import com.pixelcrater.Diaro.premium.billing.BillingUpdateListener;
+import com.pixelcrater.Diaro.premium.billing.Security;
 import com.pixelcrater.Diaro.utils.AppLog;
 
 import java.util.ArrayList;
@@ -42,7 +44,13 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
 
         mBillingClient = BillingClient.newBuilder(this)
                 .setListener(this)
-                .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
+                .enablePendingPurchases(
+                        PendingPurchasesParams.newBuilder()
+                                .enableOneTimeProducts()
+                                .enablePrepaidPlans()  // Added in v8.1.0 for prepaid subscriptions
+                                .build()
+                )
+                .enableAutoServiceReconnection()  // Automatically reconnects if connection is lost
                 .build();
         if (!mBillingClient.isReady()) {
             mBillingClient.startConnection(this);
@@ -157,9 +165,26 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
             if (purchases == null) {
                 AppLog.e("onPurchasesUpdated: null purchase list");
             } else {
-                AppLog.e("onPurchasesUpdated: successful");
-                if (eventHandler != null) {
-                    eventHandler.onPurchase(purchases);
+                AppLog.e("onPurchasesUpdated: successful, verifying signatures");
+
+                // ✅ SECURITY: Verify purchase signatures
+                List<Purchase> verifiedPurchases = new ArrayList<>();
+                String base64PublicKey = getBase64PublicKey();
+
+                for (Purchase purchase : purchases) {
+                    if (Security.verifyPurchase(base64PublicKey, purchase.getOriginalJson(), purchase.getSignature())) {
+                        verifiedPurchases.add(purchase);
+                        AppLog.e("Purchase signature VERIFIED for: " + purchase.getOrderId());
+                    } else {
+                        AppLog.e("SECURITY ALERT: Purchase signature INVALID for: " + purchase.getOrderId());
+                        // Don't process invalid purchases - potential fraud
+                    }
+                }
+
+                if (!verifiedPurchases.isEmpty() && eventHandler != null) {
+                    eventHandler.onPurchase(verifiedPurchases);
+                } else if (verifiedPurchases.isEmpty()) {
+                    AppLog.e("No verified purchases to process");
                 }
             }
         } else if (responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
@@ -205,6 +230,13 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
         });
     }
 
+    /**
+     * Gets the base64-encoded public key for purchase signature verification.
+     * @return The public key string from GlobalConstants
+     */
+    private String getBase64PublicKey() {
+        return GlobalConstants.base64EncodedPublicKey;
+    }
 
     // ---------------------- DESTROY  ----------------------
     @Override

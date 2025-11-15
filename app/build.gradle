@@ -15,10 +15,17 @@ repositories {
 android {
     signingConfigs {
         config {
-            keyAlias 'diaro'
-            keyPassword 'Thoo3och'
-            storeFile file('/Users/abhishek9851/Dropbox/Programming/Android/ANDROID_APPS_IMPORTANT/Diaro/diaro_keystore')
-            storePassword 'Thoo3och'
+            // Load signing config from local.properties (not in version control)
+            def localProperties = new Properties()
+            def localPropertiesFile = rootProject.file('local.properties')
+            if (localPropertiesFile.exists()) {
+                localPropertiesFile.withInputStream { localProperties.load(it) }
+            }
+
+            keyAlias localProperties.getProperty('signing.keyAlias') ?: System.getenv('SIGNING_KEY_ALIAS')
+            keyPassword localProperties.getProperty('signing.keyPassword') ?: System.getenv('SIGNING_KEY_PASSWORD')
+            storeFile localProperties.getProperty('signing.storeFile') ? file(localProperties.getProperty('signing.storeFile')) : null
+            storePassword localProperties.getProperty('signing.storePassword') ?: System.getenv('SIGNING_STORE_PASSWORD')
         }
     }
 

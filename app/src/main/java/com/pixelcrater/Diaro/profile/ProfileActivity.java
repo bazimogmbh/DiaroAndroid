@@ -706,38 +706,65 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
 
                 ProductDetails productDetails = mProductsMap.get(purchase.getProducts().get(0));
 
-                if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                    // Acknowledge the purchase if it hasn't already been acknowledged.
-                    if (!purchase.isAcknowledged()) {
-                        acknowledgePurchase(purchase.getPurchaseToken());
-                    }
-                }
+                // Handle purchase based on state
+                switch (purchase.getPurchaseState()) {
+                    case Purchase.PurchaseState.PURCHASED:
+                        // ✅ Purchase completed successfully
+                        AppLog.e("Purchase PURCHASED: " + purchase.getOrderId());
 
-                if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                    // Turn ON PRO
-                    Static.turnOnSubscribedCurrently();
+                        // Acknowledge the purchase if it hasn't already been acknowledged.
+                        if (!purchase.isAcknowledged()) {
+                            acknowledgePurchase(purchase.getPurchaseToken());
+                        }
 
-                    //  If signed in Send payment transaction information (purchased or canceled/refunded) to API
-                    if (MyApp.getInstance().userMgr.isSignedIn()) {
-                        PaymentUtils.sendGoogleInAppPaymentToAPI(purchase, productDetails);
-                    }
-                } else {
-                    if (MyApp.getInstance().userMgr.isSignedIn()) {
-                        MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
-                    } else {
-                        Static.turnOffSubscribedCurrently();
-                    }
+                        // Turn ON PRO
+                        Static.turnOnSubscribedCurrently();
+
+                        // If signed in, send payment transaction information to API
+                        if (MyApp.getInstance().userMgr.isSignedIn()) {
+                            PaymentUtils.sendGoogleInAppPaymentToAPI(purchase, productDetails);
+                        }
+                        break;
+
+                    case Purchase.PurchaseState.PENDING:
+                        // ⏳ Purchase is pending (e.g., pending payment method like cash)
+                        AppLog.e("Purchase PENDING: " + purchase.getOrderId());
+
+                        // Acknowledge the pending purchase but DO NOT grant access yet
+                        if (!purchase.isAcknowledged()) {
+                            acknowledgePurchase(purchase.getPurchaseToken());
+                        }
+
+                        // Show pending message to user
+                        runOnUiThread(() -> {
+                            Static.showToastLong(MyApp.getInstance().getString(R.string.purchase_pending));
+                        });
+
+                        // Do NOT turn on PRO for pending purchases
+                        // Access will be granted when state changes to PURCHASED
+                        break;
+
+                    case Purchase.PurchaseState.UNSPECIFIED_STATE:
+                        // ❓ Unspecified state - should not happen normally
+                        AppLog.e("Purchase UNSPECIFIED_STATE: " + purchase.getOrderId());
+
+                        // Check with server if signed in
+                        if (MyApp.getInstance().userMgr.isSignedIn()) {
+                            MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
+                        } else {
+                            Static.turnOffSubscribedCurrently();
+                        }
+                        break;
+
+                    default:
+                        AppLog.e("Unknown purchase state: " + purchase.getPurchaseState());
+                        break;
                 }
             }
-
-
         } else {
             // NO PURCHASES FOUND
-
-
-            // Do not turn of google play nbo
+            // Do not turn off google play nbo
         }
-
     }
 
 

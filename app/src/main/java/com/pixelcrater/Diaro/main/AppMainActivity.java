@@ -1092,14 +1092,14 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
     private void checkIAP() {
 
         mBillingClient = BillingClient.newBuilder(this)
-
                 .enablePendingPurchases(
                         PendingPurchasesParams.newBuilder()
                                 .enableOneTimeProducts()
+                                .enablePrepaidPlans()  // Added in v8.1.0 for prepaid subscriptions
                                 .build()
-                ).
-
-                setListener((billingResult, purchases) -> {
+                )
+                .enableAutoServiceReconnection()  // Automatically reconnects if connection is lost
+                .setListener((billingResult, purchases) -> {
                     AppLog.e("onPurchasesUpdated" + billingResult);
                     if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
                         for (Purchase purchase : purchases) {

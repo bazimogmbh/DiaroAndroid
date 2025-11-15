@@ -148,6 +148,7 @@
     <string name="error_inapp_billing_not_supported">Your device does not support in-app payments.</string>
     <string name="buy_pro_version_text">Upgrade to Diaro PREMIUM for all your Android, Kindle Fire, iOS devices and Diaro Online (www.diaroapp.com):</string>
     <string name="pro_version_active">Thank you for using Diaro PREMIUM!</string>
+    <string name="purchase_pending">Your purchase is pending. You will gain access once the payment is confirmed.</string>
     <string name="pro_already_owned_and_used">You have already puchased Diaro PREMIUM license and it is used for another Diaro account</string>
     <string name="features_of_pro">Features of Diaro PREMIUM:</string>
     <string name="ads_free">Ads free</string>

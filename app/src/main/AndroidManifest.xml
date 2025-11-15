@@ -5,21 +5,59 @@
     android:installLocation="internalOnly">
 
     <uses-sdk tools:overrideLibrary="com.makeramen.dragsortadapter, com.github.ajalt.library, com.divyanshu.draw, com.hold1.keyboardheightprovider, com.stfalcon.imageviewer" />
-    <!-- Read/Write to SD card -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Internet -->
+
+    <!-- Storage permissions - Android 12 and below -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <!-- Storage permissions - Android 13+ (API 33+) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <!-- Partial media access - Android 14+ (API 34+) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+
+    <!-- Notifications - Android 13+ (API 33+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Exact alarms for reminders and auto-backup -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <!-- Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Location -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Detect device boot -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- Needed for Google Play Services and InApp billing, so that we can get the account name -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- Required if we need to invalidate access tokens -->
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- Android in-app -->
-    <uses-permission android:name="com.android.vending.BILLING" /> <!-- Phone state for getting device IMEI -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- Marshmallow fingerprint permission -->
-    <uses-permission android:name="android.permission.USE_FINGERPRINT" /> <!-- Samsung fingerprint permission, only required if you include the spass module -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Detect device boot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Deprecated - only for older Android versions -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"
+        android:maxSdkVersion="25" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"
+        android:maxSdkVersion="22" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"
+        android:maxSdkVersion="27" />
+
+    <!-- Android in-app billing -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <!-- Phone state - consider removing if not essential -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- Samsung fingerprint permission -->
     <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+
+    <!-- Foreground services -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" /> <!-- Maps API needs OpenGL ES 2.0. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
+    <!-- Other permissions -->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
@@ -155,7 +193,9 @@
             android:windowSoftInputMode="stateAlwaysHidden" /> <!-- Entry View/Edit -->
         <activity
             android:name=".entries.viewedit.EntryViewEditActivity"
-            android:windowSoftInputMode="adjustResize" android:exported="true">
+            android:windowSoftInputMode="adjustResize" android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <action android:name="android.intent.action.SENDTO" />

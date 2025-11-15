@@ -84,7 +84,7 @@ public interface GlobalConstants {
     // -------------------- IAP -------------------------------------------
 
     // Google Play license key for this application
-    //    public static final String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy8deXK9GkDJCLnPOTV8nP7j7AIegHuSt8U0y2fJCIoF5Egch0hrgV83SOYhv3W3svROZHMWNeuO0tJazXXNT90G1XLvE4A4B4j+33LoIqBSEgGjDD0qBq89S+HsYSeivEU51jRlgsnp0wZsP1z79owy4B/S8SbaBUDCB+yXyFQcHe5w91GHLAFyhFnMk4p8xMCKPw5206FRxlLPcyvI2n3U7fyq3X5V0aBRcdGn6NIiyHpD9jw4FAv/iVb6bVkPO8zQUeoXd7EZOlLip83lCHNANILELu5E1cdfNF82yCzi2rpHj2awW+5IsxDGpXJ2aVjqzsXqBzIIh89JqwY4YqwIDAQAB";
+    public static final String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy8deXK9GkDJCLnPOTV8nP7j7AIegHuSt8U0y2fJCIoF5Egch0hrgV83SOYhv3W3svROZHMWNeuO0tJazXXNT90G1XLvE4A4B4j+33LoIqBSEgGjDD0qBq89S+HsYSeivEU51jRlgsnp0wZsP1z79owy4B/S8SbaBUDCB+yXyFQcHe5w91GHLAFyhFnMk4p8xMCKPw5206FRxlLPcyvI2n3U7fyq3X5V0aBRcdGn6NIiyHpD9jw4FAv/iVb6bVkPO8zQUeoXd7EZOlLip83lCHNANILELu5E1cdfNF82yCzi2rpHj2awW+5IsxDGpXJ2aVjqzsXqBzIIh89JqwY4YqwIDAQAB";
     public static final String encryptedBase64EncodedPublicKey =
             "ANKxKbNokT/GFPnGIjUGgRN/Mh4P/h96kmZyTptE6zixNveCy4KQ2JrAv5FefizgaAczFNCVCLZo" +
                     "TCQTY6JCgQD9Y+R7NRg8Z4gFtSqdZ38fAsDtD/EPRQXnouZ/X8dF8XuQU8srO2AlXf4An3C5U39e" +
