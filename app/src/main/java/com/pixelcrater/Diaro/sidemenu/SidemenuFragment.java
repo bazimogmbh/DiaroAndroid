@@ -1575,13 +1575,13 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(final Loader<Cursor> loader, final Cursor cursor) {
-        AppLog.d("loader.getId(): " + loader.getId() + ", cursor.isClosed(): " + cursor.isClosed());
+   //     AppLog.d("loader.getId(): " + loader.getId() + ", cursor.isClosed(): " + cursor.isClosed());
         cursorTreeAdapter.setChildrenCursor(loader.getId(), cursor);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        AppLog.d("loader.getId(): " + loader.getId());
+    //    AppLog.d("loader.getId(): " + loader.getId());
         cursorTreeAdapter.setChildrenCursor(loader.getId(), null);
     }
 

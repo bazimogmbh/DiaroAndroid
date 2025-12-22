@@ -50,8 +50,6 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
 
     Button thank_you_pro;
     ImageView close;
-//    private TextView proVersionText;
-    //  private TextView signInLink;
 
     private final BroadcastReceiver brReceiver = new BrReceiver();
 
@@ -60,7 +58,6 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //    getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.dark_nav)); // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.color_blue2)); //status bar or the time bar at the top
 
         setBillingHandler(this);
@@ -68,9 +65,6 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
         setContentView(addViewToContentContainer(R.layout.pro_responsive));
 
         getSupportActionBar().hide();
-
-        // PRO version text
-        //   proVersionText = findViewById(R.id.pro_version_text);
 
         thank_you_pro = findViewById(R.id.thank_you_pro);
         tvSubscriptionInfo = findViewById(R.id.tvSubscriptionInfo);
@@ -99,16 +93,8 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
         close = findViewById(R.id.iv_close);
         close.setOnClickListener(view -> finish());
 
-        /**  signInLink = findViewById(R.id.sign_in_link);
-         signInLink.setOnClickListener(v -> {
-         // If not signed in
-         if (!MyApp.getInstance().userMgr.isSignedIn()) {
-         Static.startSignInActivity(PremiumActivity.this, activityState);
-         }
-         }); **/
-
         // Register broadcast receiver
-        ContextCompat.registerReceiver(this,brReceiver, new IntentFilter(Static.BR_IN_GET_PRO), ContextCompat.RECEIVER_NOT_EXPORTED);
+        ContextCompat.registerReceiver(this, brReceiver, new IntentFilter(Static.BR_IN_GET_PRO), ContextCompat.RECEIVER_NOT_EXPORTED);
 
         if (Static.isPlayNboSubscription()) {
             showProActive();
@@ -150,38 +136,14 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
      * Updates UI depending if PRO is purchased or not
      */
     public void updateUi() {
-        //  signInLink.setVisibility(View.GONE);
-
-        // If PRO purchased
-        if (Static.isProUser()) {
-            // If not signed in
-            if (!MyApp.getInstance().userMgr.isSignedIn()) {
-                // signInLink.setVisibility(View.VISIBLE);
-                //  signInLink.setText(R.string.sign_in_to_use_diaro_pro_on_other_devices);
-            }
-        } else {
-            // If not signed in
-            if (!MyApp.getInstance().userMgr.isSignedIn()) {
-                //  signInLink.setVisibility(View.VISIBLE);
-                //  signInLink.setText(String.format("%s %s", getString(R.string.question_already_have_diaro_pro), getString(R.string.sign_in)));
-            }
-        }
 
         // - Turn on/off PRO button -
         // If Subscribed
         if (Static.isSubscribedCurrently() || Static.isPlayNboSubscription()) {
             activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), getString(R.string.diaro_pro_version));
-            //   proVersionText.setText(getString(R.string.pro_version_active));
             showProActive();
         } else {
             activityState.setActionBarTitle(Objects.requireNonNull(getSupportActionBar()), getString(R.string.get_diaro_pro));
-            //    proVersionText.setText(R.string.buy_pro_version_text);
-
-
-            /**       if (yearlyPrice.isEmpty())
-             buttonBuy1Month.setText(String.format("%s%s", getString(R.string.get_diaro_pro), yearlyPrice));
-             else
-             buttonBuy1Month.setText(yearlyPrice); **/
         }
     }
 
@@ -192,44 +154,37 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
     }
 
     private void startPurchaseFlow(String sku) {
-        // Amazon
-        if (AppConfig.AMAZON_BUILD) {
-            final RequestId requestId = PurchasingService.purchase(sku);
-            AppLog.d("requestId: " + requestId);
-        }
         // Google Play
-        else if (AppConfig.GOOGLE_PLAY_BUILD) {
-            if (mProductsMap.isEmpty())
-                return;
+        if (mProductsMap.isEmpty())
+            return;
 
-            // TODO : adapt monthly or yearly
-            ProductDetails productDetails = mProductsMap.get(sku);
-            if (productDetails != null && productDetails.getSubscriptionOfferDetails() != null &&
+        ProductDetails productDetails = mProductsMap.get(sku);
+        if (productDetails != null && productDetails.getSubscriptionOfferDetails() != null &&
                 !productDetails.getSubscriptionOfferDetails().isEmpty()) {
 
-                ProductDetails.SubscriptionOfferDetails offerDetails =
+            ProductDetails.SubscriptionOfferDetails offerDetails =
                     productDetails.getSubscriptionOfferDetails().get(0);
-                String offerToken = offerDetails.getOfferToken();
+            String offerToken = offerDetails.getOfferToken();
 
-                BillingFlowParams.ProductDetailsParams productDetailsParams =
+            BillingFlowParams.ProductDetailsParams productDetailsParams =
                     BillingFlowParams.ProductDetailsParams.newBuilder()
-                        .setProductDetails(productDetails)
-                        .setOfferToken(offerToken)
-                        .build();
+                            .setProductDetails(productDetails)
+                            .setOfferToken(offerToken)
+                            .build();
 
-                BillingFlowParams flowParams = BillingFlowParams.newBuilder()
+            BillingFlowParams flowParams = BillingFlowParams.newBuilder()
                     .setProductDetailsParamsList(java.util.Collections.singletonList(productDetailsParams))
                     .build();
 
-                launchBillingFlow(flowParams);
-            }
+            launchBillingFlow(flowParams);
         }
+
     }
 
     @Override
     public void onBillingInitialized() {
-        querySkuDetails(GlobalConstants.activeSubscriptionsList, BillingClient.SkuType.SUBS);
-        queryPurchases(BillingClient.SkuType.SUBS);
+        querySkuDetails(GlobalConstants.activeSubscriptionsList, BillingClient.ProductType.SUBS);
+        queryPurchases(BillingClient.ProductType.SUBS);
     }
 
     @Override
@@ -256,13 +211,13 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
 
             // Get subscription offer details (for subscriptions)
             if (productDetails.getSubscriptionOfferDetails() != null &&
-                !productDetails.getSubscriptionOfferDetails().isEmpty()) {
+                    !productDetails.getSubscriptionOfferDetails().isEmpty()) {
 
                 ProductDetails.SubscriptionOfferDetails offerDetails =
-                    productDetails.getSubscriptionOfferDetails().get(0);
+                        productDetails.getSubscriptionOfferDetails().get(0);
 
                 ProductDetails.PricingPhase pricingPhase =
-                    offerDetails.getPricingPhases().getPricingPhaseList().get(0);
+                        offerDetails.getPricingPhases().getPricingPhaseList().get(0);
 
                 String formattedPrice = pricingPhase.getFormattedPrice();
                 String priceCurrencyCode = pricingPhase.getPriceCurrencyCode();
@@ -275,7 +230,7 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
                     double pricePerMonth;
                     // Monthly
                     if (productId.equals(GlobalConstants.SUBSCRIPTION_PURCHASE_PREMIUM_MONTHLY)) {
-                        pricePerMonth = totalPrice / 1;
+                        pricePerMonth = totalPrice;
 
                         String pricePerMonthString = getPricePerMonthString(pricePerMonth, currencySymbol) + "/" + getString(R.string.month);
                         tv_buy_pro_button1.setText(pricePerMonthString);

@@ -311,7 +311,7 @@ public class ContentFragment extends Fragment implements LoaderCallbacks<Cursor>
 
         // Folder
         String activeFolderUid = MyApp.getInstance().prefs.getString(Prefs.PREF_ACTIVE_FOLDER_UID, null);
-        AppLog.d("activeFolderUid: " + activeFolderUid);
+  //      AppLog.d("activeFolderUid: " + activeFolderUid);
 
         // If any folder is selected
         if (activeFolderUid != null) {

@@ -61,7 +61,7 @@ public class NetworkStateMgr {
         public void onReceive(Context context, Intent intent) {
             activeNetwork = cm.getActiveNetworkInfo();
 
-            AppLog.d("isConnectedToInternet(): " + isConnectedToInternet() + ", isConnectedToInternetUsingWiFi(): " + isConnectedToInternetUsingWiFi());
+//            AppLog.d("isConnectedToInternet(): " + isConnectedToInternet() + ", isConnectedToInternetUsingWiFi(): " + isConnectedToInternetUsingWiFi());
 
             if (DropboxAccountManager.isLoggedIn(MyApp.getInstance())) {
                 if (isConnectedToInternet()) {

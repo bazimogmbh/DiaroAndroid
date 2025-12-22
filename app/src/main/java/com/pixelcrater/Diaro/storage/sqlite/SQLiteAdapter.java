@@ -476,7 +476,7 @@ public class SQLiteAdapter {
                 ", only_ms " + getOrderBy() +
                 ", e." + Tables.KEY_UID ;
 
-        AppLog.e(sqlStatement);
+      //  AppLog.e(sqlStatement);
 
         Cursor cursor = mySQLiteWrapper.rawQuery(sqlStatement, whereArgs);
         cursor.moveToFirst();

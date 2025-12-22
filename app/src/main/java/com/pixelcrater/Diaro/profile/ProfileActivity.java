@@ -664,9 +664,9 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
     @Override
     public void onBillingInitialized() {
 
-        querySkuDetails(GlobalConstants.activeSubscriptionsList, BillingClient.SkuType.SUBS);
+        querySkuDetails(GlobalConstants.activeSubscriptionsList, BillingClient.ProductType.SUBS);
 
-        queryPurchases(BillingClient.SkuType.SUBS);
+        queryPurchases(BillingClient.ProductType.SUBS);
     }
 
     @Override

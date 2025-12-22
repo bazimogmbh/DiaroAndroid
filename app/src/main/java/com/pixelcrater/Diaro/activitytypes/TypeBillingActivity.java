@@ -28,7 +28,7 @@ import com.pixelcrater.Diaro.utils.AppLog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypeBillingActivity extends TypeActivity implements PurchasesUpdatedListener, BillingClientStateListener, ProductDetailsResponseListener {
+public class TypeBillingActivity extends TypeActivity implements PurchasesUpdatedListener, ProductDetailsResponseListener {
 
     private static final String TAG = "TypeBillingActivity";
     private BillingClient mBillingClient;
@@ -52,25 +52,32 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
                 )
                 .enableAutoServiceReconnection()  // Automatically reconnects if connection is lost
                 .build();
-        if (!mBillingClient.isReady()) {
-            mBillingClient.startConnection(this);
-        }
 
+        startBillingConnection();
     }
 
-    // ---------------------- SETUP  ----------------------
-    @Override
-    public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
-        int responseCode = billingResult.getResponseCode();
-        if (responseCode == BillingClient.BillingResponseCode.OK) {
-            if(eventHandler!=null){
-                eventHandler.onBillingInitialized();
+    public void startBillingConnection(){
+        mBillingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
+                int responseCode = billingResult.getResponseCode();
+                // The BillingClient is ready. You can query purchases here.
+                if (responseCode == BillingClient.BillingResponseCode.OK) {
+                    if(eventHandler!=null){
+                        eventHandler.onBillingInitialized();
+                    }
+                } else  {
+                    if(eventHandler !=null){
+                        eventHandler.onBillingUnavailable(billingResult.getDebugMessage(), responseCode);
+                    }
+                }
             }
-        } else  {
-            if(eventHandler !=null){
-                eventHandler.onBillingUnavailable(billingResult.getDebugMessage(), responseCode);
+            @Override
+            public void onBillingServiceDisconnected() {
+                AppLog.e("onBillingServiceDisconnected");
+                startBillingConnection();
             }
-        }
+        });
     }
 
     // ---------------------- QUERY AVAILABLE PRODUCTS ----------------------
@@ -78,13 +85,8 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
      * In order to make purchases, you need the {@link ProductDetails} for the item or subscription.
      * This is an asynchronous call that will receive a result in {@link #onProductDetailsResponse}.
      */
-    public void querySkuDetails(List<String> inAppsList, String skuType) {
+    public void querySkuDetails(List<String> inAppsList, String productType) {
         if( !inAppsList.isEmpty()){
-            // Convert product type from old SKU type to new product type
-            String productType = skuType.equals(BillingClient.SkuType.INAPP)
-                    ? BillingClient.ProductType.INAPP
-                    : BillingClient.ProductType.SUBS;
-
             // Build product list
             List<QueryProductDetailsParams.Product> productList = new ArrayList<>();
             for (String productId : inAppsList) {
@@ -113,16 +115,8 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
      * New purchases will be provided to the PurchasesUpdatedListener.
      * You still need to check the Google Play Billing API to know when purchase tokens are removed.
      */
-    public void queryPurchases(String skuType) {
-        if (!mBillingClient.isReady()) {
-            AppLog.e("queryPurchases: BillingClient is not ready");
-        }
+    public void queryPurchases(String productType) {
         AppLog.e( "queryPurchases");
-
-        // Convert product type from old SKU type to new product type
-        String productType = skuType.equals(BillingClient.SkuType.INAPP)
-                ? BillingClient.ProductType.INAPP
-                : BillingClient.ProductType.SUBS;
 
         QueryPurchasesParams params = QueryPurchasesParams.newBuilder()
                 .setProductType(productType)
@@ -196,27 +190,7 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
         }
     }
 
-    /**
-     * Acknowledge a purchase.
-     * <p>
-     * https://developer.android.com/google/play/billing/billing_library_releases_notes#2_0_acknowledge
-     * <p>
-     * Apps should acknowledge the purchase after confirming that the purchase token
-     * has been associated with a user. This app only acknowledges purchases after
-     * successfully receiving the subscription data back from the server.
-     * <p>
-     * Developers can choose to acknowledge purchases from a server using the
-     * Google Play Developer API. The server has direct access to the user database,
-     * so using the Google Play Developer API for acknowledgement might be more reliable.
-     * TODO(134506821): Acknowledge purchases on the server.
-     * <p>
-     * If the purchase token is not acknowledged within 3 days,
-     * then Google Play will automatically refund and revoke the purchase.
-     * This behavior helps ensure that users are not charged for subscriptions unless the
-     * user has successfully received access to the content.
-     * This eliminates a category of issues where users complain to developers
-     * that they paid for something that the app is not giving to them.
-     */
+
     public void acknowledgePurchase(String purchaseToken) {
         AppLog.e("Acknowledging purchase with token : " + purchaseToken);
         AcknowledgePurchaseParams params = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchaseToken).build();
@@ -250,10 +224,6 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
         }
     }
 
-    @Override
-    public void onBillingServiceDisconnected() {
-        AppLog.e("onBillingServiceDisconnected");
-    }
 
     @Override
     public void onProductDetailsResponse(@NonNull BillingResult billingResult, @NonNull QueryProductDetailsResult queryProductDetailsResult) {
