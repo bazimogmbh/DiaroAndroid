@@ -53,10 +53,6 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
                 .enableAutoServiceReconnection()  // Automatically reconnects if connection is lost
                 .build();
 
-        startBillingConnection();
-    }
-
-    public void startBillingConnection(){
         mBillingClient.startConnection(new BillingClientStateListener() {
             @Override
             public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
@@ -74,8 +70,8 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
             }
             @Override
             public void onBillingServiceDisconnected() {
+                // Auto-reconnection is handled by enableAutoServiceReconnection()
                 AppLog.e("onBillingServiceDisconnected");
-                startBillingConnection();
             }
         });
     }
@@ -133,9 +129,9 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
 
     // ----------- PURCHASE  ---------------
     public int launchBillingFlow(BillingFlowParams params) {
-     //   Log.e(TAG, "launchBillingFlow: sku: " + params.getSkus() );
         if (!mBillingClient.isReady()) {
             Log.e(TAG, "launchBillingFlow: BillingClient is not ready");
+            return BillingClient.BillingResponseCode.SERVICE_DISCONNECTED;
         }
         BillingResult billingResult = mBillingClient.launchBillingFlow(this, params);
         int responseCode = billingResult.getResponseCode();
@@ -147,10 +143,6 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
     // This receives updates for all purchases in your app.
     @Override
     public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
-        if (billingResult == null) {
-            Log.wtf(TAG, "onPurchasesUpdated: null BillingResult");
-            return;
-        }
         int responseCode = billingResult.getResponseCode();
         String debugMessage = billingResult.getDebugMessage();
         AppLog.e("onPurchasesUpdated: " +  responseCode  + ", " + debugMessage);
@@ -192,7 +184,7 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
 
 
     public void acknowledgePurchase(String purchaseToken) {
-        AppLog.e("Acknowledging purchase with token : " + purchaseToken);
+        AppLog.e("Acknowledging purchase");
         AcknowledgePurchaseParams params = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchaseToken).build();
         mBillingClient.acknowledgePurchase(params, new AcknowledgePurchaseResponseListener() {
             @Override
@@ -216,22 +208,19 @@ public class TypeBillingActivity extends TypeActivity implements PurchasesUpdate
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        eventHandler = null;
         if (mBillingClient != null) {
             if (mBillingClient.isReady()) {
                 AppLog.e("ending billing connection..");
                 mBillingClient.endConnection();
             }
+            mBillingClient = null;
         }
     }
 
 
     @Override
     public void onProductDetailsResponse(@NonNull BillingResult billingResult, @NonNull QueryProductDetailsResult queryProductDetailsResult) {
-        if (billingResult == null) {
-            Log.wtf(TAG, "onProductDetailsResponse: null BillingResult");
-            return;
-        }
-
         int responseCode = billingResult.getResponseCode();
         String debugMessage = billingResult.getDebugMessage();
 

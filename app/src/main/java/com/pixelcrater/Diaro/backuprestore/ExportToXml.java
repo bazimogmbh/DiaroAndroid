@@ -136,8 +136,7 @@ public class ExportToXml {
                     name.equals(Tables.KEY_LOCATION_ADDRESS) ||
                     name.equals(Tables.KEY_ATTACHMENT_FILENAME) ||
                     name.equals(Tables.KEY_TEMPLATE_TITLE) ||
-                    name.equals(Tables.KEY_TEMPLATE_TEXT) ||
-                    name.equals(Tables.KEY_TEMPLATE_TITLE) ) {
+                    name.equals(Tables.KEY_TEMPLATE_TEXT)) {
                 val = StringEscapeUtils.escapeXml11(val);
             }
 

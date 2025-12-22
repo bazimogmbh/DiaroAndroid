@@ -134,7 +134,7 @@ public class SimpleJournalImport {
                     String folderTitle = oneObject.getString("name");
                     String uuid = oneObject.getString("uuid");
 
-                    int nextInt = random.nextInt(colorsArrayList.size()-1);
+                    int nextInt = random.nextInt(colorsArrayList.size());
 
                     String folderColor = String.format("#%06x", colorsArrayList.get(nextInt));
 
