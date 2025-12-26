@@ -18,6 +18,7 @@ import com.pixelcrater.Diaro.MyApp;
 import com.pixelcrater.Diaro.R;
 import com.pixelcrater.Diaro.config.Prefs;
 import com.pixelcrater.Diaro.utils.MyThemesUtils;
+import com.pixelcrater.Diaro.utils.WindowInsetsUtils;
 
 import java.util.Objects;
 
@@ -144,5 +145,28 @@ public class TypeActivity extends AppCompatActivity {
     public void addVectorIconToMenu(MenuItem menuItem, int resId) {
         VectorDrawableCompat itemAddPhotoVector = VectorDrawableCompat.create(getResources(), resId, null);
         menuItem.setIcon(itemAddPhotoVector);
+    }
+
+    // ---------------------- EDGE-TO-EDGE INSETS UTILITIES ----------------------
+    // Delegate to WindowInsetsUtils for reusability across the app
+
+    protected void applyBottomInsets(View view) {
+        WindowInsetsUtils.applyBottomInsets(view);
+    }
+
+    protected void applyBottomInsetsWithPadding(View view, int additionalPaddingDp) {
+        WindowInsetsUtils.applyBottomInsetsWithPadding(view, additionalPaddingDp);
+    }
+
+    protected void applyBottomInsetsAsMargin(View view, int additionalMarginDp) {
+        WindowInsetsUtils.applyBottomInsetsAsMargin(view, additionalMarginDp);
+    }
+
+    protected void applyTopInsetsAsMargin(View view, int additionalMarginDp) {
+        WindowInsetsUtils.applyTopInsetsAsMargin(view, additionalMarginDp);
+    }
+
+    protected void applyKeyboardAndBottomInsets(View view) {
+        WindowInsetsUtils.applyKeyboardAndBottomInsets(view);
     }
 }

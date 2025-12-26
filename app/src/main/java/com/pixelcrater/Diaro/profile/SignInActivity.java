@@ -41,6 +41,9 @@ public class SignInActivity extends TypeActivity implements OnClickListener {
         activityState.setLayoutBackground();
         activityState.setActionBarTitle(getSupportActionBar(), getString(R.string.sign_in));
 
+        // Handle bottom insets for edge-to-edge on Android 15+
+        applyBottomInsets(findViewById(R.id.layout_container));
+
         // Sign in with Diaro account button
         AppCompatButton signInWithDiaroAccountButton = findViewById(R.id.sign_in_with_diaro_account_button);
         signInWithDiaroAccountButton.setTransformationMethod(null);

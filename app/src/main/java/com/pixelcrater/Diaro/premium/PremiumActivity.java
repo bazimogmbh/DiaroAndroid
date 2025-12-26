@@ -93,6 +93,9 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
         close = findViewById(R.id.iv_close);
         close.setOnClickListener(view -> finish());
 
+        // Handle window insets for edge-to-edge on Android 15+
+        setupWindowInsets();
+
         // Register broadcast receiver
         ContextCompat.registerReceiver(this, brReceiver, new IntentFilter(Static.BR_IN_GET_PRO), ContextCompat.RECEIVER_NOT_EXPORTED);
 
@@ -130,6 +133,17 @@ public class PremiumActivity extends TypeBillingActivity implements BillingUpdat
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(brReceiver);
+    }
+
+    /**
+     * Sets up window insets for edge-to-edge display on Android 15+
+     */
+    private void setupWindowInsets() {
+        // Handle top inset for close button (16dp original margin)
+        applyTopInsetsAsMargin(close, 16);
+
+        // Handle bottom inset for bottom layout (20dp original padding)
+        applyBottomInsetsWithPadding(findViewById(R.id.bottomLayout), 20);
     }
 
     /**

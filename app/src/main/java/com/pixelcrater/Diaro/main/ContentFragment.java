@@ -58,6 +58,7 @@ import com.pixelcrater.Diaro.utils.MyPinnedSectionListView;
 import com.pixelcrater.Diaro.utils.MySimpleSectionedListAdapter;
 import com.pixelcrater.Diaro.utils.MyThemesUtils;
 import com.pixelcrater.Diaro.utils.Static;
+import com.pixelcrater.Diaro.utils.WindowInsetsUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -711,7 +712,7 @@ public class ContentFragment extends Fragment implements LoaderCallbacks<Cursor>
                 mListener.onShouldStartEntryViewEditActivity(null);
             }
         });
-
+      //  WindowInsetsUtils.applyBottomInsetsAsMargin(fab, 12);
     }
 
     protected void selectUnselectEntry(String entryUid) {

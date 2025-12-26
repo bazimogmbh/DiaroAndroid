@@ -64,6 +64,9 @@ public class PhotoPagerActivity extends TypeActivity implements OnStorageDataCha
         setContentView(addViewToContentContainer(R.layout.photo_pager));
         activityState.setLayoutBackground();
 
+        // Handle bottom insets for edge-to-edge on Android 15+
+        applyBottomInsets(findViewById(R.id.layout_container));
+
         Bundle bundle = getIntent().getExtras();
         entryUid = bundle.getString("entryUid");
         openedFromPhotoGrid = bundle.getBoolean("openedFromPhotoGrid");

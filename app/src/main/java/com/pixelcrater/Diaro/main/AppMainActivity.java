@@ -20,6 +20,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
@@ -232,17 +233,16 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
         if (!PreferencesHelper.isBottomTabEnabled())
             bottom_navigation.setVisibility(View.GONE);
 
+        // Handle bottom navigation insets for Android 15+ edge-to-edge
+        applyBottomInsets(bottom_navigation);
+
         // Show ask to rate and follow us on Facebook dialogs
         showPromotionalDialogs();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(brReceiver, new IntentFilter(Static.BR_IN_MAIN), Context.RECEIVER_EXPORTED);
-        } else {
-            registerReceiver(brReceiver, new IntentFilter(Static.BR_IN_MAIN));
-        }
+        ContextCompat.registerReceiver(this, brReceiver, new IntentFilter(Static.BR_IN_MAIN), ContextCompat.RECEIVER_NOT_EXPORTED);
 
         restoreDialogListeners(savedInstanceState);
-        registerReceiver(timeChangedReceiver, actionTimeIntentFilter);
+        ContextCompat.registerReceiver(this, timeChangedReceiver, actionTimeIntentFilter, ContextCompat.RECEIVER_NOT_EXPORTED);
 
         // check after usage
         int resetAfterUsageCount = 8;
@@ -366,36 +366,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
                     }).show();
         }
 
-    }
-
-    private void downloadMoney() {
-        // only once
-        String prefString = "downloadMoney";
-        SharedPreferences preferences = MyApp.getInstance().prefs;
-        if (!preferences.getBoolean(prefString, false)) {
-
-            String title = "Money Manager";
-            String msg = "Try our finances app for Free!";
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(msg).setTitle(title);
-            builder.setIcon(R.drawable.wim_money);
-
-            builder.setPositiveButton("Play Store", (dialog1, id) -> {
-                final String appPackageName = "com.mountform.wimm";
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                } catch (android.content.ActivityNotFoundException anfe) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                }
-            });
-            builder.setNegativeButton(android.R.string.no, (dialog12, id) -> {
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
-            preferences.edit().putBoolean(prefString, true).apply();
-        }
     }
 
     // notify user about dropbox quota full
@@ -674,6 +644,7 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         if (actionMode != null) {
             finishActionMode();
         } else if (drawerLayout != null && drawerLayout.isDrawerVisible(menuFrame)) {
@@ -702,7 +673,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
     protected void onResume() {
         super.onResume();
         supportInvalidateOptionsMenu();
-        activityState.showHideBanner();
     }
 
     @Override
@@ -1172,7 +1142,7 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
         public void onReceive(Context context, Intent intent) {
             String doWhat = intent.getStringExtra(Static.BROADCAST_DO);
             ArrayList<String> params = intent.getStringArrayListExtra(Static.BROADCAST_PARAMS);
-            if (params != null && params.size() > 0 && params.get(0) == null) {
+            if (params != null && !params.isEmpty() && params.get(0) == null) {
                 params = null;
             }
             if (doWhat != null) {
@@ -1186,7 +1156,7 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
                     // - Show/hide banners -
                     case Static.DO_SHOW_HIDE_BANNER:
-                        activityState.showHideBanner();
+                    //    activityState.showHideBanner();
                         break;
 
                     // - Show/hide pro label -
@@ -1232,7 +1202,7 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         if (currentFragment != null && currentFragment.getTag() != null) {

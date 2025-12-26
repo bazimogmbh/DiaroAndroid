@@ -251,13 +251,6 @@ public class SidemenuFragment extends Fragment implements LoaderManager.LoaderCa
             view.findViewById(R.id.debug_indicator).setVisibility(View.VISIBLE);
         }
 
-        if (AppConfig.isDeveloperMode()) {
-            // Show Amazon build indicator
-            if (AppConfig.AMAZON_BUILD) {
-                view.findViewById(R.id.amazon_indicator).setVisibility(View.VISIBLE);
-            }
-        }
-
         MyApp.getInstance().storageMgr.addOnStorageDataChangeListener(this);
 
         // Restore active dialog listeners

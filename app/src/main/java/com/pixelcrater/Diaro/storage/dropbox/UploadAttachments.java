@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.pixelcrater.Diaro.config.GlobalConstants.BATCH_UPLOAD_SIZE;
 import static com.pixelcrater.Diaro.config.GlobalConstants.DROPBOX_PATH_MEDIA;
@@ -53,7 +54,7 @@ class UploadAttachments {
     private List<List<UploadData>> mBatchUploads = new ArrayList<>();
     private List<UploadSessionFinishArg> mUploadSessionFinishArgList;
 
-    private HashMap<String, String> uploadFilesSet = new HashMap<>();
+    private ConcurrentHashMap<String, String> uploadFilesSet = new ConcurrentHashMap<>();
 
     UploadAttachments() throws Exception {
         mJobManager.stop();
@@ -69,7 +70,7 @@ class UploadAttachments {
         DbxClientV2 dbxClient = DropboxAccountManager.getDropboxClient(MyApp.getInstance());
         mJobManager.stop();
         mUploadSessionFinishArgList = new ArrayList<>();
-        uploadFilesSet = new HashMap<>();
+        uploadFilesSet = new ConcurrentHashMap<>();
 
         List<UploadData> thisBatch = mBatchUploads.get(mBatchUploads.size() - 1);
         AppLog.d(String.format(Locale.US, "Starting a batch upload of %d files", thisBatch.size()));

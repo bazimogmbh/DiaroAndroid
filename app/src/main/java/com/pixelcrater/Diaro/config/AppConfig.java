@@ -34,9 +34,6 @@ public class AppConfig {
     // Google Play build
     public static final boolean GOOGLE_PLAY_BUILD = true;
 
-    // Amazon build (add '.0' to the version in app Gradle file)
-    public static final boolean AMAZON_BUILD = !GOOGLE_PLAY_BUILD;
-
     public static boolean isDeveloperMode() {
         return DEVELOPER_MODE && BuildConfig.DEBUG;
     }

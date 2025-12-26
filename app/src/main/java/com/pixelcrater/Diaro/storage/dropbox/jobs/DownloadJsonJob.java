@@ -60,29 +60,42 @@ public class DownloadJsonJob extends Job {
 //
         DbxClientV2 dbxClient = DropboxAccountManager.getDropboxClient(MyApp.getInstance());
 
-        ContentValues cv;
+        ContentValues cv = null;
+        ByteArrayOutputStream out = null;
 
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        FileMetadata metadata = dbxClient.files().download(mDbxFile).download(out);
-        String json = out.toString();
+        try {
+            out = new ByteArrayOutputStream();
+            FileMetadata metadata = dbxClient.files().download(mDbxFile).download(out);
+            String json = out.toString();
 
-   //     AppLog.e("downloaded -> " + AES256Cipher.decodeString(json, DropboxStatic.getEncryptionKey(MyApp.getInstance())));
+       //     AppLog.e("downloaded -> " + AES256Cipher.decodeString(json, DropboxStatic.getEncryptionKey(MyApp.getInstance())));
 
-        cv = DropboxStatic.createRowCvFromJsonString(mTable, AES256Cipher.decodeString(json, DropboxStatic.getEncryptionKey(MyApp.getInstance())));
+            cv = DropboxStatic.createRowCvFromJsonString(mTable, AES256Cipher.decodeString(json, DropboxStatic.getEncryptionKey(MyApp.getInstance())));
 
-     //   AppLog.w("Downloaded json-> " + mDbxFile);
+         //   AppLog.w("Downloaded json-> " + mDbxFile);
 
-        // Set sync_id and synced fields
-        cv.put(Tables.KEY_SYNC_ID, String.valueOf(metadata.getClientModified().getTime()));
-        cv.put(Tables.KEY_SYNCED, 1);
+            if (cv != null) {
+                // Set sync_id and synced fields
+                cv.put(Tables.KEY_SYNC_ID, String.valueOf(metadata.getClientModified().getTime()));
+                cv.put(Tables.KEY_SYNCED, 1);
 
-//      AppLog.d("dbxFile.getPath().toString(): " + dbxFile.getPath().toString() + "\ncv: " + cv);
+    //      AppLog.d("dbxFile.getPath().toString(): " + dbxFile.getPath().toString() + "\ncv: " + cv);
 
-        // If exists in SQLite database
-        if (MyApp.getInstance().storageMgr.getSQLiteAdapter().rowExists(mTable, cv.getAsString(Tables.KEY_UID))) {
-            MyApp.getInstance().storageMgr.getSQLiteAdapter().updateRowByUid(mTable, cv.getAsString(Tables.KEY_UID), cv);
-        } else {
-            MyApp.getInstance().storageMgr.getSQLiteAdapter().insertRow(mTable, cv);
+                // If exists in SQLite database
+                if (MyApp.getInstance().storageMgr.getSQLiteAdapter().rowExists(mTable, cv.getAsString(Tables.KEY_UID))) {
+                    MyApp.getInstance().storageMgr.getSQLiteAdapter().updateRowByUid(mTable, cv.getAsString(Tables.KEY_UID), cv);
+                } else {
+                    MyApp.getInstance().storageMgr.getSQLiteAdapter().insertRow(mTable, cv);
+                }
+            }
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (Exception e) {
+                    // Ignore close exception
+                }
+            }
         }
     }
 

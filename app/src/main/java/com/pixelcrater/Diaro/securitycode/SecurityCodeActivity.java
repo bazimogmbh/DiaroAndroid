@@ -102,6 +102,9 @@ public class SecurityCodeActivity extends TypeActivity {
 
         layoutContainer = (ViewGroup) findViewById(R.id.layout_container);
 
+        // Handle bottom insets for edge-to-edge on Android 15+
+        applyBottomInsets(layoutContainer);
+
         // Get UI color
         layoutContainer.setBackgroundColor(MyThemesUtils.getPrimaryColor());
 

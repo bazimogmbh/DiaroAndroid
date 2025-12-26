@@ -37,13 +37,7 @@ import static com.pixelcrater.Diaro.utils.Static.REQUEST_GOOGLE_PLAY;
 public class GeneralUtils {
 
     public static void openMarket(Activity activity) {
-        if (AppConfig.AMAZON_BUILD) {
-            openDiaroInAmazonAppstore(activity);
-        }
-        // Google Play
-        else if (AppConfig.GOOGLE_PLAY_BUILD) {
-            openDiaroInGooglePlay(activity);
-        }
+        openDiaroInGooglePlay(activity);
     }
 
     public static void openDiaroInAmazonAppstore(Activity activity) {
@@ -74,14 +68,7 @@ public class GeneralUtils {
         Intent intent = new Intent(Intent.ACTION_SEND);
 
         String appStoreUrl;
-        // Amazon
-        if (AppConfig.AMAZON_BUILD) {
-            appStoreUrl = activity.getString(R.string.web_amazon_appstore_url);
-        }
-        // Google Play
-        else if (AppConfig.GOOGLE_PLAY_BUILD) {
-            appStoreUrl = activity.getString(R.string.web_google_play_url);
-        }
+        appStoreUrl = activity.getString(R.string.web_google_play_url);
 
         intent.putExtra(Intent.EXTRA_SUBJECT, "Found this great Android app - " + "'Diaro - diary, journal, notes'");
         intent.putExtra(Intent.EXTRA_TEXT, "Hi,\nI found a great diary writing / " +
@@ -115,9 +102,6 @@ public class GeneralUtils {
 
             more += " ("+text+")";
         }
-        if (AppConfig.AMAZON_BUILD) {
-            more += " (Amazon)";
-        }
 
         String prefLocale = PreferencesHelper.getCurrentLocaleAsCode(activity.getApplicationContext());
 
@@ -130,14 +114,10 @@ public class GeneralUtils {
         }
 
         long attachmentsDirSize = StorageUtils.getUsedSizeInBytes(new File(AppLifetimeStorageUtils.getMediaDirPath()));
-
-
         long profileDirSize = StorageUtils.getUsedSizeInBytes(new File(AppLifetimeStorageUtils.getProfilePhotoDirPath()));
 //            AppLog.d("#2 Needed space for /profile: " + profileDirSize + "B");
 
         String sizeWithUnitsAttachments = StorageUtils.getSizeWithUnits(attachmentsDirSize + profileDirSize, null);
-
-
 
         long backupDirSize = StorageUtils.getUsedSizeInBytes(new File(PermanentStorageUtils.getDiaroBackupDirPath()));
         AppLog.d("Needed space for /backup: " + backupDirSize + "B");

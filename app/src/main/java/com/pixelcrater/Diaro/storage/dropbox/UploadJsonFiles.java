@@ -33,6 +33,7 @@ import com.pixelcrater.Diaro.utils.AppLog;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -78,7 +79,7 @@ class UploadJsonFiles {
         DbxClientV2 dbxClient = DropboxAccountManager.getDropboxClient(MyApp.getInstance());
         mJobManager.stop();
 
-        mUploadSessionFinishArgList = new ArrayList<>();
+        mUploadSessionFinishArgList = Collections.synchronizedList(new ArrayList<>());
 
         List<UploadData> thisBatch = mBatchUploads.get(mBatchUploads.size() - 1);
         AppLog.e("Starting a batch upload of " + thisBatch.size() + " files");

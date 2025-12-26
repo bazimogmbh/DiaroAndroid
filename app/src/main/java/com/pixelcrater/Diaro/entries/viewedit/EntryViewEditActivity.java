@@ -164,26 +164,17 @@ public class EntryViewEditActivity extends TypeActivity implements LoaderCallbac
     }
 
     private void setupEditorToolsInsets() {
-        // Only needed for Android 15+ where edge-to-edge is enforced
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            View rootView = findViewById(android.R.id.content);
-            if (rootView != null) {
-                ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, windowInsets) -> {
-                    // Get IME (keyboard) insets
-                    androidx.core.graphics.Insets imeInsets = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
-
-                    // Find the editor tools view (it's in the fragment, but we can find it from the activity)
-                    View editorTools = findViewById(R.id.editor_tools);
-                    if (editorTools != null) {
-                        // Adjust bottom margin to push editor tools above keyboard
-                        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) editorTools.getLayoutParams();
-                        params.bottomMargin = imeInsets.bottom;
-                        editorTools.setLayoutParams(params);
-                    }
-
-                    return windowInsets;
-                });
-            }
+        // Apply keyboard and navigation bar insets to editor tools
+        // This is called early, editor_tools will be found when fragment loads
+        View rootView = findViewById(android.R.id.content);
+        if (rootView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, windowInsets) -> {
+                View editorTools = findViewById(R.id.editor_tools);
+                if (editorTools != null) {
+                    applyKeyboardAndBottomInsets(editorTools);
+                }
+                return windowInsets;
+            });
         }
     }
 

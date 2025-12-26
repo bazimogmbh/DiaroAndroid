@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,6 +23,7 @@ import com.pixelcrater.Diaro.utils.Static;
 import com.pixelcrater.Diaro.sidemenu.SidemenuFragment;
 import com.pixelcrater.Diaro.utils.AppLog;
 import com.pixelcrater.Diaro.utils.MyThemesUtils;
+import com.pixelcrater.Diaro.utils.WindowInsetsUtils;
 
 public class TypeSlidingActivity extends AppCompatActivity {
 
@@ -241,4 +243,9 @@ public class TypeSlidingActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    // ---------------------- EDGE-TO-EDGE INSETS UTILITIES ----------------------
+
+    protected void applyBottomInsets(View view) {
+        WindowInsetsUtils.applyBottomInsets(view);
+    }
 }

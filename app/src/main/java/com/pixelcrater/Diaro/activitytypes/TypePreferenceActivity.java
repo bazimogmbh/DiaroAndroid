@@ -2,6 +2,7 @@ package com.pixelcrater.Diaro.activitytypes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.pixelcrater.Diaro.main.ActivityState;
 import com.pixelcrater.Diaro.R;
 import com.pixelcrater.Diaro.settings.MyPreferenceFragment;
+import com.pixelcrater.Diaro.utils.WindowInsetsUtils;
 import com.pixelcrater.Diaro.utils.MyThemesUtils;
 
 public class TypePreferenceActivity extends AppCompatActivity {
@@ -37,10 +39,17 @@ public class TypePreferenceActivity extends AppCompatActivity {
         setContentView(toolbarLayout);
         activityState.setLayoutBackground();
 
+        // Handle bottom insets for edge-to-edge on Android 15+
+        applyBottomInsets(findViewById(R.id.settings_frame));
+
         // Create FragmentSettings
         myPreferenceFragment = new MyPreferenceFragment();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.settings_frame, myPreferenceFragment).commit();
+    }
+
+    protected void applyBottomInsets(View view) {
+        WindowInsetsUtils.applyBottomInsets(view);
     }
 
     @Override

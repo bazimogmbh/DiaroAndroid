@@ -245,14 +245,6 @@ public class ActivityState {
 
         if (!Static.isProUser() && MyApp.getInstance().networkStateMgr.isConnectedToInternet()) {
             isBannerAllowed = true;
-            // If Amazon build
-            if (AppConfig.AMAZON_BUILD) {
-                // If screen is in LANDSCAPE, do not show ads because too large
-                if (Static.isLandscape()) {
-                    return;
-                }
-            }
-
             loadGoogleAd();
         } else {
             hideBanner();

@@ -195,6 +195,9 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
             MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
         }
 
+        // Handle window insets for edge-to-edge on Android 15+
+        setupWindowInsets();
+
         setBillingHandler(this);
 
         // Register broadcast receiver
@@ -216,6 +219,10 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
                 setDropboxUnlinkConfirmDialogListener(dialog2);
             }
         }
+    }
+
+    private void setupWindowInsets() {
+        applyBottomInsets(findViewById(R.id.layout_container));
     }
 
     @Override
