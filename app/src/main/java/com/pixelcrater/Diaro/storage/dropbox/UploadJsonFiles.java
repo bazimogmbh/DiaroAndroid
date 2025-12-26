@@ -197,11 +197,11 @@ class UploadJsonFiles {
             Cursor cursor = null;
             try {
 
-                AppLog.e("prepare-> " +mUploadData.fullTableName + " " + mUploadData.rowId);
+              //  AppLog.e("prepare-> " +mUploadData.fullTableName + " " + mUploadData.rowId);
                 cursor = MyApp.getInstance().storageMgr.getSQLiteAdapter().getSingleRowCursorByUid(mUploadData.fullTableName, mUploadData.rowId);
                 byte[] data;
 
-                  AppLog.e("uploading-> " + AES256Cipher.encodeString(DropboxStatic.createJsonString(mUploadData.fullTableName, cursor), DropboxStatic.getEncryptionKey(MyApp.getInstance())));
+                //AppLog.e("uploading-> " + AES256Cipher.encodeString(DropboxStatic.createJsonString(mUploadData.fullTableName, cursor), DropboxStatic.getEncryptionKey(MyApp.getInstance())));
                 if (AppConfig.USE_PLAIN_JSON) {
                     data = DropboxStatic.createJsonString(mUploadData.fullTableName, cursor).getBytes();
                 } else {

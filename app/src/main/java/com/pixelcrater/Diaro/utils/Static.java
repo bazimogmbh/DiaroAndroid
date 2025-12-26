@@ -870,10 +870,11 @@ public class Static {
     }
 
     public static void sendBroadcast(String toActivity, String doWhat, ArrayList<String> params) {
-        //		AppLog.d("toActivity: " + toActivity + ", doWhat: " + doWhat + ", params: " + params);
+        AppLog.d("toActivity: " + toActivity + ", doWhat: " + doWhat + ", params: " + params);
 
-        // Send broadcast
+        // Send broadcast (set package to make it explicit for internal use)
         Intent i = new Intent(toActivity);
+        i.setPackage(MyApp.getInstance().getPackageName());
         i.putExtra(BROADCAST_DO, doWhat);
         i.putExtra(BROADCAST_PARAMS, params);
         MyApp.getInstance().sendBroadcast(i);

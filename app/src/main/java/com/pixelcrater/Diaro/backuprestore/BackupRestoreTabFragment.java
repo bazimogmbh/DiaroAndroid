@@ -159,6 +159,13 @@ public class BackupRestoreTabFragment extends Fragment {
 
     public void getBackupFilesList() {
         AppLog.d("mTabId: " + tabId);
+
+        // Make sure fragment is attached
+        if (!isAdded() || getActivity() == null) {
+            AppLog.e("Fragment not attached, skipping refresh");
+            return;
+        }
+
         backupFilesArrayList.clear();
         notConnectedWithDropbox.setVisibility(View.GONE);
 
@@ -209,18 +216,33 @@ public class BackupRestoreTabFragment extends Fragment {
 
 //        AppLog.d("backupFilesArrayList.size(): " + backupFilesArrayList.size());
 
+        // Update visibility of noBackupFilesFound for SD card tab
+        if (tabId == BackupRestoreActivity.TAB_SD_CARD) {
+            if (backupFilesArrayList.size() > 0) {
+                noBackupFilesFound.setVisibility(View.GONE);
+                backupFilesListView.setVisibility(View.VISIBLE);
+            } else {
+                noBackupFilesFound.setVisibility(View.VISIBLE);
+                // Set drawable top
+                TextView textView = (TextView) noBackupFilesFound.getChildAt(0);
+                textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_database_grey600_96dp, 0, 0);
+            }
+        }
+
+        AppLog.d("backupFilesArrayList.size(): " + backupFilesArrayList.size());
         backupFilesListAdapter.notifyDataSetChanged();
+
+        // Force list view to refresh
+        backupFilesListView.invalidateViews();
     }
 
     private void readLocalBackupDirectory() {
 
-        // Create backup directory
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            PermanentStorageUtils.createDiaroBackupDirectory();
-        }
+        // Create backup directory if it doesn't exist
+        PermanentStorageUtils.createDiaroBackupDirectory();
 
         Uri[] backupFilesUris = PermanentStorageUtils.getBackupFilesUris();
-        AppLog.d("backupFilesUris.length: " + backupFilesUris.length);
+        AppLog.d("Found " + backupFilesUris.length + " backup files");
 
         for (Uri backupFileUri : backupFilesUris) {
             String backupFileName = PermanentStorageUtils.getBackupFilename(backupFileUri);
