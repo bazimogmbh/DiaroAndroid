@@ -5,21 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
+import androidx.credentials.CredentialManager;
+import androidx.credentials.CredentialManagerCallback;
+import androidx.credentials.GetCredentialRequest;
+import androidx.credentials.GetCredentialResponse;
+import androidx.credentials.exceptions.GetCredentialException;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential;
 import com.pixelcrater.Diaro.MyApp;
 import com.pixelcrater.Diaro.R;
 import com.pixelcrater.Diaro.activitytypes.TypeActivity;
@@ -28,9 +31,12 @@ import com.pixelcrater.Diaro.utils.MyDevice;
 import com.pixelcrater.Diaro.utils.MyThemesUtils;
 import com.pixelcrater.Diaro.utils.Static;
 
+import java.util.concurrent.Executors;
+
 public class SignInActivity extends TypeActivity implements OnClickListener {
 
-    protected GoogleSignInClient mGoogleApiClient;
+    private CredentialManager credentialManager;
+    private CancellationSignal cancellationSignal;
     private BroadcastReceiver brReceiver = new BrReceiver();
 
     @Override
@@ -58,13 +64,8 @@ public class SignInActivity extends TypeActivity implements OnClickListener {
         if (MyDevice.getInstance().isGooglePlayServicesAvailable()) {
             signInWithGoogleButton.setVisibility(View.VISIBLE);
 
-            // Configure sign-in to request the user's ID, email address, and basic
-            // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-
-            // Build a GoogleApiClient with access to the Google Sign-In API and the
-            // options specified by gso.
-            mGoogleApiClient = GoogleSignIn.getClient(this, gso);
+            // Initialize Credential Manager for Google Sign-In
+            credentialManager = CredentialManager.create(this);
         }
 
         // Sign up link
@@ -121,16 +122,16 @@ public class SignInActivity extends TypeActivity implements OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
-
-//        if (mGoogleApiClient != null) {
-//            mGoogleApiClient.disconnect();
-//        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(brReceiver);
+        if (cancellationSignal != null) {
+            cancellationSignal.cancel();
+            cancellationSignal = null;
+        }
     }
 
     @Override
@@ -172,41 +173,81 @@ public class SignInActivity extends TypeActivity implements OnClickListener {
     }
 
     private void signInWithGoogle() {
-        Intent signInIntent = mGoogleApiClient.getSignInIntent();
-        startActivityForResult(signInIntent, Static.REQUEST_SIGN_IN_WITH_GOOGLE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        AppLog.e("requestCode: " + requestCode + ", resultCode: " + resultCode);
-
-        if (requestCode == Static.REQUEST_SIGN_IN_WITH_GOOGLE) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            // Sign in succeeded, proceed with account
-            GoogleSignInAccount result = null;
-            try {
-                result = task.getResult(ApiException.class);
-                handleSignInResult(result);
-            } catch (ApiException e) {
-                Static.showToastError(getString(R.string.signin_with_google_failed));
-                AppLog.e("signInResult:failed code=" + e.getStatusCode());
-                // Sign in failed, handle failure and update UI
-            }
+        if (credentialManager == null) {
+            Static.showToastError(getString(R.string.signin_with_google_failed));
+            return;
         }
 
+        // Cancel any existing sign-in request
+        if (cancellationSignal != null) {
+            cancellationSignal.cancel();
+        }
+        cancellationSignal = new CancellationSignal();
+
+        // Build the Google Sign-In option
+        // Web client ID from google-services.json (client_type: 3 in appinvite_service)
+        String serverClientId = "994414072062-glai70igcc8eft7f49q2414pd1spn0i5.apps.googleusercontent.com";
+        GetSignInWithGoogleOption googleSignInOption = new GetSignInWithGoogleOption.Builder(serverClientId)
+                .build();
+
+        // Build the credential request
+        GetCredentialRequest request = new GetCredentialRequest.Builder()
+                .addCredentialOption(googleSignInOption)
+                .build();
+
+        // Request credentials using Credential Manager
+        credentialManager.getCredentialAsync(
+                this,
+                request,
+                cancellationSignal,
+                Executors.newSingleThreadExecutor(),
+                new CredentialManagerCallback<GetCredentialResponse, GetCredentialException>() {
+                    @Override
+                    public void onResult(GetCredentialResponse result) {
+                        runOnUiThread(() -> handleCredentialResponse(result));
+                    }
+
+                    @Override
+                    public void onError(@NonNull GetCredentialException e) {
+                        runOnUiThread(() -> {
+                            Static.showToastError(getString(R.string.signin_with_google_failed));
+                            AppLog.e("signInResult:failed " + e.getType() + ": " + e.getMessage());
+                        });
+                    }
+                }
+        );
     }
 
-    private void handleSignInResult(GoogleSignInAccount acct) {
-        // Signed in successfully, show authenticated UI.
-        String email = acct.getEmail();
-        String googleId = acct.getId();
-        String fullName = acct.getDisplayName();
-        String name = acct.getGivenName();
-        String surname = acct.getFamilyName();
+    private void handleCredentialResponse(GetCredentialResponse response) {
+        // Extract Google ID Token credential
+        if (response.getCredential() instanceof androidx.credentials.CustomCredential) {
+            androidx.credentials.CustomCredential customCredential =
+                    (androidx.credentials.CustomCredential) response.getCredential();
+
+            if (GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL.equals(customCredential.getType())) {
+                GoogleIdTokenCredential googleCredential =
+                        GoogleIdTokenCredential.createFrom(customCredential.getData());
+                handleSignInResult(googleCredential);
+            } else {
+                Static.showToastError(getString(R.string.signin_with_google_failed));
+                AppLog.e("Unexpected credential type: " + customCredential.getType());
+            }
+        } else {
+            Static.showToastError(getString(R.string.signin_with_google_failed));
+            AppLog.e("Unexpected credential class: " + response.getCredential().getClass().getName());
+        }
+    }
+
+    private void handleSignInResult(GoogleIdTokenCredential credential) {
+        // Signed in successfully, extract user info
+        String email = credential.getId(); // Email is the ID in GoogleIdTokenCredential
+        String googleId = credential.getIdToken();
+        String fullName = credential.getDisplayName();
+        String name = credential.getGivenName();
+        String surname = credential.getFamilyName();
         String gender = "";
         String birthday = "";
-        String imageUrl = acct.getPhotoUrl() == null ? "" : acct.getPhotoUrl().getPath();
+        String imageUrl = credential.getProfilePictureUri() == null ? "" : credential.getProfilePictureUri().toString();
 
         if (name == null && fullName != null) {
             name = fullName;
@@ -215,10 +256,8 @@ public class SignInActivity extends TypeActivity implements OnClickListener {
         googleId = (googleId == null) ? "" : googleId;
         name = (name == null) ? "" : name;
         surname = (surname == null) ? "" : surname;
-        gender = (gender == null) ? "" : gender;
-        birthday = (birthday == null) ? "" : birthday;
 
-        AppLog.d("email: " + email + ", googleId: " + googleId + ", name: " + name + ", imageUrl: " + imageUrl);
+        AppLog.d("email: " + email + ", name: " + name + ", imageUrl: " + imageUrl);
 
         MyApp.getInstance().asyncsMgr.executeSignInAsync(SignInActivity.this, email, "", googleId, name, surname, gender, birthday);
     }

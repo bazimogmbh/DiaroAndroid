@@ -35,8 +35,6 @@ import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.review.ReviewInfo;
@@ -265,7 +263,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
                 prefsEditor.putInt(prefString, ++appUsageCount).apply();
         }
 
-        fixAccount();
         checkIAP();
         fetchRemoteConfig();
 
@@ -299,50 +296,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
                 });
     }
 
-    private void fixAccount() {
-        // only once
-        String prefString = "fixAccount";
-        SharedPreferences preferences = MyApp.getInstance().prefs;
-        if (!preferences.getBoolean(prefString, false)) {
-            if (MyApp.getInstance().userMgr.isSignedIn()) {
-                AppLog.e(MyApp.getInstance().userMgr.getSignedInEmail() + ", " + MyApp.getInstance().userMgr.getSignedInAccountType());
-
-                if (StringUtils.equals(MyApp.getInstance().userMgr.getSignedInAccountType(), UserMgr.SIGNED_IN_WITH_GOOGLE)) {
-                    GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-                    handleSignInResult(account);
-                } else {
-                    // MyApp.getInstance().asyncsMgr.executeSignInAsync(AppMainActivity.this, email, password, "", "", "", "", "");
-                }
-            }
-
-            preferences.edit().putBoolean(prefString, true).apply();
-        }
-    }
-
-    private void handleSignInResult(GoogleSignInAccount acct) {
-        if (acct == null) return;
-        // Signed in successfully, show authenticated UI.
-        String email = acct.getEmail();
-        String googleId = acct.getId();
-        String fullName = acct.getDisplayName();
-        String name = acct.getGivenName();
-        String surname = acct.getFamilyName();
-        String gender = "";
-        String birthday = "";
-        String imageUrl = acct.getPhotoUrl() == null ? "" : acct.getPhotoUrl().getPath();
-
-        if (name == null && fullName != null) {
-            name = fullName;
-        }
-
-        googleId = (googleId == null) ? "" : googleId;
-        name = (name == null) ? "" : name;
-        imageUrl = (imageUrl == null) ? "" : imageUrl;
-
-        AppLog.e("email: " + email + ", googleId: " + googleId + ", name: " + name + ", imageUrl: " + imageUrl);
-
-        MyApp.getInstance().asyncsMgr.executeSignInAsync(AppMainActivity.this, email, "", googleId, name, surname, gender, birthday);
-    }
 
     private void notifyBuyPro() {
         // show buy pro & sync for non pro, signed in users

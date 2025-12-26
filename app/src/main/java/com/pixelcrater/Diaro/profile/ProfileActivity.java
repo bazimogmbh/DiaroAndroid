@@ -28,15 +28,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
+import androidx.credentials.ClearCredentialStateRequest;
+import androidx.credentials.CredentialManager;
+import androidx.credentials.CredentialManagerCallback;
+import androidx.credentials.exceptions.ClearCredentialException;
 import androidx.preference.PreferenceManager;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.pixelcrater.Diaro.MyApp;
 import com.pixelcrater.Diaro.R;
 import com.pixelcrater.Diaro.activitytypes.TypeBillingActivity;
@@ -65,6 +66,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import cn.nekocode.badge.BadgeDrawable;
 
@@ -491,21 +493,39 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
                 return;
             }
 
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-            GoogleSignInClient mGoogleApiClient = GoogleSignIn.getClient(this, gso);
-            mGoogleApiClient.signOut();
+            // Clear credential state using Credential Manager
+            CredentialManager credentialManager = CredentialManager.create(this);
+            credentialManager.clearCredentialStateAsync(
+                    new ClearCredentialStateRequest(),
+                    new android.os.CancellationSignal(),
+                    Executors.newSingleThreadExecutor(),
+                    new CredentialManagerCallback<Void, ClearCredentialException>() {
+                        @Override
+                        public void onResult(Void result) {
+                            runOnUiThread(() -> completeSignOut());
+                        }
 
-            // Unset signed in user
-            MyApp.getInstance().userMgr.setSignedInUser(null, null);
-
-            // Cancel sync
-            MyApp.getInstance().asyncsMgr.cancelSyncAsync();
-
-            Static.turnOffPro();
-            Static.turnOffSubscribedCurrently();
-
-            unlinkFromDropboxInBackground();
+                        @Override
+                        public void onError(@NonNull ClearCredentialException e) {
+                            // Even if clearing credential state fails, proceed with sign out
+                            runOnUiThread(() -> completeSignOut());
+                        }
+                    }
+            );
         });
+    }
+
+    private void completeSignOut() {
+        // Unset signed in user
+        MyApp.getInstance().userMgr.setSignedInUser(null, null);
+
+        // Cancel sync
+        MyApp.getInstance().asyncsMgr.cancelSyncAsync();
+
+        Static.turnOffPro();
+        Static.turnOffSubscribedCurrently();
+
+        unlinkFromDropboxInBackground();
     }
 
     private void updateUi() {

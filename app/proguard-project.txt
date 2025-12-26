@@ -279,3 +279,28 @@
 
 -keep class com.birbit.android.** { *; }
 -keepclassmembers class com.birbit.android.** { *; }
+
+-dontwarn top.defaults.checkerboarddrawable.CheckerboardDrawable
+
+# Logging warnings
+-dontwarn java.lang.invoke.MethodHandleProxies
+-dontwarn org.apache.logging.log4j.Level
+-dontwarn org.apache.logging.log4j.LogManager
+-dontwarn org.apache.logging.log4j.Marker
+-dontwarn org.apache.logging.log4j.MarkerManager
+-dontwarn org.apache.logging.log4j.spi.AbstractLoggerAdapter
+-dontwarn org.apache.logging.log4j.spi.ExtendedLogger
+-dontwarn org.apache.logging.log4j.spi.LoggerAdapter
+-dontwarn org.apache.logging.log4j.spi.LoggerContext
+-dontwarn org.apache.logging.log4j.spi.LoggerContextFactory
+-dontwarn org.apache.logging.log4j.util.StackLocatorUtil
+-dontwarn org.slf4j.ILoggerFactory
+-dontwarn org.slf4j.Logger
+-dontwarn org.slf4j.LoggerFactory
+-dontwarn org.slf4j.Marker
+-dontwarn org.slf4j.MarkerFactory
+-dontwarn org.slf4j.spi.LocationAwareLogger
+
+# Credential Manager
+-keep class androidx.credentials.** { *; }
+-keep class com.google.android.libraries.identity.googleid.** { *; }
