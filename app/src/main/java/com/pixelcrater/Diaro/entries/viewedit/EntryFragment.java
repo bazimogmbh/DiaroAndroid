@@ -2245,7 +2245,18 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
 
             // Collage
             if (which == 1) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= 34) {
+                    // Android 14+: Request partial access permission
+                    PermissionX.init(this)
+                            .permissions(Manifest.permission.READ_MEDIA_IMAGES, "android.permission.READ_MEDIA_VISUAL_USER_SELECTED")
+                            .request((allGranted, grantedList, deniedList) -> {
+                                // Accept if either full access or partial access granted
+                                if (grantedList.contains(Manifest.permission.READ_MEDIA_IMAGES) ||
+                                    grantedList.contains("android.permission.READ_MEDIA_VISUAL_USER_SELECTED")) {
+                                    startCollage();
+                                }
+                            });
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     PermissionX.init(this)
                             .permissions(Manifest.permission.READ_MEDIA_IMAGES)
                             .request((allGranted, grantedList, deniedList) -> startCollage());
@@ -2258,7 +2269,17 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
 
             // Select photo
             else if (which == 2) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= 34) {
+                    // Android 14+: Request partial access permission
+                    PermissionX.init(this)
+                            .permissions(Manifest.permission.READ_MEDIA_IMAGES, "android.permission.READ_MEDIA_VISUAL_USER_SELECTED")
+                            .request((allGranted, grantedList, deniedList) -> {
+                                if (grantedList.contains(Manifest.permission.READ_MEDIA_IMAGES) ||
+                                    grantedList.contains("android.permission.READ_MEDIA_VISUAL_USER_SELECTED")) {
+                                    showPhotoChooser();
+                                }
+                            });
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     PermissionX.init(this)
                             .permissions(Manifest.permission.READ_MEDIA_IMAGES)
                             .request((allGranted, grantedList, deniedList) -> showPhotoChooser());
@@ -2271,7 +2292,17 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
 
             // Select multiple images
             else if (which == 3) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= 34) {
+                    // Android 14+: Request partial access permission
+                    PermissionX.init(this)
+                            .permissions(Manifest.permission.READ_MEDIA_IMAGES, "android.permission.READ_MEDIA_VISUAL_USER_SELECTED")
+                            .request((allGranted, grantedList, deniedList) -> {
+                                if (grantedList.contains(Manifest.permission.READ_MEDIA_IMAGES) ||
+                                    grantedList.contains("android.permission.READ_MEDIA_VISUAL_USER_SELECTED")) {
+                                    startMultiplePhotoPickerActivityNew();
+                                }
+                            });
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     PermissionX.init(this)
                             .permissions(Manifest.permission.READ_MEDIA_IMAGES)
                             .request((allGranted, grantedList, deniedList) -> startMultiplePhotoPickerActivityNew());

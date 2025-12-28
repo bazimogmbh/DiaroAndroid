@@ -8,6 +8,11 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.sandstorm.diary.piceditor.R;
 import com.sandstorm.diary.piceditor.features.picker.fragment.ImagePagerFragment;
@@ -28,6 +33,10 @@ public class PhotoPagerActivity extends AppCompatActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.__picker_activity_photo_pager);
+
+        // Enable edge-to-edge display for Android 15+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
         int intExtra = getIntent().getIntExtra(PhotoPreview.EXTRA_CURRENT_ITEM, 0);
         ArrayList<String> stringArrayListExtra = getIntent().getStringArrayListExtra(PhotoPreview.EXTRA_PHOTOS);
         this.showDelete = getIntent().getBooleanExtra(PhotoPreview.EXTRA_SHOW_DELETE, true);
@@ -35,7 +44,8 @@ public class PhotoPagerActivity extends AppCompatActivity {
             this.pagerFragment = (ImagePagerFragment) getSupportFragmentManager().findFragmentById(R.id.photoPagerFragment);
         }
         this.pagerFragment.setPhotos(stringArrayListExtra, intExtra);
-        setSupportActionBar(findViewById(R.id.toolbar));
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         this.actionBar = getSupportActionBar();
         if (this.actionBar != null) {
             this.actionBar.setDisplayHomeAsUpEnabled(true);
@@ -43,6 +53,18 @@ public class PhotoPagerActivity extends AppCompatActivity {
                 this.actionBar.setElevation(25.0f);
             }
         }
+
+        // Apply window insets
+        setupWindowInsets(toolbar);
+    }
+
+    private void setupWindowInsets(Toolbar toolbar) {
+        // Apply top insets to the toolbar (status bar area)
+        ViewCompat.setOnApplyWindowInsetsListener(toolbar, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), insets.top, v.getPaddingRight(), v.getPaddingBottom());
+            return windowInsets;
+        });
     }
 
     public void onBackPressed() {

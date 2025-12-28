@@ -39,6 +39,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -175,6 +179,10 @@ public class CollageActivity extends AppCompatActivity implements EditingToolsAd
         requestWindowFeature(1);
         getWindow().setFlags(1024, 1024);
         setContentView(R.layout.collage_layout);
+
+        // Enable edge-to-edge display for Android 15+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
         if (Build.VERSION.SDK_INT < 26) {
             getWindow().setSoftInputMode(48);
         }
@@ -417,6 +425,69 @@ public class CollageActivity extends AppCompatActivity implements EditingToolsAd
         this.currentMode = ToolType.NONE;
         CGENativeLibrary.setLoadImageCallback(this.mLoadImageCallback, (Object) null);
         instance = this;
+
+        // Apply window insets for edge-to-edge display
+        setupWindowInsets();
+    }
+
+    private void setupWindowInsets() {
+        // Apply top insets to the save control bar (status bar area)
+        ViewCompat.setOnApplyWindowInsetsListener(this.saveControl, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), insets.top, v.getPaddingRight(), v.getPaddingBottom());
+            return windowInsets;
+        });
+
+        // Apply bottom insets to the main toolbar
+        ViewCompat.setOnApplyWindowInsetsListener(this.mRvTools, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
+            return windowInsets;
+        });
+
+        // Apply bottom insets to piece control
+        ViewCompat.setOnApplyWindowInsetsListener(this.rvPieceControl, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            params.bottomMargin = insets.bottom + (int) (10 * getResources().getDisplayMetrics().density);
+            v.setLayoutParams(params);
+            return windowInsets;
+        });
+
+        // Apply bottom insets to text control
+        ViewCompat.setOnApplyWindowInsetsListener(this.textLayout, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
+            return windowInsets;
+        });
+
+        // Apply bottom insets to sticker layout
+        ViewCompat.setOnApplyWindowInsetsListener(this.stickerLayout, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
+            return windowInsets;
+        });
+
+        // Apply bottom insets to change layout panel
+        ViewCompat.setOnApplyWindowInsetsListener(this.changeLayoutLayout, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
+            return windowInsets;
+        });
+
+        // Apply bottom insets to change background panel
+        ViewCompat.setOnApplyWindowInsetsListener(this.changeBackgroundLayout, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
+            return windowInsets;
+        });
+
+        // Apply bottom insets to filter layout
+        ViewCompat.setOnApplyWindowInsetsListener(this.filterLayout, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
+            return windowInsets;
+        });
     }
 
     public View.OnClickListener onClickListener = view -> {

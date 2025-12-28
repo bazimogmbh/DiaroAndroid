@@ -4,9 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.sandstorm.diary.piceditor.R;
 import com.sandstorm.diary.piceditor.activities.CollageActivity;
@@ -41,8 +47,16 @@ public class PhotoPickerActivity extends AppCompatActivity {
         boolean booleanExtra3 = getIntent().getBooleanExtra(PhotoPicker.EXTRA_PREVIEW_ENABLED, true);
         this.forwardMain = getIntent().getBooleanExtra(PhotoPicker.MAIN_ACTIVITY, false);
         setContentView(R.layout.__picker_activity_photo_picker);
-        setSupportActionBar(findViewById(R.id.toolbar));
+
+        // Enable edge-to-edge display for Android 15+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         setTitle(getResources().getString(R.string.tap_to_select));
+
+        // Apply window insets
+        setupWindowInsets(toolbar);
         ActionBar supportActionBar = getSupportActionBar();
         supportActionBar.setDisplayHomeAsUpEnabled(true);
         supportActionBar.setElevation(25.0f);
@@ -69,6 +83,24 @@ public class PhotoPickerActivity extends AppCompatActivity {
         });
     }
 
+    private void setupWindowInsets(Toolbar toolbar) {
+        // Apply top insets to the toolbar (status bar area)
+        ViewCompat.setOnApplyWindowInsetsListener(toolbar, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), insets.top, v.getPaddingRight(), v.getPaddingBottom());
+            return windowInsets;
+        });
+
+        // Apply bottom insets to the container
+        View container = findViewById(R.id.container);
+        if (container != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(container, (v, windowInsets) -> {
+                Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
+                return windowInsets;
+            });
+        }
+    }
 
     public void onBackPressed() {
         super.onBackPressed();

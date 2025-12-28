@@ -23,6 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.exifinterface.media.ExifInterface;
 
 import com.bumptech.glide.Glide;
@@ -161,8 +166,16 @@ public class PickImageActivity extends AppCompatActivity implements View.OnClick
         requestWindowFeature(1);
         getWindow().setFlags(1024, 1024);
         setContentView(R.layout.piclist_activity_album);
-        setSupportActionBar(findViewById(R.id.toolbar));
+
+        // Enable edge-to-edge display for Android 15+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Apply window insets
+        setupWindowInsets(toolbar);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -196,6 +209,25 @@ public class PickImageActivity extends AppCompatActivity implements View.OnClick
         new GetItemAlbum().execute();
 
         updateTxtTotalImage();
+    }
+
+    private void setupWindowInsets(Toolbar toolbar) {
+        // Apply top insets to the toolbar (status bar area)
+        ViewCompat.setOnApplyWindowInsetsListener(toolbar, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(v.getPaddingLeft(), insets.top, v.getPaddingRight(), v.getPaddingBottom());
+            return windowInsets;
+        });
+
+        // Apply bottom insets to the ads container
+        View adsContainer = findViewById(R.id.adsContainer);
+        if (adsContainer != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(adsContainer, (v, windowInsets) -> {
+                Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
+                return windowInsets;
+            });
+        }
     }
 
     public boolean Check(String str, ArrayList<String> arrayList) {
