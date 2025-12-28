@@ -15,17 +15,10 @@ repositories {
 android {
     signingConfigs {
         config {
-            // Load signing config from local.properties (not in version control)
-            def localProperties = new Properties()
-            def localPropertiesFile = rootProject.file('local.properties')
-            if (localPropertiesFile.exists()) {
-                localPropertiesFile.withInputStream { localProperties.load(it) }
-            }
-
-            keyAlias localProperties.getProperty('signing.keyAlias') ?: System.getenv('SIGNING_KEY_ALIAS')
-            keyPassword localProperties.getProperty('signing.keyPassword') ?: System.getenv('SIGNING_KEY_PASSWORD')
-            storeFile localProperties.getProperty('signing.storeFile') ? file(localProperties.getProperty('signing.storeFile')) : null
-            storePassword localProperties.getProperty('signing.storePassword') ?: System.getenv('SIGNING_STORE_PASSWORD')
+            keyAlias 'diaro'
+            keyPassword 'Thoo3och'
+            storeFile file('/Users/abhishek9851/Dropbox/Programming/Android/ANDROID_APPS_IMPORTANT/Diaro/diaro_keystore')
+            storePassword 'Thoo3och'
         }
     }
 
@@ -36,8 +29,8 @@ android {
         applicationId "com.pixelcrater.Diaro"
         minSdkVersion 23
         targetSdkVersion 35
-        versionCode 423
-        versionName '3.93.3'
+        versionCode 424
+        versionName '4.24.1'
 
         multiDexEnabled true
         signingConfig signingConfigs.config
@@ -114,8 +107,6 @@ dependencies {
 
     // Google Play Services
     implementation 'com.google.android.gms:play-services-ads:24.9.0'
-
-    // Credential Manager for Google Sign-In (replaces deprecated play-services-auth)
     implementation 'androidx.credentials:credentials:1.6.0-rc01'
     implementation 'androidx.credentials:credentials-play-services-auth:1.6.0-rc01'
     implementation 'com.google.android.libraries.identity.googleid:googleid:1.1.1'
@@ -139,7 +130,6 @@ dependencies {
     implementation 'net.zetetic:sqlcipher-android:4.12.0'
     implementation 'androidx.sqlite:sqlite-ktx:2.6.2'
 
-    implementation 'com.yanzhenjie:album:2.1.3'
     implementation 'com.github.javiersantos:BottomDialogs:1.2.1'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
@@ -177,6 +167,7 @@ dependencies {
     implementation project(path: ':demodata')
     implementation project(path: ':piceditor')
     implementation project(path: ':feat-moods')
+    implementation project(path: ':yanzhenjie-album')
 
     //implementation 'com.github.bxute:MarkDEditor:v0.20'
     //implementation 'org.apache.poi:poi:4.1.1'
