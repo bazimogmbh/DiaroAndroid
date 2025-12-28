@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Lisää merkintä</string>
     <string name="notification_reminder_text">On aika tehdä päiväkirjamerkintä!</string>
@@ -450,7 +450,6 @@
     <string name="subscription_renewal_info_detailed">Tilaus laskutetaan vuosittain, jatkuu automaattisesti ja voidaan peruuttaa milloin tahansa. Tilausta jatketaan voimassa olevan tilauksen loppumista edeltävien 24 tunnin kuluessa automaattisesti. Voit hallita tilauksia Google Play -tilisi asetuksissa.</string>
     <string name="text_recognition">Tekstintunnistus</string>
     <string name="collage">Kollaasi</string>
-
     <string name="subscription">Tilaus</string>
     <string name="subscription_billed_annualy_at">Laskutetaan vuosittain hintaan %s</string>
     <string name="subscription_billed_quarterly_at">Laskutetaan neljännesvuosittain %s</string>
@@ -462,4 +461,14 @@
     <string name="subscription_subscribe_now">Tilaa nyt</string>
     <string name="subscription_monthly_short">/kk</string>
     <string name="premium_version">Premium-versio</string>
+    <string name="fast_scroll">Nopea vieritys</string>
+    <string name="bottom_tab">Alavalikko</string>
+    <string name="mood_add">Lisää mieliala</string>
+    <string name="mood_edit">Muokkaa mielialaa</string>
+    <string name="mood_title">Mielialan otsikko</string>
+    <string name="error_title_empty">Otsikko on tyhjä</string>
+    <string name="error_title_exists">Sama otsikko on jo olemassa</string>
+    <string name="confirm_delete">Haluatko varmasti poistaa?</string>
+    <string name="purchase_pending">Ostoksesi on vireillä. Saat käyttöoikeuden, kun maksu on vahvistettu.</string>
+    <string name="month">Kuukausi</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Click aici pentru a adăuga o intrare</string>
     <string name="notification_reminder_text">E timpul să scrii în jurnal!</string>
@@ -451,7 +451,6 @@ Toate fișierele care n-au fost descărcate nu vor mai fi accesibile.</string>
     <string name="diaro_needs_help_text">Pentru a ne asigura că nu trebuie să închidem serviciul și să avem fonduri pentru dezvoltarea și asistența viitoare, introducem o mică taxă anuală. As an existing Premium user since %d,, you can subscribe at a reduced price.</string>
     <string name="text_recognition">Recunoașterea textului</string>
     <string name="collage">Colaj</string>
-
     <string name="subscription">Abonament</string>
     <string name="subscription_billed_annualy_at">Facturat anual %s</string>
     <string name="subscription_billed_quarterly_at">Facturat trimestrial %s</string>
@@ -463,4 +462,14 @@ Toate fișierele care n-au fost descărcate nu vor mai fi accesibile.</string>
     <string name="subscription_subscribe_now">Abonează-te acum</string>
     <string name="subscription_monthly_short">/lună</string>
     <string name="premium_version">Versiune premium</string>
+    <string name="fast_scroll">Derulare rapidă</string>
+    <string name="bottom_tab">Filă inferioară</string>
+    <string name="mood_add">Adăugați dispoziție</string>
+    <string name="mood_edit">Editați dispoziția</string>
+    <string name="mood_title">Titlul dispoziției</string>
+    <string name="error_title_empty">Titlul este gol</string>
+    <string name="error_title_exists">Același titlu există deja</string>
+    <string name="confirm_delete">Sunteți sigur că doriți să ștergeți?</string>
+    <string name="purchase_pending">Achiziția dvs. este în așteptare. Veți primi acces odată ce plata este confirmată.</string>
+    <string name="month">Lună</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Clicca qui per aggiungere una nota</string>
     <string name="notification_reminder_text">E\' ora di scrivere sul tuo diario!</string>
@@ -165,11 +165,11 @@
     <string name="sign_out_confirm">Vuoi uscire?</string>
     <string name="delete_account">Elimina account</string>
     <string name="delete_account_subtitle">Rimuovi permanentemente tutti i tuoi dati</string>
-    <string name="delete_account_confirm_title">Eliminare l'account?</string>
+    <string name="delete_account_confirm_title">Eliminare l\'account?</string>
     <string name="delete_account_confirm_message">Questo eliminerà permanentemente tutte le tue voci del diario, foto e impostazioni da questo dispositivo. Questa azione non può essere annullata.\n\nSei sicuro di voler continuare?</string>
     <string name="deleting_account">Eliminazione account…</string>
     <string name="account_deleted_successfully">Account eliminato con successo</string>
-    <string name="error_deleting_account">Errore durante l'eliminazione dell'account</string>
+    <string name="error_deleting_account">Errore durante l\'eliminazione dell\'account</string>
     <string name="signing_in_with_ellipsis">Autenticazione in corso…</string>
     <string name="sign_in_with_google">Autenticati con Google</string>
     <string name="signed_in">Autenticato</string>
@@ -436,7 +436,6 @@
     <string name="compact">Compatto</string>
     <string name="edit_weather">Modifica meteo</string>
     <string name="timestamp">Marca temporale</string>
-
     <string name="templates">Modelli</string>
     <string name="add_template">Aggiungi modello</string>
     <string name="edit_template">Modifica modello</string>
@@ -450,7 +449,6 @@
     <string name="year">Anno</string>
     <string name="text_recognition">Riconoscimento del testo</string>
     <string name="collage">Collage</string>
-
     <string name="subscription">Abbonamento</string>
     <string name="subscription_billed_annualy_at">Fatturazione annuale a %s</string>
     <string name="subscription_billed_quarterly_at">Fatturato trimestralmente a %s</string>
@@ -463,4 +461,14 @@
     <string name="subscription_monthly_short">/mese</string>
     <string name="premium_version">Versione premium</string>
     <string name="entries">Note</string>
+    <string name="fast_scroll">Scorrimento rapido</string>
+    <string name="bottom_tab">Scheda inferiore</string>
+    <string name="mood_add">Aggiungi umore</string>
+    <string name="mood_edit">Modifica umore</string>
+    <string name="mood_title">Titolo dell\'umore</string>
+    <string name="error_title_empty">Il titolo è vuoto</string>
+    <string name="error_title_exists">Lo stesso titolo esiste già</string>
+    <string name="confirm_delete">Sei sicuro di voler eliminare?</string>
+    <string name="purchase_pending">Il tuo acquisto è in sospeso. Avrai accesso una volta confermato il pagamento.</string>
+    <string name="month">Mese</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Klicka här för att lägga till anteckningar</string>
     <string name="notification_reminder_text">Det är dags att skriva dagbok!</string>
@@ -437,7 +437,6 @@
     <string name="compact">Kompakt</string>
     <string name="edit_weather">Redigera vädret</string>
     <string name="timestamp">Tidsstämpel</string>
-
     <string name="templates">Mallar</string>
     <string name="add_template">Lägg till mall</string>
     <string name="edit_template">Redigera mall</string>
@@ -451,7 +450,6 @@
     <string name="year">År</string>
     <string name="text_recognition">Textigenkänning</string>
     <string name="collage">Collage</string>
-
     <string name="subscription">Prenumeration</string>
     <string name="subscription_billed_annualy_at">Faktureras årligen %s</string>
     <string name="subscription_billed_quarterly_at">Faktureras kvartalsvis %s</string>
@@ -463,4 +461,14 @@
     <string name="subscription_subscribe_now">Prenumerera nu</string>
     <string name="subscription_monthly_short">/mån</string>
     <string name="premium_version">Premiumversion</string>
+    <string name="fast_scroll">Snabb rullning</string>
+    <string name="bottom_tab">Nedre flik</string>
+    <string name="mood_add">Lägg till humör</string>
+    <string name="mood_edit">Redigera humör</string>
+    <string name="mood_title">Humörtitel</string>
+    <string name="error_title_empty">Titeln är tom</string>
+    <string name="error_title_exists">Samma titel finns redan</string>
+    <string name="confirm_delete">Är du säker på att du vill radera?</string>
+    <string name="purchase_pending">Ditt köp väntar. Du får åtkomst när betalningen är bekräftad.</string>
+    <string name="month">Månad</string>
 </resources>

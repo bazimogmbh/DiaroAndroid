@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Klik disini untuk menambah entri</string>
     <string name="notification_reminder_text">Waktunya menulis diari baru Anda!</string>
@@ -461,4 +461,14 @@
     <string name="subscription_subscribe_now">Langganan Sekarang</string>
     <string name="subscription_monthly_short">/bulan</string>
     <string name="premium_version">Versi premium</string>
+    <string name="fast_scroll">Gulir Cepat</string>
+    <string name="bottom_tab">Tab Bawah</string>
+    <string name="mood_add">Tambah suasana hati</string>
+    <string name="mood_edit">Edit suasana hati</string>
+    <string name="mood_title">Judul suasana hati</string>
+    <string name="error_title_empty">Judul kosong</string>
+    <string name="error_title_exists">Judul yang sama sudah ada</string>
+    <string name="confirm_delete">Apakah Anda yakin ingin menghapus?</string>
+    <string name="purchase_pending">Pembelian Anda sedang menunggu. Anda akan mendapatkan akses setelah pembayaran dikonfirmasi.</string>
+    <string name="month">Bulan</string>
 </resources>

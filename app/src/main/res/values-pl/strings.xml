@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Kliknij tutaj, aby dodać wpis</string>
     <string name="notification_reminder_text">Nadszedł czas, aby napisać w swoim dzienniku!</string>
@@ -434,7 +434,6 @@
     <string name="compact">Kompaktowy</string>
     <string name="edit_weather">Edytuj pogodę</string>
     <string name="timestamp">Znak czasu</string>
-
     <string name="templates">Szablony</string>
     <string name="add_template">Dodaj szablon</string>
     <string name="edit_template">Edytuj szablon</string>
@@ -448,7 +447,6 @@
     <string name="year">Rok</string>
     <string name="text_recognition">Rozpoznawanie tekstu</string>
     <string name="collage">Kolaż</string>
-
     <string name="subscription">Subskrypcja</string>
     <string name="subscription_billed_annualy_at">Opłata całoroczna w wysokości %s</string>
     <string name="subscription_billed_quarterly_at">Rozliczane kwartalnie %s</string>
@@ -461,5 +459,16 @@
     <string name="subscription_monthly_short">/msc.</string>
     <string name="premium_version">Wersja premium</string>
     <string name="entries">Wpisy</string>
-
+    <string name="fast_scroll">Szybkie przewijanie</string>
+    <string name="bottom_tab">Dolna zakładka</string>
+    <string name="mood_add">Dodaj nastrój</string>
+    <string name="mood_edit">Edytuj nastrój</string>
+    <string name="mood_title">Tytuł nastroju</string>
+    <string name="error_title_empty">Tytuł jest pusty</string>
+    <string name="error_title_exists">Ten sam tytuł już istnieje</string>
+    <string name="confirm_delete">Czy na pewno chcesz usunąć?</string>
+    <string name="purchase_pending">Twój zakup oczekuje na realizację. Otrzymasz dostęp po potwierdzeniu płatności.</string>
+    <string name="month">Miesiąc</string>
+    <string name="entries_daily">Wpisy Dziennie</string>
+    <string name="entries_monthly">Wpisy Miesięcznie</string>
 </resources>

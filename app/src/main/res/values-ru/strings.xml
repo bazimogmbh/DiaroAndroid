@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Нажмите, чтобы добавить запись</string>
     <string name="notification_reminder_text">Пора сделать запись в дневнике!</string>
@@ -450,7 +450,6 @@
     <string name="year">Год</string>
     <string name="text_recognition">Распознавание текста</string>
     <string name="collage">Коллаж</string>
-
     <string name="subscription">Подписка</string>
     <string name="subscription_billed_annualy_at">Оплата ежегодно %s</string>
     <string name="subscription_billed_quarterly_at">Оплата ежеквартально %s</string>
@@ -462,4 +461,14 @@
     <string name="subscription_subscribe_now">Подпишитесь прямо сейчас</string>
     <string name="subscription_monthly_short">/мес.</string>
     <string name="premium_version">Премиум версия</string>
+    <string name="fast_scroll">Быстрая прокрутка</string>
+    <string name="bottom_tab">Нижняя вкладка</string>
+    <string name="mood_add">Добавить настроение</string>
+    <string name="mood_edit">Изменить настроение</string>
+    <string name="mood_title">Название настроения</string>
+    <string name="error_title_empty">Название пустое</string>
+    <string name="error_title_exists">Такое название уже существует</string>
+    <string name="confirm_delete">Вы уверены, что хотите удалить?</string>
+    <string name="purchase_pending">Ваша покупка ожидает обработки. Вы получите доступ после подтверждения платежа.</string>
+    <string name="month">Месяц</string>
 </resources>

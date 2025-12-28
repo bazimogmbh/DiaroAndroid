@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Klik her for at tilføje nyt indlæg</string>
     <string name="notification_reminder_text">Det er på tide at skrive i din Diaro!</string>
@@ -450,7 +450,6 @@
     <string name="subscription_renewal_info_detailed">Fakturering årligt, fornyes automatisk, annulleres når som helst. Abonnementet fornyes automatisk inden for 24 timer inden det aktuelle abonnement slutter. Du kan administrere abonnementer i Google Play-kontoindstillinger.</string>
     <string name="text_recognition">Tekstgenkendelse</string>
     <string name="collage">Collage</string>
-
     <string name="subscription">Abonnement</string>
     <string name="subscription_billed_annualy_at">Faktureres årligt kl %s</string>
     <string name="subscription_billed_quarterly_at">Faktureres kvartalsvis kl %s</string>
@@ -462,4 +461,14 @@
     <string name="subscription_subscribe_now">Opret abonnement nu</string>
     <string name="subscription_monthly_short">/md</string>
     <string name="premium_version">Premium-version</string>
+    <string name="fast_scroll">Hurtig rulning</string>
+    <string name="bottom_tab">Nederste fane</string>
+    <string name="mood_add">Tilføj humør</string>
+    <string name="mood_edit">Rediger humør</string>
+    <string name="mood_title">Humørtitel</string>
+    <string name="error_title_empty">Titlen er tom</string>
+    <string name="error_title_exists">Samme titel findes allerede</string>
+    <string name="confirm_delete">Er du sikker på, at du vil slette?</string>
+    <string name="purchase_pending">Dit køb afventer. Du får adgang, når betalingen er bekræftet.</string>
+    <string name="month">Måned</string>
 </resources>

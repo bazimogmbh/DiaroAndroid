@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Klikni ovdje da dodaš zapis</string>
     <string name="notification_reminder_text">Vrijeme je da napišeš nešto u svoj dnevnik!</string>
@@ -209,7 +209,6 @@
     <string name="mood_3">Neutralan</string>
     <string name="mood_4">Loše</string>
     <string name="mood_5">Grozan</string>
-
     <string name="calendar">Kalendar</string>
     <string name="settings_weather">Vrijeme</string>
     <string name="notification_hello_default">zdravo</string>
@@ -341,12 +340,12 @@
     <string name="finish">Završi</string>
     <string name="follow_us_on_facebook">Pratite nas na Facebooku</string>
     <string name="forgot_security_code">Zaboravili ste sigurnosni kod?</string>
-    <string name="free_of">free of</string>
+    <string name="free_of">bez</string>
     <string name="follow_us_on_facebook_summary">Dobijte najnovije vijesti tvrtke Diaro prateći nas na Facebooku.</string>
-    <string name="hint">Hint</string>
+    <string name="hint">Savjet</string>
     <string name="hybrid">Hibrid</string>
     <string name="if_unchecked_shows_photos_at_the_bottom">Ako nije označeno, prikazuje se na dnu fotografija</string>
-    <string name="settings_immediately">Immediately</string>
+    <string name="settings_immediately">Odmah</string>
     <string name="large_date">Veliki datum</string>
     <string name="later">Kasnije</string>
     <string name="licenses">Licence</string>
@@ -438,7 +437,6 @@
     <string name="compact">Kompaktni</string>
     <string name="edit_weather">Uredi vrijeme</string>
     <string name="timestamp">Vremenski žig</string>
-
     <string name="templates">Predlošci</string>
     <string name="add_template">Dodajte predložak</string>
     <string name="edit_template">Uredi predložak</string>
@@ -452,5 +450,26 @@
     <string name="text_recognition">Prepoznavanje teksta</string>
     <string name="collage">Kolaž</string>
     <string name="premium_version">Premium verzija</string>
-
+    <string name="fast_scroll">Brzo pomicanje</string>
+    <string name="bottom_tab">Donja kartica</string>
+    <string name="mood_add">Dodaj raspoloženje</string>
+    <string name="mood_edit">Uredi raspoloženje</string>
+    <string name="mood_title">Naslov raspoloženja</string>
+    <string name="error_title_empty">Naslov je prazan</string>
+    <string name="error_title_exists">Isti naslov već postoji</string>
+    <string name="confirm_delete">Jeste li sigurni da želite izbrisati?</string>
+    <string name="purchase_pending">Vaša kupnja je na čekanju. Dobit ćete pristup nakon potvrde plaćanja.</string>
+    <string name="month">Mjesec</string>
+    <string name="diaro_needs_help_text">Kako bismo osigurali da ne moramo zatvoriti uslugu i da imamo sredstva za budući razvoj i podršku, uvodi se mala godišnja naknada. Vaš trenutni pro status će i dalje biti priznat, ali nove nadolazeće značajke (oblikovanje teksta, audio, PDF, Docx privici i buduća ažuriranja) će zahtijevati pretplatu.
+Kao Premium korisnik od %d, možete se pretplatiti po sniženoj cijeni.</string>
+    <string name="subscription">Pretplata</string>
+    <string name="subscription_billed_annualy_at">Godišnja naplata po %s</string>
+    <string name="subscription_billed_quarterly_at">Tromjesečna naplata po %s</string>
+    <string name="subscription_billed_monthly">Mjesečna naplata</string>
+    <string name="subscription_recurring_billing_info">Ponavljajuća naplata, otkažite bilo kada</string>
+    <string name="subscription_free_trial_info">Besplatno probno razdoblje od %d dana, zatim %s godišnje</string>
+    <string name="subscription_price_per_year">%s godišnje</string>
+    <string name="subscription_start_free_trail">Započni besplatno probno razdoblje</string>
+    <string name="subscription_subscribe_now">Pretplati se sada</string>
+    <string name="subscription_monthly_short">/mj</string>
 </resources>

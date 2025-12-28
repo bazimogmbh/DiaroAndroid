@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Kliknite pre pridanie záznamu</string>
     <string name="notification_reminder_text">Je čas napísať niečo do denníka!</string>
@@ -450,7 +450,6 @@
     <string name="year">Rok</string>
     <string name="text_recognition">Rozpoznávanie textu</string>
     <string name="collage">Koláž</string>
-
     <string name="subscription">Predplatné</string>
     <string name="subscription_billed_annualy_at">Účtované ročne %s</string>
     <string name="subscription_billed_quarterly_at">Účtované štvrťročne %s</string>
@@ -462,4 +461,14 @@
     <string name="subscription_subscribe_now">Predplatiť teraz</string>
     <string name="subscription_monthly_short">/mes</string>
     <string name="premium_version">Prémiová verzia</string>
+    <string name="fast_scroll">Rýchle posúvanie</string>
+    <string name="bottom_tab">Spodná karta</string>
+    <string name="mood_add">Pridať náladu</string>
+    <string name="mood_edit">Upraviť náladu</string>
+    <string name="mood_title">Názov nálady</string>
+    <string name="error_title_empty">Názov je prázdny</string>
+    <string name="error_title_exists">Rovnaký názov už existuje</string>
+    <string name="confirm_delete">Naozaj chcete odstrániť?</string>
+    <string name="purchase_pending">Váš nákup čaká na vybavenie. Prístup získate po potvrdení platby.</string>
+    <string name="month">Mesiac</string>
 </resources>

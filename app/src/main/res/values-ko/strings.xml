@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">일기를 쓰려면 여기를 누르세요</string>
     <string name="notification_reminder_text">일기 쓸 시간이에요!</string>
@@ -434,7 +434,6 @@
     <string name="compact">콤팩트</string>
     <string name="edit_weather">날씨 편집</string>
     <string name="timestamp">타임 스탬프</string>
-
     <string name="templates">템플릿</string>
     <string name="add_template">템플릿 추가</string>
     <string name="edit_template">템플릿 편집</string>
@@ -451,7 +450,6 @@
     <string name="entries_monthly">월간 항목</string>
     <string name="entries_daily">매일 항목</string>
     <string name="collage">콜라주</string>
-
     <string name="subscription">구독</string>
     <string name="subscription_billed_annualy_at">%s 가격으로 연간 청구</string>
     <string name="subscription_billed_quarterly_at">%s 분기별로 청구 </string>
@@ -463,4 +461,14 @@
     <string name="subscription_subscribe_now">지금 구독하기</string>
     <string name="subscription_monthly_short">/월</string>
     <string name="premium_version">프리미엄 버전</string>
+    <string name="fast_scroll">빠른 스크롤</string>
+    <string name="bottom_tab">하단 탭</string>
+    <string name="mood_add">기분 추가</string>
+    <string name="mood_edit">기분 편집</string>
+    <string name="mood_title">기분 제목</string>
+    <string name="error_title_empty">제목이 비어 있습니다</string>
+    <string name="error_title_exists">같은 제목이 이미 존재합니다</string>
+    <string name="confirm_delete">정말 삭제하시겠습니까?</string>
+    <string name="purchase_pending">구매가 보류 중입니다. 결제가 확인되면 액세스 권한을 얻게 됩니다.</string>
+    <string name="month">월</string>
 </resources>

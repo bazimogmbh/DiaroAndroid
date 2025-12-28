@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Klikk her for å legge til nytt innlegg</string>
     <string name="notification_reminder_text">På tide å skrive i dagboken!</string>
@@ -176,21 +176,17 @@
     <string name="mood_3">Nøytral</string>
     <string name="mood_4">Dårlig</string>
     <string name="mood_5">Fryktelig</string>
-
     <string name="total">Total</string>
     <string name="today">I Dag</string>
-
     <string name="folder_business">Forretnings</string>
     <string name="folder_entertainment">Underholdning</string>
     <string name="folder_friends">Venner</string>
     <string name="folder_love">Kjærlighet</string>
     <string name="folder_vacations">Ferier</string>
     <string name="folder_todo">Todo</string>
-
     <string name="tag_dream">Drøm</string>
     <string name="tag_idea">Idea</string>
     <string name="tag_movie">Film</string>
-
     <string name="calendar">Kalender</string>
     <string name="settings_weather">Vær</string>
     <string name="notification_hello_default">Hallo</string>
@@ -441,7 +437,6 @@
     <string name="compact">Kompakt</string>
     <string name="edit_weather">Rediger vær</string>
     <string name="timestamp">Tidsstempel</string>
-
     <string name="templates">Maler</string>
     <string name="add_template">Legg til mal</string>
     <string name="edit_template">Rediger mal</string>
@@ -456,6 +451,24 @@
     <string name="text_recognition">Tekstgjenkjenning</string>
     <string name="collage">Collage</string>
     <string name="premium_version">Premium-versjon</string>
-
-
+    <string name="fast_scroll">Rask rulling</string>
+    <string name="bottom_tab">Nedre fane</string>
+    <string name="mood_add">Legg til humør</string>
+    <string name="mood_edit">Rediger humør</string>
+    <string name="mood_title">Humørtittel</string>
+    <string name="error_title_empty">Tittelen er tom</string>
+    <string name="error_title_exists">Samme tittel finnes allerede</string>
+    <string name="confirm_delete">Er du sikker på at du vil slette?</string>
+    <string name="purchase_pending">Kjøpet ditt venter. Du får tilgang når betalingen er bekreftet.</string>
+    <string name="month">Måned</string>
+    <string name="subscription">Abonnement</string>
+    <string name="subscription_billed_annualy_at">Faktureres årlig til %s</string>
+    <string name="subscription_billed_quarterly_at">Faktureres kvartalsvis til %s</string>
+    <string name="subscription_billed_monthly">Faktureres månedlig</string>
+    <string name="subscription_recurring_billing_info">Gjentakende fakturering, avbryt når som helst</string>
+    <string name="subscription_free_trial_info">%d dagers gratis prøveperiode, deretter %s per år</string>
+    <string name="subscription_price_per_year">%s per år</string>
+    <string name="subscription_start_free_trail">Start gratis prøveperiode</string>
+    <string name="subscription_subscribe_now">Abonner nå</string>
+    <string name="subscription_monthly_short">/md</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Klicke hier, um einen Eintrag hinzuzufügen</string>
     <string name="notification_reminder_text">Es ist Zeit für einen Eintrag in deinem Tagebuch!</string>
@@ -437,7 +437,6 @@
     <string name="compact">Kompakt</string>
     <string name="edit_weather">Wetter bearbeiten</string>
     <string name="timestamp">Zeitstempel</string>
-
     <string name="templates">Vorlagen</string>
     <string name="add_template">Vorlage hinzufügen</string>
     <string name="edit_template">Vorlage bearbeiten</string>
@@ -451,7 +450,6 @@
     <string name="year">Jahr</string>
     <string name="text_recognition">Texterkennung</string>
     <string name="collage">Collage</string>
-
     <string name="subscription">Abonnement</string>
     <string name="subscription_billed_annualy_at">Jährl. Zahlung: %s</string>
     <string name="subscription_billed_quarterly_at">ViertelJa. Zahlung: %s</string>
@@ -463,4 +461,14 @@
     <string name="subscription_subscribe_now">Jetzt abonnieren</string>
     <string name="subscription_monthly_short">/M.</string>
     <string name="premium_version">Premium-Version</string>
+    <string name="fast_scroll">Schnellbildlauf</string>
+    <string name="bottom_tab">Untere Registerkarte</string>
+    <string name="mood_add">Stimmung hinzufügen</string>
+    <string name="mood_edit">Stimmung bearbeiten</string>
+    <string name="mood_title">Stimmungstitel</string>
+    <string name="error_title_empty">Titel ist leer</string>
+    <string name="error_title_exists">Der gleiche Titel existiert bereits</string>
+    <string name="confirm_delete">Möchten Sie wirklich löschen?</string>
+    <string name="purchase_pending">Ihr Kauf steht noch aus. Sie erhalten Zugriff, sobald die Zahlung bestätigt wurde.</string>
+    <string name="month">Monat</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Kayıt eklemek için buraya basın</string>
     <string name="notification_reminder_text">Günlüğüne yazma vakti! </string>
@@ -434,7 +434,6 @@
     <string name="compact">Kompakt</string>
     <string name="edit_weather">Hava Durumunu Düzenle</string>
     <string name="timestamp">Zaman Damgası</string>
-
     <string name="templates">Şablonlar</string>
     <string name="add_template">Şablon Ekle</string>
     <string name="edit_template">Şablonu Düzenle</string>
@@ -448,7 +447,6 @@
     <string name="year">Yıl</string>
     <string name="text_recognition">Metin tanıma</string>
     <string name="collage">Kolaj</string>
-
     <string name="subscription">Abonelik</string>
     <string name="subscription_billed_annualy_at">Yıllık olarak faturalandırılır %s</string>
     <string name="subscription_billed_quarterly_at">Yıllık olarak faturalandırılır %s</string>
@@ -461,4 +459,16 @@
     <string name="subscription_monthly_short">/ay</string>
     <string name="premium_version">Premium sürüm</string>
     <string name="entries">Kayıt listesi</string>
+    <string name="fast_scroll">Hızlı kaydırma</string>
+    <string name="bottom_tab">Alt sekme</string>
+    <string name="mood_add">Ruh hali ekle</string>
+    <string name="mood_edit">Ruh halini düzenle</string>
+    <string name="mood_title">Ruh hali başlığı</string>
+    <string name="error_title_empty">Başlık boş</string>
+    <string name="error_title_exists">Aynı başlık zaten var</string>
+    <string name="confirm_delete">Silmek istediğinizden emin misiniz?</string>
+    <string name="purchase_pending">Satın alma işleminiz beklemede. Ödeme onaylandıktan sonra erişim kazanacaksınız.</string>
+    <string name="month">Ay</string>
+    <string name="entries_monthly">Girişler Aylık</string>
+    <string name="words_monthly">Kelimeler Aylık</string>
 </resources>

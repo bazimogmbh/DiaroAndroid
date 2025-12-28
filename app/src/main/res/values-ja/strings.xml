@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">ここをクリックして記事を追加</string>
     <string name="notification_reminder_text">日記を書く時間です！</string>
@@ -427,14 +427,13 @@
     <string name="average_mood_per_day">平均気分</string>
     <string name="date_range">期間</string>
     <string name="words_monthly">言葉 毎月</string>
-    <string name="unsynced_entries_info">同期されていないエントリが ％d 個あります！</string>
+    <string name="unsynced_entries_info">同期されていないエントリが %d 個あります！</string>
     <string name="upgrade_info">Proバージョンを購入して自動バックアップを有効にし、Dropboxアカウントに同期します。 大切な思い出を安全に保ち、データの損失を心配する必要はありません。</string>
     <string name="display">表示</string>
     <string name="cozy">居心地の良い</string>
     <string name="compact">コンパクト</string>
     <string name="edit_weather">天気を編集</string>
     <string name="timestamp">タイムスタンプ</string>
-
     <string name="templates">テンプレート</string>
     <string name="add_template">テンプレートを追加</string>
     <string name="edit_template">テンプレートを編集</string>
@@ -447,7 +446,6 @@
     <string name="year">年</string>
     <string name="text_recognition">テキスト認識</string>
     <string name="collage">コラージュ</string>
-
     <string name="subscription">サブスクリプション</string>
     <string name="subscription_billed_annualy_at">年間請求額 %s</string>
     <string name="subscription_billed_quarterly_at">四半期ごとに請求 %s</string>
@@ -460,4 +458,18 @@
     <string name="subscription_monthly_short">/月</string>
     <string name="premium_version">プレミアムバージョン</string>
     <string name="entries">"日記エントリ "</string>
+    <string name="fast_scroll">高速スクロール</string>
+    <string name="bottom_tab">下部タブ</string>
+    <string name="mood_add">ムードを追加</string>
+    <string name="mood_edit">ムードを編集</string>
+    <string name="mood_title">ムードのタイトル</string>
+    <string name="error_title_empty">タイトルが空です</string>
+    <string name="error_title_exists">同じタイトルが既に存在します</string>
+    <string name="confirm_delete">本当に削除しますか？</string>
+    <string name="purchase_pending">購入は保留中です。支払いが確認されるとアクセスできるようになります。</string>
+    <string name="month">月</string>
+    <string name="entries_daily">毎日のエントリー</string>
+    <string name="entries_monthly">毎月のエントリー</string>
+    <string name="diaro_needs_help_text">サービスを閉鎖する必要がなく、将来の開発とサポートのための資金を確保するために、少額の年会費を導入しています。現在のProステータスは引き続き認識されますが、今後の新機能（テキストフォーマット、オーディオ、PDF、Docx添付ファイル、および将来のアップデート）にはサブスクリプションが必要になります。
+%d年からのプレミアムユーザーとして、割引価格でサブスクリプションできます。</string>
 </resources>

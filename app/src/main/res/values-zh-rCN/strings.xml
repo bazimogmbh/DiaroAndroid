@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">点击添加新日记</string>
     <string name="notification_reminder_text">该写日记啦！</string>
@@ -430,14 +430,13 @@
     <string name="yearly">每年</string>
     <string name="entries_daily">参赛作品 日常</string>
     <string name="entries_monthly">参赛作品 每月一次</string>
-    <string name="unsynced_entries_info">您有 ％d 个未同步的条目！</string>
+    <string name="unsynced_entries_info">您有 %d 个未同步的条目！</string>
     <string name="upgrade_info">购买专业版以激活自动备份并同步到您的保管箱帐户。 确保您的宝贵记忆安全，不要再担心丢失数据。</string>
     <string name="display">显示</string>
     <string name="cozy">舒适</string>
     <string name="compact">紧凑</string>
     <string name="edit_weather">编辑天气</string>
     <string name="timestamp">时间戳记</string>
-
     <string name="templates">范本</string>
     <string name="add_template">新增范本</string>
     <string name="edit_template">编辑范本</string>
@@ -450,7 +449,6 @@
     <string name="year">年</string>
     <string name="text_recognition">文字识别</string>
     <string name="collage">大学</string>
-
     <string name="subscription">订阅</string>
     <string name="subscription_billed_annualy_at">每年收费 %s</string>
     <string name="subscription_billed_quarterly_at">每季度计费 %s</string>
@@ -462,5 +460,14 @@
     <string name="subscription_subscribe_now">立即订阅</string>
     <string name="subscription_monthly_short">/月</string>
     <string name="premium_version">高级版</string>
-
+    <string name="fast_scroll">快速滚动</string>
+    <string name="bottom_tab">底部标签</string>
+    <string name="mood_add">添加心情</string>
+    <string name="mood_edit">编辑心情</string>
+    <string name="mood_title">心情标题</string>
+    <string name="error_title_empty">标题为空</string>
+    <string name="error_title_exists">相同标题已存在</string>
+    <string name="confirm_delete">您确定要删除吗？</string>
+    <string name="purchase_pending">您的购买正在等待处理。付款确认后您将获得访问权限。</string>
+    <string name="month">月</string>
 </resources>

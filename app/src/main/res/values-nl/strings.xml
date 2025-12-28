@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Klik hier om een nieuw item toe te voegen</string>
     <string name="notification_reminder_text">Het is tijd om uw dagboek bij te werken!</string>
@@ -166,7 +166,7 @@
     <string name="delete_account">Account verwijderen</string>
     <string name="delete_account_subtitle">Al uw gegevens permanent verwijderen</string>
     <string name="delete_account_confirm_title">Account verwijderen?</string>
-    <string name="delete_account_confirm_message">Dit verwijdert permanent al uw dagboekitems, foto's en instellingen van dit apparaat. Deze actie kan niet ongedaan worden gemaakt.\n\nWeet u zeker dat u wilt doorgaan?</string>
+    <string name="delete_account_confirm_message">Dit verwijdert permanent al uw dagboekitems, foto\'s en instellingen van dit apparaat. Deze actie kan niet ongedaan worden gemaakt.\n\nWeet u zeker dat u wilt doorgaan?</string>
     <string name="deleting_account">Account verwijderen…</string>
     <string name="account_deleted_successfully">Account succesvol verwijderd</string>
     <string name="error_deleting_account">Fout bij het verwijderen van account</string>
@@ -434,7 +434,6 @@
     <string name="compact">Compact</string>
     <string name="edit_weather">Weer bewerken</string>
     <string name="timestamp">Tijdstempel</string>
-
     <string name="templates">Sjablonen</string>
     <string name="add_template">Sjabloon toevoegen</string>
     <string name="edit_template">Sjabloon bewerken</string>
@@ -448,7 +447,6 @@
     <string name="year">Jaar</string>
     <string name="text_recognition">Tekstherkenning</string>
     <string name="collage">Collage</string>
-
     <string name="subscription">Abonnement</string>
     <string name="subscription_billed_annualy_at">Jaarlijks gefactureerd: %s</string>
     <string name="subscription_billed_quarterly_at">Kwartaal gefactureerd: %s</string>
@@ -461,4 +459,16 @@
     <string name="subscription_monthly_short">/ma</string>
     <string name="premium_version">Premium-versie</string>
     <string name="entries">Aantekeningen</string>
+    <string name="fast_scroll">Snel scrollen</string>
+    <string name="bottom_tab">Onderste tabblad</string>
+    <string name="mood_add">Stemming toevoegen</string>
+    <string name="mood_edit">Stemming bewerken</string>
+    <string name="mood_title">Stemmingstitel</string>
+    <string name="error_title_empty">Titel is leeg</string>
+    <string name="error_title_exists">Dezelfde titel bestaat al</string>
+    <string name="confirm_delete">Weet u zeker dat u wilt verwijderen?</string>
+    <string name="purchase_pending">Uw aankoop is in behandeling. U krijgt toegang zodra de betaling is bevestigd.</string>
+    <string name="month">Maand</string>
+    <string name="entries_monthly">Dagboekitems Maandelijks</string>
+    <string name="words_monthly">Woorden Maandelijks</string>
 </resources>

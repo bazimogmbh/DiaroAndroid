@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Eπιλέξτε εδώ για νέα εγγραφή</string>
     <string name="notification_reminder_text">Ειναι ώρα να γράψετε κάτι νέο στο ημερολόγιό σας</string>
@@ -449,7 +449,6 @@
     <string name="year">Ετος</string>
     <string name="text_recognition">Αναγνώριση κειμένου</string>
     <string name="collage">Κολάζ</string>
-
     <string name="subscription">Συνδρομή</string>
     <string name="subscription_billed_annualy_at">Χρεώνεται ετησίως στο %s</string>
     <string name="subscription_billed_quarterly_at">Χρέωση ανά τρίμηνο στο %s</string>
@@ -461,4 +460,16 @@
     <string name="subscription_subscribe_now">Εγγραφείτε Τώρα</string>
     <string name="subscription_monthly_short">/μήνα</string>
     <string name="premium_version">Premium έκδοση</string>
+    <string name="fast_scroll">Γρήγορη κύλιση</string>
+    <string name="bottom_tab">Κάτω καρτέλα</string>
+    <string name="mood_add">Προσθήκη διάθεσης</string>
+    <string name="mood_edit">Επεξεργασία διάθεσης</string>
+    <string name="mood_title">Τίτλος διάθεσης</string>
+    <string name="error_title_empty">Ο τίτλος είναι κενός</string>
+    <string name="error_title_exists">Ο ίδιος τίτλος υπάρχει ήδη</string>
+    <string name="confirm_delete">Είστε βέβαιοι ότι θέλετε να διαγράψετε;</string>
+    <string name="purchase_pending">Η αγορά σας εκκρεμεί. Θα αποκτήσετε πρόσβαση μόλις επιβεβαιωθεί η πληρωμή.</string>
+    <string name="month">Μήνας</string>
+    <string name="diaro_needs_help_text">Για να διασφαλίσουμε ότι δεν χρειάζεται να κλείσουμε την υπηρεσία και να έχουμε κεφάλαια για μελλοντική ανάπτυξη και υποστήριξη, εισάγουμε μια μικρή ετήσια χρέωση. Η τρέχουσα κατάσταση Pro σας θα εξακολουθεί να αναγνωρίζεται, αλλά οι νέες επερχόμενες λειτουργίες (μορφοποίηση κειμένου, ήχος, συνημμένα PDF και Docx και μελλοντικές ενημερώσεις) θα απαιτούν συνδρομή.
+Ως χρήστης Premium από το %d, μπορείτε να εγγραφείτε σε μειωμένη τιμή.</string>
 </resources>

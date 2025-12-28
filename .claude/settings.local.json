@@ -3,7 +3,9 @@
     "allow": [
       "WebSearch",
       "WebFetch(domain:dropbox.github.io)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(python3:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

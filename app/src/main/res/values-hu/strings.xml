@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Kattints ide új bejegyzéshez</string>
     <string name="notification_reminder_text">Ideje írni a naplódba!</string>
@@ -447,7 +447,6 @@
     <string name="year">Év</string>
     <string name="text_recognition">Szövegfelismerés</string>
     <string name="collage">Kollázs</string>
-
     <string name="subscription">Előfizetés</string>
     <string name="subscription_billed_annualy_at">Évente számlázva: %s</string>
     <string name="subscription_billed_quarterly_at">Negyedévente számlázva: %s</string>
@@ -460,4 +459,16 @@
     <string name="subscription_monthly_short">/hó</string>
     <string name="premium_version">Prémium változat</string>
     <string name="entries">Bejegyzések</string>
+    <string name="fast_scroll">Gyors görgetés</string>
+    <string name="bottom_tab">Alsó lap</string>
+    <string name="mood_add">Hangulat hozzáadása</string>
+    <string name="mood_edit">Hangulat szerkesztése</string>
+    <string name="mood_title">Hangulat címe</string>
+    <string name="error_title_empty">A cím üres</string>
+    <string name="error_title_exists">Ugyanez a cím már létezik</string>
+    <string name="confirm_delete">Biztosan törölni szeretné?</string>
+    <string name="purchase_pending">A vásárlás folyamatban van. A fizetés megerősítése után kap hozzáférést.</string>
+    <string name="month">Hónap</string>
+    <string name="entries_daily">Bejegyzések Naponta</string>
+    <string name="entries_monthly">Bejegyzések Havonta</string>
 </resources>

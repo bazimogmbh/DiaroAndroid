@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">أضغط هنا لأضافة الملاحظة</string>
     <string name="notification_reminder_text">حان وقت كتابة يومياتك</string>
@@ -438,7 +438,6 @@ www.diaroapp.com/en/translations</string>
     <string name="edit_weather">تحرير الطقس</string>
     <string name="timestamp">الطابع الزمني</string>
     <string name="unsynced_entries_info">لديك %d إدخالات غير متزامنة!</string>
-
     <string name="templates">قوالب</string>
     <string name="add_template">إضافة قالب</string>
     <string name="edit_template">تحرير القالب</string>
@@ -452,4 +451,26 @@ www.diaroapp.com/en/translations</string>
     <string name="text_recognition">التعرف على النص</string>
     <string name="collage">كلية</string>
     <string name="premium_version">نسخة متميزة</string>
+    <string name="fast_scroll">التمرير السريع</string>
+    <string name="bottom_tab">علامة التبويب السفلية</string>
+    <string name="mood_add">إضافة مزاج</string>
+    <string name="mood_edit">تعديل المزاج</string>
+    <string name="mood_title">عنوان المزاج</string>
+    <string name="error_title_empty">العنوان فارغ</string>
+    <string name="error_title_exists">العنوان نفسه موجود بالفعل</string>
+    <string name="confirm_delete">هل أنت متأكد أنك تريد الحذف؟</string>
+    <string name="purchase_pending">عملية الشراء الخاصة بك معلقة. ستحصل على وصول بمجرد تأكيد الدفع.</string>
+    <string name="month">شهر</string>
+    <string name="diaro_needs_help_text">للتأكد من أننا لا نضطر لإغلاق الخدمة ولدينا أموال للتطوير والدعم في المستقبل، نقدم رسومًا سنوية صغيرة. سيظل الاعتراف بحالة Pro الحالية الخاصة بك، ولكن الميزات الجديدة القادمة (تنسيق النص والصوت ومرفقات PDF وDocx والتحديثات المستقبلية) ستتطلب اشتراكًا.
+كمستخدم مميز منذ عام %d، يمكنك الاشتراك بسعر مخفض.</string>
+    <string name="subscription">الاشتراك</string>
+    <string name="subscription_billed_annualy_at">يتم الدفع سنويًا بمبلغ %s</string>
+    <string name="subscription_billed_quarterly_at">يتم الدفع ربع سنوي بمبلغ %s</string>
+    <string name="subscription_billed_monthly">يتم الدفع شهريًا</string>
+    <string name="subscription_recurring_billing_info">فوترة متكررة، يمكن الإلغاء في أي وقت</string>
+    <string name="subscription_free_trial_info">تجربة مجانية لمدة %d يوم، ثم %s سنويًا</string>
+    <string name="subscription_price_per_year">%s سنويًا</string>
+    <string name="subscription_start_free_trail">ابدأ التجربة المجانية</string>
+    <string name="subscription_subscribe_now">اشترك الآن</string>
+    <string name="subscription_monthly_short">/شهر</string>
 </resources>

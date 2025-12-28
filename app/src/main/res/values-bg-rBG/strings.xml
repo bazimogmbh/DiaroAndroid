@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Натиснете тук за добавяне на събитие</string>
     <string name="entries_list">Списък със събития</string>
@@ -135,7 +135,6 @@
     <string name="mood_3">неутрален</string>
     <string name="mood_4">лошо</string>
     <string name="mood_5">ужасен</string>
-
     <string name="notification_reminder_text">Време е да напишете в дневника си!</string>
     <string name="settings_weather">Метеорологично време</string>
     <string name="sign_in">Вход</string>
@@ -450,7 +449,6 @@
     <string name="year">Година</string>
     <string name="text_recognition">Разпознаване на текст</string>
     <string name="collage">Колаж</string>
-
     <string name="subscription">Абонамент</string>
     <string name="subscription_billed_annualy_at">Годишно заплащане на %s</string>
     <string name="subscription_billed_quarterly_at">Оплата ежеквартально в %s</string>
@@ -462,5 +460,14 @@
     <string name="subscription_subscribe_now">Абонирай се сега</string>
     <string name="subscription_monthly_short">/месец</string>
     <string name="premium_version">Премиум версия</string>
-
+    <string name="fast_scroll">Бързо превъртане</string>
+    <string name="bottom_tab">Долен раздел</string>
+    <string name="mood_add">Добавяне на настроение</string>
+    <string name="mood_edit">Редактиране на настроение</string>
+    <string name="mood_title">Заглавие на настроение</string>
+    <string name="error_title_empty">Заглавието е празно</string>
+    <string name="error_title_exists">Същото заглавие вече съществува</string>
+    <string name="confirm_delete">Сигурни ли сте, че искате да изтриете?</string>
+    <string name="purchase_pending">Покупката ви е в очакване. Ще получите достъп след потвърждаване на плащането.</string>
+    <string name="month">Месец</string>
 </resources>

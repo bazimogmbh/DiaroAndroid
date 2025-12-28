@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Натисніть тут, щоб додати запис</string>
     <string name="notification_reminder_text">Пора написати у вашому щоденнику!</string>
@@ -450,7 +450,6 @@
     <string name="subscription_renewal_info_detailed">Оплачується раз в рік, поновлюється автоматично, можна скасувати у будь-який час. Підписку буде автоматично поновлено за 24 години до закінчення поточного плану. Ви можете керувати підписками в налаштуваннях облікового запису Google Play</string>
     <string name="text_recognition">Розпізнавання тексту</string>
     <string name="collage">Колаж</string>
-
     <string name="subscription">Передплата</string>
     <string name="subscription_billed_annualy_at">Щорічна оплата %s</string>
     <string name="subscription_billed_quarterly_at">Рахунки щоквартально %s</string>
@@ -462,4 +461,14 @@
     <string name="subscription_subscribe_now">Передплатіть зараз</string>
     <string name="subscription_monthly_short">/міс.</string>
     <string name="premium_version">Преміум-версія</string>
+    <string name="fast_scroll">Швидке прокручування</string>
+    <string name="bottom_tab">Нижня вкладка</string>
+    <string name="mood_add">Додати настрій</string>
+    <string name="mood_edit">Редагувати настрій</string>
+    <string name="mood_title">Назва настрою</string>
+    <string name="error_title_empty">Назва порожня</string>
+    <string name="error_title_exists">Така назва вже існує</string>
+    <string name="confirm_delete">Ви впевнені, що хочете видалити?</string>
+    <string name="purchase_pending">Ваша покупка очікує на обробку. Ви отримаєте доступ після підтвердження платежу.</string>
+    <string name="month">Місяць</string>
 </resources>

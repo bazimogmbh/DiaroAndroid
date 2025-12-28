@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Klikněte pro přidání záznamu</string>
     <string name="notification_reminder_text">Je čas pro zápis do vašeho deníku!</string>
@@ -430,7 +430,7 @@
     <string name="read_aloud">Číst nahlas</string>
     <string name="dictate">Diktovat</string>
     <string name="modify_entry">Upravit záznam</string>
-    <string name="unsynced_entries_info">Máte %s nesynchronizovaných záznamů!</string>
+    <string name="unsynced_entries_info">Máte %d nesynchronizovaných záznamů!</string>
     <string name="upgrade_info">Zakupte Premium verzi pro aktivaci automatických záloh a synchronizace na Dropbox účet. Zachovejte si cenné vzpomínky a nemějte obavu a ztrátu dat.</string>
     <string name="display">Zobrazit</string>
     <string name="cozy">Útulný</string>
@@ -449,7 +449,6 @@
     <string name="year">Rok</string>
     <string name="text_recognition">Rozpoznávání textu</string>
     <string name="collage">Koláž</string>
-
     <string name="subscription">Předplatné</string>
     <string name="subscription_billed_annualy_at">Účtováno ročně po %s</string>
     <string name="subscription_billed_quarterly_at">Billed quarterly at %s</string>
@@ -461,5 +460,16 @@
     <string name="subscription_subscribe_now">Odebírat nyní</string>
     <string name="subscription_monthly_short">/měs.</string>
     <string name="premium_version">Prémiová verze</string>
-
+    <string name="fast_scroll">Rychlé posouvání</string>
+    <string name="bottom_tab">Spodní karta</string>
+    <string name="mood_add">Přidat náladu</string>
+    <string name="mood_edit">Upravit náladu</string>
+    <string name="mood_title">Název nálady</string>
+    <string name="error_title_empty">Název je prázdný</string>
+    <string name="error_title_exists">Stejný název již existuje</string>
+    <string name="confirm_delete">Opravdu chcete smazat?</string>
+    <string name="purchase_pending">Váš nákup čeká na vyřízení. Získáte přístup po potvrzení platby.</string>
+    <string name="month">Měsíc</string>
+    <string name="diaro_needs_help_text">Abychom zajistili, že nebudeme muset službu zavřít a budeme mít prostředky na budoucí vývoj a podporu, zavádíme malý roční poplatek. Váš aktuální stav Pro bude stále uznáván, ale nové připravované funkce (formátování textu, zvuk, přílohy PDF a Docx a budoucí aktualizace) budou vyžadovat předplatné.
+Jako uživatel Premium od roku %d můžete získat předplatné za sníženou cenu.</string>
 </resources>

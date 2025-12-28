@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">點此新增記事</string>
     <string name="notification_reminder_text">記事的時間到囉！</string>
@@ -431,7 +431,7 @@
     <string name="read_aloud">大聲朗讀</string>
     <string name="dictate">聽寫</string>
     <string name="modify_entry">修改條目</string>
-    <string name="unsynced_entries_info">您有％d個未同步的條目！</string>
+    <string name="unsynced_entries_info">您有 %d 個未同步的條目！</string>
     <string name="upgrade_info">購買專業版以啟動自動備份並同步到您的Dropbox帳戶。確保您的寶貴回憶安全，不用再擔心資料不見。</string>
     <string name="display">顯示</string>
     <string name="cozy">舒適</string>
@@ -446,11 +446,10 @@
     <string name="template_name">範本名稱</string>
     <string name="import_">匯入</string>
     <string name="diaro_needs_help">Diaro需要您的幫助!</string>
-    <string name="diaro_needs_help_text">為了確保我們不必關閉服務並擁有資金用於未來開發和支持，我們會收取小額年費。 您當前的專業版仍將被認可，但是即將新推出的功能（文檔格式、聲音檔、PDF、Docx附件和將來的更新）資訊將需要訂閱。\n作為％d以來的專業版用戶，您可以以較低的價格訂閱。</string>
+    <string name="diaro_needs_help_text">為了確保我們不必關閉服務並擁有資金用於未來開發和支持，我們會收取小額年費。 您當前的專業版仍將被認可，但是即將新推出的功能（文檔格式、聲音檔、PDF、Docx附件和將來的更新）資訊將需要訂閱。\n作為 %d 以來的專業版用戶，您可以以較低的價格訂閱。</string>
     <string name="subscription_renewal_info_detailed">每年收費，自動續訂，隨時取消。 訂閱將在當前計劃結束前的24小時內自動續訂。 您可以在Google Play帳戶設置中管理訂閱。</string>
     <string name="text_recognition">文字識別</string>
     <string name="collage">大學</string>
-
     <string name="subscription">訂閱</string>
     <string name="subscription_billed_annualy_at">每年收費 %s</string>
     <string name="subscription_billed_quarterly_at">每季度計費 %s</string>
@@ -462,4 +461,14 @@
     <string name="subscription_subscribe_now">現在訂閱</string>
     <string name="subscription_monthly_short">/月</string>
     <string name="premium_version">高級版</string>
+    <string name="fast_scroll">快速捲動</string>
+    <string name="bottom_tab">底部標籤</string>
+    <string name="mood_add">新增心情</string>
+    <string name="mood_edit">編輯心情</string>
+    <string name="mood_title">心情標題</string>
+    <string name="error_title_empty">標題為空</string>
+    <string name="error_title_exists">相同標題已存在</string>
+    <string name="confirm_delete">您確定要刪除嗎？</string>
+    <string name="purchase_pending">您的購買正在等待處理。付款確認後您將獲得存取權限。</string>
+    <string name="month">月</string>
 </resources>

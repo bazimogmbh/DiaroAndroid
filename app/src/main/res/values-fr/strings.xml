@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Cliquez ici pour ajouter une entrée</string>
     <string name="notification_reminder_text">Il est temps d\'écrire dans votre journal</string>
@@ -437,7 +437,6 @@
     <string name="compact">Compact</string>
     <string name="edit_weather">Modifier la météo</string>
     <string name="timestamp">Horodatage</string>
-
     <string name="templates">Modèles</string>
     <string name="add_template">Ajouter un modèle</string>
     <string name="edit_template">Modifier le modèle</string>
@@ -451,7 +450,6 @@
     <string name="year">Année</string>
     <string name="text_recognition">Reconnaissance de texte</string>
     <string name="collage">Collage</string>
-
     <string name="subscription">Abonnement</string>
     <string name="subscription_billed_annualy_at">%s facturés annuellement</string>
     <string name="subscription_billed_quarterly_at">%s facturés trimestriellement</string>
@@ -463,4 +461,14 @@
     <string name="subscription_subscribe_now">S’abonner maintenant</string>
     <string name="subscription_monthly_short">/mois</string>
     <string name="premium_version">Version Premium</string>
+    <string name="fast_scroll">Défilement rapide</string>
+    <string name="bottom_tab">Onglet inférieur</string>
+    <string name="mood_add">Ajouter une humeur</string>
+    <string name="mood_edit">Modifier l\'humeur</string>
+    <string name="mood_title">Titre de l\'humeur</string>
+    <string name="error_title_empty">Le titre est vide</string>
+    <string name="error_title_exists">Le même titre existe déjà</string>
+    <string name="confirm_delete">Voulez-vous vraiment supprimer ?</string>
+    <string name="purchase_pending">Votre achat est en attente. Vous aurez accès une fois le paiement confirmé.</string>
+    <string name="month">Mois</string>
 </resources>

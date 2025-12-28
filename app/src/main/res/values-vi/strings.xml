@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Bấm vào đây để thêm bài viết</string>
     <string name="notification_reminder_text">Đã đến lúc viết nhật ký rồi đó!</string>
@@ -434,7 +434,6 @@
     <string name="unsynced_entries_info">Bạn có %d mục không được đồng bộ!</string>
     <string name="edit_weather">Chỉnh sửa thời tiết</string>
     <string name="timestamp">Dấu thời gian</string>
-
     <string name="templates">Mẫu</string>
     <string name="add_template">Thêm mẫu</string>
     <string name="edit_template">Chỉnh sửa mẫu</string>
@@ -450,4 +449,26 @@
     <string name="collage">Ảnh ghép</string>
     <string name="premium_version">Phiên bản cao cấp</string>
     <string name="entries">Danh sách nhật ký</string>
+    <string name="fast_scroll">Cuộn nhanh</string>
+    <string name="bottom_tab">Tab dưới</string>
+    <string name="mood_add">Thêm tâm trạng</string>
+    <string name="mood_edit">Chỉnh sửa tâm trạng</string>
+    <string name="mood_title">Tiêu đề tâm trạng</string>
+    <string name="error_title_empty">Tiêu đề trống</string>
+    <string name="error_title_exists">Tiêu đề giống nhau đã tồn tại</string>
+    <string name="confirm_delete">Bạn có chắc chắn muốn xóa?</string>
+    <string name="purchase_pending">Giao dịch mua của bạn đang chờ xử lý. Bạn sẽ có quyền truy cập sau khi thanh toán được xác nhận.</string>
+    <string name="month">Tháng</string>
+    <string name="entries_daily">Mục nhập Hằng ngày</string>
+    <string name="entries_monthly">Mục nhập Hằng tháng</string>
+    <string name="subscription">Đăng ký</string>
+    <string name="subscription_billed_annualy_at">Thanh toán hàng năm tại %s</string>
+    <string name="subscription_billed_quarterly_at">Thanh toán hàng quý tại %s</string>
+    <string name="subscription_billed_monthly">Thanh toán hàng tháng</string>
+    <string name="subscription_recurring_billing_info">Thanh toán định kỳ, hủy bất cứ lúc nào</string>
+    <string name="subscription_free_trial_info">Dùng thử miễn phí %d ngày, sau đó %s mỗi năm</string>
+    <string name="subscription_price_per_year">%s mỗi năm</string>
+    <string name="subscription_start_free_trail">Bắt đầu dùng thử miễn phí</string>
+    <string name="subscription_subscribe_now">Đăng ký ngay</string>
+    <string name="subscription_monthly_short">/tháng</string>
 </resources>

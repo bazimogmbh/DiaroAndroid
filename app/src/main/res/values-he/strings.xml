@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">לחץ כאן כדי להוסיף רשומה</string>
     <string name="notification_reminder_text">הגיע הזמן לכתוב ביומן!</string>
@@ -449,4 +449,27 @@
     <string name="text_recognition">זיהוי טקסט</string>
     <string name="collage">קולאז \'</string>
     <string name="premium_version">גרסת פרימיום</string>
+    <string name="fast_scroll">גלילה מהירה</string>
+    <string name="bottom_tab">כרטיסייה תחתונה</string>
+    <string name="mood_add">הוסף מצב רוח</string>
+    <string name="mood_edit">ערוך מצב רוח</string>
+    <string name="mood_title">כותרת מצב רוח</string>
+    <string name="error_title_empty">הכותרת ריקה</string>
+    <string name="error_title_exists">אותה כותרת כבר קיימת</string>
+    <string name="confirm_delete">האם אתה בטוח שברצונך למחוק?</string>
+    <string name="purchase_pending">הרכישה שלך ממתינה. תקבל גישה לאחר אישור התשלום.</string>
+    <string name="month">חודש</string>
+    <string name="entries_monthly">ערכים חודשיים</string>
+    <string name="diaro_needs_help_text">כדי להבטיח שלא נצטרך לסגור את השירות ושיהיו לנו כספים לפיתוח ותמיכה עתידיים, אנו מציגים תשלום שנתי קטן. מצב ה-Pro הנוכחי שלך עדיין יוכר, אך התכונות החדשות הקרובות (עיצוב טקסט, אודיו, קבצים מצורפים של PDF ו-Docx ועדכונים עתידיים) ידרשו מנוי.
+כמשתמש Premium מאז %d, אתה יכול להירשם במחיר מופחת.</string>
+    <string name="subscription">מנוי</string>
+    <string name="subscription_billed_annualy_at">חיוב שנתי ב-%s</string>
+    <string name="subscription_billed_quarterly_at">חיוב רבעוני ב-%s</string>
+    <string name="subscription_billed_monthly">חיוב חודשי</string>
+    <string name="subscription_recurring_billing_info">חיוב חוזר, ניתן לביטול בכל עת</string>
+    <string name="subscription_free_trial_info">ניסיון חינם למשך %d ימים, לאחר מכן %s לשנה</string>
+    <string name="subscription_price_per_year">%s לשנה</string>
+    <string name="subscription_start_free_trail">התחל ניסיון חינם</string>
+    <string name="subscription_subscribe_now">הירשם עכשיו</string>
+    <string name="subscription_monthly_short">/חודש</string>
 </resources>

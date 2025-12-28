@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_notification">Hacer clic aquí para agregar una entrada</string>
     <string name="notification_reminder_text">¡Es hora de escribir en tu diario!</string>
@@ -438,7 +438,6 @@ dispositivos Android, Kindle Fire, dispositivos iOS y Diario Online (www.diaroap
     <string name="compact">Compacto</string>
     <string name="edit_weather">Editar Tiempo</string>
     <string name="timestamp">Marca de tiempo</string>
-
     <string name="templates">Plantillas</string>
     <string name="add_template">Añadir plantilla</string>
     <string name="edit_template">Editar plantilla</string>
@@ -452,7 +451,6 @@ dispositivos Android, Kindle Fire, dispositivos iOS y Diario Online (www.diaroap
     <string name="year">Año</string>
     <string name="text_recognition">Reconocimiento de texto</string>
     <string name="collage">Collage</string>
-
     <string name="subscription">Suscripción</string>
     <string name="subscription_billed_annualy_at">Facturado anualmente a %s</string>
     <string name="subscription_billed_quarterly_at">Facturado trimestralmente a %s</string>
@@ -464,4 +462,14 @@ dispositivos Android, Kindle Fire, dispositivos iOS y Diario Online (www.diaroap
     <string name="subscription_subscribe_now">Suscríbete ahora</string>
     <string name="subscription_monthly_short">/mes</string>
     <string name="premium_version">Premium različica</string>
+    <string name="fast_scroll">Desplazamiento rápido</string>
+    <string name="bottom_tab">Pestaña inferior</string>
+    <string name="mood_add">Añadir estado de ánimo</string>
+    <string name="mood_edit">Editar estado de ánimo</string>
+    <string name="mood_title">Título del estado de ánimo</string>
+    <string name="error_title_empty">El título está vacío</string>
+    <string name="error_title_exists">Ya existe el mismo título</string>
+    <string name="confirm_delete">¿Está seguro de que desea eliminar?</string>
+    <string name="purchase_pending">Su compra está pendiente. Obtendrá acceso una vez que se confirme el pago.</string>
+    <string name="month">Mes</string>
 </resources>
