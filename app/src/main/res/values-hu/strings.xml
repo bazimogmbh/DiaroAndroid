@@ -156,6 +156,13 @@
     <string name="sign_in">Bejelentkezés</string>
     <string name="sign_out">Kijelentkezés</string>
     <string name="sign_out_confirm">Kijelentkezel?</string>
+    <string name="delete_account">Fiók törlése</string>
+    <string name="delete_account_subtitle">Az összes adat végleges törlése</string>
+    <string name="delete_account_confirm_title">Törli a fiókot?</string>
+    <string name="delete_account_confirm_message">Ez véglegesen törli az összes naplóbejegyzést, fényképet és beállítást erről az eszközről. Ez a művelet nem vonható vissza.\n\nBiztos, hogy folytatja?</string>
+    <string name="deleting_account">Fiók törlése…</string>
+    <string name="account_deleted_successfully">Fiók sikeresen törölve</string>
+    <string name="error_deleting_account">Hiba a fiók törlésekor</string>
     <string name="signing_in_with_ellipsis">Kijelentkezés folyamatban…</string>
     <string name="sign_in_with_google">Bejelentkezés Google-fiókkal</string>
     <string name="signed_in">Bejelentkezve</string>

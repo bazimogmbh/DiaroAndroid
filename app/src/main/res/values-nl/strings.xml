@@ -163,6 +163,13 @@
     <string name="sign_in">Inloggen</string>
     <string name="sign_out">Uitloggen</string>
     <string name="sign_out_confirm">Uitloggen?</string>
+    <string name="delete_account">Account verwijderen</string>
+    <string name="delete_account_subtitle">Al uw gegevens permanent verwijderen</string>
+    <string name="delete_account_confirm_title">Account verwijderen?</string>
+    <string name="delete_account_confirm_message">Dit verwijdert permanent al uw dagboekitems, foto's en instellingen van dit apparaat. Deze actie kan niet ongedaan worden gemaakt.\n\nWeet u zeker dat u wilt doorgaan?</string>
+    <string name="deleting_account">Account verwijderen…</string>
+    <string name="account_deleted_successfully">Account succesvol verwijderd</string>
+    <string name="error_deleting_account">Fout bij het verwijderen van account</string>
     <string name="signing_in_with_ellipsis">Inloggen.....</string>
     <string name="sign_in_with_google">Inloggen met Google</string>
     <string name="signed_in">Ingelogd</string>

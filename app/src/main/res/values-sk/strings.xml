@@ -163,6 +163,13 @@
     <string name="sign_in">Prihlásiť sa</string>
     <string name="sign_out">Odhlásiť sa</string>
     <string name="sign_out_confirm">Odhlásiť sa?</string>
+    <string name="delete_account">Vymazať účet</string>
+    <string name="delete_account_subtitle">Natrvalo odstrániť všetky vaše údaje</string>
+    <string name="delete_account_confirm_title">Vymazať účet?</string>
+    <string name="delete_account_confirm_message">Týmto natrvalo vymažete všetky záznamy denníka, fotografie a nastavenia z tohto zariadenia. Túto akciu nie je možné vrátiť späť.\n\nNaozaj chcete pokračovať?</string>
+    <string name="deleting_account">Vymazávanie účtu…</string>
+    <string name="account_deleted_successfully">Účet bol úspešne vymazaný</string>
+    <string name="error_deleting_account">Chyba pri vymazávaní účtu</string>
     <string name="signing_in_with_ellipsis">Prihlasovanie…</string>
     <string name="sign_in_with_google">Prihlásiť sa s Google</string>
     <string name="signed_in">Prihlásený</string>

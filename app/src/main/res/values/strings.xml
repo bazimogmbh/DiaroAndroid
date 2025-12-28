@@ -164,6 +164,13 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_out">Sign out</string>
     <string name="sign_out_confirm">Sign out?</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="delete_account_subtitle">Permanently remove all your data</string>
+    <string name="delete_account_confirm_title">Delete Account?</string>
+    <string name="delete_account_confirm_message">This will permanently delete all your diary entries, photos, and settings from this device. This action cannot be undone.\n\nAre you sure you want to continue?</string>
+    <string name="deleting_account">Deleting account…</string>
+    <string name="account_deleted_successfully">Account deleted successfully</string>
+    <string name="error_deleting_account">Error deleting account</string>
     <string name="signing_in_with_ellipsis">Signing in…</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="signed_in">Signed in</string>

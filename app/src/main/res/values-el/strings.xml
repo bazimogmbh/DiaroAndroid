@@ -375,6 +375,13 @@
     <string name="signin_with_google_failed">Σύνδεση με την Google απέτυχε. Προσπάθησε ξανά.</string>
     <string name="sign_out">Αποσύνδεση</string>
     <string name="sign_out_confirm">Αποσύνδεση?</string>
+    <string name="delete_account">Διαγραφή λογαριασμού</string>
+    <string name="delete_account_subtitle">Μόνιμη αφαίρεση όλων των δεδομένων σας</string>
+    <string name="delete_account_confirm_title">Διαγραφή λογαριασμού;</string>
+    <string name="delete_account_confirm_message">Αυτό θα διαγράψει μόνιμα όλες τις καταχωρίσεις ημερολογίου, φωτογραφίες και ρυθμίσεις από αυτήν τη συσκευή. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.\n\nΕίστε σίγουροι ότι θέλετε να συνεχίσετε;</string>
+    <string name="deleting_account">Διαγραφή λογαριασμού…</string>
+    <string name="account_deleted_successfully">Ο λογαριασμός διαγράφηκε επιτυχώς</string>
+    <string name="error_deleting_account">Σφάλμα κατά τη διαγραφή του λογαριασμού</string>
     <string name="sign_up">Εγγραφείτε</string>
     <string name="small">Μικρό</string>
     <string name="small_date">Μικρή ημερομηνία</string>

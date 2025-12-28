@@ -163,6 +163,13 @@
     <string name="sign_in">サインイン</string>
     <string name="sign_out">サインアウト</string>
     <string name="sign_out_confirm">サインアウトしていいですか？</string>
+    <string name="delete_account">アカウントを削除</string>
+    <string name="delete_account_subtitle">すべてのデータを完全に削除</string>
+    <string name="delete_account_confirm_title">アカウントを削除しますか？</string>
+    <string name="delete_account_confirm_message">このデバイスからすべての日記エントリ、写真、設定が完全に削除されます。この操作は取り消せません。\n\n続行してもよろしいですか？</string>
+    <string name="deleting_account">アカウントを削除中…</string>
+    <string name="account_deleted_successfully">アカウントを正常に削除しました</string>
+    <string name="error_deleting_account">アカウントの削除中にエラーが発生しました</string>
     <string name="signing_in_with_ellipsis">サインインしています</string>
     <string name="sign_in_with_google">Googleアカウントでサインイン</string>
     <string name="signed_in">既にサインインしています</string>

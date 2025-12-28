@@ -163,6 +163,13 @@
     <string name="sign_in">היכנס</string>
     <string name="sign_out">יציאה</string>
     <string name="sign_out_confirm">לצאת?</string>
+    <string name="delete_account">מחק חשבון</string>
+    <string name="delete_account_subtitle">הסר לצמיתות את כל הנתונים שלך</string>
+    <string name="delete_account_confirm_title">למחוק חשבון?</string>
+    <string name="delete_account_confirm_message">פעולה זו תמחק לצמיתות את כל רשומות היומן, התמונות וההגדרות שלך ממכשיר זה. לא ניתן לבטל פעולה זו.\n\nהאם אתה בטוח שברצונך להמשיך?</string>
+    <string name="deleting_account">מוחק חשבון…</string>
+    <string name="account_deleted_successfully">החשבון נמחק בהצלחה</string>
+    <string name="error_deleting_account">שגיאה במחיקת החשבון</string>
     <string name="signing_in_with_ellipsis">מתחבר…</string>
     <string name="sign_in_with_google">היכנס עם Google</string>
     <string name="signed_in">מחובר</string>

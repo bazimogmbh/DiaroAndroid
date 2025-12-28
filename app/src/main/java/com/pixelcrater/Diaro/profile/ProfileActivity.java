@@ -81,6 +81,8 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
     private AppCompatButton dropboxConnectButton;
     private ImageButton dropboxDisconnectImageButton;
     private ImageButton userSignOutImageButton;
+    private View deleteAccountContainer;
+    private ImageButton deleteAccountImageButton;
     private TextView wouldLikeToSyncTextView;
     private TextView getProLink;
     private View profilePhotoContainer;
@@ -117,6 +119,13 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
         userSignOutImageButton = (ImageButton) findViewById(R.id.user_sign_out_button);
         userSignOutImageButton.setImageDrawable(getResources().getDrawable(MyThemesUtils.getDrawableResId("ic_close_%s_18dp")));
         userSignOutImageButton.setOnClickListener(this);
+
+        deleteAccountContainer = findViewById(R.id.delete_account_container);
+        deleteAccountContainer.setOnClickListener(this);
+
+        deleteAccountImageButton = (ImageButton) findViewById(R.id.delete_account_button);
+        deleteAccountImageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete_white_24dp));
+        deleteAccountImageButton.setOnClickListener(this);
 
         dropboxEmailTextView = (TextView) findViewById(R.id.dropbox_email);
         dropboxEmailTextView.setCompoundDrawablesWithIntrinsicBounds(MyThemesUtils.getDrawableResId("ic_dropbox_%s_24dp"), 0, 0, 0);
@@ -220,6 +229,11 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
             if (dialog2 != null) {
                 setDropboxUnlinkConfirmDialogListener(dialog2);
             }
+
+            ConfirmDialog dialog3 = (ConfirmDialog) getSupportFragmentManager().findFragmentByTag(Static.DIALOG_CONFIRM_DELETE_ACCOUNT);
+            if (dialog3 != null) {
+                setDeleteAccountConfirmDialogListener(dialog3);
+            }
         }
     }
 
@@ -289,6 +303,11 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
         // Sign out
         else if (viewId == R.id.user_sign_out_button) {
             showSignOutConfirmDialog();
+        }
+
+        // Delete account
+        else if (viewId == R.id.delete_account_button || viewId == R.id.delete_account_container) {
+            showDeleteAccountConfirmDialog();
         }
 
         // Dropbox connect
@@ -526,6 +545,28 @@ public class ProfileActivity extends TypeBillingActivity implements OnClickListe
         Static.turnOffSubscribedCurrently();
 
         unlinkFromDropboxInBackground();
+    }
+
+    private void showDeleteAccountConfirmDialog() {
+        AppLog.d("");
+
+        String dialogTag = Static.DIALOG_CONFIRM_DELETE_ACCOUNT;
+        if (getSupportFragmentManager().findFragmentByTag(dialogTag) == null) {
+            // Show dialog
+            ConfirmDialog dialog = new ConfirmDialog();
+            dialog.setTitle(getString(R.string.delete_account_confirm_title));
+            dialog.setMessage(getString(R.string.delete_account_confirm_message));
+            dialog.setPositiveButtonText(getString(R.string.delete_account));
+            dialog.show(getSupportFragmentManager(), dialogTag);
+            setDeleteAccountConfirmDialogListener(dialog);
+        }
+    }
+
+    private void setDeleteAccountConfirmDialogListener(ConfirmDialog dialog) {
+        dialog.setDialogPositiveClickListener(() -> {
+            // Execute delete account async task
+            new DeleteAccountAsync(ProfileActivity.this).execute();
+        });
     }
 
     private void updateUi() {

@@ -163,6 +163,13 @@
     <string name="sign_in">Zaloguj</string>
     <string name="sign_out">Wyloguj</string>
     <string name="sign_out_confirm">Wyloguj?</string>
+    <string name="delete_account">Usuń konto</string>
+    <string name="delete_account_subtitle">Trwale usuń wszystkie swoje dane</string>
+    <string name="delete_account_confirm_title">Usunąć konto?</string>
+    <string name="delete_account_confirm_message">Spowoduje to trwałe usunięcie wszystkich wpisów dziennika, zdjęć i ustawień z tego urządzenia. Tej operacji nie można cofnąć.\n\nCzy na pewno chcesz kontynuować?</string>
+    <string name="deleting_account">Usuwanie konta…</string>
+    <string name="account_deleted_successfully">Konto zostało pomyślnie usunięte</string>
+    <string name="error_deleting_account">Błąd podczas usuwania konta</string>
     <string name="signing_in_with_ellipsis">Logowanie…</string>
     <string name="sign_in_with_google">Zaloguj się kontem Google</string>
     <string name="signed_in">Zalogowano</string>

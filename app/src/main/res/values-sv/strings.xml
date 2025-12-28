@@ -163,6 +163,13 @@
     <string name="sign_in">Logga in</string>
     <string name="sign_out">Logga ut</string>
     <string name="sign_out_confirm">Vill du logga ut?</string>
+    <string name="delete_account">Ta bort konto</string>
+    <string name="delete_account_subtitle">Ta bort all din data permanent</string>
+    <string name="delete_account_confirm_title">Ta bort konto?</string>
+    <string name="delete_account_confirm_message">Detta kommer att permanent ta bort alla dina dagboksinlägg, foton och inställningar från denna enhet. Denna åtgärd kan inte ångras.\n\nÄr du säker på att du vill fortsätta?</string>
+    <string name="deleting_account">Tar bort konto…</string>
+    <string name="account_deleted_successfully">Kontot har tagits bort</string>
+    <string name="error_deleting_account">Fel vid borttagning av konto</string>
     <string name="signing_in_with_ellipsis">Loggar in…</string>
     <string name="sign_in_with_google">Logga in med Google</string>
     <string name="signed_in">Inloggad</string>

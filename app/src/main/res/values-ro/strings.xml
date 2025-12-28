@@ -426,6 +426,13 @@ Toate fișierele care n-au fost descărcate nu vor mai fi accesibile.</string>
     <string name="dropbox">Dropbox</string>
     <string name="sign_out">Sign out</string>
     <string name="sign_out_confirm">Sign out?</string>
+    <string name="delete_account">Șterge contul</string>
+    <string name="delete_account_subtitle">Elimină permanent toate datele tale</string>
+    <string name="delete_account_confirm_title">Ștergi contul?</string>
+    <string name="delete_account_confirm_message">Aceasta va șterge permanent toate intrările de jurnal, fotografiile și setările de pe acest dispozitiv. Această acțiune nu poate fi anulată.\n\nEști sigur că vrei să continui?</string>
+    <string name="deleting_account">Se șterge contul…</string>
+    <string name="account_deleted_successfully">Cont șters cu succes</string>
+    <string name="error_deleting_account">Eroare la ștergerea contului</string>
     <string name="normal">Normal</string>
     <string name="empty_fields_error">Introduceți detaliile contului dvs. Diaro</string>
     <string name="sort">Fel</string>

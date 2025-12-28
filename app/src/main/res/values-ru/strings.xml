@@ -163,6 +163,13 @@
     <string name="sign_in">Войти</string>
     <string name="sign_out">Выйти</string>
     <string name="sign_out_confirm">Выйти?</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="delete_account_subtitle">Навсегда удалить все ваши данные</string>
+    <string name="delete_account_confirm_title">Удалить аккаунт?</string>
+    <string name="delete_account_confirm_message">Это навсегда удалит все ваши записи дневника, фотографии и настройки с этого устройства. Это действие нельзя отменить.\n\nВы уверены, что хотите продолжить?</string>
+    <string name="deleting_account">Удаление аккаунта…</string>
+    <string name="account_deleted_successfully">Аккаунт успешно удален</string>
+    <string name="error_deleting_account">Ошибка при удалении аккаунта</string>
     <string name="signing_in_with_ellipsis">Авторизоваться</string>
     <string name="sign_in_with_google">Войти с помощью Google</string>
     <string name="signed_in">Авторизован</string>

@@ -163,6 +163,13 @@
     <string name="sign_in">Masuk</string>
     <string name="sign_out">Keluar</string>
     <string name="sign_out_confirm">Keluar?</string>
+    <string name="delete_account">Hapus akun</string>
+    <string name="delete_account_subtitle">Hapus semua data Anda secara permanen</string>
+    <string name="delete_account_confirm_title">Hapus akun?</string>
+    <string name="delete_account_confirm_message">Ini akan menghapus semua entri buku harian, foto, dan pengaturan Anda secara permanen dari perangkat ini. Tindakan ini tidak dapat dibatalkan.\n\nApakah Anda yakin ingin melanjutkan?</string>
+    <string name="deleting_account">Menghapus akun…</string>
+    <string name="account_deleted_successfully">Akun berhasil dihapus</string>
+    <string name="error_deleting_account">Kesalahan saat menghapus akun</string>
     <string name="signing_in_with_ellipsis">Proses masuk...</string>
     <string name="sign_in_with_google">Masuk dengan Google</string>
     <string name="signed_in">Telah masuk</string>

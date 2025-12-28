@@ -164,6 +164,13 @@ www.diaroapp.com/en/translations</string>
     <string name="sign_in">تسجيل دخول</string>
     <string name="sign_out">تسجيل الخروج</string>
     <string name="sign_out_confirm">تسجيل الخروج؟</string>
+    <string name="delete_account">حذف الحساب</string>
+    <string name="delete_account_subtitle">إزالة جميع بياناتك بشكل دائم</string>
+    <string name="delete_account_confirm_title">حذف الحساب؟</string>
+    <string name="delete_account_confirm_message">سيؤدي هذا إلى حذف جميع إدخالات يومياتك وصورك وإعداداتك من هذا الجهاز بشكل دائم. لا يمكن التراجع عن هذا الإجراء.\n\nهل أنت متأكد أنك تريد المتابعة؟</string>
+    <string name="deleting_account">جاري حذف الحساب…</string>
+    <string name="account_deleted_successfully">تم حذف الحساب بنجاح</string>
+    <string name="error_deleting_account">خطأ في حذف الحساب</string>
     <string name="signing_in_with_ellipsis">جار تسجيل الدخول…</string>
     <string name="sign_in_with_google">تسجيل دخول بواسطة جوجل</string>
     <string name="signed_in">تم تسجيل الدخول</string>

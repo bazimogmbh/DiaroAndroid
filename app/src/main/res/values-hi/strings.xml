@@ -320,6 +320,13 @@
     <string name="would_like_to_sync_question">सिंक करना चाहेंगे?</string>
     <string name="sign_out">साइन आउट</string>
     <string name="sign_out_confirm">साइन आउट?</string>
+    <string name="delete_account">खाता हटाएं</string>
+    <string name="delete_account_subtitle">अपना सभी डेटा स्थायी रूप से हटाएं</string>
+    <string name="delete_account_confirm_title">खाता हटाएं?</string>
+    <string name="delete_account_confirm_message">यह इस डिवाइस से आपकी सभी डायरी प्रविष्टियों, फ़ोटो और सेटिंग्स को स्थायी रूप से हटा देगा। इस क्रिया को पूर्ववत नहीं किया जा सकता।\n\nक्या आप वाकई जारी रखना चाहते हैं?</string>
+    <string name="deleting_account">खाता हटाया जा रहा है…</string>
+    <string name="account_deleted_successfully">खाता सफलतापूर्वक हटाया गया</string>
+    <string name="error_deleting_account">खाता हटाने में त्रुटि</string>
     <string name="sign_in">साइन इन</string>
     <string name="sign_in_with_google">Google के साथ साइन इन करें</string>
     <string name="sign_in_with_diaro_account">Diaro अकाउंट से साइन इन करें</string>

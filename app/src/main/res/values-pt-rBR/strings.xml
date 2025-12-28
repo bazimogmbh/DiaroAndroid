@@ -164,6 +164,13 @@
     <string name="sign_in">Entrar</string>
     <string name="sign_out">Sair</string>
     <string name="sign_out_confirm">Sair?</string>
+    <string name="delete_account">Excluir conta</string>
+    <string name="delete_account_subtitle">Remover permanentemente todos os seus dados</string>
+    <string name="delete_account_confirm_title">Excluir conta?</string>
+    <string name="delete_account_confirm_message">Isso excluirá permanentemente todas as suas entradas de diário, fotos e configurações deste dispositivo. Esta ação não pode ser desfeita.\n\nTem certeza de que deseja continuar?</string>
+    <string name="deleting_account">Excluindo conta…</string>
+    <string name="account_deleted_successfully">Conta excluída com sucesso</string>
+    <string name="error_deleting_account">Erro ao excluir a conta</string>
     <string name="signing_in_with_ellipsis">Entrando…</string>
     <string name="sign_in_with_google">Entrar com o Google</string>
     <string name="signed_in">Entrou</string>

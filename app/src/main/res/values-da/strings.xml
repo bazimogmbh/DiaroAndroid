@@ -163,6 +163,13 @@
     <string name="sign_in">Log ind</string>
     <string name="sign_out">Log ud</string>
     <string name="sign_out_confirm">Log ud?</string>
+    <string name="delete_account">Slet konto</string>
+    <string name="delete_account_subtitle">Fjern alle dine data permanent</string>
+    <string name="delete_account_confirm_title">Slet konto?</string>
+    <string name="delete_account_confirm_message">Dette vil permanent slette alle dine dagbogsindlæg, billeder og indstillinger fra denne enhed. Denne handling kan ikke fortrydes.\n\nEr du sikker på, at du vil fortsætte?</string>
+    <string name="deleting_account">Sletter konto…</string>
+    <string name="account_deleted_successfully">Kontoen blev slettet</string>
+    <string name="error_deleting_account">Fejl ved sletning af konto</string>
     <string name="signing_in_with_ellipsis">Log ind...</string>
     <string name="sign_in_with_google">Log ind med Google</string>
     <string name="signed_in">Logget ind</string>

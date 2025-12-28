@@ -142,6 +142,13 @@
     <string name="sign_in_with_google">Вход с Google</string>
     <string name="sign_out">Излизане</string>
     <string name="sign_out_confirm">Излизане?</string>
+    <string name="delete_account">Изтриване на акаунт</string>
+    <string name="delete_account_subtitle">Окончателно премахване на всички ваши данни</string>
+    <string name="delete_account_confirm_title">Изтриване на акаунт?</string>
+    <string name="delete_account_confirm_message">Това ще изтрие окончателно всички ваши дневникови записи, снимки и настройки от това устройство. Това действие не може да бъде отменено.\n\nСигурни ли сте, че искате да продължите?</string>
+    <string name="deleting_account">Изтриване на акаунт…</string>
+    <string name="account_deleted_successfully">Акаунтът е изтрит успешно</string>
+    <string name="error_deleting_account">Грешка при изтриване на акаунт</string>
     <string name="settings">Настройки</string>
     <string name="audio">Аудио</string>
     <string name="video">Видео</string>

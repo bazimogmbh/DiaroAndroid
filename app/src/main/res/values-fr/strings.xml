@@ -163,6 +163,13 @@
     <string name="sign_in">Se Connecter</string>
     <string name="sign_out">Se déconnecter</string>
     <string name="sign_out_confirm">Se déconnecter ?</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="delete_account_subtitle">Supprimer définitivement toutes vos données</string>
+    <string name="delete_account_confirm_title">Supprimer le compte?</string>
+    <string name="delete_account_confirm_message">Cela supprimera définitivement toutes vos entrées de journal, photos et paramètres de cet appareil. Cette action ne peut pas être annulée.\n\nÊtes-vous sûr de vouloir continuer?</string>
+    <string name="deleting_account">Suppression du compte…</string>
+    <string name="account_deleted_successfully">Compte supprimé avec succès</string>
+    <string name="error_deleting_account">Erreur lors de la suppression du compte</string>
     <string name="signing_in_with_ellipsis">Connexion…</string>
     <string name="sign_in_with_google">Se Connecter avec Google</string>
     <string name="signed_in">Connecté</string>

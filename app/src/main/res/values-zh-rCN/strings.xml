@@ -156,6 +156,13 @@
     <string name="sign_in">登录</string>
     <string name="sign_out">登出</string>
     <string name="sign_out_confirm">退出登录？</string>
+    <string name="delete_account">删除账户</string>
+    <string name="delete_account_subtitle">永久删除您的所有数据</string>
+    <string name="delete_account_confirm_title">删除账户？</string>
+    <string name="delete_account_confirm_message">这将永久删除此设备上的所有日记条目、照片和设置。此操作无法撤消。\n\n您确定要继续吗？</string>
+    <string name="deleting_account">正在删除账户…</string>
+    <string name="account_deleted_successfully">账户删除成功</string>
+    <string name="error_deleting_account">删除账户时出错</string>
     <string name="signing_in_with_ellipsis">正在登录…</string>
     <string name="sign_in_with_google">用 Google 帐号登录</string>
     <string name="signed_in">登录</string>

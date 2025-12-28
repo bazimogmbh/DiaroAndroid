@@ -163,6 +163,13 @@
     <string name="sign_in">Autenticati</string>
     <string name="sign_out">Esci</string>
     <string name="sign_out_confirm">Vuoi uscire?</string>
+    <string name="delete_account">Elimina account</string>
+    <string name="delete_account_subtitle">Rimuovi permanentemente tutti i tuoi dati</string>
+    <string name="delete_account_confirm_title">Eliminare l'account?</string>
+    <string name="delete_account_confirm_message">Questo eliminerà permanentemente tutte le tue voci del diario, foto e impostazioni da questo dispositivo. Questa azione non può essere annullata.\n\nSei sicuro di voler continuare?</string>
+    <string name="deleting_account">Eliminazione account…</string>
+    <string name="account_deleted_successfully">Account eliminato con successo</string>
+    <string name="error_deleting_account">Errore durante l'eliminazione dell'account</string>
     <string name="signing_in_with_ellipsis">Autenticazione in corso…</string>
     <string name="sign_in_with_google">Autenticati con Google</string>
     <string name="signed_in">Autenticato</string>

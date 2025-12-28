@@ -215,7 +215,7 @@ public class SQLiteAdapter {
         truncateTable(Tables.TABLE_FOLDERS);
         truncateTable(Tables.TABLE_TAGS);
         truncateTable(Tables.TABLE_LOCATIONS);
-        truncateTable(Tables.TABLE_MOODS);
+        //truncateTable(Tables.TABLE_MOODS);
         truncateTable(Tables.TABLE_TEMPLATES);
     }
 

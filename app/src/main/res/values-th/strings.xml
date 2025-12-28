@@ -163,6 +163,13 @@
     <string name="sign_in">ลงชื่อเข้าใช้</string>
     <string name="sign_out">ออกจากระบบ</string>
     <string name="sign_out_confirm">ออกจากระบบ?</string>
+    <string name="delete_account">ลบบัญชี</string>
+    <string name="delete_account_subtitle">ลบข้อมูลทั้งหมดของคุณอย่างถาวร</string>
+    <string name="delete_account_confirm_title">ลบบัญชี?</string>
+    <string name="delete_account_confirm_message">การดำเนินการนี้จะลบบันทึกประจำวัน รูปภาพ และการตั้งค่าทั้งหมดของคุณออกจากอุปกรณ์นี้อย่างถาวร ไม่สามารถย้อนกลับการดำเนินการนี้ได้\n\nคุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?</string>
+    <string name="deleting_account">กำลังลบบัญชี…</string>
+    <string name="account_deleted_successfully">ลบบัญชีเรียบร้อยแล้ว</string>
+    <string name="error_deleting_account">เกิดข้อผิดพลาดในการลบบัญชี</string>
     <string name="signing_in_with_ellipsis">กำลังลงชื่อเข้าใช้ …</string>
     <string name="sign_in_with_google">เข้าสู่ระบบด้วย Google</string>
     <string name="signed_in">ลงชื่อเข้าใช้แล้ว</string>

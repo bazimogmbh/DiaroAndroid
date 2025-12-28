@@ -163,6 +163,13 @@
     <string name="sign_in">Oturum açın</string>
     <string name="sign_out">Oturum kapatın</string>
     <string name="sign_out_confirm">Oturum kapatılsın?</string>
+    <string name="delete_account">Hesabı sil</string>
+    <string name="delete_account_subtitle">Tüm verilerinizi kalıcı olarak kaldırın</string>
+    <string name="delete_account_confirm_title">Hesap silinsin mi?</string>
+    <string name="delete_account_confirm_message">Bu, tüm günlük girişlerinizi, fotoğraflarınızı ve ayarlarınızı bu cihazdan kalıcı olarak silecektir. Bu işlem geri alınamaz.\n\nDevam etmek istediğinizden emin misiniz?</string>
+    <string name="deleting_account">Hesap siliniyor…</string>
+    <string name="account_deleted_successfully">Hesap başarıyla silindi</string>
+    <string name="error_deleting_account">Hesap silinirken hata oluştu</string>
     <string name="signing_in_with_ellipsis">Oturum açılıyor…</string>
     <string name="sign_in_with_google">Google ile oturum aç</string>
     <string name="signed_in">Oturum açıldı</string>

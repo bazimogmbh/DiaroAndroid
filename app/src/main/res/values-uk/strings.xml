@@ -163,6 +163,13 @@
     <string name="sign_in">Увійти</string>
     <string name="sign_out">Вийти</string>
     <string name="sign_out_confirm">Вийти?</string>
+    <string name="delete_account">Видалити обліковий запис</string>
+    <string name="delete_account_subtitle">Назавжди видалити всі ваші дані</string>
+    <string name="delete_account_confirm_title">Видалити обліковий запис?</string>
+    <string name="delete_account_confirm_message">Це назавжди видалить усі ваші записи щоденника, фотографії та налаштування з цього пристрою. Цю дію неможливо скасувати.\n\nВи впевнені, що хочете продовжити?</string>
+    <string name="deleting_account">Видалення облікового запису…</string>
+    <string name="account_deleted_successfully">Обліковий запис успішно видалено</string>
+    <string name="error_deleting_account">Помилка під час видалення облікового запису</string>
     <string name="signing_in_with_ellipsis">Вхід…</string>
     <string name="sign_in_with_google">Обліковий запис Google</string>
     <string name="signed_in">Ви увійшли</string>

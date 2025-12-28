@@ -164,6 +164,13 @@ dispositivos Android, Kindle Fire, dispositivos iOS y Diario Online (www.diaroap
     <string name="sign_in">Iniciar sesión</string>
     <string name="sign_out">Desconectarse</string>
     <string name="sign_out_confirm">¿Cerrar sesión?</string>
+    <string name="delete_account">Eliminar cuenta</string>
+    <string name="delete_account_subtitle">Eliminar permanentemente todos tus datos</string>
+    <string name="delete_account_confirm_title">¿Eliminar cuenta?</string>
+    <string name="delete_account_confirm_message">Esto eliminará permanentemente todas tus entradas de diario, fotos y configuraciones de este dispositivo. Esta acción no se puede deshacer.\n\n¿Estás seguro de que quieres continuar?</string>
+    <string name="deleting_account">Eliminando cuenta…</string>
+    <string name="account_deleted_successfully">Cuenta eliminada correctamente</string>
+    <string name="error_deleting_account">Error al eliminar la cuenta</string>
     <string name="signing_in_with_ellipsis">Iniciando sesión…</string>
     <string name="sign_in_with_google">Iniciar sesión con Google</string>
     <string name="signed_in">Sesión iniciada</string>

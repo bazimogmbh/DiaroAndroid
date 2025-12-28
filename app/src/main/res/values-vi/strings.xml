@@ -163,6 +163,13 @@
     <string name="sign_in">Đăng nhập</string>
     <string name="sign_out">Đăng xuất</string>
     <string name="sign_out_confirm">Đăng xuất?</string>
+    <string name="delete_account">Xóa tài khoản</string>
+    <string name="delete_account_subtitle">Xóa vĩnh viễn tất cả dữ liệu của bạn</string>
+    <string name="delete_account_confirm_title">Xóa tài khoản?</string>
+    <string name="delete_account_confirm_message">Điều này sẽ xóa vĩnh viễn tất cả các mục nhật ký, ảnh và cài đặt của bạn khỏi thiết bị này. Hành động này không thể hoàn tác.\n\nBạn có chắc chắn muốn tiếp tục?</string>
+    <string name="deleting_account">Đang xóa tài khoản…</string>
+    <string name="account_deleted_successfully">Đã xóa tài khoản thành công</string>
+    <string name="error_deleting_account">Lỗi khi xóa tài khoản</string>
     <string name="signing_in_with_ellipsis">Đang đăng nhập</string>
     <string name="sign_in_with_google">Đăng nhập bằng tài khoản Google</string>
     <string name="signed_in">Đã đăng nhập</string>

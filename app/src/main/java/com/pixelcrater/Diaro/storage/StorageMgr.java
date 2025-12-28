@@ -108,7 +108,7 @@ public class StorageMgr {
         clearTableData(Tables.TABLE_ATTACHMENTS);
         clearTableData(Tables.TABLE_FOLDERS);
         clearTableData(Tables.TABLE_TAGS);
-        clearTableData(Tables.TABLE_MOODS);
+        //clearTableData(Tables.TABLE_MOODS);
         clearTableData(Tables.TABLE_LOCATIONS);
         clearTableData(Tables.TABLE_TEMPLATES);
 

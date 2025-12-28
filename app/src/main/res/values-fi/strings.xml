@@ -163,6 +163,13 @@
     <string name="sign_in">Kirjaudu</string>
     <string name="sign_out">Kirjaudu ulos</string>
     <string name="sign_out_confirm">Kirjaudu ulos?</string>
+    <string name="delete_account">Poista tili</string>
+    <string name="delete_account_subtitle">Poista kaikki tietosi pysyvästi</string>
+    <string name="delete_account_confirm_title">Poistetaanko tili?</string>
+    <string name="delete_account_confirm_message">Tämä poistaa pysyvästi kaikki päiväkirjamerkintäsi, kuvat ja asetukset tältä laitteelta. Tätä toimintoa ei voi perua.\n\nHaluatko varmasti jatkaa?</string>
+    <string name="deleting_account">Poistetaan tiliä…</string>
+    <string name="account_deleted_successfully">Tili poistettu onnistuneesti</string>
+    <string name="error_deleting_account">Virhe tilin poistamisessa</string>
     <string name="signing_in_with_ellipsis">Kirjaudutaan sisään...</string>
     <string name="sign_in_with_google">Kirjaudu sisään Google-käyttäjätilillä</string>
     <string name="signed_in">Kirjautunut sisään</string>
