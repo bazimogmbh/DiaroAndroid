@@ -1,12 +1,10 @@
 package com.pixelcrater.Diaro.activitytypes;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowInsets;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,21 +40,6 @@ public class TypeActivity extends AppCompatActivity {
                 toolbarLayout = getLayoutInflater().inflate(R.layout.collapsing_toolbar_layout_no_elevation, null);
             } else {
                 toolbarLayout = getLayoutInflater().inflate(R.layout.collapsing_toolbar_layout, null);
-            }
-            // Set status bar color for edge-to-edge
-            int color = MyThemesUtils.getPrimaryColor();
-            getWindow().setStatusBarColor(color);
-
-            // Handle window insets for Android 15+
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
-                getWindow().getDecorView().setOnApplyWindowInsetsListener((view, insets) -> {
-                    android.graphics.Insets statusBarInsets = insets.getInsets(WindowInsets.Type.statusBars());
-                    view.setBackgroundColor(color);
-
-                    // Adjust padding to avoid overlap
-                    view.setPadding(0, statusBarInsets.top, 0, 0);
-                    return insets;
-                });
             }
         } else {
             toolbarLayout = getLayoutInflater().inflate(R.layout.toolbar_layout, null);

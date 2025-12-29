@@ -83,7 +83,7 @@ public class EntryViewEditActivity extends TypeActivity implements LoaderCallbac
         activityState.setLayoutBackground();
 
         // Handle IME (keyboard) insets for editor tools on Android 15+
-        setupEditorToolsInsets();
+     //   setupEditorToolsInsets();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

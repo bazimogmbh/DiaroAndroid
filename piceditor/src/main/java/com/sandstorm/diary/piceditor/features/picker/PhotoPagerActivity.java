@@ -34,9 +34,6 @@ public class PhotoPagerActivity extends AppCompatActivity {
         super.onCreate(bundle);
         setContentView(R.layout.__picker_activity_photo_pager);
 
-        // Enable edge-to-edge display for Android 15+
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
         int intExtra = getIntent().getIntExtra(PhotoPreview.EXTRA_CURRENT_ITEM, 0);
         ArrayList<String> stringArrayListExtra = getIntent().getStringArrayListExtra(PhotoPreview.EXTRA_PHOTOS);
         this.showDelete = getIntent().getBooleanExtra(PhotoPreview.EXTRA_SHOW_DELETE, true);
@@ -49,9 +46,7 @@ public class PhotoPagerActivity extends AppCompatActivity {
         this.actionBar = getSupportActionBar();
         if (this.actionBar != null) {
             this.actionBar.setDisplayHomeAsUpEnabled(true);
-            if (Build.VERSION.SDK_INT >= 21) {
-                this.actionBar.setElevation(25.0f);
-            }
+            this.actionBar.setElevation(25.0f);
         }
 
         // Apply window insets

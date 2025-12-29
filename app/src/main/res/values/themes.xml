@@ -16,6 +16,9 @@
         <item name="bgColor">@color/md_grey_50</item>
         <item name="lightBlackColor">#515151</item>
 
+        <!-- Opt out of Android 15 edge-to-edge enforcement -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+
     </style>
 
     <!-- Application Dark theme. -->
@@ -29,6 +32,9 @@
 
         <item name="bgColor">@color/md_grey_100</item>
         <item name="lightBlackColor">#aeaeae</item>
+
+        <!-- Opt out of Android 15 edge-to-edge enforcement -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
     </style>
 
     <!-- Application themes with accent colors -->

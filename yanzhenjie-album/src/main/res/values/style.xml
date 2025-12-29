@@ -28,6 +28,7 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/albumTransparent</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
     </style>
 
     <style name="Album.Theme.Activity.Transparent">
@@ -35,6 +36,7 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
     </style>
 
     <style name="Album.MatchParent">
@@ -79,10 +81,12 @@
     <style name="Album.Theme.Toolbar.Dark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="actionMenuTextColor">@color/albumFontLight</item>
         <item name="textAllCaps">false</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
     </style>
 
     <style name="Album.Theme.Toolbar.Light" parent="ThemeOverlay.AppCompat.Light">
         <item name="actionMenuTextColor">@color/albumFontDark</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
         <item name="textAllCaps">false</item>
     </style>
 

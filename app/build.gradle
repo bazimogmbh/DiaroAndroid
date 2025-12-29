@@ -144,7 +144,7 @@ dependencies {
     implementation "com.github.nekocode:Badge:2.1"
     implementation 'com.github.duanhong169:colorpicker:1.1.6'
     implementation "com.github.stfalcon-studio:StfalconImageViewer:1.0.1"
-    implementation 'com.github.yalantis:ucrop:2.2.8'
+    implementation 'com.github.yalantis:ucrop:2.2.11'
 
     implementation 'commons-io:commons-io:2.21.0'
     implementation 'org.apache.commons:commons-lang3:3.20.0'

@@ -167,15 +167,14 @@ public class PickImageActivity extends AppCompatActivity implements View.OnClick
         getWindow().setFlags(1024, 1024);
         setContentView(R.layout.piclist_activity_album);
 
-        // Enable edge-to-edge display for Android 15+
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Apply window insets
-        setupWindowInsets(toolbar);
+      //  setupWindowInsets(toolbar);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -340,15 +339,13 @@ public class PickImageActivity extends AppCompatActivity implements View.OnClick
         this.listItemSelect.add(imageModel);
         updateTxtTotalImage();
         final View inflate = View.inflate(this, R.layout.piclist_item_selected, (ViewGroup) null);
-        ImageView imageView = (ImageView) inflate.findViewById(R.id.imageItem);
+        ImageView imageView = inflate.findViewById(R.id.imageItem);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        ((RequestBuilder) Glide.with((Activity) this).load(imageModel.getPathFile()).placeholder((int) R.drawable.piclist_icon_default)).into(imageView);
-        ((ImageView) inflate.findViewById(R.id.btnDelete)).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                PickImageActivity.this.layoutListItemSelect.removeView(inflate);
-                PickImageActivity.this.listItemSelect.remove(imageModel);
-                PickImageActivity.this.updateTxtTotalImage();
-            }
+        ((RequestBuilder<?>) Glide.with((Activity) this).load(imageModel.getPathFile()).placeholder(R.drawable.piclist_icon_default)).into(imageView);
+        inflate.findViewById(R.id.btnDelete).setOnClickListener(view -> {
+            PickImageActivity.this.layoutListItemSelect.removeView(inflate);
+            PickImageActivity.this.listItemSelect.remove(imageModel);
+            PickImageActivity.this.updateTxtTotalImage();
         });
         this.layoutListItemSelect.addView(inflate);
         inflate.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
@@ -362,15 +359,7 @@ public class PickImageActivity extends AppCompatActivity implements View.OnClick
 
     private void sendScroll() {
         final Handler handler = new Handler();
-        new Thread(new Runnable() {
-            public void run() {
-                handler.post(new Runnable() {
-                    public void run() {
-                        PickImageActivity.this.horizontalScrollView.fullScroll(66);
-                    }
-                });
-            }
-        }).start();
+        new Thread(() -> handler.post(() -> PickImageActivity.this.horizontalScrollView.fullScroll(66))).start();
     }
 
 

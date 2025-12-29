@@ -48,9 +48,6 @@ public class PhotoPickerActivity extends AppCompatActivity {
         this.forwardMain = getIntent().getBooleanExtra(PhotoPicker.MAIN_ACTIVITY, false);
         setContentView(R.layout.__picker_activity_photo_picker);
 
-        // Enable edge-to-edge display for Android 15+
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(getResources().getString(R.string.tap_to_select));

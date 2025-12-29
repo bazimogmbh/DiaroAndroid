@@ -180,9 +180,6 @@ public class CollageActivity extends AppCompatActivity implements EditingToolsAd
         getWindow().setFlags(1024, 1024);
         setContentView(R.layout.collage_layout);
 
-        // Enable edge-to-edge display for Android 15+
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
         if (Build.VERSION.SDK_INT < 26) {
             getWindow().setSoftInputMode(48);
         }
@@ -427,7 +424,7 @@ public class CollageActivity extends AppCompatActivity implements EditingToolsAd
         instance = this;
 
         // Apply window insets for edge-to-edge display
-        setupWindowInsets();
+        //setupWindowInsets();
     }
 
     private void setupWindowInsets() {
