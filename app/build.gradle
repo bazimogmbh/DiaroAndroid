@@ -29,8 +29,8 @@ android {
         applicationId "com.pixelcrater.Diaro"
         minSdkVersion 23
         targetSdkVersion 35
-        versionCode 425
-        versionName '4.25.0'
+        versionCode 426
+        versionName '4.26.0'
 
         multiDexEnabled true
         signingConfig signingConfigs.config
@@ -121,6 +121,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics'
 
     implementation 'com.github.bumptech.glide:glide:5.0.5'
+    implementation 'androidx.core:core-ktx:1.17.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:5.0.5'
     implementation 'net.danlew:android.joda:2.14.0'
     implementation 'dev.dworks.libs:astickyheader:0.1.0'

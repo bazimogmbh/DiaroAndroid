@@ -36,13 +36,12 @@ public class SystemBar {
      * Set the status bar color.
      */
     public static void setStatusBarColor(Activity activity, int statusBarColor) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) setStatusBarColor(activity.getWindow(), statusBarColor);
+        setStatusBarColor(activity.getWindow(), statusBarColor);
     }
 
     /**
      * Set the status bar color.
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void setStatusBarColor(Window window, int statusBarColor) {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(statusBarColor);
@@ -52,13 +51,12 @@ public class SystemBar {
      * Set the navigation bar color.
      */
     public static void setNavigationBarColor(Activity activity, int navigationBarColor) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) setNavigationBarColor(activity.getWindow(), navigationBarColor);
+        setNavigationBarColor(activity.getWindow(), navigationBarColor);
     }
 
     /**
      * Set the navigation bar color.
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void setNavigationBarColor(Window window, int navigationBarColor) {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setNavigationBarColor(navigationBarColor);
@@ -68,13 +66,12 @@ public class SystemBar {
      * Set the content layout full the StatusBar, but do not hide StatusBar.
      */
     public static void invasionStatusBar(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) invasionStatusBar(activity.getWindow());
+        invasionStatusBar(activity.getWindow());
     }
 
     /**
      * Set the content layout full the StatusBar, but do not hide StatusBar.
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void invasionStatusBar(Window window) {
         View decorView = window.getDecorView();
         decorView.setSystemUiVisibility(decorView.getSystemUiVisibility()
@@ -87,13 +84,12 @@ public class SystemBar {
      * Set the content layout full the NavigationBar, but do not hide NavigationBar.
      */
     public static void invasionNavigationBar(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) invasionNavigationBar(activity.getWindow());
+        invasionNavigationBar(activity.getWindow());
     }
 
     /**
      * Set the content layout full the NavigationBar, but do not hide NavigationBar.
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void invasionNavigationBar(Window window) {
         View decorView = window.getDecorView();
         decorView.setSystemUiVisibility(decorView.getSystemUiVisibility()

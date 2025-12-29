@@ -5,11 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatEditText;
+
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.EditText;
 
-public class LinedEditText extends EditText {
+
+public class LinedEditText extends AppCompatEditText {
 
     private Rect mRect;
     private Paint mPaint;

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -102,6 +103,7 @@ public class EntryViewEditActivity extends TypeActivity implements LoaderCallbac
 
         mSavedInstanceState = savedInstanceState;
 
+
         // Get intent extras
         extras = getIntent().getExtras();
 //		AppLog.d("extras: " + extras);
@@ -161,20 +163,14 @@ public class EntryViewEditActivity extends TypeActivity implements LoaderCallbac
         LoaderManager.getInstance(this).initLoader(ENTRIES_CURSOR_LOADER, null, this);
         activityState.showHideBanner();
 
+
     }
 
     private void setupEditorToolsInsets() {
-        // Apply keyboard and navigation bar insets to editor tools
-        // This is called early, editor_tools will be found when fragment loads
-        View rootView = findViewById(android.R.id.content);
+        View rootView = findViewById(R.id.coordinator);
+
         if (rootView != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, windowInsets) -> {
-                View editorTools = findViewById(R.id.editor_tools);
-                if (editorTools != null) {
-                    applyKeyboardAndBottomInsets(editorTools);
-                }
-                return windowInsets;
-            });
+            applyKeyboardAndBottomInsets(rootView);
         }
     }
 

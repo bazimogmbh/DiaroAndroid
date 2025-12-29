@@ -80,6 +80,7 @@
         android:id="@+id/main_entry_scroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -136,7 +137,7 @@
                             android:textAppearance="@android:style/TextAppearance" />
 
                         <!-- Title EditText -->
-                        <EditText
+                        <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/entry_title_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

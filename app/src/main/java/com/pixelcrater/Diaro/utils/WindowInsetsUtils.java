@@ -91,22 +91,32 @@ public class WindowInsetsUtils {
      */
     public static void applyKeyboardAndBottomInsets(View view) {
         if (view == null) return;
+
+        ViewGroup.LayoutParams lp = view.getLayoutParams();
+        if (!(lp instanceof ViewGroup.MarginLayoutParams)) return;
+
+        // Store original margin
+        final int originalMarginBottom = ((ViewGroup.MarginLayoutParams) lp).bottomMargin;
+
         ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
             Insets imeInsets = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
             Insets systemBarInsets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+
             int bottomInset = Math.max(imeInsets.bottom, systemBarInsets.bottom);
+
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-            params.bottomMargin = bottomInset;
-            v.setLayoutParams(params);
+            params.bottomMargin = originalMarginBottom + bottomInset;
+            v.requestLayout(); // Lighter than setLayoutParams()
+
             return windowInsets;
         });
     }
 
-    /**
-     * Applies both top and bottom system bar insets as padding.
-     * Use for fullscreen content that should avoid all system bars.
-     * @param view The view to apply insets to
-     */
+        /**
+         * Applies both top and bottom system bar insets as padding.
+         * Use for fullscreen content that should avoid all system bars.
+         * @param view The view to apply insets to
+         */
     public static void applySystemBarInsets(View view) {
         if (view == null) return;
         ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
