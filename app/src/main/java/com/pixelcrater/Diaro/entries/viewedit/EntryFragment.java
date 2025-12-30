@@ -273,7 +273,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
             saveEntry();
             turnOffEditMode();
 
-            if (entryViewEditActivity.clickedEntryUid.equals("")) {
+            if (entryViewEditActivity.clickedEntryUid.isEmpty()) {
                 Static.showToast(getString(R.string.saved), Toast.LENGTH_SHORT);
                 entryViewEditActivity.exitActivity(false);
             }
@@ -696,7 +696,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
             // Set folder to activeFolderUid;
             entryInfo.setFolderUid(entryViewEditActivity.activeFolderUid);
 
-            if (!entryInfo.folderUid.equals("")) {
+            if (!entryInfo.folderUid.isEmpty()) {
                 Cursor folderCursor = MyApp.getInstance().storageMgr.getSQLiteAdapter().getSingleFolderCursorByUid(entryInfo.folderUid);
                 if (folderCursor.getCount() != 0) {
                     FolderInfo folderInfo = new FolderInfo(folderCursor);
@@ -714,7 +714,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
 
             StringBuilder entryTags = new StringBuilder();
             for (String tagUid : entryTagsArray) {
-                if (!tagUid.equals("")) {
+                if (!tagUid.isEmpty()) {
                     Cursor tagCursor = MyApp.getInstance().storageMgr.getSQLiteAdapter().getSingleTagCursorByUid(tagUid);
 
                     // If found
@@ -727,7 +727,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                     tagCursor.close();
                 }
             }
-            if (!entryTags.toString().equals("")) {
+            if (!entryTags.toString().isEmpty()) {
                 entryTags.append(",");
             }
 
@@ -772,7 +772,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                 entryCursor.close();
 
                 // Create locationInfo object
-                if (!entryInfo.getLocationTitle().equals("")) {
+                if (!entryInfo.getLocationTitle().isEmpty()) {
                     locationInfo = new LocationInfo(entryInfo.locationUid, entryInfo.locationTitle, entryInfo.locationAddress, entryInfo.locationLatitude, entryInfo.locationLongitude, entryInfo.locationZoom);
                 }
 
@@ -880,7 +880,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
             entryTitleEditText.setVisibility(View.GONE);
             entryTextEditText.setVisibility(View.GONE);
 
-            if (entryInfo.title.equals("") || !PreferencesHelper.isTitleEnabled()) {
+            if (entryInfo.title.isEmpty() || !PreferencesHelper.isTitleEnabled()) {
                 entryTitleTextView.setVisibility(View.GONE);
             } else {
                 entryTitleTextView.setVisibility(View.VISIBLE);
@@ -1293,7 +1293,6 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
         entryInfo.locationUid = PersistanceHelper.saveLocation(locationInfo, false);
     }
 
-    @RequiresApi(19)
     void printPdf() {
         String layout = PreferencesHelper.getExportLayout();
         String photoHeight = PreferencesHelper.getExportPhotoHeight();
@@ -1377,20 +1376,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
             if (textToRead.length() < dividerLimit) {
                 mTextToSpeech.speak(textToRead, TextToSpeech.QUEUE_FLUSH, null);
             } else {
-                int textLength = textToRead.length();
-                List<String> texts = new ArrayList<>();
-                int count = textLength / dividerLimit + ((textLength % dividerLimit == 0) ? 0 : 1);
-                int start = 0;
-                int end = textToRead.indexOf(" ", dividerLimit);
-                for (int i = 1; i <= count; i++) {
-                    texts.add(textToRead.substring(start, end));
-                    start = end;
-                    if ((start + dividerLimit) < textLength) {
-                        end = textToRead.indexOf(" ", start + dividerLimit);
-                    } else {
-                        end = textLength;
-                    }
-                }
+                List<String> texts = getStrings(textToRead, dividerLimit);
                 for (int i = 0; i < texts.size(); i++) {
                     mTextToSpeech.speak(texts.get(i), TextToSpeech.QUEUE_ADD, null);
                 }
@@ -1402,6 +1388,25 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
             startActivity(installTTSIntent);
         }
 
+    }
+
+    @NonNull
+    private static List<String> getStrings(String textToRead, int dividerLimit) {
+        int textLength = textToRead.length();
+        List<String> texts = new ArrayList<>();
+        int count = textLength / dividerLimit + ((textLength % dividerLimit == 0) ? 0 : 1);
+        int start = 0;
+        int end = textToRead.indexOf(" ", dividerLimit);
+        for (int i = 1; i <= count; i++) {
+            texts.add(textToRead.substring(start, end));
+            start = end;
+            if ((start + dividerLimit) < textLength) {
+                end = textToRead.indexOf(" ", start + dividerLimit);
+            } else {
+                end = textLength;
+            }
+        }
+        return texts;
     }
 
     private void stopReadingTxt() {
@@ -1638,7 +1643,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
         int patternPosition = 0;
 
         // If folder is not set to the entry
-        if (entryInfo.folderTitle.equals("")) {
+        if (entryInfo.folderTitle.isEmpty()) {
             String text = getActivity().getString(R.string.select_folder);
             entryFolderView.setText(text);
             entryFolderView.setTextColor(MyThemesUtils.getListItemTextColor());
@@ -1707,7 +1712,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
 
         StringBuilder entryTags = new StringBuilder();
         for (String tagUid : entryTagsArray) {
-            if (!tagUid.equals("")) {
+            if (!tagUid.isEmpty()) {
                 Cursor tagCursor = MyApp.getInstance().storageMgr.getSQLiteAdapter().getSingleTagCursorByUid(tagUid);
 
                 // If found
@@ -1720,7 +1725,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                 tagCursor.close();
             }
         }
-        if (!entryTags.toString().equals("")) {
+        if (!entryTags.toString().isEmpty()) {
             entryTags.append(",");
         }
 
@@ -1892,7 +1897,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
             if (googleMap != null) {
                 entryMapView.setVisibility(View.VISIBLE);
                 AppLog.d("locationInfo.latitude: " + locationInfo.latitude + ", locationInfo.longitude: " + locationInfo.longitude + ", locationInfo.zoom: " + locationInfo.zoom);
-                if (!locationInfo.latitude.equals("") && !locationInfo.longitude.equals("")) {
+                if (!locationInfo.latitude.isEmpty() && !locationInfo.longitude.isEmpty()) {
                     try {
                         double latitude = Double.parseDouble(locationInfo.latitude);
                         double longitude = Double.parseDouble(locationInfo.longitude);
@@ -2279,7 +2284,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                                     showPhotoChooser();
                                 }
                             });
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
                     PermissionX.init(this)
                             .permissions(Manifest.permission.READ_MEDIA_IMAGES)
                             .request((allGranted, grantedList, deniedList) -> showPhotoChooser());
@@ -2302,7 +2307,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                                     startMultiplePhotoPickerActivityNew();
                                 }
                             });
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
                     PermissionX.init(this)
                             .permissions(Manifest.permission.READ_MEDIA_IMAGES)
                             .request((allGranted, grantedList, deniedList) -> startMultiplePhotoPickerActivityNew());
@@ -2423,7 +2428,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                 }
                 if (resultCode == Activity.RESULT_OK) {
                     List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    if (results != null && results.size() > 0) {
+                    if (results != null && !results.isEmpty()) {
                         String spokenText = results.get(0) + " ";
                         if (entryTitleEditText.isFocused()) {
                             int pos = entryTitleEditText.getSelectionStart();
@@ -2690,7 +2695,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
 
             // Entry location uid
             String locationUid = entryInfo.locationUid;
-            if (entryInfo.locationUid.equals("") && locationInfo != null) {
+            if (entryInfo.locationUid.isEmpty() && locationInfo != null) {
                 locationUid = locationInfo.uid;
             }
 
@@ -2713,7 +2718,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
                 isNewLocation = false;
                 entryInfo.setLocationUid(selectedLocationUid);
 
-                if (selectedLocationUid.equals("")) {
+                if (selectedLocationUid.isEmpty()) {
                     locationInfo = null;
                     // clear temperature
                     // entryInfo.weatherInfo = null;
@@ -3002,7 +3007,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
         ImageView isPrimaryImageView = photoViewGroup.findViewById(R.id.is_primary);
 
         File photoFile = null;
-        if (entryPhotosArrayList != null && entryPhotosArrayList.size() > 0) {
+        if (entryPhotosArrayList != null && !entryPhotosArrayList.isEmpty()) {
             photoFile = new File(entryPhotosArrayList.get(position).getFilePath());
         }
 
@@ -3031,7 +3036,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
         });
 
         // Set primary icon
-        if (photoFile != null && !entryInfo.firstPhotoFilename.equals("") && entryInfo.getFirstPhotoPath().equals(photoFile.getAbsolutePath())) {
+        if (photoFile != null && !entryInfo.firstPhotoFilename.isEmpty() && entryInfo.getFirstPhotoPath().equals(photoFile.getAbsolutePath())) {
             isPrimaryImageView.setVisibility(View.VISIBLE);
         } else {
             isPrimaryImageView.setVisibility(View.GONE);
@@ -3111,7 +3116,7 @@ public class EntryFragment extends Fragment implements OnClickListener, OnStorag
         }
 
         // Set primary icon
-        if (photoFile != null && !entryInfo.firstPhotoFilename.equals("") && entryInfo.getFirstPhotoPath().equals(photoFile.getAbsolutePath())) {
+        if (photoFile != null && !entryInfo.firstPhotoFilename.isEmpty() && entryInfo.getFirstPhotoPath().equals(photoFile.getAbsolutePath())) {
             isPrimaryImageView.setImageResource(R.drawable.ic_ok_white_disabled_18dp);
             isPrimaryImageView.setVisibility(View.VISIBLE);
         } else {
