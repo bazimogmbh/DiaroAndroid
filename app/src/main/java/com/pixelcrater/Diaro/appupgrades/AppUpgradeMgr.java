@@ -19,7 +19,7 @@ public class AppUpgradeMgr {
 
     public AppUpgradeMgr() {
         int appVersionCode = Static.getAppVersionCode();
-        AppLog.e("appVersionCode: " + appVersionCode + ", getDbVersion(): " + getDbVersion());
+        AppLog.i("appVersionCode: " + appVersionCode + ", getDbVersion(): " + getDbVersion());
 
         // NOTE: SQLite database is not upgraded to the latest version yet
 

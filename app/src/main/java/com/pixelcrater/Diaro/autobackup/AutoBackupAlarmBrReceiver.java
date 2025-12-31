@@ -49,7 +49,7 @@ public class AutoBackupAlarmBrReceiver extends BroadcastReceiver {
         PendingIntent pi = PendingIntent.getBroadcast(MyApp.getInstance(), Static.REQUEST_AUTO_BACKUP, i, flag);
         Objects.requireNonNull(alarmManager).set(AlarmManager.RTC_WAKEUP, nextDt.getMillis(), pi);
 
-        AppLog.e("Next auto backup alarm set at: " + nextDt.toString("yyyy.MM.dd HH:mm:ss"));
+        AppLog.i("Next auto backup alarm set at: " + nextDt.toString("yyyy.MM.dd HH:mm:ss"));
     }
 
     public static void cancelCurrentAlarm() {

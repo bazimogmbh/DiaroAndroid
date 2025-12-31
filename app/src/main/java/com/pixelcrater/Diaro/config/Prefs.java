@@ -120,7 +120,8 @@ public class Prefs {
         }
 
         String fullEncryptionKey = Static.md5(partialEncryptionKey + "|" + GlobalConstants.ENCRYPTION_KEY);
-           AppLog.e("fullEncryptionKey: " + fullEncryptionKey);
+      //     AppLog.e("fullEncryptionKey: " + fullEncryptionKey);
+
 
         return fullEncryptionKey;
     }

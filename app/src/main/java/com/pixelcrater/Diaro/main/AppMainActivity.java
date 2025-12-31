@@ -249,7 +249,6 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
 
         String prefString = "__appusagecount__";
         int appUsageCount = prefs.getInt(prefString, 0);
-        AppLog.e(appUsageCount + " :D ");
         // appUsageCount = 0 ; // test
         if (appUsageCount == 0) {
             prefsEditor.putInt(prefString, ++appUsageCount).apply();

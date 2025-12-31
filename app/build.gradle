@@ -27,7 +27,7 @@ android {
 
     defaultConfig {
         applicationId "com.pixelcrater.Diaro"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 35
         versionCode 427
         versionName '4.27.0'
