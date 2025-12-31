@@ -29,8 +29,8 @@ android {
         applicationId "com.pixelcrater.Diaro"
         minSdkVersion 23
         targetSdkVersion 35
-        versionCode 426
-        versionName '4.26.0'
+        versionCode 427
+        versionName '4.27.0'
 
         multiDexEnabled true
         signingConfig signingConfigs.config

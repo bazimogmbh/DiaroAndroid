@@ -58,7 +58,7 @@ public class SQLiteAdapter {
             }
         } catch (Error | Exception e) {
             AppLog.e("Error initializing database: " + e.getClass().getName() + " - " + e.getMessage());
-            e.printStackTrace();
+           // e.printStackTrace();
             throw new RuntimeException("Failed to initialize SQLCipher database", e);
         }
 
