@@ -33,8 +33,8 @@ import com.pixelcrater.Diaro.utils.Static;
 import com.pixelcrater.Diaro.storage.Tables;
 import com.pixelcrater.Diaro.utils.AppLog;
 import com.pixelcrater.Diaro.utils.storage.AppLifetimeStorageUtils;
+import com.pixelcrater.Diaro.utils.storage.StorageUtils;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayInputStream;
@@ -255,7 +255,7 @@ class UploadAttachments {
         @Override
         public void onRun() throws Throwable {
             String parent = DbxPathV2.getName(DbxPathV2.getParent(mUploadData.dbxPath));
-            byte[] data = FileUtils.readFileToByteArray(new File(String.format("%s/%s/%s", AppLifetimeStorageUtils.getMediaDirPath(), parent, DbxPathV2.getName(mUploadData.dbxPath))));
+            byte[] data = StorageUtils.readFileToByteArray(new File(String.format("%s/%s/%s", AppLifetimeStorageUtils.getMediaDirPath(), parent, DbxPathV2.getName(mUploadData.dbxPath))));
             AppLog.d("Start upload attachment " + mUploadData.dbxPath);
 
             UploadSessionStartUploader uploader =  DropboxAccountManager.getDropboxClient(MyApp.getInstance()).files().uploadSessionStartBuilder().withClose(true).start();

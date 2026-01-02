@@ -12,8 +12,8 @@ import com.pixelcrater.Diaro.MyApp;
 import com.pixelcrater.Diaro.utils.Static;
 import com.pixelcrater.Diaro.utils.AppLog;
 import com.pixelcrater.Diaro.utils.storage.AppLifetimeStorageUtils;
+import com.pixelcrater.Diaro.utils.storage.StorageUtils;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -86,7 +86,7 @@ public class SyncProfilePhotoAsync extends AsyncTask<Object, String, Boolean> {
                 if (metadata instanceof FileMetadata) {
                     // Open file (start downloading)
                     DbxDownloader<FileMetadata> downloader = dbxClient.files().download(dropboxFilePath);
-                    FileUtils.copyInputStreamToFile(downloader.getInputStream(), localFile);
+                    StorageUtils.copyInputStreamToFile(downloader.getInputStream(), localFile);
                     downloader.close();
                     result = true;
                 }

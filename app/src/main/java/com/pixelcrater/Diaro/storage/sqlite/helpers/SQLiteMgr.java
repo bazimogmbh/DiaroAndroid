@@ -12,7 +12,7 @@ import net.zetetic.database.sqlcipher.SQLiteConnection;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 import net.zetetic.database.sqlcipher.SQLiteDatabaseHook;
 
-import org.apache.commons.io.FileUtils;
+import com.pixelcrater.Diaro.utils.storage.StorageUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -121,7 +121,7 @@ public class SQLiteMgr {
 
         // Rename database file
         try {
-            FileUtils.moveFile(encryptedDbFileV1, encryptedDbFileV2);
+            StorageUtils.moveFile(encryptedDbFileV1, encryptedDbFileV2);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

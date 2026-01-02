@@ -63,11 +63,156 @@ public class StorageUtils {
     }
 
     /**
-     * Deletes file/directory recursively
+     * Deletes file/directory recursively.
+     * Note: FileUtils.deleteQuietly() uses File.toPath() which requires API 26+,
+     * so we use a custom implementation for older devices.
      */
     public static boolean deleteFileOrDirectory(File file) {
-        // AppLog.d("file: " + file);
-        return FileUtils.deleteQuietly(file);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return FileUtils.deleteQuietly(file);
+        } else {
+            return deleteFileOrDirectoryLegacy(file);
+        }
+    }
+
+    private static boolean deleteFileOrDirectoryLegacy(File file) {
+        if (file == null || !file.exists()) {
+            return true;
+        }
+        try {
+            if (file.isDirectory()) {
+                File[] children = file.listFiles();
+                if (children != null) {
+                    for (File child : children) {
+                        deleteFileOrDirectoryLegacy(child);
+                    }
+                }
+            }
+            return file.delete();
+        } catch (Exception e) {
+            AppLog.e("Failed to delete: " + file.getAbsolutePath() + ", error: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Copies a file. Uses FileUtils on API 26+, legacy implementation on older devices.
+     */
+    public static void copyFile(File srcFile, File destFile) throws IOException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            FileUtils.copyFile(srcFile, destFile);
+        } else {
+            copyFileLegacy(srcFile, destFile);
+        }
+    }
+
+    private static void copyFileLegacy(File srcFile, File destFile) throws IOException {
+        try (InputStream in = new java.io.FileInputStream(srcFile);
+             OutputStream out = new FileOutputStream(destFile)) {
+            byte[] buffer = new byte[4096];
+            int length;
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+        }
+    }
+
+    /**
+     * Copies a directory recursively. Uses FileUtils on API 26+, legacy implementation on older devices.
+     */
+    public static void copyDirectory(File srcDir, File destDir) throws IOException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            FileUtils.copyDirectory(srcDir, destDir);
+        } else {
+            copyDirectoryLegacy(srcDir, destDir);
+        }
+    }
+
+    private static void copyDirectoryLegacy(File srcDir, File destDir) throws IOException {
+        if (!destDir.exists()) {
+            destDir.mkdirs();
+        }
+        File[] files = srcDir.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                File destFile = new File(destDir, file.getName());
+                if (file.isDirectory()) {
+                    copyDirectoryLegacy(file, destFile);
+                } else {
+                    copyFileLegacy(file, destFile);
+                }
+            }
+        }
+    }
+
+    /**
+     * Moves a file. Uses FileUtils on API 26+, legacy implementation on older devices.
+     */
+    public static void moveFile(File srcFile, File destFile) throws IOException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            FileUtils.moveFile(srcFile, destFile);
+        } else {
+            copyFileLegacy(srcFile, destFile);
+            if (!srcFile.delete()) {
+                throw new IOException("Failed to delete original file: " + srcFile);
+            }
+        }
+    }
+
+    /**
+     * Moves a directory. Uses FileUtils on API 26+, legacy implementation on older devices.
+     */
+    public static void moveDirectory(File srcDir, File destDir) throws IOException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            FileUtils.moveDirectory(srcDir, destDir);
+        } else {
+            copyDirectoryLegacy(srcDir, destDir);
+            deleteFileOrDirectory(srcDir);
+        }
+    }
+
+    /**
+     * Reads file to byte array. Uses FileUtils on API 26+, legacy implementation on older devices.
+     */
+    public static byte[] readFileToByteArray(File file) throws IOException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return FileUtils.readFileToByteArray(file);
+        } else {
+            return readFileToByteArrayLegacy(file);
+        }
+    }
+
+    private static byte[] readFileToByteArrayLegacy(File file) throws IOException {
+        try (InputStream in = new java.io.FileInputStream(file);
+             java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream()) {
+            byte[] buffer = new byte[4096];
+            int length;
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+            return out.toByteArray();
+        }
+    }
+
+    /**
+     * Copies InputStream to file. Uses FileUtils on API 26+, legacy implementation on older devices.
+     */
+    public static void copyInputStreamToFile(InputStream source, File destination) throws IOException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            FileUtils.copyInputStreamToFile(source, destination);
+        } else {
+            copyInputStreamToFileLegacy(source, destination);
+        }
+    }
+
+    private static void copyInputStreamToFileLegacy(InputStream source, File destination) throws IOException {
+        try (OutputStream out = new FileOutputStream(destination)) {
+            byte[] buffer = new byte[4096];
+            int length;
+            while ((length = source.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+        }
     }
 
     /**

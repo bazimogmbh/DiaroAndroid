@@ -70,9 +70,8 @@ import com.pixelcrater.Diaro.storage.sqlite.helpers.SQLiteMgr;
 import com.pixelcrater.Diaro.templates.TemplatesActivity;
 import com.pixelcrater.Diaro.utils.storage.FileUtil;
 import com.pixelcrater.Diaro.utils.storage.PermanentStorageUtils;
+import com.pixelcrater.Diaro.utils.storage.StorageUtils;
 import com.yariksoffice.lingver.Lingver;
-
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -307,10 +306,10 @@ public class Static {
         AppLog.d("sourceLocation: " + sourceFile.getPath() + ", targetLocation: " + targetFile.getPath() + " -");
 
         if (sourceFile.isDirectory()) {
-            FileUtils.copyDirectory(sourceFile, targetFile);
+            StorageUtils.copyDirectory(sourceFile, targetFile);
         } else {
             try {
-                FileUtils.copyFile(sourceFile, targetFile);
+                StorageUtils.copyFile(sourceFile, targetFile);
             } catch (IOException e) {
                 Log.e("copy error", e.getLocalizedMessage());
             }
@@ -325,15 +324,15 @@ public class Static {
 
         if (sourceFile.isDirectory()) {
             if (!targetFile.exists()) {
-                FileUtils.moveDirectory(sourceFile, targetFile);
+                StorageUtils.moveDirectory(sourceFile, targetFile);
             } else {
-                FileUtils.copyDirectory(sourceFile, targetFile);
+                StorageUtils.copyDirectory(sourceFile, targetFile);
             }
         } else {
             if (!targetFile.exists()) {
-                FileUtils.moveFile(sourceFile, targetFile);
+                StorageUtils.moveFile(sourceFile, targetFile);
             } else {
-                FileUtils.copyFile(sourceFile, targetFile);
+                StorageUtils.copyFile(sourceFile, targetFile);
             }
         }
     }
