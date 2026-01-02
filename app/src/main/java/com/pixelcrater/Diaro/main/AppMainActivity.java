@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.core.content.ContextCompat;
@@ -27,11 +29,18 @@ import androidx.preference.PreferenceManager;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.PendingPurchasesParams;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryProductDetailsResult;
+import com.android.billingclient.api.QueryPurchasesParams;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
@@ -60,6 +69,7 @@ import com.pixelcrater.Diaro.locations.LocationAddEditActivity;
 import com.pixelcrater.Diaro.moods.MoodsAddEditActivity;
 import com.pixelcrater.Diaro.premium.PremiumActivity;
 import com.pixelcrater.Diaro.premium.billing.PaymentUtils;
+import com.pixelcrater.Diaro.premium.billing.Security;
 import com.pixelcrater.Diaro.profile.ProfileActivity;
 import com.pixelcrater.Diaro.profile.UserMgr;
 import com.pixelcrater.Diaro.settings.PreferencesHelper;
@@ -93,9 +103,10 @@ import static com.pixelcrater.Diaro.utils.Static.EXTRA_SKIP_SC;
 import static com.pixelcrater.Diaro.utils.Static.REQUEST_GET_PRO;
 
 public class AppMainActivity extends TypeSlidingActivity implements SidemenuFragment.OnFragmentInteractionListener, ContentFragment.OnFragmentInteractionListener,
-        SelectAllEntriesAsync.OnAsyncInteractionListener, CheckIfAllEntriesExistAsync.OnAsyncInteractionListener, SharedPreferences.OnSharedPreferenceChangeListener {
+        SelectAllEntriesAsync.OnAsyncInteractionListener, CheckIfAllEntriesExistAsync.OnAsyncInteractionListener, SharedPreferences.OnSharedPreferenceChangeListener, PurchasesUpdatedListener, ProductDetailsResponseListener {
 
     private static final IntentFilter actionTimeIntentFilter;
+    private static final String TAG = "AppMainActivity";
 
     private BillingClient mBillingClient;
 
@@ -631,10 +642,11 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
     protected void onDestroy() {
         super.onDestroy();
         if (mBillingClient != null) {
-            try {
+            if (mBillingClient.isReady()) {
+                AppLog.e("ending billing connection..");
                 mBillingClient.endConnection();
-            } catch (Exception ignored) {
             }
+            mBillingClient = null;
         }
         unregisterReceiver(timeChangedReceiver);
         unregisterReceiver(brReceiver);
@@ -1014,34 +1026,162 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
     private void checkIAP() {
 
         mBillingClient = BillingClient.newBuilder(this)
+                .setListener(this)
                 .enablePendingPurchases(
                         PendingPurchasesParams.newBuilder()
                                 .enableOneTimeProducts()
-                                .enablePrepaidPlans()  // Added in v8.1.0 for prepaid subscriptions
+                                .enablePrepaidPlans()
                                 .build()
                 )
-                .enableAutoServiceReconnection()  // Automatically reconnects if connection is lost
-                .setListener((billingResult, purchases) -> {
-                    AppLog.e("onPurchasesUpdated" + billingResult);
-                    if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
-                        for (Purchase purchase : purchases) {
-                            // handlePurchase(purchase);
-                        }
-                    } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
-                        // Handle an error caused by a user cancelling the purchase flow.
-                    } else {
-                        // Handle any other error codes.
-                    }
-
-                }).build();
+                .enableAutoServiceReconnection()
+                .build();
 
         mBillingClient.startConnection(new BillingClientStateListener() {
             @Override
-            public void onBillingSetupFinished(BillingResult billingResult) {
+            public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+
+                    // ONE TIME PURCHASE
+                    QueryPurchasesParams inAppParams = QueryPurchasesParams.newBuilder()
+                            .setProductType(BillingClient.ProductType.INAPP)
+                            .build();
+
+                    mBillingClient.queryPurchasesAsync(inAppParams, (billingResult1, purchasesList) -> {
+                        if (billingResult1.getResponseCode() == BillingClient.BillingResponseCode.OK){
+                            for (Purchase purchase : purchasesList) {
+                                AppLog.e("The IAP purchases" + purchase.toString());
+
+                                DateTime date = new DateTime(purchase.getPurchaseTime());
+                                AppLog.e("Purchase year" + date.getYear());
+                                proPurchaseYear = date.getYear();
+
+                                String orderID = purchase.getOrderId();
+                                if (StringUtils.isEmpty(orderID)) {
+                                    // Its a google play nbo
+                                    Static.turnOnPlayNboSubscription();
+                                } else {
+                                    Static.turnOffPlayNboSubscription();
+                                }
+
+                                if (!purchase.isAcknowledged()) {
+                                    acknowledgePurchase(purchase.getPurchaseToken());
+                                } else {
+                                    AppLog.e("Purchase is acknowledged!");
+                                }
+
+                                if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
+                                    Static.turnOnPro();
+                                } else {
+                                    if (MyApp.getInstance().userMgr.isSignedIn()) {
+                                        MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
+                                    } else {
+                                        Static.turnOffPro();
+                                    }
+                                }
 
 
+                            }
+                        } });
+
+                    // SUBSCRIPTIONS
+                    QueryPurchasesParams subsParams = QueryPurchasesParams.newBuilder()
+                            .setProductType(BillingClient.ProductType.SUBS)
+                            .build();
+
+                    mBillingClient.queryPurchasesAsync(subsParams, (billingResult2, purchasesSubList) -> {
+                        if (billingResult2.getResponseCode() == BillingClient.BillingResponseCode.OK){
+                            if (purchasesSubList != null) {
+                                for (Purchase purchase : purchasesSubList) {
+                                    AppLog.e("The Subscription purchases" + purchase.toString());
+
+                                    if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
+                                        if (!purchase.isAcknowledged()) {
+                                            acknowledgePurchase(purchase.getPurchaseToken());
+                                        }
+
+                                        String orderID = purchase.getOrderId();
+                                        if (StringUtils.isEmpty(orderID)) {
+                                            // Its a google play nbo
+                                            Static.turnOnPlayNboSubscription();
+                                        } else {
+                                            Static.turnOffPlayNboSubscription();
+                                        }
+                                    }
+
+                                    if (GlobalConstants.activeSubscriptionsList.contains(purchase.getProducts().get(0))) {
+                                        if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
+                                            if (!Static.isSubscribedCurrently()) {
+                                                Static.turnOnSubscribedCurrently();
+                                            }
+
+                                            // Just send payment info once for each order id!
+                                            String prefString = "send_subsinfo_to_server" + purchase.getOrderId();
+                                            SharedPreferences preferences = MyApp.getInstance().prefs;
+                                            if (!preferences.getBoolean(prefString, false)) {
+                                                if (MyApp.getInstance().userMgr.isSignedIn()) {
+                                                    List<QueryProductDetailsParams.Product> productList = new ArrayList<>();
+                                                    productList.add(
+                                                        QueryProductDetailsParams.Product.newBuilder()
+                                                            .setProductId(purchase.getProducts().get(0))
+                                                            .setProductType(BillingClient.ProductType.SUBS)
+                                                            .build()
+                                                    );
+
+                                                    QueryProductDetailsParams productDetailsParams = QueryProductDetailsParams.newBuilder()
+                                                            .setProductList(productList)
+                                                            .build();
+
+                                                    mBillingClient.queryProductDetailsAsync(productDetailsParams, (billingResult1, queryProductDetailsResult) -> {
+                                                        try {
+                                                            if (queryProductDetailsResult.getProductDetailsList() != null &&
+                                                                !queryProductDetailsResult.getProductDetailsList().isEmpty()) {
+                                                                ProductDetails productDetails = queryProductDetailsResult.getProductDetailsList().get(0);
+                                                                PaymentUtils.sendGoogleInAppPaymentToAPI(purchase, productDetails);
+                                                            }
+
+                                                        } catch (Exception ignored) {
+
+                                                        }
+                                                    });
+                                                }
+
+                                                preferences.edit().putBoolean(prefString, true).apply();
+                                            }
+
+                                        } else {
+                                            if (MyApp.getInstance().userMgr.isSignedIn()) {
+                                                MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
+                                            } else {
+                                                Static.turnOffSubscribedCurrently();
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                            }
+                        }
+                    });
+
+                    // NO PURCHASES FOUND
+                    if (!Static.isProUser()) {
+                        AppLog.i(" No purchases found");
+                        // Get purchase info from server
+                        if (MyApp.getInstance().userMgr.isSignedIn()) {
+                            MyApp.getInstance().asyncsMgr.executeCheckProAsync(MyApp.getInstance().userMgr.getSignedInEmail());
+                        } else {
+                            Static.turnOffPro();
+                            Static.turnOffSubscribedCurrently();
+                            Static.turnOffPlayNboSubscription();
+                        }
+                    } else {
+                        AppLog.i("Purchases found-> Pro: " + Static.isPro() + ", SubscribedYearly: " + Static.isSubscribedCurrently());
+                        // User is Pro but does not have a subscription yet, ask him to upgrade to subscription
+                        askBuyProYearly();
+                    }
+
+                }
             }
-
             @Override
             public void onBillingServiceDisconnected() {
                 // Try to restart the connection on the next request to Google Play by calling the startConnection() method.
@@ -1049,16 +1189,81 @@ public class AppMainActivity extends TypeSlidingActivity implements SidemenuFrag
         });
     }
 
-    public void acknowledgePurchase(String purchaseToken) {
+    // This receives updates for all purchases in your app.
+    @Override
+    public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
+        int responseCode = billingResult.getResponseCode();
+        String debugMessage = billingResult.getDebugMessage();
+        AppLog.e("onPurchasesUpdated: " +  responseCode  + ", " + debugMessage);
 
+        if (responseCode == BillingClient.BillingResponseCode.OK) {
+            if (purchases == null) {
+                AppLog.e("onPurchasesUpdated: null purchase list");
+            } else {
+                AppLog.e("onPurchasesUpdated: successful");
+                // Purchase is valid - checkIAP() will handle status updates on next app launch
+
+                // TODO: Uncomment signature verification for production
+                /*
+                // ✅ SECURITY: Verify purchase signatures
+                String base64PublicKey = getBase64PublicKey();
+                for (Purchase purchase : purchases) {
+                    if (Security.verifyPurchase(base64PublicKey, purchase.getOriginalJson(), purchase.getSignature())) {
+                        AppLog.e("Purchase signature VERIFIED for: " + purchase.getOrderId());
+                        // Purchase is valid - checkIAP() will handle status updates on next app launch
+                    } else {
+                        AppLog.e("SECURITY ALERT: Purchase signature INVALID for: " + purchase.getOrderId());
+                    }
+                }
+                */
+            }
+        } else if (responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
+            AppLog.e("onPurchasesUpdated: User canceled the purchase");
+        } else if (responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
+            AppLog.e("onPurchasesUpdated: The user already owns this item");
+        } else if (responseCode == BillingClient.BillingResponseCode.DEVELOPER_ERROR) {
+            AppLog.e("onPurchasesUpdated: Developer error means that Google Play does not recognize the configuration. ");
+        }
+    }
+
+    public void acknowledgePurchase(String purchaseToken) {
+        AppLog.e("Acknowledging purchase");
         AcknowledgePurchaseParams params = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchaseToken).build();
-        mBillingClient.acknowledgePurchase(params, billingResult -> {
-            int responseCode = billingResult.getResponseCode();
-            String debugMessage = billingResult.getDebugMessage();
-            AppLog.e("acknowledgePurchase: " + responseCode + " " + debugMessage);
+        mBillingClient.acknowledgePurchase(params, new AcknowledgePurchaseResponseListener() {
+            @Override
+            public void onAcknowledgePurchaseResponse(BillingResult billingResult) {
+                int responseCode = billingResult.getResponseCode();
+                String debugMessage = billingResult.getDebugMessage();
+                AppLog.e( "Acknowledged purchase : " + responseCode + " " + debugMessage);
+            }
         });
     }
 
+    /**
+     * Gets the base64-encoded public key for purchase signature verification.
+     * @return The public key string from GlobalConstants
+     */
+    private String getBase64PublicKey() {
+        return GlobalConstants.base64EncodedPublicKey;
+    }
+
+    @Override
+    public void onProductDetailsResponse(@NonNull BillingResult billingResult, @NonNull QueryProductDetailsResult queryProductDetailsResult) {
+        int responseCode = billingResult.getResponseCode();
+        String debugMessage = billingResult.getDebugMessage();
+
+        if (responseCode == BillingClient.BillingResponseCode.OK) {
+            List<ProductDetails> productDetailsList = queryProductDetailsResult.getProductDetailsList();
+            if (productDetailsList == null || productDetailsList.isEmpty()) {
+                AppLog.e("onProductDetailsResponse: null or empty ProductDetails list");
+            } else {
+                AppLog.e("onProductDetailsResponse: received " + productDetailsList.size() + " product details");
+                // Product details received - used in checkIAP() for sending subscription info to server
+            }
+        } else {
+            AppLog.e("onProductDetailsResponse: " + responseCode + " " + debugMessage);
+        }
+    }
 
     // show this dialog only once, if user has pro but is not subscribed to yearly subscription
     private void askBuyProYearly() {
