@@ -136,10 +136,12 @@ public class LocationWrapper {
             float[] latLong = extras.getFloatArray("latLong");
 //            AppLog.d("latLong: " + latLong);
 
-            setAddress(null, latLong[0], latLong[1]);
+            if (latLong != null && latLong.length >= 2) {
+                setAddress(null, latLong[0], latLong[1]);
 
-            // Try to get address from latLong
-            executeGeocodeFromCoordsAsync(latLong[0], latLong[1]);
+                // Try to get address from latLong
+                executeGeocodeFromCoordsAsync(latLong[0], latLong[1]);
+            }
         }
 
         if (savedInstanceState != null) {
