@@ -1,9 +1,7 @@
 package com.pixelcrater.Diaro.utils.storage;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,7 +13,6 @@ import android.os.StatFs;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.exifinterface.media.ExifInterface;
 
@@ -641,27 +638,20 @@ public class StorageUtils {
     }
 
     public static void writeToFile(String content, Uri uri, Activity activityCompat) {
-        if (ContextCompat.checkSelfPermission(activityCompat, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activityCompat, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-        } else {
-            OutputStream outputStream;
-            try {
-                outputStream = activityCompat.getContentResolver().openOutputStream(uri);
-                PrintStream ps = new PrintStream(Objects.requireNonNull(outputStream));
-                ps.print(content);
-                ps.flush();
-                ps.close();
+        // The URI here comes from the Storage Access Framework (ACTION_CREATE_DOCUMENT),
+        // so writing to it does NOT require the WRITE_EXTERNAL_STORAGE runtime permission.
+        // On Android 10+ that permission is non-grantable, so gating the write behind it
+        // left the SAF-created file empty (0 bytes). Write directly instead.
+        try (OutputStream outputStream = activityCompat.getContentResolver().openOutputStream(uri, "wt");
+             PrintStream ps = new PrintStream(Objects.requireNonNull(outputStream), false, "UTF-8")) {
+            ps.print(content);
+            ps.flush();
 
-                outputStream.flush();
-                outputStream.close();
-
-                Static.showToastSuccess("File exported!");
-            } catch (IOException e) {
-                e.printStackTrace();
-                AppLog.e("Exception writing to " + uri);
-                Static.showToastError(e.getMessage() + "  " + uri.getPath());
-            }
-
+            Static.showToastSuccess("File exported!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            AppLog.e("Exception writing to " + uri);
+            Static.showToastError(e.getMessage() + "  " + uri.getPath());
         }
     }
 

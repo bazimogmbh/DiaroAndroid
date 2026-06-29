@@ -13,7 +13,6 @@ android {
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 35
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -22,6 +21,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    lint {
+        targetSdk 35
+    }
+    testOptions {
+        targetSdk 35
     }
 
 }

@@ -8,7 +8,6 @@ android {
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 35
     }
 
     buildTypes {
@@ -18,6 +17,12 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    lint {
+        targetSdk 35
+    }
+    testOptions {
+        targetSdk 35
     }
 }
 
